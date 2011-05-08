@@ -1,0 +1,3 @@
+imports:
+    - { resource: "@SocialiteBundle/Resources/config/manager.yml" }
+#    - { resource: "@SocialiteBundle/Resources/config/form.xml" }

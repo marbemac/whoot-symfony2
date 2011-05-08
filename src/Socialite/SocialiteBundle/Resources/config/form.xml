@@ -1,0 +1,33 @@
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="limelight.form.talk" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
+            <argument type="service" id="limelight.form.type.talk" />
+            <argument type="collection">
+                <argument key="data_class">Limelight\LimelightBundle\Entity\Talk</argument>
+            </argument>
+        </service>
+
+        <service id="limelight.form.type.talk" class="Limelight\LimelightBundle\Form\TalkFormType">
+            <argument>limelight.form.talk</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="limelight.form.handler.talk" class="Limelight\LimelightBundle\Form\TalkFormHandler" scope="request">
+            <argument type="service" id="limelight.form.talk" />
+            <argument type="service" id="request" />
+            <argument type="service" id="limelight.talk_manager" />
+            <argument type="service" id="limelight.topic_manager" />
+            <argument type="service" id="limelight.object_manager" />
+        </service>
+
+    </services>
+
+</container>
+-->

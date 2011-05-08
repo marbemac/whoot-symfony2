@@ -1,0 +1,16 @@
+parameters:
+    socialite.core_manager.class:                  Socialite\SocialiteBundle\Entity\CoreManager
+    socialite.user_manager.class:                  Socialite\SocialiteBundle\Entity\UserManager
+    socialite.post_manager.class:                  Socialite\SocialiteBundle\Entity\PostManager
+    
+services:
+    socialite.core_manager:
+        class:        %socialite.core_manager.class%
+        arguments:    ["@request", "@router", "@security.context"]
+        scope:       request
+    socialite.user_manager:
+        class:        %socialite.user_manager.class%
+        arguments:    ["@doctrine.orm.default_entity_manager"]
+    socialite.post_manager:
+        class:        %socialite.post_manager.class%
+        arguments:    ["@doctrine.orm.default_entity_manager"]

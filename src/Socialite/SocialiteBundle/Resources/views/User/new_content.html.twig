@@ -1,0 +1,45 @@
+<form action="{{ path('fos_user_user_new') }}" {{ form_enctype(form) }} method="POST" class="user_new">
+    {{ form_errors(form) }}
+
+    <div>
+        {{ form_errors(form.firstName) }}
+        {{ form_label(form.firstName) }}
+        {{ form_widget(form.firstName) }}
+    </div>
+
+    <div>
+        {{ form_errors(form.lastName) }}
+        {{ form_label(form.lastName) }}
+        {{ form_widget(form.lastName) }}
+    </div>
+    
+    <div>
+        {{ form_errors(form.email) }}
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+    </div>
+        
+    <div>
+        {{ form_errors(form.gender) }}
+        {{ form_label(form.gender) }}
+        {{ form_widget(form.gender) }}
+    </div>
+        
+    <div>
+        {{ form_errors(form.zipcode) }}
+        {{ form_label(form.zipcode) }}
+        {{ form_widget(form.zipcode) }}
+    </div>
+        
+    <div>
+        {{ form_errors(form.plainPassword) }}
+        {{ form_label(form.plainPassword) }}
+        {{ form_widget(form.plainPassword) }}
+    </div>
+        
+    {{ form_widget(form.username, { 'attr' : {'value': username} }) }}
+    
+    {{ form_rest(form) }}
+
+    <input type="submit" value="{{ 'user.new.submit'|trans([], 'FOSUserBundle') }}" />
+</form>

@@ -1,0 +1,24 @@
+/*
+    Document   : _default
+    Created on : Mar 30, 2011, 4:06:21 PM
+    Author     : Marc MacLeod
+    Description:
+        Default theme variables.
+*/
+
+$header_background-color: #FFF;
+$header_color: #000;
+
+$min-page-height: 800px;
+
+$sidebar_background-color: #FFF;
+$sidebar_color: #000;
+$sidebar_border_width: 3px;
+$sidebar_width: 200px + $sidebar_border_width;
+
+$page_content_background-color: #FFF;
+$page_content_color: #000;
+
+$footer_height: 75px;
+$footer_background-color: orange;
+$footer_color: #FFF;

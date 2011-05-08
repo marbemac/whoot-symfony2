@@ -1,0 +1,9 @@
+{% extends 'SocialiteBundle:User:layout.html.twig' %}
+
+{% block title %}
+    {{ user.username }}
+{% endblock %}
+
+{% block page_content %}
+    {% include "SocialiteBundle:User:show_content.html.twig" %}
+{% endblock %}

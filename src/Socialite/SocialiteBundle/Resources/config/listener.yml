@@ -1,0 +1,8 @@
+#parameters:
+#    limelight.object.new_object_listener.class: Limelight\LimelightBundle\Listener\NewObjectListener
+#
+#services:
+#    limelight.object.new_object_listener:
+#        class: %limelight.object.new_object_listener.class%
+#        tags:
+#            - { name: doctrine.dbal.default_event_listener, event: postPersist, method: listenToNewObject }

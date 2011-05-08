@@ -1,0 +1,23 @@
+{% if error %}
+    <div>{{ error }}</div>
+{% endif %}
+
+<form action="{{ path("_security_check") }}" method="POST" class="login_form">
+    <div>
+        <label for="username">Email:</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    </div>
+    
+    <div>
+        <label for="password">{{ 'security.login.password'|trans([], 'FOSUserBundle') }}</label>
+        <input type="password" id="password" name="_password" />
+    </div>
+    
+    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    <label for="remember_me">Remember Me</label>
+
+    <input type="submit" name="login" />
+</form>
+<p>
+    <!-- <a href="{{ path('fos_user_user_request_reset_password') }}">{{ 'security.login.request_reset_password'|trans([], 'FOSUserBundle') }}</a> -->
+</p>

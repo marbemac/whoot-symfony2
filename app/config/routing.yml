@@ -1,0 +1,6 @@
+_internal:
+    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+    prefix:   /_internal
+    
+socialite:
+    resource: "@SocialiteBundle/Resources/config/routing/routing.yml"

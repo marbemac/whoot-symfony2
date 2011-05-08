@@ -1,0 +1,14 @@
+security:
+    resource: "@SocialiteBundle/Resources/config/routing/security.yml"
+
+user:
+    resource: "@SocialiteBundle/Resources/config/routing/user.yml"
+    prefix:   /u
+    
+post:
+    resource: "@SocialiteBundle/Resources/config/routing/post.yml"
+    prefix:   /p
+
+homepage:
+    pattern:  /
+    defaults: { _controller: SocialiteBundle:Core:home }

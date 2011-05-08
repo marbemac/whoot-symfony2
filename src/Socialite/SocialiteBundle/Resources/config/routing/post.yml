@@ -1,0 +1,5 @@
+post_create:
+    pattern:  /new/{type}
+    defaults: { _controller: SocialiteBundle:Post:create }
+    requirements:
+        _method: POST|GET

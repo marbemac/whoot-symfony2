@@ -33,11 +33,13 @@ class PostController extends ContainerAware
         }
 
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $myPost = $this->container->get('socialite.post_manager')->findMyPost($user);
+        $myPost = $this->container->get('socialite.post_manager')->findMyPost($user, 'Active');
+        $myPostPending = $this->container->get('socialite.post_manager')->findMyPost($user, 'Pending');
         $posts = $this->container->get('socialite.post_manager')->findPostsBy($user, null, null);
 
         return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:feed.html.twig', array(
             'myPost' => $myPost,
+            'myPostPending' => $myPostPending,
             'posts' => $posts,
         ), $response);
     }
@@ -74,7 +76,7 @@ class PostController extends ContainerAware
             $result['result'] = 'success';
             $result['event'] = 'post_created';
             $result['flash'] = array('type' => 'success', 'message' => 'Your status has been updated.');
-            $result['myPost'] = $templating->render('SocialiteBundle:Post:myPost.html.twig', array('myPost' => $postResult['post']));
+            $result['myPost'] = $templating->render('SocialiteBundle:Post:myPost.html.twig', array('myPost' => $postResult['post'], 'myPostPending' => null));
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 
@@ -110,7 +112,7 @@ class PostController extends ContainerAware
     /**
      * {@inheritDoc}
      */
-    public function teaserAction($id, $cycleClass = '')
+    public function teaserAction($postId, $cycleClass = '')
     {
         $response = new Response();
         $response->setCache(array(
@@ -121,16 +123,92 @@ class PostController extends ContainerAware
             // return $response;
         }
 
-        $object = $this->container->get('limelight.talk_manager')->findObjectBy(array('id' => $id));
+        $post = $this->container->get('socialite.post_manager')->findObjectBy(array('id' => $postId));
 
-        // Get the current user feed filters
-        $session = $this->container->get('request')->getSession();
-        $feedFilters = $session->get('feedFilters');
-
-        return $this->container->get('templating')->renderResponse('LimelightBundle:Talk:teaser.html.twig', array(
-            'object' => $object,
-            'feedType' => $feedFilters['feedType'],
+        return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:teaser.html.twig', array(
+            'post' => $post,
             'cycleClass' => $cycleClass
         ), $response);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function teaserPendingAction($postId)
+    {
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+            // return $response;
+        }
+
+        $post = $this->container->get('socialite.post_manager')->findObjectBy(array('id' => $postId));
+
+        return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:teaserPending.html.twig', array(
+            'post' => $post
+        ), $response);
+    }
+
+    /**
+     * Display a request invite tag for the current user.
+     *
+     * @param integer $toUser
+     */
+    public function inviteRequestTagAction($postId)
+    {
+        $securityContext = $this->container->get('security.context');
+
+        if ($securityContext->isGranted('ROLE_USER'))
+        {
+            $fromUser = $securityContext->getToken()->getUser()->getId();
+            $connection = $this->container->get('socialite.post_manager')->findInviteRequests($fromUser, $postId, 'Pending', null, true);
+        }
+        else
+        {
+            $fromUser = null;
+            $connection = null;
+        }
+
+        return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:inviteRequestTag.html.twig', array(
+            'fromUser' => $fromUser,
+            'postId' => $postId,
+            'connection' => $connection
+        ));
+    }
+
+    /*
+     * Toggles on/off a post invite request for the current user.
+     *
+     * @param integer $postId
+     * @param bool $go If set to false will not excute if the user already has a pending invite.
+     */
+    public function inviteRequestToggleAction($postId, $go)
+    {
+        $coreManager = $this->container->get('socialite.core_manager');
+        $login = $coreManager->mustLogin();
+        if ($login)
+        {
+            return $login;
+        }
+
+        $request = $this->container->get('request');
+        $postManager = $this->container->get('socialite.post_manager');
+
+        $result = $postManager->toggleInviteRequest($this->container->get('security.context')->getToken()->getUser()->getId(), $postId, $go);
+
+        if ($request->isXmlHttpRequest())
+        {
+            $result['postId'] = $postId;
+            $result['event'] = 'invite_request_toggle';
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
+
+        return new RedirectResponse($_SERVER['HTTP_REFERER']);
     }
 }

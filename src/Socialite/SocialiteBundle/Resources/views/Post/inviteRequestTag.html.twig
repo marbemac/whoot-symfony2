@@ -1,0 +1,7 @@
+{% if not fromUser %}
+    <a class="follow-B ir_{{ postId }} auth" href="{{ path('post_invite_request_toggle', {'postId': postId}) }}">Invite Out</a>
+{% elseif connection %}
+    <a class="unfollow-B ac ir_{{ postId }}" href="{{ path('post_invite_request_toggle', {'postId': postId}) }}">Cancel Invite</a>
+{% else %}
+    <a class="follow-B ac ir_{{ postId }}" href="{{ path('post_invite_request_toggle', {'postId': postId}) }}">Invite Out</a>
+{% endif %}

@@ -80,12 +80,13 @@ class Post
     /**
      * @var Limelight\LimelightBundle\Entity\User
      *
-     * @orm:OneToMany(targetEntity="Socialite\SocialiteBundle\Entity\UsersPosts", mappedBy="user", cascade={"persist", "remove"})
+     * @orm:OneToMany(targetEntity="Socialite\SocialiteBundle\Entity\UsersPosts", mappedBy="user", cascade={"persist"})
      */
     protected $users;
 
     public function __construct() {
         $this->users = new ArrayCollection();
+        $this->status = 'Active';
     }
 
     /**
@@ -224,7 +225,12 @@ class Post
     {
         return $this->deletedAt;
     }
-    
+
+    public function getUsers()
+    {
+        return $this->users();
+    }
+
     /**
      * @orm:prePersist
      */

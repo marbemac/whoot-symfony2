@@ -239,25 +239,29 @@ Purpose of the stylesheet follows.
 #my-post h2 {
   padding: 10px;
 }
+/* line 22, ../compass/src/partials/_post.scss */
+#my-post .pending {
+  margin: 0 0 10px 10px;
+}
 
-/* line 23, ../compass/src/partials/_post.scss */
+/* line 27, ../compass/src/partials/_post.scss */
 #post-feed {
   position: relative;
   width: 100%;
   height: 100%;
 }
-/* line 27, ../compass/src/partials/_post.scss */
+/* line 31, ../compass/src/partials/_post.scss */
 #post-feed li {
   margin: 0 10px;
   border-top: 1px solid #CCC;
   padding: 10px;
 }
-/* line 32, ../compass/src/partials/_post.scss */
+/* line 36, ../compass/src/partials/_post.scss */
 #post-feed li.last, #post-feed li.none {
   border-bottom: 1px solid #CCC;
 }
 
-/* line 37, ../compass/src/partials/_post.scss */
+/* line 41, ../compass/src/partials/_post.scss */
 #post-box {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
@@ -269,7 +273,7 @@ Purpose of the stylesheet follows.
   top: 0px;
   left: 0px;
 }
-/* line 47, ../compass/src/partials/_post.scss */
+/* line 51, ../compass/src/partials/_post.scss */
 #post-box .options {
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;

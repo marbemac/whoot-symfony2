@@ -3,3 +3,10 @@ post_create:
     defaults: { _controller: SocialiteBundle:Post:create }
     requirements:
         _method: POST|GET
+
+post_invite_request_toggle:
+    pattern:  /ir/toggle/{postId}/{go}
+    defaults: { _controller: SocialiteBundle:Post:inviteRequestToggle, postId: 0, go: false }
+    requirements:
+        _method: GET|POST
+        postId: \d+

@@ -28,6 +28,12 @@ class UsersPosts
     protected $status;
 
     /**
+     * @var string $approved
+     * @orm:Column(type="boolean")
+     */
+    protected $approved;
+
+    /**
      * @var dateTime $updatedAt
      * @orm:Column(type="datetime", name="updated_at", nullable=true)
      */
@@ -69,6 +75,7 @@ class UsersPosts
         $this->status = 'Active';
         $this->users = new ArrayCollection();
         $this->posts = new ArrayCollection();
+        $this->approved = true;
     }
 
     /**
@@ -99,6 +106,26 @@ class UsersPosts
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set approved
+     *
+     * @param bool $approved
+     */
+    public function setApproved($approved)
+    {
+        $this->approved = $approved;
+    }
+
+    /**
+     * Get approved
+     *
+     * @return bool $approved
+     */
+    public function getApproved()
+    {
+        return $this->approved;
     }
 
     /**

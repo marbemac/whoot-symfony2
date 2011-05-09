@@ -63,13 +63,14 @@ class PostManager
     public function findObjectBy(array $criteria, $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p', 'cb'))
-           ->from('Limelight\LimelightBundle\Entity\Post', 'p')
-           ->innerJoin('p.createdBy', 'cb');
+        $qb->select(array('p', 'pu', 'u'))
+           ->from('Socialite\SocialiteBundle\Entity\Post', 'p')
+           ->innerJoin('p.users', 'pu')
+           ->innerJoin('pu.user', 'u');
 
         foreach ($criteria as $key => $val)
         {
-            $qb->where('o.'.$key.' = :'.$key)
+            $qb->where('p.'.$key.' = :'.$key)
                ->setParameter($key, $val);
         }
 
@@ -145,17 +146,17 @@ class PostManager
         return $objects;
     }
     
-    public function findMyPost($user)
+    public function findMyPost($user, $status = 'Active')
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p', 'u'))
-           ->from('Socialite\SocialiteBundle\Entity\Post', 'p')
-           ->innerJoin('p.users', 'u', 'WITH', 'u.user = :createdBy AND u.createdAt >= :createdAt')
-           ->where('p.status = :status AND p.createdAt >= :createdAt')
+        $qb->select(array('up', 'p'))
+           ->from('Socialite\SocialiteBundle\Entity\UsersPosts', 'up')
+           ->innerJoin('up.post', 'p')
+           ->where('up.status = :status AND up.createdAt >= :createdAt AND up.user = :createdBy')
            ->setParameters(array(
                'createdBy'    => $user,
-               'createdAt'    => date('Y-m-d 05:00:00', time()),
-               'status'       => 'Active'
+               'createdAt'    => date('Y-m-d 05:00:00', time()-(60*60*5)),
+               'status'       => $status
            ));
 
         $query = $qb->getQuery();
@@ -177,9 +178,9 @@ class PostManager
     public function togglePost($type, $user)
     {
         $result = array('status' => 'existing');
-        $post = $this->findMyPost($user);
+        $userPost = $this->findMyPost($user);
 
-        if (!$post)
+        if (!$userPost)
         {
             $post = $this->createPost();
             $post->setCreatedBy($user);
@@ -190,16 +191,127 @@ class PostManager
             $result['status'] = 'new';
         }
 
-        $post->setStatus('Active');
-        $post->setType($type);
+        $userPost->getPost()->setType($type);
 
-        $user->setPost($post);
-
-        $this->updatePost($post, false);
+        $this->updatePost($userPost->getPost(), false);
         $this->em->flush();
 
-        $result['post'] = $post;
+        $result['post'] = $userPost;
         
         return $result;
+    }
+
+    /*
+     * Check for a invite request. Return if found.
+     *
+     * @param integer $fromUser
+     * @param integer $postId
+     * @param bool $status
+     * @param date $fromDate
+     * @param bool $singleResult
+     * @param bool $returnObject
+     */
+    public function findInviteRequests($fromUser, $postId, $status = false, $fromDate = null, $singleResult = false, $returnObject = false)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select(array('up', 'p.id'))
+           ->from('Socialite\SocialiteBundle\Entity\UsersPosts', 'up')
+           ->innerJoin('up.post', 'p')
+           ->where('up.user = :user')
+           ->setParameters(array(
+               'user' => $fromUser
+           ));
+
+        if ($postId)
+        {
+            $qb->andwhere('up.post = :post')
+               ->setParameter('post', $postId);
+        }
+
+        if ($status)
+        {
+            $qb->andwhere('up.status = :status')
+               ->setParameter('status', $status);
+        }
+
+        if ($fromDate)
+        {
+            $qb->andwhere('up.createdAt >= :fromDate')
+               ->setParameter('fromDate', $fromDate);
+        }
+
+        $query = $qb->getQuery();
+        $connections = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
+
+        if ($singleResult)
+        {
+            return isset($connections[0]) ? $connections[0][0] : null;
+        }
+
+        return $connections;
+    }
+
+    public function toggleInviteRequest($fromUser, $postId, $go)
+    {
+        $response = array();
+
+        // Check to see if this user has already sent out any invites today.
+        $requests = $this->findInviteRequests($fromUser, null, 'Pending', date('Y-m-d 05:00:00', time()-(60*60*5)));
+        if (count($requests) > 0 && $requests[0]['id'] != $postId && !$go)
+        {
+            $response['status'] = 'Check';
+
+            return $response;
+        }
+
+        // Get the users connection to this post, if any.
+        $connection = $this->findInviteRequests($fromUser, $postId, false, null, true, true);
+
+        // Has the user already requested an invite to this post?
+        if ($connection)
+        {
+            // Did they previously cancel it?
+            if ($connection->getStatus() == 'Cancelled')
+            {
+                $response['status'] = 'new';
+
+                // If it was previously approved, set it straight to active.
+                if ($connection->getApproved())
+                {
+                    $connection->setStatus('Active');
+                }
+                // Else set the invite to pending again.
+                else
+                {
+                    $connection->setStatus('Pending');
+                }
+            }
+            else
+            {
+                $response['status'] = 'existing';
+                $connection->setStatus('Cancelled');
+            }
+        }
+        else
+        {
+            $fromUser = $this->em->getRepository('SocialiteBundle:User')->find($fromUser);
+            $post = $this->em->getRepository('SocialiteBundle:Post')->find($postId);
+
+            $response['status'] = 'new';
+
+            $connection = new UsersPosts();
+            $connection->setUser($fromUser);
+            $connection->setPost($post);
+            $connection->setStatus('Pending');
+            $connection->setApproved(false);
+        }
+
+        $this->em->persist($connection);
+        $this->em->flush();
+
+        $response['flash'] = array('type' => 'success', 'message' => 'Invite request ' . ($response['status'] == 'existing' ? 'cancelled' : 'sent') .' successfully!');
+        $response['newText'] = $response['status'] == 'existing' ? 'Request Invite' : 'Cancel Request';
+
+        return $response;
     }
 }

@@ -2,5 +2,5 @@
     User Teaser<br />
     Score: [<span class="s_{{ object.id }}">{{ object.score }}</span>] <a class="p" href="{{ path('fos_user_user_show', {'username': object.User.username} ) }}">{{ object.User.username }}</a>
     
-    {% render "LimelightBundle:Follow:tag" with {'toObject': object.id} %}
+    {% render "SocialiteBundle:Follow:tag" with {'toObject': object.id} %}
 </div>

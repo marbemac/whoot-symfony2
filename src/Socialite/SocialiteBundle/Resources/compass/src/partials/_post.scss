@@ -18,6 +18,10 @@ Purpose of the stylesheet follows.
     h2 {
         padding: 10px;
     }
+
+    .pending {
+        margin: 0 0 10px 10px;
+    }
 }
 
 #post-feed { 
@@ -61,5 +65,9 @@ Purpose of the stylesheet follows.
 }
 
 .teaser.post {
+    
+}
+
+.teaser.post.pending {
     
 }

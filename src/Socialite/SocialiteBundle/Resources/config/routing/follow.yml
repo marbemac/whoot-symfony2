@@ -3,7 +3,7 @@ follow_toggle:
     defaults: { _controller: SocialiteBundle:Follow:toggle, userId: 0 }
     requirements:
         _method: GET|POST
-        objectId: \d+
+        userId: \d+
 
 follow_show:
     pattern:  /{userId}

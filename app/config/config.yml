@@ -6,7 +6,6 @@ imports:
 framework:
     secret:        %secret%
     charset:       UTF-8
-    error_handler: null
     esi: ~
     csrf_protection:
         enabled: true

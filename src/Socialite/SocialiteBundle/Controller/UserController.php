@@ -31,6 +31,7 @@ class UserController extends ContainerAware
         $formHandler = $this->container->get('fos_user.form.handler.user');
 
         $process = $formHandler->process(null, $this->container->getParameter('fos_user.email.confirmation.enabled'));
+
         if ($process) {
 
             $user = $form->getData();
@@ -114,6 +115,15 @@ class UserController extends ContainerAware
         $this->container->get('session')->setFlash('success', 'Woot. Success.');
         return $this->container->get('templating')->renderResponse('SocialiteBundle:User:confirmed.html.twig', array(
             'user' => $user,
+        ));
+    }
+
+    public function listAction()
+    {
+        $users = $this->container->get('socialite.user_manager')->getUsersBy($this->container->get('security.context')->getToken()->getUser());
+
+        return $this->container->get('templating')->renderResponse('SocialiteBundle:User:list.html.twig', array(
+            'users' => $users
         ));
     }
 

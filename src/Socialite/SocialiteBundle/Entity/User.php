@@ -2,7 +2,12 @@
 
 namespace Socialite\SocialiteBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+    
 use FOS\UserBundle\Entity\User as BaseUser;
+
+use Socialite\SocialiteBundle\Entity\Post;
+use Socialite\SocialiteBundle\Entity\UsersPosts;
 
 /**
  * @orm:Entity
@@ -17,6 +22,12 @@ class User extends BaseUser
      * @orm:generatedValue(strategy="AUTO")
      */
     protected $id;
+    
+    /**
+     * @var string $status
+     * @orm:Column(type="string")
+     */
+    protected $status;
     
     /**
      * @var string $firstName
@@ -61,6 +72,33 @@ class User extends BaseUser
     private $zipcode;
 
     /**
+     * @var UsersPosts
+     *
+     * @orm:OneToMany(targetEntity="UsersPosts", mappedBy="user", cascade={"persist"})
+     */
+    protected $posts;
+
+    /**
+     * @var UserFollowing
+     *
+     * @orm:OneToMany(targetEntity="UserFollowing", mappedBy="user")
+     */
+    protected $following;
+
+    /**
+     * @var UserFollowing
+     *
+     * @orm:OneToMany(targetEntity="UserFollowing", mappedBy="following")
+     */
+    protected $followers;
+
+    public function __construct() {
+        $this->posts = new ArrayCollection();
+        $this->status = 'Active';
+        parent::__construct();
+    }
+
+    /**
      * Get id
      *
      * @return integer $id
@@ -68,6 +106,26 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string $status
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     /**
@@ -148,5 +206,25 @@ class User extends BaseUser
     public function getZipcode()
     {
         return $this->zipcode;
+    }
+
+    /**
+     * Get a user's posts.
+     *
+     * @return array[Post] $posts
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param Post $post
+     *
+     * @return void
+     */
+    public function setPost(Post $post)
+    {
+        $this->posts[] = $post;
     }
 }

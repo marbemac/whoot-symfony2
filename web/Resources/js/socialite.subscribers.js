@@ -18,12 +18,20 @@ $(function(){
     }
 
     /*
+     * USERS
+     */
+
+    amplify.subscribe("follow_toggle", function( data ) {
+        actionCommon($('.fol_'+data.userId), data);
+    });
+
+    /*
      * POSTS
      */
 
     amplify.subscribe("post_created", function( data ) {
         $('#post-box').fadeOut(500);
-        
+
         $('#my-post').remove();
         $('#post-feed').prepend(data.myPost);
     });

@@ -16,6 +16,7 @@ $(function() {
      * SPLASH PAGE
      */
     $('#splash .button').live('click', function() {
+        console.log('test');
         var $self = $(this);
         $self.parents('.panel').fadeOut(300, function() {
             $($self.data('target')).fadeIn(300);

@@ -8,10 +8,10 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @orm:Entity
- * @orm:Table(name="post")
+ * @orm:Table(name="users_posts")
  * @orm:HasLifecycleCallbacks
  */
-class Post
+class UsersPosts
 {
     /**
      * @var integer $id
@@ -20,19 +20,7 @@ class Post
      * @orm:generatedValue(strategy="AUTO")
      */
     protected $id;
-    
-    /**
-     * @var string $type
-     * @orm:Column(type="string", length="255")
-     * 
-     * @assert:NotBlank()
-     * @assert:Choice(
-     *     choices = {"working", "low_in", "low_out", "big_out"},
-     *     message = "Choose a valid activity."
-     * )
-     */
-    private $type;
-    
+
     /**
      * @var string $status
      * @orm:Column(type="string")
@@ -58,34 +46,29 @@ class Post
     protected $deletedAt;
 
     /**
-     * @var User $createdBy
-     * @orm:ManyToOne(targetEntity="Socialite\SocialiteBundle\Entity\User")
-     * @orm:JoinColumn(name="created_by", referencedColumnName="id")
-     */
-    protected $createdBy;
-
-    /**
      * @var User $deletedBy
      * @orm:ManyToOne(targetEntity="Socialite\SocialiteBundle\Entity\User")
      * @orm:JoinColumn(name="deleted_by", referencedColumnName="id")
      */
-    protected $deletedBy;
+    protected $deletedBy;    
 
     /**
-     * The allowable post types...
-     * @var array $postTypes
+     * @orm:ManyToOne(targetEntity="Socialite\SocialiteBundle\Entity\User", inversedBy="post", cascade={"persist", "remove"})
+     * @orm:JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $postTypes = array('working', 'low_in', 'low_out', 'big_out');
+    protected $user;
 
     /**
-     * @var Limelight\LimelightBundle\Entity\User
-     *
-     * @orm:OneToMany(targetEntity="Socialite\SocialiteBundle\Entity\UsersPosts", mappedBy="user", cascade={"persist", "remove"})
+     * @orm:ManyToOne(targetEntity="Socialite\SocialiteBundle\Entity\Post", inversedBy="user", cascade={"persist", "remove"})
+     * @orm:JoinColumn(name="post_id", referencedColumnName="id")
      */
-    protected $users;
+    protected $post;
 
-    public function __construct() {
+    public function __construct()
+    {
+        $this->status = 'Active';
         $this->users = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     /**
@@ -96,33 +79,6 @@ class Post
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        if (!in_array($type, $this->postTypes))
-        {
-            throw new HttpException('Invalid post type...');
-        }
-        else
-        {
-            $this->type = $type;
-        }
-    }
-
-    /**
-     * Get type
-     *
-     * @return string $type
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -146,26 +102,6 @@ class Post
     }
 
     /**
-     * Set createdBy
-     *
-     * @param User $createdBy
-     */
-    public function setCreatedBy($createdBy)
-    {
-        $this->createdBy = $createdBy;
-    }
-
-    /**
-     * Get createdBy
-     *
-     * @return User $createdBy
-     */
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
-
-    /**
      * Set deletedBy
      *
      * @param User $deletedBy
@@ -186,6 +122,46 @@ class Post
     }
 
     /**
+     * Set post
+     *
+     * @param integer $post
+     */
+    public function setPost($post)
+    {
+        $this->post = $post;
+    }
+
+    /**
+     * Get post
+     *
+     * @return integer $post
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * Set user
+     *
+     * @param integer $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return integer $user
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
      * Get createdAt
      *
      * @return datetime $createdAt
@@ -194,7 +170,7 @@ class Post
     {
         return $this->createdAt;
     }
-    
+
     /**
      * Get updatedAt
      *
@@ -204,7 +180,7 @@ class Post
     {
         return $this->updatedAt;
     }
-    
+
     /**
      * Set deletedAt
      *
@@ -224,7 +200,7 @@ class Post
     {
         return $this->deletedAt;
     }
-    
+
     /**
      * @orm:prePersist
      */

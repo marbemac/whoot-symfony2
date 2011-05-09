@@ -1,3 +1,8 @@
 <div class="teaser post">
-    {{ post.createdAt|date('D, j') }} - {{ post.createdBy.firstName }} is {{ post.type }}
+    {{ post.createdAt|date('D, j') }}
+    - 
+    {% for user in post.users %}
+        {{ user.user.firstName }}
+    {% endfor %}
+    is {{ post.type|printPostType() }}.
 </div>

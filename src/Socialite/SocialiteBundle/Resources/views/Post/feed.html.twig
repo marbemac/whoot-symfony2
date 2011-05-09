@@ -13,7 +13,6 @@
         {% include 'SocialiteBundle:Post:myPost.html.twig' with {'myPost': myPost} %}
     {% endif %}
 
-    <p class="dev-notice">For now... it's showing all posts below... obviously in the future we won't show the users own post.</p>
     <ul>
     {% for post in posts %}
         <li class="{{ loop.last ? 'last' : '' }}">

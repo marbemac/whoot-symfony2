@@ -13,4 +13,4 @@ services:
         arguments:    ["@doctrine.orm.default_entity_manager"]
     socialite.post_manager:
         class:        %socialite.post_manager.class%
-        arguments:    ["@doctrine.orm.default_entity_manager"]
+        arguments:    ["@socialite.user_manager", "@doctrine.orm.default_entity_manager"]

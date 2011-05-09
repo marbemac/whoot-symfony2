@@ -1,5 +1,5 @@
 <div id="my-post">
     <h2>
-        {{ app.user.firstName }}, your status for the night is: {{ myPost.type }}
+        {{ app.user.firstName }}, you're {{ myPost.type|printPostType() }}.
     </h2>
 </div>

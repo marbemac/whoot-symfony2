@@ -31,10 +31,11 @@ class PostController extends ContainerAware
             // return the 304 Response immediately
             // return $response;
         }
-        
-        $myPost = $this->container->get('socialite.post_manager')->findTodaysPost($this->container->get('security.context')->getToken()->getUser());
-        $posts = $this->container->get('socialite.post_manager')->findObjectsBy(array('status' => 'Active'));
-        
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $myPost = $this->container->get('socialite.post_manager')->findMyPost($user);
+        $posts = $this->container->get('socialite.post_manager')->findPostsBy($user, null, null);
+
         return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:feed.html.twig', array(
             'myPost' => $myPost,
             'posts' => $posts,
@@ -59,7 +60,7 @@ class PostController extends ContainerAware
         $templating = $this->container->get('templating');
 
         $postResult = $this->container->get('socialite.post_manager')->togglePost($type, $this->container->get('security.context')->getToken()->getUser());
-        
+
         if ($this->container->has('security.acl.provider') && $postResult['status'] == 'new') {
             $provider = $this->container->get('security.acl.provider');
             $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($postResult['post']));

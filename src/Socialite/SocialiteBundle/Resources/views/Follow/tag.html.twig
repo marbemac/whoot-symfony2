@@ -1,0 +1,9 @@
+{% if fromUser == toUser %}
+    {# Do nothing. We don't want to show follow buttons for objects to follow themselves... #}
+{% elseif not fromUser %}
+    <a class="follow-B fol_{{ toUser }} auth" href="{{ path('follow_toggle', {'userId': toUser}) }}">Follow</a>
+{% elseif connection %}
+    <a class="unfollow-B ac fol_{{ toUser }}" href="{{ path('follow_toggle', {'userId': toUser}) }}">Unfollow</a>
+{% else %}
+    <a class="follow-B ac fol_{{ toUser }}" href="{{ path('follow_toggle', {'userId': toUser}) }}">Follow</a>
+{% endif %}

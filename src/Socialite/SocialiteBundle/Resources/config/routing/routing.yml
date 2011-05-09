@@ -9,6 +9,10 @@ post:
     resource: "@SocialiteBundle/Resources/config/routing/post.yml"
     prefix:   /p
 
+follow:
+    resource: "@SocialiteBundle/Resources/config/routing/follow.yml"
+    prefix:   /f
+
 homepage:
     pattern:  /
     defaults: { _controller: SocialiteBundle:Core:home }

@@ -7,6 +7,8 @@
             <a class="ac" href="{{ path('post_create', {'type': 'low_out'}) }}">Relaxed Night Out</a>
             <a class="ac" href="{{ path('post_create', {'type': 'big_out'}) }}">Big Night Out</a>
         </div>
+
+        <input type="text" name="note" value="{{ myPost ? myPost.post.note : '' }}" />
     </div>
     
     {% if myPost is not none %}
@@ -24,5 +26,5 @@
         </li>
     {% endfor %}
     </ul>
-    
+
 </div>

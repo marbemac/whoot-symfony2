@@ -22,7 +22,6 @@ class PostController extends ContainerAware
      */
     public function feedAction()
     {
-        $request = $this->container->get('request');
         $response = new Response();
         $response->setCache(array(
         ));
@@ -34,12 +33,10 @@ class PostController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
         $myPost = $this->container->get('socialite.post_manager')->findMyPost($user, 'Active');
-        $myPostPending = $this->container->get('socialite.post_manager')->findMyPost($user, 'Pending');
         $posts = $this->container->get('socialite.post_manager')->findPostsBy($user, null, null);
 
         return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:feed.html.twig', array(
             'myPost' => $myPost,
-            'myPostPending' => $myPostPending,
             'posts' => $posts,
         ), $response);
     }
@@ -132,39 +129,18 @@ class PostController extends ContainerAware
     }
 
     /**
-     * {@inheritDoc}
-     */
-    public function teaserPendingAction($postId)
-    {
-        $response = new Response();
-        $response->setCache(array(
-        ));
-
-        if ($response->isNotModified($this->container->get('request'))) {
-            // return the 304 Response immediately
-            // return $response;
-        }
-
-        $post = $this->container->get('socialite.post_manager')->findObjectBy(array('id' => $postId));
-
-        return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:teaserPending.html.twig', array(
-            'post' => $post
-        ), $response);
-    }
-
-    /**
-     * Display a request invite tag for the current user.
+     * Display a jive tag for the current user.
      *
-     * @param integer $toUser
+     * @param integer $postId
      */
-    public function inviteRequestTagAction($postId)
+    public function jiveTagAction($postId)
     {
         $securityContext = $this->container->get('security.context');
 
         if ($securityContext->isGranted('ROLE_USER'))
         {
-            $fromUser = $securityContext->getToken()->getUser()->getId();
-            $connection = $this->container->get('socialite.post_manager')->findInviteRequests($fromUser, $postId, 'Pending', null, true);
+            $fromUser = $securityContext->getToken()->getUser();
+            $connection = $this->container->get('socialite.post_manager')->findJives($fromUser, $postId, 'Active', null, true);
         }
         else
         {
@@ -172,7 +148,7 @@ class PostController extends ContainerAware
             $connection = null;
         }
 
-        return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:inviteRequestTag.html.twig', array(
+        return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:jiveTag.html.twig', array(
             'fromUser' => $fromUser,
             'postId' => $postId,
             'connection' => $connection
@@ -185,7 +161,7 @@ class PostController extends ContainerAware
      * @param integer $postId
      * @param bool $go If set to false will not excute if the user already has a pending invite.
      */
-    public function inviteRequestToggleAction($postId, $go)
+    public function jiveToggleAction($postId, $go)
     {
         $coreManager = $this->container->get('socialite.core_manager');
         $login = $coreManager->mustLogin();
@@ -197,12 +173,12 @@ class PostController extends ContainerAware
         $request = $this->container->get('request');
         $postManager = $this->container->get('socialite.post_manager');
 
-        $result = $postManager->toggleInviteRequest($this->container->get('security.context')->getToken()->getUser()->getId(), $postId, $go);
+        $result = $postManager->toggleJive($this->container->get('security.context')->getToken()->getUser(), $postId, true);
 
         if ($request->isXmlHttpRequest())
         {
             $result['postId'] = $postId;
-            $result['event'] = 'invite_request_toggle';
+            $result['event'] = 'jive_toggle';
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 

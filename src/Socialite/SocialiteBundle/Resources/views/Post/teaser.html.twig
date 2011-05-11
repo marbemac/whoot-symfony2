@@ -1,10 +1,10 @@
 <div class="teaser post">
     {{ post.createdAt|date('D, j') }}
-    - 
+    -
     {% for user in post.users %}
         {{ user.user.firstName }}
     {% endfor %}
     is {{ post.type|printPostType() }}.
 
-    {% render "SocialiteBundle:Post:inviteRequestTag" with {'postId': post.id} %}
+    {% render "SocialiteBundle:Post:jiveTag" with {'postId': post.id} %}
 </div>

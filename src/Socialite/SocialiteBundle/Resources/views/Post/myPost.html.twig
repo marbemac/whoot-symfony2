@@ -2,13 +2,4 @@
     <h2>
         {{ app.user.firstName }}, you're {{ myPost.post.type|printPostType() }}.
     </h2>
-
-    
-
-    {% if myPostPending %}
-        <div class="pending">
-            <h3>Pending Invites:</h3>
-            {% render 'SocialiteBundle:Post:teaserPending' with {'postId': myPostPending.post.id} %}
-        </div>
-    {% endif %}
 </div>

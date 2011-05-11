@@ -40,6 +40,12 @@ class Post
     protected $status;
 
     /**
+     * @var string $note
+     * @orm:Column(type="string")
+     */
+    protected $note;
+
+    /**
      * @var dateTime $updatedAt
      * @orm:Column(type="datetime", name="updated_at", nullable=true)
      */
@@ -80,13 +86,14 @@ class Post
     /**
      * @var Limelight\LimelightBundle\Entity\User
      *
-     * @orm:OneToMany(targetEntity="Socialite\SocialiteBundle\Entity\UsersPosts", mappedBy="user", cascade={"persist"})
+     * @orm:OneToMany(targetEntity="Socialite\SocialiteBundle\Entity\UsersPosts", mappedBy="post", cascade={"persist"})
      */
     protected $users;
 
     public function __construct() {
         $this->users = new ArrayCollection();
         $this->status = 'Active';
+        $this->note = '';
     }
 
     /**
@@ -144,6 +151,26 @@ class Post
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string $note
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
 
     /**
@@ -228,7 +255,7 @@ class Post
 
     public function getUsers()
     {
-        return $this->users();
+        return $this->users;
     }
 
     /**

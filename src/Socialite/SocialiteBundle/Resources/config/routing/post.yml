@@ -4,9 +4,9 @@ post_create:
     requirements:
         _method: POST|GET
 
-post_invite_request_toggle:
-    pattern:  /ir/toggle/{postId}/{go}
-    defaults: { _controller: SocialiteBundle:Post:inviteRequestToggle, postId: 0, go: false }
+jive_toggle:
+    pattern:  /jive/toggle/{postId}/{go}
+    defaults: { _controller: SocialiteBundle:Post:jiveToggle, go: false }
     requirements:
         _method: GET|POST
         postId: \d+

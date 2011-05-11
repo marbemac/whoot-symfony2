@@ -96,11 +96,11 @@ class PostManager
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('p', 'pu', 'u'))
            ->from('Socialite\SocialiteBundle\Entity\Post', 'p')
-           ->leftJoin('p.users', 'pu')
-           ->innerJoin('pu.user', 'u')
+           ->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status')
+           ->leftJoin('pu.user', 'u')
            ->where('p.status = :status')
            ->setParameters(array(
-               'status' => 'Active'
+               'status' => 'Active',
            ));
 
         if ($user)
@@ -126,9 +126,7 @@ class PostManager
                 return array();
             }
 
-            $qb->andwhere($qb->expr()->orx(
-                $qb->expr()->in('pu.user', $following)
-            ));
+            $qb->andwhere($qb->expr()->in('pu.user', $following));
         }
 
         switch ($sortBy)
@@ -149,18 +147,19 @@ class PostManager
     public function findMyPost($user, $status = 'Active')
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('up', 'p'))
+        $qb->select(array('up', 'p', 'u'))
            ->from('Socialite\SocialiteBundle\Entity\UsersPosts', 'up')
            ->innerJoin('up.post', 'p')
+           ->leftJoin('p.users', 'u', 'WITH', 'u.status = :userPostStatus')
            ->where('up.status = :status AND up.createdAt >= :createdAt AND up.user = :createdBy')
            ->setParameters(array(
                'createdBy'    => $user,
                'createdAt'    => date('Y-m-d 05:00:00', time()-(60*60*5)),
-               'status'       => $status
+               'status'       => $status,
+               'userPostStatus' => 'Active'
            ));
 
         $query = $qb->getQuery();
-        $query->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true);
         $post = $query->getResult(Query::HYDRATE_OBJECT);
 
         return isset($post[0]) ? $post[0] : null;
@@ -180,29 +179,41 @@ class PostManager
         $result = array('status' => 'existing');
         $userPost = $this->findMyPost($user);
 
-        if (!$userPost)
+        if ($userPost)
         {
-            $post = $this->createPost();
-            $post->setCreatedBy($user);
-            $userPost = new UsersPosts();
-            $userPost->setPost($post);
-            $userPost->setUser($user);
+            $userPost->setStatus('Disabled');
+
+            // If we have a previous post, and we are the only one connected to it, disable it.
+            if (count($userPost->getPost()->getUsers()) == 1)
+            {
+                $userPost->getPost()->setStatus('Disabled');
+                $this->updatePost($userPost->getPost(), false);
+            }
+
             $this->em->persist($userPost);
-            $result['status'] = 'new';
         }
 
-        $userPost->getPost()->setType($type);
+        $post = $this->createPost();
+        $post->setType($type);
+        $post->setCreatedBy($user);
+        $this->updatePost($post, false);
+        
+        $newUserPost = new UsersPosts();
+        $newUserPost->setPost($post);
+        $newUserPost->setUser($user);
+        
+        $this->em->persist($newUserPost);
 
-        $this->updatePost($userPost->getPost(), false);
         $this->em->flush();
 
-        $result['post'] = $userPost;
+        $result['status'] = 'new';
+        $result['post'] = $newUserPost;
         
         return $result;
     }
 
     /*
-     * Check for a invite request. Return if found.
+     * Check for jives. Return if found.
      *
      * @param integer $fromUser
      * @param integer $postId
@@ -211,15 +222,17 @@ class PostManager
      * @param bool $singleResult
      * @param bool $returnObject
      */
-    public function findInviteRequests($fromUser, $postId, $status = false, $fromDate = null, $singleResult = false, $returnObject = false)
+    public function findJives($user, $postId, $status = false, $fromDate = null, $singleResult = false, $returnObject = false)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('up', 'p.id'))
+        $qb->select(array('up', 'p', 'u'))
            ->from('Socialite\SocialiteBundle\Entity\UsersPosts', 'up')
            ->innerJoin('up.post', 'p')
+           ->innerJoin('p.users', 'u', 'WITH', 'u.status = :userPostStatus')
            ->where('up.user = :user')
            ->setParameters(array(
-               'user' => $fromUser
+               'user' => $user,
+               'userPostStatus' => 'Active'
            ));
 
         if ($postId)
@@ -245,72 +258,50 @@ class PostManager
 
         if ($singleResult)
         {
-            return isset($connections[0]) ? $connections[0][0] : null;
+            return isset($connections[0]) ? $connections[0] : null;
         }
 
         return $connections;
     }
 
-    public function toggleInviteRequest($fromUser, $postId, $go)
+    public function toggleJive($user, $postId, $go)
     {
         $response = array();
 
-        // Check to see if this user has already sent out any invites today.
-        $requests = $this->findInviteRequests($fromUser, null, 'Pending', date('Y-m-d 05:00:00', time()-(60*60*5)));
-        if (count($requests) > 0 && $requests[0]['id'] != $postId && !$go)
+        // Check to see if this user has already jived today.
+        $jive = $this->findJives($user, null, 'Active', date('Y-m-d 05:00:00', time()-(60*60*5)), true, true);
+        if ($jive && $jive->getId() != $postId)
         {
-            $response['status'] = 'Check';
-
-            return $response;
-        }
-
-        // Get the users connection to this post, if any.
-        $connection = $this->findInviteRequests($fromUser, $postId, false, null, true, true);
-
-        // Has the user already requested an invite to this post?
-        if ($connection)
-        {
-            // Did they previously cancel it?
-            if ($connection->getStatus() == 'Cancelled')
+            if (!$go)
             {
-                $response['status'] = 'new';
+                $response['status'] = 'Check';
 
-                // If it was previously approved, set it straight to active.
-                if ($connection->getApproved())
-                {
-                    $connection->setStatus('Active');
-                }
-                // Else set the invite to pending again.
-                else
-                {
-                    $connection->setStatus('Pending');
-                }
+                return $response;
             }
-            else
+
+            $jive->setStatus('Disabled');
+
+            // If we have a previous post, and we are the only one connected to it, disable it.
+            if (count($jive->getPost()->getUsers()) == 1)
             {
-                $response['status'] = 'existing';
-                $connection->setStatus('Cancelled');
+                $jive->getPost()->setStatus('Disabled');
+                $this->updatePost($jive->getPost(), false);
             }
         }
-        else
-        {
-            $fromUser = $this->em->getRepository('SocialiteBundle:User')->find($fromUser);
-            $post = $this->em->getRepository('SocialiteBundle:Post')->find($postId);
 
-            $response['status'] = 'new';
+        $post = $this->em->getRepository('SocialiteBundle:Post')->find($postId);
 
-            $connection = new UsersPosts();
-            $connection->setUser($fromUser);
-            $connection->setPost($post);
-            $connection->setStatus('Pending');
-            $connection->setApproved(false);
-        }
+        $response['status'] = 'new';
 
+        $connection = new UsersPosts();
+        $connection->setUser($user);
+        $connection->setPost($post);
+
+        $this->em->persist($jive);
         $this->em->persist($connection);
         $this->em->flush();
 
-        $response['flash'] = array('type' => 'success', 'message' => 'Invite request ' . ($response['status'] == 'existing' ? 'cancelled' : 'sent') .' successfully!');
-        $response['newText'] = $response['status'] == 'existing' ? 'Request Invite' : 'Cancel Request';
+        $response['flash'] = array('type' => 'success', 'message' => 'Woot. Jive Successful!');
 
         return $response;
     }

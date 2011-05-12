@@ -118,6 +118,11 @@ ul, ol {
   color: white;
 }
 
+/* line 81, ../compass/src/main.scss */
+.clear {
+  clear: both;
+}
+
 /*
     Document   : _utilities
     Created on : Mar 30, 2011, 4:04:51 PM
@@ -245,23 +250,6 @@ Purpose of the stylesheet follows.
 }
 
 /* line 27, ../compass/src/partials/_post.scss */
-#post-feed {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-/* line 31, ../compass/src/partials/_post.scss */
-#post-feed li {
-  margin: 0 10px;
-  border-top: 1px solid #CCC;
-  padding: 10px;
-}
-/* line 36, ../compass/src/partials/_post.scss */
-#post-feed li.last, #post-feed li.none {
-  border-bottom: 1px solid #CCC;
-}
-
-/* line 41, ../compass/src/partials/_post.scss */
 #post-box {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
@@ -273,7 +261,7 @@ Purpose of the stylesheet follows.
   top: 0px;
   left: 0px;
 }
-/* line 51, ../compass/src/partials/_post.scss */
+/* line 37, ../compass/src/partials/_post.scss */
 #post-box .options {
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
@@ -292,6 +280,77 @@ Purpose of the stylesheet follows.
   width: 500px;
   height: 200px;
   margin: 0 0 0 -250px;
+}
+
+/* line 53, ../compass/src/partials/_post.scss */
+#post-feed {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/* line 57, ../compass/src/partials/_post.scss */
+#post-feed .date-separator {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  padding: 3px 10px;
+  margin: 5px 10px;
+  font-weight: bold;
+  font-size: 18px;
+  background: #DDD;
+}
+/* line 65, ../compass/src/partials/_post.scss */
+#post-feed li {
+  margin: 0 10px;
+  border-top: 1px solid #CCC;
+  padding: 10px;
+}
+/* line 70, ../compass/src/partials/_post.scss */
+#post-feed li.last, #post-feed li.none {
+  border-bottom: 1px solid #CCC;
+}
+
+/* line 75, ../compass/src/partials/_post.scss */
+#feed-filters {
+  border-bottom: 1px dotted #999;
+  padding: 0 0 9px 0;
+  margin: 0 0 15px 0;
+}
+/* line 83, ../compass/src/partials/_post.scss */
+#feed-filters .post-types .label,
+#feed-filters .feed-sort .label {
+  float: left;
+  margin: 6px 0 0 10px;
+  color: #999;
+  font-size: 12px;
+}
+/* line 89, ../compass/src/partials/_post.scss */
+#feed-filters .post-types ul,
+#feed-filters .feed-sort ul {
+  display: inline;
+}
+/* line 92, ../compass/src/partials/_post.scss */
+#feed-filters .post-types li,
+#feed-filters .feed-sort li {
+  float: left;
+  padding: 3px 8px;
+  margin: 0 5px;
+}
+/* line 97, ../compass/src/partials/_post.scss */
+#feed-filters .post-types li a.on,
+#feed-filters .feed-sort li a.on {
+  font-weight: bold;
+}
+/* line 101, ../compass/src/partials/_post.scss */
+#feed-filters .post-types {
+  float: left;
+}
+/* line 104, ../compass/src/partials/_post.scss */
+#feed-filters .feed-sort {
+  float: right;
 }
 
 /*

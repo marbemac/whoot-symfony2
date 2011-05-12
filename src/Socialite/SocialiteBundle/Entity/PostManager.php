@@ -60,19 +60,42 @@ class PostManager
     /**
      * {@inheritDoc}
      */
-    public function findObjectBy(array $criteria, $returnObject=false)
+    public function findPostBy($postId, $createdBy=null, $createdAt=null, $postStatus=null, $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('p', 'pu', 'u'))
-           ->from('Socialite\SocialiteBundle\Entity\Post', 'p')
-           ->innerJoin('p.users', 'pu')
-           ->innerJoin('pu.user', 'u');
+           ->from('Socialite\SocialiteBundle\Entity\Post', 'p');
 
-        foreach ($criteria as $key => $val)
+        if ($postId)
         {
-            $qb->where('p.'.$key.' = :'.$key)
-               ->setParameter($key, $val);
+            $qb->andWhere('p.id = :postId');
+            $qb->setParameter('postId', $postId);
         }
+
+        if ($postStatus)
+        {
+            $qb->andWhere('p.status = :postStatus');
+            $qb->setParameter('postStatus', $postStatus);
+        }
+
+        if ($createdAt)
+        {
+            $qb->andWhere('p.createdAt >= :createdAt');
+            $qb->setParameter('createdAt', $createdAt);
+        }
+
+        if ($createdBy)
+        {
+            $qb->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status AND pu.user = :userId');
+            $qb->setParameter('user', $createdBy);
+        }
+        else
+        {
+            $qb->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status');
+            $qb->setParameter('status', 'Active');
+        }
+
+        $qb->innerJoin('pu.user', 'u');
 
         $query = $qb->getQuery();
         $query->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true);
@@ -91,14 +114,14 @@ class PostManager
      *
      * @return array $posts
      */
-    public function findPostsBy($user, $postTypes, $sortBy)
+    public function findPostsBy($user, $postTypes, $sortBy, $createdAt)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p', 'pu', 'u'))
+        $qb->select(array('p, count(pu.id) AS popularity', 'pu'))
            ->from('Socialite\SocialiteBundle\Entity\Post', 'p')
            ->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status')
-           ->leftJoin('pu.user', 'u')
            ->where('p.status = :status')
+           ->groupBy('p.id')
            ->setParameters(array(
                'status' => 'Active',
            ));
@@ -115,15 +138,10 @@ class PostManager
                ));
             $query2 = $qb2->getQuery();
             $followingUsers = $query2->getArrayResult();
-            $following = array();
+            $following = array($user->getId());
             foreach ($followingUsers as $followingUser)
             {
                 $following[] = $followingUser['id'];
-            }
-
-            if (count($following) == 0)
-            {
-                return array();
             }
 
             $qb->andwhere($qb->expr()->in('pu.user', $following));
@@ -131,11 +149,23 @@ class PostManager
 
         switch ($sortBy)
         {
-            case 'Popularity':
-                $qb->orderBy('o.score', 'DESC');
+            case 'popularity':
+                $qb->orderBy('popularity', 'DESC');
+                $qb->addOrderBy('p.createdAt', 'DESC');
                 break;
             default:
                 $qb->orderBy('p.createdAt', 'DESC');
+        }
+
+        if ($createdAt)
+        {
+            $qb->andWhere('p.createdAt >= :createdAt');
+            $qb->setParameter('createdAt', $createdAt);
+        }
+
+        if ($postTypes)
+        {
+            $qb->andwhere($qb->expr()->in('p.type', $postTypes));
         }
 
         $query = $qb->getQuery();

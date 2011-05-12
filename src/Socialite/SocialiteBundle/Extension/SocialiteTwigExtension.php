@@ -18,9 +18,17 @@ class SocialiteTwigExtension extends \Twig_Extension {
 
     public function getFilters() {
         return array(
-            'var_dump'       => new \Twig_Filter_Function('var_dump'),
+            'debug'       => new \Twig_Filter_Method($this, 'debug'),
             'printPostType'  => new \Twig_Filter_Method($this, 'printPostType'),
         );
+    }
+
+    public function debug($var)
+    {
+        $return = '<pre>';
+        $return .= var_export($var, true);
+        $return .= '</pre>';
+        return $return;
     }
 
     public function printPostType($key)

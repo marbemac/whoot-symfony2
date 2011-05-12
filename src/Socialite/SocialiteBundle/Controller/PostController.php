@@ -20,9 +20,27 @@ class PostController extends ContainerAware
     /**
      * 
      */
-    public function feedAction()
+    public function feedAction($postTypes=null, $feedSort=null)
     {
         $response = new Response();
+        $feedFilters = $this->container->get('session')->get('feedFilters');
+
+        $postTypes = !$postTypes ? $feedFilters['postTypes'] : $postTypes;
+        $feedSort = !$feedSort ? $feedFilters['feedSort'] : $feedSort;
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $myPost = $this->container->get('socialite.post_manager')->findMyPost($user, 'Active');
+
+        // Don't even bother getting objects if we aren't including ANY node types
+        if (empty($postTypes))
+        {
+            $posts = array();
+        }
+        else
+        {
+            $posts = $this->container->get('socialite.post_manager')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)));
+        }
+
         $response->setCache(array(
         ));
 
@@ -31,16 +49,12 @@ class PostController extends ContainerAware
             // return $response;
         }
 
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        $myPost = $this->container->get('socialite.post_manager')->findMyPost($user, 'Active');
-        $posts = $this->container->get('socialite.post_manager')->findPostsBy($user, null, null);
-
         return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:feed.html.twig', array(
             'myPost' => $myPost,
             'posts' => $posts,
         ), $response);
     }
-    
+
     /**
      * Creates a new post for the day. Toggles if the user already has a post for today.
      */
@@ -120,7 +134,7 @@ class PostController extends ContainerAware
             // return $response;
         }
 
-        $post = $this->container->get('socialite.post_manager')->findObjectBy(array('id' => $postId));
+        $post = $this->container->get('socialite.post_manager')->findPostBy($postId, null, null, 'Active', false);
 
         return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:teaser.html.twig', array(
             'post' => $post,

@@ -1,3 +1,9 @@
+{% if myPost is not none %}
+    {% include 'SocialiteBundle:Post:myPost.html.twig' with {'myPost': myPost} %}
+{% endif %}
+
+{% render "SocialiteBundle:Core:feedFilters" %}
+
 <div id="post-feed">
     <div id="post-box" class="{{ myPost is not none ? 'hide' : '' }}">
         <div class="options">
@@ -10,19 +16,20 @@
 
         <input type="text" name="note" value="{{ myPost ? myPost.post.note : '' }}" />
     </div>
-    
-    {% if myPost is not none %}
-        {% include 'SocialiteBundle:Post:myPost.html.twig' with {'myPost': myPost} %}
-    {% endif %}
+    <div class="date-separator">
+        {% if posts|length > 0 %}
+            {{ posts[0][0].createdAt|date('y-m-d') }}
+        {% endif %}
+    </div>
 
     <ul>
     {% for post in posts %}
         <li class="{{ loop.last ? 'last' : '' }}">
-            {% include 'SocialiteBundle:Post:teaser.html.twig' with {'post': post} %}
+            {% render 'SocialiteBundle:Post:teaser' with {'postId': post[0].id} %}
         </li>
     {% else %}
         <li class="none">
-            Woops, there are no posts. Here is where we might explaining they have to friend people or invite them...
+            No posts for this night... yet.
         </li>
     {% endfor %}
     </ul>

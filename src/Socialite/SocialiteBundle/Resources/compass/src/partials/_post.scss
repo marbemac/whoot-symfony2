@@ -24,10 +24,44 @@ Purpose of the stylesheet follows.
     }
 }
 
+#post-box {
+    @include opacity(.9);
+
+    background: #000;
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0px; left: 0px;
+
+    $options-w: 500px;
+    $options-h: 200px;
+    .options {
+        @include border-radius(7px);
+        @include single-box-shadow(#CCC, 1px, 1px);
+
+        background: #FFF;
+        position: absolute;
+        top: 100px; left: 50%;
+        width: $options-w; height: $options-h;
+        margin: 0 0 0 $options-w/2*-1;
+
+        .ac {
+
+        }
+    }
+}
+
 #post-feed { 
     position: relative;
     width: 100%; height: 100%;
-    
+
+    .date-separator {
+        @include border-radius(5px);
+        padding: 3px 10px;
+        margin: 5px 10px;
+        font-weight: bold;
+        font-size: 18px;
+        background: #DDD;
+    }
     li {
         margin: 0 10px;
         border-top: 1px solid #CCC;
@@ -38,29 +72,37 @@ Purpose of the stylesheet follows.
     }
 }
 
-#post-box { 
-    @include opacity(.9);
-        
-    background: #000;
-    width: 100%; height: 100%;
-    position: absolute;
-    top: 0px; left: 0px;
+#feed-filters {
+    border-bottom: 1px dotted #999;
+    padding: 0 0 9px 0;
+    margin: 0 0 15px 0;
     
-    $options-w: 500px;
-    $options-h: 200px;
-    .options {
-        @include border-radius(7px);
-        @include single-box-shadow(#CCC, 1px, 1px);
-                
-        background: #FFF;
-        position: absolute;
-        top: 100px; left: 50%;
-        width: $options-w; height: $options-h;
-        margin: 0 0 0 $options-w/2*-1;
-        
-        .ac {
-            
+    .post-types,
+    .feed-sort {
+
+        .label {
+            float: left;
+            margin: 6px 0 0 10px;
+            color: #999;
+            font-size: 12px;
         }
+        ul {
+            display: inline;
+        }
+        li {
+            float: left;
+            padding: 3px 8px;
+            margin: 0 5px;
+        }
+        li a.on {
+            font-weight: bold;
+        }
+    }
+    .post-types {
+        float: left;
+    }
+    .feed-sort {
+        float: right;
     }
 }
 

@@ -2,9 +2,20 @@
     {{ post.createdAt|date('D, j') }}
     -
     {% for user in post.users %}
-        {{ user.user.firstName }}
+        {% set trail = '' %}
+        {% if loop.revindex0 == 1 and post.users|length > 2 %}
+            {% set trail = ', and' %}
+        {% elseif loop.revindex0 == 1 %}
+            {% set trail = ' and' %}
+        {% elseif not loop.last %}
+            {% set trail = ',' %}
+        {% endif %}
+        {{ user.user.firstName~trail }}
     {% endfor %}
-    is {{ post.type|printPostType() }}.
+    {{ post.users|length > 1 ? 'are' : 'is' }}
+    {{ post.type|printPostType() }}.
 
-    {% render "SocialiteBundle:Post:jiveTag" with {'postId': post.id} %}
+    {% if (post.createdAt|date('y-m-d') == "now"|date('y-m-d')) %}
+        {% render "SocialiteBundle:Post:jiveTag" with {'postId': post.id} %}
+    {% endif %}
 </div>

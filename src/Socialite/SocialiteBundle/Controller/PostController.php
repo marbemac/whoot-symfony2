@@ -186,9 +186,9 @@ class PostController extends ContainerAware
 
         $request = $this->container->get('request');
         $postManager = $this->container->get('socialite.post_manager');
-
+        echo 'test';
         $result = $postManager->toggleJive($this->container->get('security.context')->getToken()->getUser(), $postId, true);
-
+        echo 'test2';
         if ($request->isXmlHttpRequest())
         {
             $result['postId'] = $postId;

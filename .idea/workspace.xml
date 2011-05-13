@@ -91,7 +91,7 @@
       <file leaf-file-name="CoreController.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/CoreController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="131" selection-start="786" selection-end="786" vertical-scroll-proportion="0.22659324">
+            <state line="12" column="0" selection-start="300" selection-end="300" vertical-scroll-proportion="0.11329662">
               <folding />
             </state>
           </provider>
@@ -997,7 +997,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/CoreController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="131" selection-start="786" selection-end="786" vertical-scroll-proportion="0.22659324">
+        <state line="12" column="0" selection-start="300" selection-end="300" vertical-scroll-proportion="0.11329662">
           <folding />
         </state>
       </provider>

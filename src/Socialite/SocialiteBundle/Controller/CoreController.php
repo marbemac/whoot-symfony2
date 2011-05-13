@@ -9,7 +9,7 @@ class CoreController extends ContainerAware
 {
     public function homeAction()
     {
-
+        $request = $this->container->get('request');
         $user = $this->container->get('security.context')->getToken()->getUser();
         $myPost = $this->container->get('socialite.post_manager')->findMyPost($user, 'Active');
 

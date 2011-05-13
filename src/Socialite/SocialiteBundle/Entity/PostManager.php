@@ -176,6 +176,7 @@ class PostManager
     
     public function findMyPost($user, $status = 'Active')
     {
+        echo 'ball';
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('up', 'p', 'u'))
            ->from('Socialite\SocialiteBundle\Entity\UsersPosts', 'up')
@@ -191,6 +192,7 @@ class PostManager
 
         $query = $qb->getQuery();
         $post = $query->getResult(Query::HYDRATE_OBJECT);
+        echo 'ball2';
 
         return isset($post[0]) ? $post[0] : null;
     }

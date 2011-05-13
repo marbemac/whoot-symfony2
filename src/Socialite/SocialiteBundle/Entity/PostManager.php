@@ -322,6 +322,8 @@ class PostManager
             }
         }
 
+        echo 'test20';
+        echo '**'.$postId.'**';
         $post = $this->em->getRepository('SocialiteBundle:Post')->find($postId);
         echo 'tset134';
         $response['status'] = 'new';

@@ -176,7 +176,6 @@ class PostManager
     
     public function findMyPost($user, $status = 'Active')
     {
-        echo 'ball';
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('up', 'p', 'u'))
            ->from('Socialite\SocialiteBundle\Entity\UsersPosts', 'up')
@@ -192,7 +191,6 @@ class PostManager
 
         $query = $qb->getQuery();
         $post = $query->getResult(Query::HYDRATE_OBJECT);
-        echo 'ball2';
 
         return isset($post[0]) ? $post[0] : null;
     }
@@ -210,10 +208,8 @@ class PostManager
     {
         $result = array('status' => 'existing');
         $userPost = $this->findMyPost($user);
-        echo 'test3';
         if ($userPost)
         {
-            echo 'test5';
             $userPost->setStatus('Disabled');
 
             // If we have a previous post, and we are the only one connected to it, disable it.
@@ -223,26 +219,20 @@ class PostManager
                 $this->updatePost($userPost->getPost(), false);
             }
 
-            echo 'test4';
-
             $this->em->persist($userPost);
         }
 
-        echo 'test7';
         $post = $this->createPost();
         $post->setType($type);
         $post->setCreatedBy($user);
         $this->updatePost($post, false);
-        echo 'test6';
-        
+
         $newUserPost = new UsersPosts();
         $newUserPost->setPost($post);
         $newUserPost->setUser($user);
-        echo 'test8';
         $this->em->persist($newUserPost);
 
         $this->em->flush();
-        echo 'test9';
 
         $result['status'] = 'new';
         $result['post'] = $newUserPost;
@@ -305,11 +295,13 @@ class PostManager
     public function toggleJive($user, $postId, $go)
     {
         $response = array();
-
+        echo 'test5';
         // Check to see if this user has already jived today.
         $jive = $this->findJives($user, null, 'Active', date('Y-m-d 05:00:00', time()-(60*60*5)), true, true);
+        echo 'test6';
         if ($jive && $jive->getId() != $postId)
         {
+            echo 'test7';
             if (!$go)
             {
                 $response['status'] = 'Check';
@@ -335,9 +327,13 @@ class PostManager
         $connection->setUser($user);
         $connection->setPost($post);
 
+        echo 'test8';
+
         $this->em->persist($jive);
         $this->em->persist($connection);
         $this->em->flush();
+
+        echo 'test9';
 
         $response['flash'] = array('type' => 'success', 'message' => 'Woot. Jive Successful!');
 

@@ -295,13 +295,12 @@ class PostManager
     public function toggleJive($user, $postId, $go)
     {
         $response = array();
-        echo 'test5';
+
         // Check to see if this user has already jived today.
         $jive = $this->findJives($user, null, 'Active', date('Y-m-d 05:00:00', time()-(60*60*5)), true, true);
-        echo 'test6';
+
         if ($jive && $jive->getId() != $postId)
         {
-            echo 'test7';
             if (!$go)
             {
                 $response['status'] = 'Check';
@@ -314,33 +313,21 @@ class PostManager
             // If we have a previous post, and we are the only one connected to it, disable it.
             if (count($jive->getPost()->getUsers()) == 1)
             {
-                echo 'test10';
                 $jive->getPost()->setStatus('Disabled');
-                echo 'test11';
                 $this->updatePost($jive->getPost(), false);
-                echo 'test12';
             }
         }
 
-        echo 'test20';
-        echo '**'.$postId.'**';
         $post = $this->findPostBy($postId, null, null, null, true);
-        echo 'tset134';
         $response['status'] = 'new';
 
         $connection = new UsersPosts();
-        echo 'test15';
         $connection->setUser($user);
-        echo 'test16';
         $connection->setPost($post);
-
-        echo 'test8';
 
         $this->em->persist($jive);
         $this->em->persist($connection);
         $this->em->flush();
-
-        echo 'test9';
 
         $response['flash'] = array('type' => 'success', 'message' => 'Woot. Jive Successful!');
 

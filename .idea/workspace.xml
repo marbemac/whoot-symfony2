@@ -86,19 +86,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PostManager.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PostManager.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="326" column="21" selection-start="9566" selection-end="9566" vertical-scroll-proportion="0.72619987">
+            <state line="298" column="0" selection-start="8611" selection-end="8611" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PostController.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="PostController.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PostController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="190" column="21" selection-start="6952" selection-end="6952" vertical-scroll-proportion="0.0">
+            <state line="195" column="0" selection-start="7110" selection-end="7110" vertical-scroll-proportion="0.8867034">
               <folding />
             </state>
           </provider>
@@ -141,8 +141,8 @@
         <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/CoreController.php" />
         <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/sidebar.html.twig" />
         <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/teaser.html.twig" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PostController.php" />
         <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PostController.php" />
       </list>
     </option>
   </component>
@@ -984,16 +984,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PostController.php">
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="190" column="21" selection-start="6952" selection-end="6952" vertical-scroll-proportion="0.0">
+        <state line="298" column="0" selection-start="8611" selection-end="8611" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php">
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PostController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="326" column="21" selection-start="9566" selection-end="9566" vertical-scroll-proportion="0.72619987">
+        <state line="195" column="0" selection-start="7110" selection-end="7110" vertical-scroll-proportion="0.8867034">
           <folding />
         </state>
       </provider>

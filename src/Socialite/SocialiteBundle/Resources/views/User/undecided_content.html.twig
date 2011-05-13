@@ -1,0 +1,13 @@
+<h3>Undecided Users</h3>
+
+<ul>
+    {% for user in users %}
+        <li>
+            {{ user.firstName }} {{ user.lastName }}
+            {% render "SocialiteBundle:Follow:tag" with {'toUser': user.id} %}
+            {% render "SocialiteBundle:Ping:tag" with {'toUser': user.id} %}
+        </li>
+    {% else %}
+        <li>You are not following any undecided users.</li>
+    {% endfor %}
+</ul>

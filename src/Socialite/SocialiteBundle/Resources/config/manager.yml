@@ -2,7 +2,8 @@ parameters:
     socialite.core_manager.class:                  Socialite\SocialiteBundle\Entity\CoreManager
     socialite.user_manager.class:                  Socialite\SocialiteBundle\Entity\UserManager
     socialite.post_manager.class:                  Socialite\SocialiteBundle\Entity\PostManager
-    
+    socialite.ping_manager.class:                  Socialite\SocialiteBundle\Entity\PingManager
+
 services:
     socialite.core_manager:
         class:        %socialite.core_manager.class%
@@ -14,3 +15,6 @@ services:
     socialite.post_manager:
         class:        %socialite.post_manager.class%
         arguments:    ["@socialite.user_manager", "@doctrine.orm.default_entity_manager"]
+    socialite.ping_manager:
+        class:        %socialite.ping_manager.class%
+        arguments:    ["@doctrine.orm.default_entity_manager"]

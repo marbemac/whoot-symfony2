@@ -53,9 +53,17 @@
                 <div id="application">
                     <header id="header">
                         {% block header %}
+                        
                             <a class="logo" href="{{ path('homepage') }}">
                                 Night Chicken Logo
                             </a>
+
+                            <div id="nav">
+                                <a class="" href="{{ path('homepage') }}">Main Feed</a>
+                                <a class="" href="{{ path('user_undecided') }}">Undecided Users</a>
+                                <a class="" href="#">Open Invites</a>
+                            </div>
+
                         {% endblock header %}
                     </header>
                     <div id="content">
@@ -65,7 +73,7 @@
                                 {% block page %}
 
                                     {% block sidebar %}
-                                        {% include 'SocialiteBundle:Core:sidebar_content.html.twig' %}
+                                        {% render 'SocialiteBundle:Core:sidebar' %}
                                     {% endblock %}
 
                                     <div id="page_content">{% block page_content %}{% endblock %}</div>
@@ -94,6 +102,7 @@
             <script src="{{ asset('Resources/js/jquery.livequery.js') }}"></script>
             <script src="{{ asset('Resources/js/socialite.preload.js') }}"></script>
             <script src="{{ asset('Resources/js/jquery-ui.min.js') }}"></script>
+            <script src="{{ asset('Resources/js/jquery.countdown.pack.js') }}"></script>
             <script src="{{ asset('Resources/js/amplify/amplify.min.js') }}"></script>
             <script src="{{ asset('Resources/js/history/scripts/compressed/history.adapter.jquery.js') }}"></script>
             <script src="{{ asset('Resources/js/history/scripts/compressed/history.js') }}"></script>

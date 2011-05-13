@@ -13,6 +13,10 @@ follow:
     resource: "@SocialiteBundle/Resources/config/routing/follow.yml"
     prefix:   /f
 
+ping:
+    resource: "@SocialiteBundle/Resources/config/routing/ping.yml"
+    prefix:   /ping
+
 feed_filter_toggle:
     pattern:  /ac/tf/{postType}
     defaults: { _controller: SocialiteBundle:Core:toggleFeedFilter }

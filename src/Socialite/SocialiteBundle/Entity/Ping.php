@@ -8,10 +8,10 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @orm:Entity
- * @orm:Table(name="user_following")
+ * @orm:Table(name="ping")
  * @orm:HasLifecycleCallbacks
  */
-class UserFollowing
+class Ping
 {
     /**
      * @var integer $id
@@ -26,6 +26,12 @@ class UserFollowing
      * @orm:Column(type="string")
      */
     protected $status;
+
+    /**
+     * @var dateTime $updatedAt
+     * @orm:Column(type="datetime", name="updated_at", nullable=true)
+     */
+    protected $updatedAt;
 
     /**
      * @var dateTime $createdAt
@@ -47,22 +53,22 @@ class UserFollowing
     protected $deletedBy;    
 
     /**
-     * @orm:ManyToOne(targetEntity="Socialite\SocialiteBundle\Entity\User", inversedBy="following", cascade={"persist"})
+     * @orm:ManyToOne(targetEntity="Socialite\SocialiteBundle\Entity\User", inversedBy="pinged", cascade={"persist"})
+     * @orm:JoinColumn(name="created_by", referencedColumnName="id")
+     */
+    protected $createdBy;
+
+    /**
+     * @orm:ManyToOne(targetEntity="Socialite\SocialiteBundle\Entity\User", inversedBy="pings", cascade={"persist"})
      * @orm:JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
 
-    /**
-     * @orm:ManyToOne(targetEntity="Socialite\SocialiteBundle\Entity\User", inversedBy="followers", cascade={"persist"})
-     * @orm:JoinColumn(name="following_id", referencedColumnName="id")
-     */
-    protected $following;
-
     public function __construct()
     {
         $this->status = 'Active';
-        $this->users = new ArrayCollection();
-        $this->posts = new ArrayCollection();
+        $this->createdBy = new ArrayCollection();
+        $this->user = new ArrayCollection();
     }
 
     /**
@@ -116,23 +122,23 @@ class UserFollowing
     }
 
     /**
-     * Set following
+     * Set createdBy
      *
-     * @param integer $following
+     * @param User $following
      */
-    public function setFollowing($following)
+    public function setCreatedBy($createdBy)
     {
-        $this->following = $following;
+        $this->createdBy = $createdBy;
     }
 
     /**
-     * Get following
+     * Get createdBy
      *
-     * @return integer $following
+     * @return User $createdBy
      */
-    public function getFollowing()
+    public function getCreatedBy()
     {
-        return $this->following;
+        return $this->createdBy;
     }
 
     /**
@@ -166,6 +172,16 @@ class UserFollowing
     }
 
     /**
+     * Get updatedAt
+     *
+     * @return datetime $updatedAt
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
      * Set deletedAt
      *
      * @param datetime $deletedAt
@@ -191,5 +207,13 @@ class UserFollowing
     public function touchCreated()
     {
         $this->createdAt = $this->updatedAt = new \DateTime();
+    }    
+
+    /**
+     * @orm:preUpdate
+     */
+    public function touchUpdated()
+    {
+        $this->updatedAt = new \DateTime();
     }
 }

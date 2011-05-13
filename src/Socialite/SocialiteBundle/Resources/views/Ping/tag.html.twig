@@ -1,0 +1,14 @@
+{% if fromUser == toUser %}
+    {# Do nothing. We don't want to show ping buttons for users to ping themselves... #}
+{% elseif not fromUser %}
+    <a class="ping-B ping-{{ toUser }} auth" href="{{ path('ping_toggle', {'userId': toUser}) }}">Ping</a>
+{% elseif ping %}
+    {% if countdown %}
+        <a class="unping-B ac ping-{{ toUser }}" href="{{ path('ping_toggle', {'userId': toUser}) }}">Undo Ping</a>
+        <span class="ping-countdown ping-countdown-{{ toUser }}" data-until="{{ countdown }}"></span>
+    {% else %}
+        <span class="pinged">Pinged</span>
+    {% endif %}
+{% else %}
+    <a class="ping-B ac ping-{{ toUser }}" href="{{ path('ping_toggle', {'userId': toUser}) }}">Ping</a>
+{% endif %}

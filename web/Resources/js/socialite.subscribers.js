@@ -25,6 +25,19 @@ $(function(){
         actionCommon($('.fol_'+data.userId), data);
     });
 
+    amplify.subscribe("ping_toggle", function( data ) {
+        actionCommon($('.ping-'+data.userId), data);
+
+        if (data.status == 'new')
+        {
+            $('.ping-'+data.userId).after('<span class="ping-countdown ping-countdown-'+data.userId+'" data-until="59"></span>');
+        }
+        else if (data.status == 'deleted')
+        {
+            $('.ping-countdown-'+data.userId).remove();
+        }
+    });
+
     /*
      * POSTS
      */
@@ -34,15 +47,6 @@ $(function(){
 
         $('#my-post').remove();
         $('#post-feed').prepend(data.myPost);
-    });
-
-    amplify.subscribe("invite_request_toggle", function( data ) {
-        if (data.status == 'Check')
-        {
-            alert('You already have a pending invite request today. Cancel that one first. (This will be replace with an option to do that automatically).');
-            exit();
-        }
-        actionCommon($('.ir_'+data.postId), data);
     });
 
 });

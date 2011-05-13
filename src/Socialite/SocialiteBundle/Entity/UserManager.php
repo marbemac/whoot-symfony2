@@ -91,4 +91,23 @@ class UserManager extends BaseUserManager
 
         return $response;
     }
+
+    public function findUndecided($since)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select(array('u'))
+           ->from('Socialite\SocialiteBundle\Entity\User', 'u')
+           ->leftJoin('u.posts', 'up', 'WITH', 'up.createdAt >= :since AND up.status = :status')
+           ->having('count(up.id) = 0')
+           ->groupBy('u.id')
+           ->setParameters(array(
+               'since' => $since,
+               'status' => 'Active'
+           ));
+
+        $query = $qb->getQuery();
+        $users = $query->getArrayResult();
+
+        return $users;
+    }
 }

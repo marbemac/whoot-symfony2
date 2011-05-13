@@ -1,2 +1,8 @@
+user_undecided:
+    pattern:  /undecided
+    defaults: { _controller: SocialiteBundle:User:undecided }
+    requirements:
+        _method: GET
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/user.xml"

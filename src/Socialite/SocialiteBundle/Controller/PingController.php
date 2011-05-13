@@ -1,0 +1,86 @@
+<?php
+
+namespace Socialite\SocialiteBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\RedirectResponse,
+    Symfony\Component\HttpFoundation\Response,
+    Symfony\Component\DependencyInjection\ContainerAware,
+    Symfony\Component\HttpKernel\Exception\NotFoundHttpException,
+    Symfony\Component\Security\Core\Exception\AccessDeniedException,
+    Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken,
+    Symfony\Component\Security\Acl\Permission\MaskBuilder,
+    Symfony\Component\Security\Acl\Domain\UserSecurityIdentity,
+    Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+
+class PingController extends ContainerAware
+{
+    /*
+     * Pings/Unpings a user for the current user.
+     *
+     * @param integer $userId
+     */
+    public function toggleAction($userId)
+    {
+        $coreManager = $this->container->get('socialite.core_manager');
+        $login = $coreManager->mustLogin();
+        if ($login)
+        {
+            return $login;
+        }
+
+        $request = $this->container->get('request');
+        $userManager = $this->container->get('socialite.ping_manager');
+
+        $result = $userManager->togglePing($this->container->get('security.context')->getToken()->getUser()->getId(), $userId);
+
+        if ($request->isXmlHttpRequest())
+        {
+            $result['userId'] = $userId;
+            $result['event'] = 'ping_toggle';
+            $result['flash'] = array('type' => 'success', 'message' => 'User ' . ($result['status'] == 'deleted' ? 'unpinged' : 'pinged') .' successfully!');
+            $result['newText'] = $result['status'] == 'deleted' ? 'Ping' : 'Undo Ping';
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
+
+        return new RedirectResponse($_SERVER['HTTP_REFERER']);
+    }
+
+    /**
+     * Display a ping tag for the current user.
+     *
+     * @param integer $toUser
+     */
+    public function tagAction($toUser)
+    {
+        $securityContext = $this->container->get('security.context');
+
+        $countdown = null;
+        if ($securityContext->isGranted('ROLE_USER'))
+        {
+            $fromUser = $securityContext->getToken()->getUser()->getId();
+            $ping = $this->container->get('socialite.ping_manager')->findPing($fromUser, $toUser, date('Y-m-d 05:00:00', time()-(60*60*5)));
+            if ($ping)
+            {
+                $countdown = time() - $ping['createdAt']->getTimestamp();
+                $countdown = $countdown <= 59 ? 59 - $countdown : null;
+            }
+        }
+        else
+        {
+            $fromUser = null;
+            $ping = null;
+        }
+
+        return $this->container->get('templating')->renderResponse('SocialiteBundle:Ping:tag.html.twig', array(
+            'fromUser' => $fromUser,
+            'toUser' => $toUser,
+            'countdown' => $countdown,
+            'ping' => $ping
+        ));
+    }
+
+}

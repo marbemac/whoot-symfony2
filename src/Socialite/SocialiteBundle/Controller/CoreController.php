@@ -138,4 +138,25 @@ class CoreController extends ContainerAware
 
         return new RedirectResponse($_SERVER['HTTP_REFERER']);
     }
+
+    public function sidebarAction()
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser()->getId();
+        $pingCount = $this->container->get('socialite.ping_manager')->findPingsBy($user, date('Y-m-d 05:00:00', time()-(60*60*5)));
+
+        $response = new Response();
+        $response->setCache(array(
+//            'etag'          => 5,
+//            's_maxage'      => 60
+        ));
+
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+//            return $response;
+        }
+
+        return $this->container->get('templating')->renderResponse('SocialiteBundle:Core:sidebar.html.twig', array(
+                    'pingCount' => $pingCount,
+                ), $response);
+    }
 }

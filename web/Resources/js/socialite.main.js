@@ -16,7 +16,6 @@ $(function() {
      * SPLASH PAGE
      */
     $('#splash .button').live('click', function() {
-        console.log('test');
         var $self = $(this);
         $self.parents('.panel').fadeOut(300, function() {
             $($self.data('target')).fadeIn(300);
@@ -28,5 +27,21 @@ $(function() {
      */
     $('#my-post').live('click', function() {
         $('#post-box').fadeIn(500);
+    })
+
+    /*
+     * PINGS
+     */
+    $('.ping-countdown').livequery(function() {
+        var $self = $(this);
+        $self.countdown({
+            layout: '{sn}',
+            until: '+'+$self.data('until')+'s',
+            onExpiry: function() {
+                console.log('test');
+                $self.before().remove();
+                $self.remove();
+            }
+        });
     })
 })

@@ -23,46 +23,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="PingManager.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PingManager.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="129" column="0" selection-start="3201" selection-end="3201" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tag.html.twig" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Ping/tag.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="111" selection-start="402" selection-end="402" vertical-scroll-proportion="-3.4285715">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Post.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/Post.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="96" selection-start="2091" selection-end="2091" vertical-scroll-proportion="0.0">
+            <state line="268" column="4" selection-start="5009" selection-end="5133" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PostManager.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php">
+      <file leaf-file-name="socialite.subscribers.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Resources/js/socialite.subscribers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="153" column="44" selection-start="4342" selection-end="4342" vertical-scroll-proportion="0.45082873">
+            <state line="32" column="117" selection-start="776" selection-end="776" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="feed.html.twig" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/feed.html.twig">
+      <file leaf-file-name="PingController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PingController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="47" selection-start="170" selection-end="170" vertical-scroll-proportion="-2.2857144">
+            <state line="63" column="40" selection-start="2272" selection-end="2305" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post.yml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/routing/post.yml">
+      <file leaf-file-name="socialite.main.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Resources/js/socialite.main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="19" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routing.yml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/routing/routing.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="804" selection-end="804" vertical-scroll-proportion="0.0">
+            <state line="40" column="36" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -71,25 +80,25 @@
       <file leaf-file-name="_post.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="0" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0">
+            <state line="119" column="18" selection-start="2061" selection-end="2062" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/main.scss">
+      <file leaf-file-name="base.html.twig" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="22" selection-start="1815" selection-end="1815" vertical-scroll-proportion="0.0">
+            <state line="75" column="83" selection-start="3858" selection-end="3858" vertical-scroll-proportion="-42.857143">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PostController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PostController.php">
+      <file leaf-file-name="sidebar.html.twig" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/sidebar.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="94" selection-start="1564" selection-end="1564" vertical-scroll-proportion="0.0">
+            <state line="22" column="82" selection-start="935" selection-end="935" vertical-scroll-proportion="0.2112">
               <folding />
             </state>
           </provider>
@@ -98,16 +107,7 @@
       <file leaf-file-name="CoreController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/CoreController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="16" selection-start="3810" selection-end="3810" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="feed_filters.html.twig" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/feed_filters.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="183" selection-start="1445" selection-end="1445" vertical-scroll-proportion="-10.285714">
+            <state line="158" column="30" selection-start="5590" selection-end="5590" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -127,22 +127,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/home_content.html.twig" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/Post.php" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/jiveTag.html.twig" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/teaser.html.twig" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Extension/SocialiteTwigExtension.php" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/base.html.twig" />
-        <option value="$PROJECT_DIR$/web/Resources/js/jquery.js" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/main.scss" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/feed.html.twig" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/routing/post.yml" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PostController.php" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/CoreController.php" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/FollowController.php" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/UserFollowing.php" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/routing/ping.yml" />
         <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/routing/routing.yml" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/feed_filters.html.twig" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/manager.yml" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/User/undecided_content.html.twig" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/Ping.php" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Ping/tag.html.twig" />
+        <option value="$PROJECT_DIR$/web/Resources/js/socialite.subscribers.js" />
+        <option value="$PROJECT_DIR$/web/Resources/js/socialite.main.js" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PingController.php" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PingManager.php" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/CoreController.php" />
+        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/sidebar.html.twig" />
       </list>
     </option>
   </component>
@@ -341,7 +341,75 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="User" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocialiteBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Post" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocialiteBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ping" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -688,11 +756,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core" />
-      <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post" />
+      <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views" />
       <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/routing" />
+      <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity" />
       <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller" />
-      <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Follow" />
+      <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/User" />
     </key>
   </component>
   <component name="RunManager">
@@ -744,15 +812,35 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-1920" y="0" width="1914" height="1074" extended-state="0" />
+    <frame x="-2550" y="7" width="2533" height="1420" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32914045" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23439154" sideWeight="0.9916143" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17656437" sideWeight="0.9799228" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -798,114 +886,114 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/home_content.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/routing/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="40" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/jiveTag.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="18" selection-start="18" selection-end="18" vertical-scroll-proportion="0.0">
+        <state line="17" column="19" selection-start="455" selection-end="455" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/teaser.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/manager.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="21" selection-start="295" selection-end="295" vertical-scroll-proportion="-4.571429">
+        <state line="15" column="27" selection-start="783" selection-end="783" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Extension/SocialiteTwigExtension.php">
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/User/undecided_content.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="39" selection-start="829" selection-end="829" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1305221573000" expanded="true" signature="683:689" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/Resources/js/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="90153" selection-start="90517" selection-end="90517" vertical-scroll-proportion="0.20179372">
-          <folding>
-            <marker date="1305221999000" expanded="true" signature="0:36" placeholder="/*...*/" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="0" selection-start="4205" selection-end="4205" vertical-scroll-proportion="-22.666666">
+        <state line="7" column="62" selection-start="266" selection-end="266" vertical-scroll-proportion="-4.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/main.scss">
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/UserFollowing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="22" selection-start="1815" selection-end="1815" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/feed.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="47" selection-start="170" selection-end="170" vertical-scroll-proportion="-2.2857144">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="0" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/routing/post.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="19" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0">
+        <state line="22" column="0" selection-start="430" selection-end="530" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PostController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="94" selection-start="1564" selection-end="1564" vertical-scroll-proportion="0.0">
+        <state line="40" column="112" selection-start="1582" selection-end="1622" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/Ping.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="176" column="25" selection-start="3385" selection-end="3385" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="18" selection-start="2061" selection-end="2062" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Ping/tag.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="111" selection-start="402" selection-end="402" vertical-scroll-proportion="-3.4285715">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/socialite.subscribers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="117" selection-start="776" selection-end="776" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/socialite.main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="36" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="83" selection-start="3858" selection-end="3858" vertical-scroll-proportion="-42.857143">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PingManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="129" column="0" selection-start="3201" selection-end="3201" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/Post.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="96" selection-start="2091" selection-end="2091" vertical-scroll-proportion="0.0" />
+        <state line="268" column="4" selection-start="5009" selection-end="5133" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PingController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="40" selection-start="2272" selection-end="2305" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/CoreController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="16" selection-start="3810" selection-end="3810" vertical-scroll-proportion="0.0">
+        <state line="158" column="30" selection-start="5590" selection-end="5590" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/routing/routing.yml">
+    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/sidebar.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="804" selection-end="804" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/feed_filters.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="183" selection-start="1445" selection-end="1445" vertical-scroll-proportion="-10.285714">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="44" selection-start="4342" selection-end="4342" vertical-scroll-proportion="0.45082873">
+        <state line="22" column="82" selection-start="935" selection-end="935" vertical-scroll-proportion="0.2112">
           <folding />
         </state>
       </provider>

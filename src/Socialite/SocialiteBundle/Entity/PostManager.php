@@ -314,8 +314,11 @@ class PostManager
             // If we have a previous post, and we are the only one connected to it, disable it.
             if (count($jive->getPost()->getUsers()) == 1)
             {
+                echo 'test10';
                 $jive->getPost()->setStatus('Disabled');
+                echo 'test11';
                 $this->updatePost($jive->getPost(), false);
+                echo 'test12';
             }
         }
 

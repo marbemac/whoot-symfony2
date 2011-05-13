@@ -89,7 +89,7 @@
       <file leaf-file-name="PostManager.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="335" column="21" selection-start="9781" selection-end="9781" vertical-scroll-proportion="0.9339103">
+            <state line="305" column="0" selection-start="8933" selection-end="8933" vertical-scroll-proportion="0.60346186">
               <folding />
             </state>
           </provider>
@@ -993,7 +993,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="335" column="21" selection-start="9781" selection-end="9781" vertical-scroll-proportion="0.9339103">
+        <state line="305" column="0" selection-start="8933" selection-end="8933" vertical-scroll-proportion="0.60346186">
           <folding />
         </state>
       </provider>

@@ -1,9 +1,3 @@
-{% if myPost is not none %}
-    {% include 'SocialiteBundle:Post:myPost.html.twig' with {'myPost': myPost} %}
-{% endif %}
-
-{% render "SocialiteBundle:Core:feedFilters" %}
-
 <div id="post-feed">
     <div id="post-box" class="{{ myPost is not none ? 'hide' : '' }}">
         <div class="options">

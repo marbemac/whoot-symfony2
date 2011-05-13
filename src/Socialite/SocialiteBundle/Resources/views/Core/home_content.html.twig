@@ -1,1 +1,7 @@
+{% if myPost is not none %}
+    {% include 'SocialiteBundle:Post:myPost.html.twig' with {'myPost': myPost} %}
+{% endif %}
+
+{% render "SocialiteBundle:Core:feedFilters" %}
+
 {% render 'SocialiteBundle:Post:feed' %}

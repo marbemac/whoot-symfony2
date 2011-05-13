@@ -29,7 +29,6 @@ class PostController extends ContainerAware
         $feedSort = !$feedSort ? $feedFilters['feedSort'] : $feedSort;
 
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $myPost = $this->container->get('socialite.post_manager')->findMyPost($user, 'Active');
 
         // Don't even bother getting objects if we aren't including ANY node types
         if (empty($postTypes))

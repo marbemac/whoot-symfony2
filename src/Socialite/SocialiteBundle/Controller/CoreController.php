@@ -9,7 +9,10 @@ class CoreController extends ContainerAware
 {
     public function homeAction()
     {
-        $request = $this->container->get('request');
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $myPost = $this->container->get('socialite.post_manager')->findMyPost($user, 'Active');
+
         $response = new Response();
         $response->setCache(array(
         ));
@@ -19,7 +22,7 @@ class CoreController extends ContainerAware
             //return $response;
         }
 
-        return $this->container->get('templating')->renderResponse('SocialiteBundle:Core:home.html.twig', array(), $response);
+        return $this->container->get('templating')->renderResponse('SocialiteBundle:Core:home.html.twig', array('myPost' => $myPost), $response);
     }
 
     /*

@@ -96,9 +96,10 @@ ul, ol {
   background: white;
   min-height: 800px;
   height: 100%;
+  position: relative;
 }
 
-/* line 68, ../compass/src/main.scss */
+/* line 69, ../compass/src/main.scss */
 #sidebar {
   width: 203px;
   min-height: 800px;
@@ -110,7 +111,7 @@ ul, ol {
   color: black;
 }
 
-/* line 75, ../compass/src/main.scss */
+/* line 76, ../compass/src/main.scss */
 #footer {
   height: 75px;
   width: 100%;
@@ -118,7 +119,7 @@ ul, ol {
   color: white;
 }
 
-/* line 81, ../compass/src/main.scss */
+/* line 82, ../compass/src/main.scss */
 .clear {
   clear: both;
 }
@@ -130,7 +131,7 @@ ul, ol {
     Description:
         Purpose of the stylesheet follows.
 */
-/* line 9, ../compass/src/partials/_utilities.scss */
+/* line 9, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_utilities.scss */
 #ajax-loading {
   display: none;
   background: white url("images/ajax-loader.gif") no-repeat;
@@ -144,12 +145,12 @@ ul, ol {
   margin: -25px 0 0 -10px;
 }
 
-/* line 18, ../compass/src/partials/_utilities.scss */
+/* line 18, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_utilities.scss */
 .hide {
   display: none;
 }
 
-/* line 20, ../compass/src/partials/_utilities.scss */
+/* line 20, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_utilities.scss */
 .dev-notice {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -172,7 +173,7 @@ ul, ol {
     Description:
         Purpose of the stylesheet follows.
 */
-/* line 12, ../compass/src/partials/_splash.scss */
+/* line 12, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_splash.scss */
 #splash {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(60%, #666666), color-stop(100%, #aaaaaa));
   background-image: -webkit-linear-gradient(#222222, #666666 60%, #aaaaaa);
@@ -182,7 +183,7 @@ ul, ol {
   width: 100%;
   height: 100%;
 }
-/* line 18, ../compass/src/partials/_splash.scss */
+/* line 18, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_splash.scss */
 #splash .auth {
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
@@ -202,12 +203,12 @@ ul, ol {
   width: 650px;
   height: 350px;
 }
-/* line 28, ../compass/src/partials/_splash.scss */
+/* line 28, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_splash.scss */
 #splash .auth .panel {
   width: 350px;
   height: 350px;
 }
-/* line 32, ../compass/src/partials/_splash.scss */
+/* line 32, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_splash.scss */
 #splash .auth .button {
   padding: 5px 15px;
   margin: 5px;
@@ -230,26 +231,26 @@ Author     : Marc MacLeod (marbemac@gmail.com)
 Description:
 Purpose of the stylesheet follows.
 */
-/* line 9, ../compass/src/partials/_post.scss */
+/* line 9, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #my-post {
   border-bottom: 1px solid black;
   margin-bottom: 10px;
   cursor: pointer;
 }
-/* line 14, ../compass/src/partials/_post.scss */
+/* line 14, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #my-post :hover {
   background-color: #DDD;
 }
-/* line 18, ../compass/src/partials/_post.scss */
+/* line 18, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #my-post h2 {
   padding: 10px;
 }
-/* line 22, ../compass/src/partials/_post.scss */
+/* line 22, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #my-post .pending {
   margin: 0 0 10px 10px;
 }
 
-/* line 27, ../compass/src/partials/_post.scss */
+/* line 27, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #post-box {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
@@ -260,8 +261,9 @@ Purpose of the stylesheet follows.
   position: absolute;
   top: 0px;
   left: 0px;
+  z-index: 10;
 }
-/* line 37, ../compass/src/partials/_post.scss */
+/* line 38, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #post-box .options {
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
@@ -282,13 +284,13 @@ Purpose of the stylesheet follows.
   margin: 0 0 0 -250px;
 }
 
-/* line 53, ../compass/src/partials/_post.scss */
+/* line 54, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #post-feed {
   position: relative;
   width: 100%;
   height: 100%;
 }
-/* line 57, ../compass/src/partials/_post.scss */
+/* line 58, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #post-feed .date-separator {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -302,24 +304,24 @@ Purpose of the stylesheet follows.
   font-size: 18px;
   background: #DDD;
 }
-/* line 65, ../compass/src/partials/_post.scss */
+/* line 66, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #post-feed li {
   margin: 0 10px;
   border-top: 1px solid #CCC;
   padding: 10px;
 }
-/* line 70, ../compass/src/partials/_post.scss */
+/* line 71, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #post-feed li.last, #post-feed li.none {
   border-bottom: 1px solid #CCC;
 }
 
-/* line 75, ../compass/src/partials/_post.scss */
+/* line 76, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #feed-filters {
   border-bottom: 1px dotted #999;
   padding: 0 0 9px 0;
   margin: 0 0 15px 0;
 }
-/* line 83, ../compass/src/partials/_post.scss */
+/* line 84, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #feed-filters .post-types .label,
 #feed-filters .feed-sort .label {
   float: left;
@@ -327,33 +329,33 @@ Purpose of the stylesheet follows.
   color: #999;
   font-size: 12px;
 }
-/* line 89, ../compass/src/partials/_post.scss */
+/* line 90, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #feed-filters .post-types ul,
 #feed-filters .feed-sort ul {
   display: inline;
 }
-/* line 92, ../compass/src/partials/_post.scss */
+/* line 93, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #feed-filters .post-types li,
 #feed-filters .feed-sort li {
   float: left;
   padding: 3px 8px;
   margin: 0 5px;
 }
-/* line 97, ../compass/src/partials/_post.scss */
+/* line 98, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #feed-filters .post-types li a.on,
 #feed-filters .feed-sort li a.on {
   font-weight: bold;
 }
-/* line 101, ../compass/src/partials/_post.scss */
+/* line 102, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #feed-filters .post-types {
   float: left;
 }
-/* line 104, ../compass/src/partials/_post.scss */
+/* line 105, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 #feed-filters .feed-sort {
   float: right;
 }
 
-/* line 117, ../compass/src/partials/_post.scss */
+/* line 118, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss */
 .ping-countdown {
   font-size: 12px;
   color: #999;
@@ -371,12 +373,12 @@ Purpose of the stylesheet follows.
 /*
  * qTip
  */
-/* line 13, ../compass/src/partials/_library.scss */
+/* line 13, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_library.scss */
 .jgrowl .ui-tooltip-title {
   font-size: 18px;
 }
 
-/* line 14, ../compass/src/partials/_library.scss */
+/* line 14, /Users/Marc/Sites/socialite/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_library.scss */
 .jgrowl .ui-tooltip-content {
   font-size: 16px;
   padding: 10px;

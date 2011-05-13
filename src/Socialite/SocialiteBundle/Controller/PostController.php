@@ -134,7 +134,7 @@ class PostController extends ContainerAware
             // return $response;
         }
 
-        $post = $this->container->get('socialite.post_manager')->findPostBy($postId, null, null, 'Active', false);
+        $post = array();
 
         return $this->container->get('templating')->renderResponse('SocialiteBundle:Post:teaser.html.twig', array(
             'post' => $post,

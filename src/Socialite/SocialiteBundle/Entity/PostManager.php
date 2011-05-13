@@ -323,11 +323,13 @@ class PostManager
         }
 
         $post = $this->em->getRepository('SocialiteBundle:Post')->find($postId);
-
+        echo 'tset134';
         $response['status'] = 'new';
 
         $connection = new UsersPosts();
+        echo 'test15';
         $connection->setUser($user);
+        echo 'test16';
         $connection->setPost($post);
 
         echo 'test8';

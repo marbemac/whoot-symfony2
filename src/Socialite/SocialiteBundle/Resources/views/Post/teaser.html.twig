@@ -1,6 +1,4 @@
 <div class="teaser post">
-    {{ post.createdAt|date('D, j') }}
-    -
     {% for user in post.users %}
         {% set trail = '' %}
         {% if loop.revindex0 == 1 and post.users|length > 2 %}

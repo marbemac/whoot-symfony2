@@ -1,0 +1,386 @@
+/*
+    Document   : main
+    Created on : Mar 30, 2011, 2:33:12 PM
+    Author     : Marc MacLeod
+    Description:
+        Master stylesheet.
+*/
+/*
+    Document   : _default
+    Created on : Mar 30, 2011, 4:06:21 PM
+    Author     : Marc MacLeod
+    Description:
+        Default theme variables.
+*/
+/* line 16, ../compass/src/main.scss */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background-color: #222;
+  position: relative;
+  z-index: 0;
+  font-family: Tahoma, Arial, "times New Roman";
+  color: #000;
+}
+
+/* line 25, ../compass/src/main.scss */
+header, footer, article, section, nav, menu, hgroup {
+  display: block;
+}
+
+/* line 29, ../compass/src/main.scss */
+h1, h2, h3, h4, h5, h6, p, div, span {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 34, ../compass/src/main.scss */
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 36, ../compass/src/main.scss */
+#wrapper {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #29244d), color-stop(60%, #120a47), color-stop(100%, #222222));
+  background: -webkit-linear-gradient(#29244d, #120a47 60%, #222222);
+  background: -moz-linear-gradient(#29244d, #120a47 60%, #222222);
+  background: -o-linear-gradient(#29244d, #120a47 60%, #222222);
+  background: linear-gradient(#29244d, #120a47 60%, #222222);
+  width: 100%;
+  height: 100%;
+}
+
+/* line 40, ../compass/src/main.scss */
+#application {
+  width: 960px;
+  height: 100%;
+  margin: auto;
+}
+
+/* line 41, ../compass/src/main.scss */
+#header {
+  height: 50px;
+  width: 100%;
+  background: white;
+  color: black;
+  border-bottom: 3px solid #000;
+}
+/* line 47, ../compass/src/main.scss */
+#header .logo {
+  padding: 0 20px 0 10px;
+  position: relative;
+  top: 2px;
+}
+
+/* line 55, ../compass/src/main.scss */
+#content {
+  height: 100%;
+}
+
+/* line 56, ../compass/src/main.scss */
+#page {
+  position: relative;
+  padding-right: 206px;
+  color: black;
+  background: #FFF;
+  height: 100%;
+}
+
+/* line 63, ../compass/src/main.scss */
+#page_content {
+  background: white;
+  min-height: 800px;
+  height: 100%;
+  position: relative;
+}
+
+/* line 69, ../compass/src/main.scss */
+#sidebar {
+  width: 203px;
+  min-height: 800px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-left: 3px solid black;
+  background: white;
+  color: black;
+}
+
+/* line 76, ../compass/src/main.scss */
+#footer {
+  height: 75px;
+  width: 100%;
+  background: orange;
+  color: white;
+}
+
+/* line 82, ../compass/src/main.scss */
+.clear {
+  clear: both;
+}
+
+/*
+    Document   : _utilities
+    Created on : Mar 30, 2011, 4:04:51 PM
+    Author     : Marc MacLeod
+    Description:
+        Purpose of the stylesheet follows.
+*/
+/* line 9, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_utilities.scss */
+#ajax-loading {
+  display: none;
+  background: white url("images/ajax-loader.gif") no-repeat;
+  border: 3px solid #000;
+  padding: 15px;
+  font-weight: bold;
+  color: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -10px;
+}
+
+/* line 18, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_utilities.scss */
+.hide {
+  display: none;
+}
+
+/* line 20, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_utilities.scss */
+.dev-notice {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #FFD2C7;
+  color: red;
+  font-size: 13px;
+  padding: 5px;
+  width: 90%;
+  margin: 10px auto;
+}
+
+/*
+    Document   : _splash
+    Created on : Mar 3, 2011, 4:04:51 PM
+    Author     : Marc MacLeod
+    Description:
+        Purpose of the stylesheet follows.
+*/
+/* line 12, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_splash.scss */
+#splash {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(60%, #666666), color-stop(100%, #aaaaaa));
+  background-image: -webkit-linear-gradient(#222222, #666666 60%, #aaaaaa);
+  background-image: -moz-linear-gradient(#222222, #666666 60%, #aaaaaa);
+  background-image: -o-linear-gradient(#222222, #666666 60%, #aaaaaa);
+  background-image: linear-gradient(#222222, #666666 60%, #aaaaaa);
+  width: 100%;
+  height: 100%;
+}
+/* line 18, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_splash.scss */
+#splash .auth {
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -o-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -khtml-border-radius: 7px;
+  border-radius: 7px;
+  -moz-box-shadow: 1px 1px 5px black;
+  -webkit-box-shadow: 1px 1px 5px black;
+  -o-box-shadow: 1px 1px 5px black;
+  box-shadow: 1px 1px 5px black;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: #FFF;
+  margin: -175px 0 0 -325px;
+  width: 650px;
+  height: 350px;
+}
+/* line 28, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_splash.scss */
+#splash .auth .panel {
+  width: 350px;
+  height: 350px;
+}
+/* line 32, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_splash.scss */
+#splash .auth .button {
+  padding: 5px 15px;
+  margin: 5px;
+  float: left;
+  border: 1px solid #999;
+  cursor: pointer;
+}
+
+/*
+    Document   : _user
+    Created on : Mar 30, 2011, 4:04:51 PM
+    Author     : Marc MacLeod
+    Description:
+        Purpose of the stylesheet follows.
+*/
+/*
+Document   : post
+Created on : May 3, 2011, 9:41:00 PM
+Author     : Marc MacLeod (marbemac@gmail.com)
+Description:
+Purpose of the stylesheet follows.
+*/
+/* line 9, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#my-post {
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+/* line 14, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#my-post :hover {
+  background-color: #DDD;
+}
+/* line 18, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#my-post h2 {
+  padding: 10px;
+}
+/* line 22, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#my-post .pending {
+  margin: 0 0 10px 10px;
+}
+
+/* line 27, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#post-box {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
+  background: #000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+}
+/* line 38, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#post-box .options {
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -o-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -khtml-border-radius: 7px;
+  border-radius: 7px;
+  -moz-box-shadow: 1px 1px 5px #cccccc;
+  -webkit-box-shadow: 1px 1px 5px #cccccc;
+  -o-box-shadow: 1px 1px 5px #cccccc;
+  box-shadow: 1px 1px 5px #cccccc;
+  background: #FFF;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 500px;
+  height: 200px;
+  margin: 0 0 0 -250px;
+}
+
+/* line 54, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#post-feed {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/* line 58, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#post-feed .date-separator {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  padding: 3px 10px;
+  margin: 5px 10px;
+  font-weight: bold;
+  font-size: 18px;
+  background: #DDD;
+}
+/* line 66, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#post-feed li {
+  margin: 0 10px;
+  border-top: 1px solid #CCC;
+  padding: 10px;
+}
+/* line 71, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#post-feed li.last, #post-feed li.none {
+  border-bottom: 1px solid #CCC;
+}
+
+/* line 76, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#feed-filters {
+  border-bottom: 1px dotted #999;
+  padding: 0 0 9px 0;
+  margin: 0 0 15px 0;
+}
+/* line 84, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#feed-filters .post-types .label,
+#feed-filters .feed-sort .label {
+  float: left;
+  margin: 6px 0 0 10px;
+  color: #999;
+  font-size: 12px;
+}
+/* line 90, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#feed-filters .post-types ul,
+#feed-filters .feed-sort ul {
+  display: inline;
+}
+/* line 93, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#feed-filters .post-types li,
+#feed-filters .feed-sort li {
+  float: left;
+  padding: 3px 8px;
+  margin: 0 5px;
+}
+/* line 98, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#feed-filters .post-types li a.on,
+#feed-filters .feed-sort li a.on {
+  font-weight: bold;
+}
+/* line 102, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#feed-filters .post-types {
+  float: left;
+}
+/* line 105, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+#feed-filters .feed-sort {
+  float: right;
+}
+
+/* line 118, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
+.ping-countdown {
+  font-size: 12px;
+  color: #999;
+  margin: 0 0 0 10px;
+  cursor: default;
+}
+
+/*
+    Document   : _library
+    Created on : Apr 14, 2011, 2:59:21 PM
+    Author     : Marc
+    Description:
+        Library overrides.
+*/
+/*
+ * qTip
+ */
+/* line 13, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_library.scss */
+.jgrowl .ui-tooltip-title {
+  font-size: 18px;
+}
+
+/* line 14, /Users/Marc/Sites/whoot/src/Whoot/WhootBundle/Resources/compass/src/partials/_library.scss */
+.jgrowl .ui-tooltip-content {
+  font-size: 16px;
+  padding: 10px;
+  line-height: 1.4em;
+}

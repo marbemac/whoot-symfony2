@@ -1,0 +1,19 @@
+<div class="teaser post">
+    {% for user in post.users %}
+        {% set trail = '' %}
+        {% if loop.revindex0 == 1 and post.users|length > 2 %}
+            {% set trail = ', and' %}
+        {% elseif loop.revindex0 == 1 %}
+            {% set trail = ' and' %}
+        {% elseif not loop.last %}
+            {% set trail = ',' %}
+        {% endif %}
+        {{ user.user.firstName~trail }}
+    {% endfor %}
+    {{ post.users|length > 1 ? 'are' : 'is' }}
+    {{ post.type|printPostType() }}.
+
+    {% if (post.createdAt|date('y-m-d') == "now"|date('y-m-d')) %}
+        {% render "WhootBundle:Post:jiveTag" with {'postId': post.id} %}
+    {% endif %}
+</div>

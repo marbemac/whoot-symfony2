@@ -13,7 +13,7 @@ $loader->registerNamespaces(array(
     'Monolog'          => __DIR__.'/../vendor/monolog/src',
     'Assetic'          => __DIR__.'/../vendor/assetic/src',
     'FOS'              => __DIR__.'/../src',
-    'Socialite'        => __DIR__.'/../src',
+    'Whoot'        => __DIR__.'/../src',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',

@@ -18,7 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(), // FriendsOfSymfony UserBundle
-            new Socialite\SocialiteBundle\SocialiteBundle(),
+            new Whoot\WhootBundle\WhootBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

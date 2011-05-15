@@ -1,7 +1,7 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
-    - { resource: "@SocialiteBundle/Resources/config/config.yml" }
+    - { resource: "@WhootBundle/Resources/config/config.yml" }
 
 framework:
     secret:        %secret%
@@ -41,7 +41,7 @@ doctrine:
                 result_cache_driver:    array
                 mappings:
                     FOSUserBundle: ~
-                    SocialiteBundle: ~
+                    WhootBundle: ~
 
 # Twig Configuration
 twig:
@@ -80,14 +80,14 @@ fos_user:
         firewall_name: main
         class:
             model:
-                user:      Socialite\SocialiteBundle\Entity\User
+                user:      Whoot\WhootBundle\Entity\User
             form:
-                user:      Socialite\SocialiteBundle\Form\UserFormType
+                user:      Whoot\WhootBundle\Form\UserFormType
 #                change_password: ~
 #                reset_password:  ~
             controller:
-                user:      Socialite\SocialiteBundle\Controller\UserController
-                security:  Socialite\SocialiteBundle\Controller\SecurityController
+                user:      Whoot\WhootBundle\Controller\UserController
+                security:  Whoot\WhootBundle\Controller\SecurityController
 #        service:
 #            mailer: ~
 #            email_canonicalizer:    ~

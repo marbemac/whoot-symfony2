@@ -1,0 +1,37 @@
+security:
+    resource: "@WhootBundle/Resources/config/routing/security.yml"
+
+user:
+    resource: "@WhootBundle/Resources/config/routing/user.yml"
+    prefix:   /u
+    
+post:
+    resource: "@WhootBundle/Resources/config/routing/post.yml"
+    prefix:   /p
+
+follow:
+    resource: "@WhootBundle/Resources/config/routing/follow.yml"
+    prefix:   /f
+
+ping:
+    resource: "@WhootBundle/Resources/config/routing/ping.yml"
+    prefix:   /ping
+
+feed_filter_toggle:
+    pattern:  /ac/tf/{postType}
+    defaults: { _controller: WhootBundle:Core:toggleFeedFilter }
+    requirements:
+        postType:  working|low_in|low_out|big_out
+        _method: GET|POST
+
+feed_filter_change:
+    pattern:  /ac/cf/{key}/{value}
+    defaults: { _controller: WhootBundle:Core:changeFeedFilter }
+    requirements:
+        key:  feedSort
+        value: popularity|created
+        _method: GET|POST
+
+homepage:
+    pattern:  /
+    defaults: { _controller: WhootBundle:Core:home }

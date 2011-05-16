@@ -71,7 +71,7 @@
       <file leaf-file-name="app_staging.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/app_staging.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="40" selection-start="193" selection-end="193" vertical-scroll-proportion="0.093541205">
+            <state line="7" column="39" selection-start="192" selection-end="192" vertical-scroll-proportion="0.093541205">
               <folding />
             </state>
           </provider>
@@ -699,7 +699,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/app_staging.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="40" selection-start="193" selection-end="193" vertical-scroll-proportion="0.093541205">
+        <state line="7" column="39" selection-start="192" selection-end="192" vertical-scroll-proportion="0.093541205">
           <folding />
         </state>
       </provider>

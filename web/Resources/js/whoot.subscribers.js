@@ -48,4 +48,17 @@ $(function(){
         $('#my-post').replaceWith(data.myPost);
     });
 
+    amplify.subscribe("jive_toggle", function( data ) {
+        $('#my-post').replaceWith(data.myPost);
+
+        if (data.oldPostId)
+        {
+            $('.post-'+data.oldPostId).parent().fadeOut(500, function() { $(this).remove() });
+        }
+
+        $('.post-'+data.postId).parent().fadeTo(250, .01, function() {
+            $(this).html(data.post).fadeTo(250, 1);
+        })
+    });
+
 });

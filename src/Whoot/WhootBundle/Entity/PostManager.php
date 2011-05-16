@@ -313,6 +313,7 @@ class PostManager
             // If we have a previous post, and we are the only one connected to it, disable it.
             if (count($jive->getPost()->getUsers()) == 1)
             {
+                $response['oldPostId'] = $jive->getPost()->getId();
                 $jive->getPost()->setStatus('Disabled');
                 $this->updatePost($jive->getPost(), false);
             }

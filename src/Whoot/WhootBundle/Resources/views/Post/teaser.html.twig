@@ -1,4 +1,4 @@
-<div class="teaser post">
+<div class="teaser post post-{{ post.id }}">
     {% for user in post.users %}
         {% set trail = '' %}
         {% if loop.revindex0 == 1 and post.users|length > 2 %}

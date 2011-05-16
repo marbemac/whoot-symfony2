@@ -60,6 +60,24 @@ class PostController extends ContainerAware
         ), $response);
     }
 
+    public function myPostAction()
+    {
+        $request = $this->container->get('request');
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $myPost = $this->container->get('whoot.post_manager')->findMyPost($user, 'Active');
+
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($request)) {
+            // return the 304 Response immediately
+            //return $response;
+        }
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:Post:myPost.html.twig', array('myPost' => $myPost), $response);
+    }
+
     /**
      * Creates a new post for the day. Toggles if the user already has a post for today.
      */
@@ -94,7 +112,8 @@ class PostController extends ContainerAware
             $result['result'] = 'success';
             $result['event'] = 'post_created';
             $result['flash'] = array('type' => 'success', 'message' => 'Your status has been updated.');
-            $result['myPost'] = $templating->render('WhootBundle:Post:myPost.html.twig', array('myPost' => $postResult['post'], 'myPostPending' => null));
+            $myPost = $this->container->get('http_kernel')->forward('WhootBundle:Post:myPost', array());
+            $result['myPost'] = $myPost->getContent();
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 
@@ -197,6 +216,10 @@ class PostController extends ContainerAware
 
         if ($request->isXmlHttpRequest())
         {
+            $post = $this->container->get('http_kernel')->forward('WhootBundle:Post:teaser', array('postId' => $postId));
+            $result['post'] = $post->getContent();
+            $myPost = $this->container->get('http_kernel')->forward('WhootBundle:Post:myPost', array());
+            $result['myPost'] = $myPost->getContent();
             $result['postId'] = $postId;
             $result['event'] = 'jive_toggle';
             $response = new Response(json_encode($result));

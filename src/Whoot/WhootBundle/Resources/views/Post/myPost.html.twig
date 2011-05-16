@@ -3,6 +3,7 @@
         {% if myPost is not none %}
             {{ app.user.firstName }}, you're {{ myPost.post.type|printPostType() }}.
         {% else %}
+            <span id="declare-post"></span>
             You have not declared your post for the night.
         {% endif %}
     </h2>

@@ -1,22 +1,23 @@
 <div id="feed-filters">
     {% if showPostTypes %}
         <div class="post-types">
-            <div class="label">Post Types:</div>
-            <ul>
-                <li><a href="{{ path('feed_filter_toggle', {'postType': 'working'}) }}" class="ac {{ feedFilters and 'working' in feedFilters.postTypes ? 'on' : '' }}">Working</a></li>
-                <li><a href="{{ path('feed_filter_toggle', {'postType': 'low_in'}) }}" class="ac {{ feedFilters and 'low_in' in feedFilters.postTypes ? 'on' : '' }}">Night In</a></li>
-                <li><a href="{{ path('feed_filter_toggle', {'postType': 'low_out'}) }}" class="ac {{ feedFilters and 'low_out' in feedFilters.postTypes ? 'on' : '' }}">Relaxed Out</a></li>
-                <li><a href="{{ path('feed_filter_toggle', {'postType': 'big_out'}) }}" class="ac {{ feedFilters and 'big_out' in feedFilters.postTypes ? 'on' : '' }}">Rager Out</a></li>
+            <div class="label">Showing</div>
+            <ul class="mc-menu">
+                <li class="first {{ feedFilters and 'working' in feedFilters.postTypes ? 'on' : '' }}"><a href="{{ path('feed_filter_toggle', {'postType': 'working'}) }}" class="ac">Working</a></li>
+                <li class="{{ feedFilters and 'low_in' in feedFilters.postTypes ? 'on' : '' }}"><a href="{{ path('feed_filter_toggle', {'postType': 'low_in'}) }}" class="ac">Night In</a></li>
+                <li class="{{ feedFilters and 'low_out' in feedFilters.postTypes ? 'on' : '' }}"><a href="{{ path('feed_filter_toggle', {'postType': 'low_out'}) }}" class="ac">Relaxed Out</a></li>
+                <li class="last {{ feedFilters and 'big_out' in feedFilters.postTypes ? 'on' : '' }}"><a href="{{ path('feed_filter_toggle', {'postType': 'big_out'}) }}" class="ac">Rager Out</a></li>
             </ul>
         </div>
     {% endif %}
 
     {% if showFeedSort %}
         <div class="feed-sort">
-            <div class="label">Sort:</div>
-            <ul>
-                <li><a href="{{ path('feed_filter_change', {'key': 'feedSort', 'value': 'created'}) }}" class="ac {{ feedFilters and feedFilters.feedSort == 'created' ? 'on' : '' }}">Newest</a></li>
-                <li><a href="{{ path('feed_filter_change', {'key': 'feedSort', 'value': 'popularity'}) }}" class="ac {{ feedFilters and feedFilters.feedSort == 'popularity' ? 'on' : '' }}">Most Popular</a></li>
+            <div class="arrow-small"></div>
+            <div class="label">Sort</div>
+            <ul class="sc-menu">
+                <li class="{{ feedFilters and feedFilters.feedSort == 'created' ? 'on' : 'hide' }}"><a href="{{ path('feed_filter_change', {'key': 'feedSort', 'value': 'created'}) }}" class="ac">Newest</a></li>
+                <li class="{{ feedFilters and feedFilters.feedSort == 'popularity' ? 'on' : 'hide' }}"><a href="{{ path('feed_filter_change', {'key': 'feedSort', 'value': 'popularity'}) }}" class="ac">Popularity</a></li>
             </ul>
         </div>
         <div class="clear"></div>

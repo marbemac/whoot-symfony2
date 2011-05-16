@@ -74,16 +74,21 @@ Purpose of the stylesheet follows.
 }
 
 #feed-filters {
-    border-bottom: 1px dotted #999;
+    $feed-filter-padding: 5px 8px;
+    $feed-filter-border-radius: 5px;
+    $feed-filter-border-color: #ebe8e8;
+    $feed-filter-border-width: 2px;
+
     padding: 0 0 9px 0;
     margin: 0 0 15px 0;
     
     .post-types,
     .feed-sort {
-
+        position: relative;
+        
         .label {
             float: left;
-            margin: 6px 0 0 10px;
+            margin: 9px 0 0 10px;
             color: #999;
             font-size: 12px;
         }
@@ -92,18 +97,81 @@ Purpose of the stylesheet follows.
         }
         li {
             float: left;
-            padding: 3px 8px;
-            margin: 0 5px;
-        }
-        li a.on {
-            font-weight: bold;
         }
     }
     .post-types {
         float: left;
+
+        ul {
+            a {
+                color: #999;
+                text-decoration: none;
+            }
+            li {
+                background: #FFF;
+                border-bottom: $feed-filter-border-width solid $feed-filter-border-color;
+                border-top: $feed-filter-border-width solid $feed-filter-border-color;
+                padding: $feed-filter-padding;
+            }
+            li.first {
+                @include border-radius($feed-filter-border-radius 0 0 $feed-filter-border-radius);
+                border-left: $feed-filter-border-width solid $feed-filter-border-color;
+                margin: 0 0 0 15px;
+            }
+            li.last {
+                @include border-radius(0 $feed-filter-border-radius $feed-filter-border-radius 0);
+                border-right: $feed-filter-border-color solid $feed-filter-border-color;
+            }
+            li.on {
+                @include background-image(linear-gradient(white, #EAEAEA 50%, #E2E2E2 70%, #F3F3F3));
+            }
+            li.on a {
+                color: #000;
+            }
+        }
     }
     .feed-sort {
         float: right;
+        width: 190px;
+
+        .arrow-small {
+            position: absolute; top: 15px; right: 23px;
+            z-index: 10;
+        }
+        ul {
+            @include border-radius($feed-filter-border-radius);
+            @include background-image(linear-gradient(white, #EAEAEA 50%, #E2E2E2 70%, #F3F3F3));
+            position: absolute; left: 50px;
+            z-index: 5;
+            border: $feed-filter-border-width solid $feed-filter-border-color;
+            width: 125px;
+
+            .arrow {
+
+            }
+
+            a {
+                color: #444;
+                text-decoration: none;
+            }
+
+            li {
+                padding: $feed-filter-padding;
+            }
+
+            li:hover {
+                cursor: pointer;
+                color: green;
+            }
+
+            li.on {
+            }
+
+            li.on:hover {
+                cursor: default;
+                color: #444;
+            }
+        }
     }
 }
 

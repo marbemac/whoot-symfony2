@@ -55,6 +55,20 @@ var appUpdate = function(params)
       return false;
     }
 
+    if (params.feed)
+    {
+        $('#post-feed').fadeOut(300, function() {
+            $('#post-feed').html(params.feed).fadeIn(300);
+        })
+    }
+
+    if (params.feedReload)
+    {
+        feedReload(params.feedReload);
+
+        return false;
+    }
+
     if (params.redirect)
     {
         window.location = params.redirect;
@@ -63,6 +77,15 @@ var appUpdate = function(params)
     }
 
     return true;
+}
+
+var feedReload = function($url)
+{
+    $.get($url, {}, function(html) {
+        $('#post-feed').fadeOut(500, function() {
+            $(this).html(html).fadeIn(500);
+        })
+    }, 'json')
 }
 
 /*

@@ -48,9 +48,15 @@ class PostController extends ContainerAware
             // return $response;
         }
 
+        if ($this->container->get('request')->isXmlHttpRequest())
+        {
+            return $this->container->get('templating')->renderResponse('WhootBundle:Post:feed_content.html.twig', array(
+                'posts' => $posts
+            ), $response);
+        }
+
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:feed.html.twig', array(
-            'myPost' => $myPost,
-            'posts' => $posts,
+            'posts' => $posts
         ), $response);
     }
 
@@ -83,6 +89,8 @@ class PostController extends ContainerAware
         if ($request->isXmlHttpRequest())
         {
             $result = array();
+            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());
+            $result['feed'] = $feed->getContent();
             $result['result'] = 'success';
             $result['event'] = 'post_created';
             $result['flash'] = array('type' => 'success', 'message' => 'Your status has been updated.');

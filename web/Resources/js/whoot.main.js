@@ -44,4 +44,26 @@ $(function() {
             }
         });
     })
+
+    /*
+     * MENUS
+     */
+
+    // Single choice menu.
+    $('.sc-menu').live({
+        mouseenter: function() {
+            $(this).find('li').show();
+        },
+        mouseleave: function() {
+            $(this).find('li:not(.on)').hide();
+        }
+    })
+    $('.sc-menu a').live('click', function() {
+        $(this).parent().addClass('on').siblings().removeClass('on');
+    })
+
+    // Multiple choice menu
+    $('.mc-menu a').live('click', function() {
+        $(this).parent().toggleClass('on');
+    })
 })

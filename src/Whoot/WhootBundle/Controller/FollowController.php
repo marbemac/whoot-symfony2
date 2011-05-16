@@ -37,6 +37,8 @@ class FollowController extends ContainerAware
 
         if ($request->isXmlHttpRequest())
         {
+            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());
+            $result['feed'] = $feed->getContent();
             $result['userId'] = $userId;
             $result['event'] = 'follow_toggle';
             $result['flash'] = array('type' => 'success', 'message' => 'User ' . ($result['status'] == 'existing' ? 'unfollowed' : 'followed') .' successfully!');

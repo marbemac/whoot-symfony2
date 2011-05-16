@@ -23,91 +23,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PostManager.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php">
+      <file leaf-file-name="feed_content.html.twig" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/feed_content.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="298" column="0" selection-start="8555" selection-end="8555" vertical-scroll-proportion="0.0">
+            <state line="7" column="22" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PostController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PostController.php">
+      <file leaf-file-name="_post.scss" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="1170" selection-end="1170" vertical-scroll-proportion="0.0">
+            <state line="90" column="21" selection-start="1707" selection-end="1707" vertical-scroll-proportion="0.18300654">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="socialite.main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/Resources/js/socialite.main.js">
+      <file leaf-file-name="config.yml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="13" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0">
+            <state line="40" column="29" selection-start="1148" selection-end="1148" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoreController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/CoreController.php">
+      <file leaf-file-name="base.html.twig" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="35" selection-start="2090" selection-end="2090" vertical-scroll-proportion="0.0">
+            <state line="120" column="8" selection-start="5683" selection-end="5683" vertical-scroll-proportion="-34.714287">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home_content.html.twig" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/home_content.html.twig">
+      <file leaf-file-name="Session.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/Session.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="36" selection-start="856" selection-end="856" vertical-scroll-proportion="-10.285714">
+            <state line="2" column="21" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppKernel.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+      <file leaf-file-name="_sprite.scss" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_sprite.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="22" selection-start="897" selection-end="897" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parameters.ini" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/config/parameters.ini">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="29" selection-start="42" selection-end="42" vertical-scroll-proportion="0.023529412">
+            <state line="10" column="51" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="main.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/main.scss">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="23" selection-start="1454" selection-end="1454" vertical-scroll-proportion="0.0">
+            <state line="84" column="24" selection-start="1896" selection-end="1896" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_post.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss">
+      <file leaf-file-name="feed_filters.html.twig" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/feed_filters.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="16" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0">
+            <state line="8" column="32" selection-start="782" selection-end="782" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="feed.html.twig" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/feed.html.twig">
+      <file leaf-file-name="_utilities.scss" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_utilities.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0">
+            <state line="34" column="59" selection-start="776" selection-end="776" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="whoot.main.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="56" column="14" selection-start="1321" selection-end="1321" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -127,22 +127,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/web/Resources/js/socialite.subscribers.js" />
-        <option value="$PROJECT_DIR$/web/Resources/js/socialite.main.js" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PingController.php" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/base.html.twig" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PingManager.php" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/sidebar.html.twig" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/CoreController.php" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/teaser.html.twig" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PostController.php" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/feed.html.twig" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/main.scss" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss" />
-        <option value="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/home_content.html.twig" />
-        <option value="$PROJECT_DIR$/app/AppKernel.php" />
-        <option value="$PROJECT_DIR$/app/config/parameters.ini" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/feed.html.twig" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PostController.php" />
+        <option value="$PROJECT_DIR$/web/Resources/js/whoot.core.js" />
+        <option value="$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/CoreController.php" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/FollowController.php" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/feed_content.html.twig" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_sprite.scss" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_utilities.scss" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/feed_filters.html.twig" />
+        <option value="$PROJECT_DIR$/web/Resources/js/whoot.main.js" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/Session.php" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss" />
       </list>
     </option>
   </component>
@@ -172,8 +172,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Favorites" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -188,7 +186,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="socialite" />
+              <option name="myItemId" value="whoot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -198,7 +196,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="socialite" />
+              <option name="myItemId" value="whoot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -206,8 +204,146 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhootBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhootBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhootBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhootBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Entity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socialite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Favorites" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -244,11 +380,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity" />
+      <recent name="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post" />
       <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views" />
       <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/routing" />
       <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity" />
-      <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller" />
-      <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/User" />
     </key>
   </component>
   <component name="RunManager">
@@ -321,21 +457,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1680" height="953" extended-state="0" />
+    <frame x="-1913" y="5" width="1905" height="1067" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32914045" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32893157" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1763285" sideWeight="0.67106843" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13716109" sideWeight="0.9424084" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32893157" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -374,98 +510,114 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PingManager.php">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/feed.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="0" selection-start="3201" selection-end="3201" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/Post.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="268" column="4" selection-start="5009" selection-end="5133" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PingController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="40" selection-start="2272" selection-end="2305" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/sidebar.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="952" selection-end="952" vertical-scroll-proportion="-13.714286" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/teaser.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="19" selection-start="0" selection-end="664" vertical-scroll-proportion="0.0">
+        <state line="1" column="59" selection-start="80" selection-end="80" vertical-scroll-proportion="-0.5714286">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/CoreManager.php">
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity/PostManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="298" column="0" selection-start="8555" selection-end="8555" vertical-scroll-proportion="0.0">
+        <state line="47" column="33" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/PostController.php">
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="1170" selection-end="1170" vertical-scroll-proportion="0.0">
+        <state line="57" column="4" selection-start="1612" selection-end="1760" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/Resources/js/socialite.main.js">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PostController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="13" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Controller/CoreController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="35" selection-start="2090" selection-end="2090" vertical-scroll-proportion="0.0">
+        <state line="92" column="49" selection-start="3557" selection-end="3557" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Core/home_content.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/CoreController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="36" selection-start="856" selection-end="856" vertical-scroll-proportion="-10.285714">
+        <state line="135" column="0" selection-start="4715" selection-end="4867" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/main.scss">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/FollowController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="23" selection-start="1454" selection-end="1454" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/compass/src/partials/_post.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="16" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views/Post/feed.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0">
+        <state line="39" column="0" selection-start="1410" selection-end="1410" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/feed_content.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="22" selection-start="897" selection-end="897" vertical-scroll-proportion="0.0">
+        <state line="7" column="22" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.ini">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_sprite.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="29" selection-start="42" selection-end="42" vertical-scroll-proportion="0.023529412">
+        <state line="10" column="51" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="24" selection-start="1896" selection-end="1896" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/feed_filters.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="32" selection-start="782" selection-end="782" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_utilities.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="59" selection-start="776" selection-end="776" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="14" selection-start="1321" selection-end="1321" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="8" selection-start="5683" selection-end="5683" vertical-scroll-proportion="-34.714287">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/Session.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="21" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="29" selection-start="1148" selection-end="1148" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="21" selection-start="1707" selection-end="1707" vertical-scroll-proportion="0.18300654">
           <folding />
         </state>
       </provider>

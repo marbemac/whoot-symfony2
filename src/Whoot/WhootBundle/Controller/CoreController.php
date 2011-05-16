@@ -98,9 +98,10 @@ class CoreController extends ContainerAware
         if ($this->container->get('request')->isXmlHttpRequest())
         {
             $result = array();
+            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());
+            $result['feed'] = $feed->getContent();
             $result['event'] = 'feed_filter_toggle';
             $result['result'] = 'success';
-            $result['redirect'] = $_SERVER['HTTP_REFERER'];
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 
@@ -130,9 +131,10 @@ class CoreController extends ContainerAware
         if ($this->container->get('request')->isXmlHttpRequest())
         {
             $result = array();
+            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());
+            $result['feed'] = $feed->getContent();
             $result['event'] = 'feed_filter_change';
             $result['result'] = 'success';
-            $result['redirect'] = $_SERVER['HTTP_REFERER'];
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 

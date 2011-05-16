@@ -5,13 +5,13 @@
         <title>{% block title %}default title{% endblock %} | The Whoot</title>
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         {% block stylesheets %}
-            {% stylesheets 'Resources/css/colorbox.css' 'Resources/css/jquery.qtip.css' '@WhootBundle/Resources/css/main.css' %}
+            {% stylesheets 'Resources/css/*.css' '@WhootBundle/Resources/css/main.css' filter='?yui_css' %}
                 <link href="{{ asset_url }}" media="screen, projection" rel="stylesheet" />
             {% endstylesheets %}
-            {% stylesheets '@WhootBundle/Resources/css/print.css' %}
+            {% stylesheets '@WhootBundle/Resources/css/print.css' filter='?yui_css' %}
                 <link href="{{ asset_url }}" media="print" rel="stylesheet" />
             {% endstylesheets %}
-            {% stylesheets '@WhootBundle/Resources/css/ie.css' %}
+            {% stylesheets '@WhootBundle/Resources/css/ie.css' filter='?yui_css' %}
                 <!--[if lt IE 8]>
                     <link href="{{ asset_url }}" media="screen, projection" type="text/css" rel="stylesheet" />
                 <![endif]-->
@@ -95,27 +95,30 @@
         <div id="ajax-success"></div>
         <div id="ajax-error"></div>
 
-
         {% block javascripts %}
-            <script src="{{ asset('Resources/js/jquery.js') }}"></script>
-            <script src="{{ asset('Resources/js/history/scripts/compressed/json2.js') }}"></script>
-            <script src="{{ asset('Resources/js/jquery.livequery.js') }}"></script>
-            <script src="{{ asset('Resources/js/whoot.preload.js') }}"></script>
-            <script src="{{ asset('Resources/js/jquery-ui.min.js') }}"></script>
-            <script src="{{ asset('Resources/js/jquery.countdown.pack.js') }}"></script>
-            <script src="{{ asset('Resources/js/amplify/amplify.min.js') }}"></script>
-            <script src="{{ asset('Resources/js/history/scripts/compressed/history.adapter.jquery.js') }}"></script>
-            <script src="{{ asset('Resources/js/history/scripts/compressed/history.js') }}"></script>
-            <script src="{{ asset('Resources/js/jquery.colorbox-min.js') }}"></script>
-            <script src="{{ asset('Resources/js/jquery.qtip.pack.js') }}"></script>
-            <script src="{{ asset('Resources/js/whoot.core.js') }}"></script>
-            <script src="{{ asset('Resources/js/whoot.request.js') }}"></script>
-            <script src="{{ asset('Resources/js/whoot.subscribers.js') }}"></script>
-            <script src="{{ asset('Resources/js/whoot.action.controller.js') }}"></script>
-            <script src="{{ asset('Resources/js/whoot.form.controller.js') }}"></script>
-            <script src="{{ asset('Resources/js/whoot.main.js') }}"></script>
+            {% javascripts filter='?yui_js'
+                'Resources/js/jquery.js'
+                'Resources/js/history/scripts/compressed/json2.js'
+                'Resources/js/jquery.livequery.js'
+                'Resources/js/whoot.preload.js'
+                'Resources/js/jquery-ui.min.js'
+                'Resources/js/jquery.countdown.pack.js'
+                'Resources/js/amplify/amplify.min.js'
+                'Resources/js/history/scripts/compressed/history.adapter.jquery.js'
+                'Resources/js/history/scripts/compressed/history.js'
+                'Resources/js/jquery.colorbox-min.js'
+                'Resources/js/jquery.qtip.pack.js'
+                'Resources/js/whoot.core.js'
+                'Resources/js/whoot.request.js'
+                'Resources/js/whoot.subscribers.js'
+                'Resources/js/whoot.action.controller.js'
+                'Resources/js/whoot.form.controller.js'
+                'Resources/js/whoot.main.js'
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
         {% endblock javascripts %}
-
+        
         <!-- HIDDEN TOOLS -->
         <div style="dislay: none">
             

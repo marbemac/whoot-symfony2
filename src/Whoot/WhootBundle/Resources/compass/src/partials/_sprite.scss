@@ -1,0 +1,11 @@
+/*
+    Document   : _sprite
+    Created on : May 6, 2011
+    Author     : Marc MacLeod (marbemac@gmail.com
+    Description:
+        Sprite definitions.
+*/
+
+@import "icon/*.png";
+.handle-small { @include icon-sprite(handle-small); }
+.arrow-small { @include icon-sprite(arrow-small); }

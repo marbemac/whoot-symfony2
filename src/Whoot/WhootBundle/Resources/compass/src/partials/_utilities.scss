@@ -27,3 +27,9 @@
     width: 90%;
     margin: 10px auto;
 }
+
+// Dragging handles.
+.handle-small { width: 9px; height: 10px; cursor: move; }
+
+// Arrows
+.arrow-small { width: 14px; height: 8px; cursor: default; }

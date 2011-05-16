@@ -19,7 +19,27 @@ framework:
         default_locale: %locale%
         lifetime:       3600
         auto_start:     true
+        storage_id:     session.storage.pdo
 
+parameters:
+    pdo.db_options:
+        db_table: session
+        db_id_col: session_id
+        db_data_col: session_value
+        db_time_col: session_time
+
+services:
+    session.storage.pdo:
+        class:     Symfony\Component\HttpFoundation\SessionStorage\PdoSessionStorage
+        arguments: [@pdo, {}, %pdo.db_options%]
+
+    pdo:
+        class: PDO
+        arguments:
+                dsn:      "mysql:dbname=%database_name%"
+                user:     %database_user%
+                password: %database_password%
+                
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -57,10 +77,10 @@ assetic:
 #    write_to:       %kernel.root_dir%/../web
     filters:
         cssrewrite: ~
-        # closure:
-        #     jar: %kernel.root_dir%/java/compiler.jar
-        # yui_css:
-        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
+        yui_css:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
+        yui_js:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
 
 # Swiftmailer Configuration
 swiftmailer:

@@ -45,8 +45,7 @@ $(function(){
     amplify.subscribe("post_created", function( data ) {
         $('#post-box').fadeOut(500);
 
-        $('#my-post').remove();
-        $('#post-feed').prepend(data.myPost);
+        $('#my-post').replaceWith(data.myPost);
     });
 
 });

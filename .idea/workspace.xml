@@ -41,28 +41,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myPost.html.twig" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="myPost.html.twig" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/myPost.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="58" selection-start="226" selection-end="226" vertical-scroll-proportion="0.06688963">
+            <state line="8" column="6" selection-start="263" selection-end="263" vertical-scroll-proportion="-4.571429">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parameters.ini" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/parameters.ini">
+      <file leaf-file-name="routing_staging.yml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/routing_staging.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="39" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0">
+            <state line="2" column="21" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/app.php">
+      <file leaf-file-name="config_staging.yml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/config_staging.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0">
+            <state line="17" column="0" selection-start="356" selection-end="356" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app_staging.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/app_staging.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="40" selection-start="193" selection-end="193" vertical-scroll-proportion="0.093541205">
               <folding />
             </state>
           </provider>
@@ -104,15 +113,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Session.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/Session.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="21" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -127,9 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/CoreController.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/FollowController.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/feed_content.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_sprite.scss" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_utilities.scss" />
@@ -143,6 +140,9 @@
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/home_content.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/myPost.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/routing_staging.yml" />
+        <option value="$PROJECT_DIR$/app/config/config_staging.yml" />
+        <option value="$PROJECT_DIR$/web/app_staging.php" />
       </list>
     </option>
   </component>
@@ -462,11 +462,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web" />
+      <recent name="$PROJECT_DIR$/app/config" />
       <recent name="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity" />
       <recent name="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post" />
       <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/views" />
-      <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Resources/config/routing" />
-      <recent name="$PROJECT_DIR$/src/Socialite/SocialiteBundle/Entity" />
     </key>
   </component>
   <component name="RunManager">
@@ -592,27 +592,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_sprite.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="51" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="24" selection-start="1896" selection-end="1896" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/feed_filters.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="32" selection-start="782" selection-end="782" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_utilities.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="59" selection-start="776" selection-end="776" vertical-scroll-proportion="0.0">
@@ -662,13 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="0" selection-end="482" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="29" selection-start="1148" selection-end="1148" vertical-scroll-proportion="0.0">
@@ -699,7 +671,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/myPost.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="58" selection-start="226" selection-end="226" vertical-scroll-proportion="0.06688963">
+        <state line="8" column="6" selection-start="263" selection-end="263" vertical-scroll-proportion="-4.571429">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routing_staging.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="21" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="0" selection-end="482" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config_staging.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="356" selection-end="356" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/app_staging.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="40" selection-start="193" selection-end="193" vertical-scroll-proportion="0.093541205">
           <folding />
         </state>
       </provider>

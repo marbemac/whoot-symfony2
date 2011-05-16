@@ -31,7 +31,7 @@ Purpose of the stylesheet follows.
     width: 100%; height: 100%;
     position: absolute;
     top: 0px; left: 0px;
-    z-index: 10;
+    z-index: 15;
 
     $options-w: 500px;
     $options-h: 200px;
@@ -101,6 +101,7 @@ Purpose of the stylesheet follows.
     }
     .post-types {
         float: left;
+        width: 500px;
 
         ul {
             a {
@@ -120,7 +121,7 @@ Purpose of the stylesheet follows.
             }
             li.last {
                 @include border-radius(0 $feed-filter-border-radius $feed-filter-border-radius 0);
-                border-right: $feed-filter-border-color solid $feed-filter-border-color;
+                border-right: $feed-filter-border-width solid $feed-filter-border-color;
             }
             li.on {
                 @include background-image(linear-gradient(white, #EAEAEA 50%, #E2E2E2 70%, #F3F3F3));
@@ -135,7 +136,7 @@ Purpose of the stylesheet follows.
         width: 190px;
 
         .arrow-small {
-            position: absolute; top: 15px; right: 23px;
+            position: absolute; top: 14px; right: 23px;
             z-index: 10;
         }
         ul {

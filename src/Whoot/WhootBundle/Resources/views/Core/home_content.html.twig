@@ -1,6 +1,4 @@
-{% if myPost is not none %}
-    {% include 'WhootBundle:Post:myPost.html.twig' with {'myPost': myPost} %}
-{% endif %}
+{% include 'WhootBundle:Post:myPost.html.twig' with {'myPost': myPost} %}
 
 <div id="post-box" class="{{ myPost is not none ? 'hide' : '' }}">
     <div class="options">

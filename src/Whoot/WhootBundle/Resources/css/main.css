@@ -297,7 +297,7 @@ Purpose of the stylesheet follows.
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 10;
+  z-index: 15;
 }
 /* line 38, ../compass/src/partials/_post.scss */
 #post-box .options {
@@ -382,20 +382,21 @@ Purpose of the stylesheet follows.
 /* line 102, ../compass/src/partials/_post.scss */
 #feed-filters .post-types {
   float: left;
+  width: 500px;
 }
-/* line 106, ../compass/src/partials/_post.scss */
+/* line 107, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul a {
   color: #999;
   text-decoration: none;
 }
-/* line 110, ../compass/src/partials/_post.scss */
+/* line 111, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul li {
   background: #FFF;
   border-bottom: 2px solid #ebe8e8;
   border-top: 2px solid #ebe8e8;
   padding: 5px 8px;
 }
-/* line 116, ../compass/src/partials/_post.scss */
+/* line 117, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul li.first {
   -moz-border-radius: 5px 0 0 5px;
   -webkit-border-radius: 5px 0 0 5px;
@@ -406,7 +407,7 @@ Purpose of the stylesheet follows.
   border-left: 2px solid #ebe8e8;
   margin: 0 0 0 15px;
 }
-/* line 121, ../compass/src/partials/_post.scss */
+/* line 122, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul li.last {
   -moz-border-radius: 0 5px 5px 0;
   -webkit-border-radius: 0 5px 5px 0;
@@ -414,9 +415,9 @@ Purpose of the stylesheet follows.
   -ms-border-radius: 0 5px 5px 0;
   -khtml-border-radius: 0 5px 5px 0;
   border-radius: 0 5px 5px 0;
-  border-right: #ebe8e8 solid #ebe8e8;
+  border-right: 2px solid #ebe8e8;
 }
-/* line 125, ../compass/src/partials/_post.scss */
+/* line 126, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul li.on {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(50%, #eaeaea), color-stop(70%, #e2e2e2), color-stop(100%, #f3f3f3));
   background-image: -webkit-linear-gradient(#ffffff, #eaeaea 50%, #e2e2e2 70%, #f3f3f3);
@@ -424,23 +425,23 @@ Purpose of the stylesheet follows.
   background-image: -o-linear-gradient(#ffffff, #eaeaea 50%, #e2e2e2 70%, #f3f3f3);
   background-image: linear-gradient(#ffffff, #eaeaea 50%, #e2e2e2 70%, #f3f3f3);
 }
-/* line 128, ../compass/src/partials/_post.scss */
+/* line 129, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul li.on a {
   color: #000;
 }
-/* line 133, ../compass/src/partials/_post.scss */
+/* line 134, ../compass/src/partials/_post.scss */
 #feed-filters .feed-sort {
   float: right;
   width: 190px;
 }
-/* line 137, ../compass/src/partials/_post.scss */
+/* line 138, ../compass/src/partials/_post.scss */
 #feed-filters .feed-sort .arrow-small {
   position: absolute;
-  top: 15px;
+  top: 14px;
   right: 23px;
   z-index: 10;
 }
-/* line 141, ../compass/src/partials/_post.scss */
+/* line 142, ../compass/src/partials/_post.scss */
 #feed-filters .feed-sort ul {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -459,27 +460,27 @@ Purpose of the stylesheet follows.
   border: 2px solid #ebe8e8;
   width: 125px;
 }
-/* line 153, ../compass/src/partials/_post.scss */
+/* line 154, ../compass/src/partials/_post.scss */
 #feed-filters .feed-sort ul a {
   color: #444;
   text-decoration: none;
 }
-/* line 158, ../compass/src/partials/_post.scss */
+/* line 159, ../compass/src/partials/_post.scss */
 #feed-filters .feed-sort ul li {
   padding: 5px 8px;
 }
-/* line 162, ../compass/src/partials/_post.scss */
+/* line 163, ../compass/src/partials/_post.scss */
 #feed-filters .feed-sort ul li:hover {
   cursor: pointer;
   color: green;
 }
-/* line 170, ../compass/src/partials/_post.scss */
+/* line 171, ../compass/src/partials/_post.scss */
 #feed-filters .feed-sort ul li.on:hover {
   cursor: default;
   color: #444;
 }
 
-/* line 186, ../compass/src/partials/_post.scss */
+/* line 187, ../compass/src/partials/_post.scss */
 .ping-countdown {
   font-size: 12px;
   color: #999;

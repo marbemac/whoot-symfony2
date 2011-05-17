@@ -1,10 +1,12 @@
 <div id="my-post">
-    <h2>
+    <h3>
         {% if myPost is not none %}
-            {{ app.user.firstName }}, you're {{ myPost.post.type|printPostType() }}.
+            {{ myPost.post.type|printPostTypeShort() }}
         {% else %}
             <span id="declare-post"></span>
             You have not declared your post for the night.
         {% endif %}
-    </h2>
+    </h3>
+    <div id="change-post">Change</div>
+    <div class="clear"></div>
 </div>

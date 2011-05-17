@@ -30,7 +30,7 @@ $(function() {
         $('#post-box').fadeIn(500);
     })
 
-    $('#my-post').live('click', function() {
+    $('#change-post').live('click', function() {
         $('#post-box').fadeIn(500);
     })
 

@@ -16,10 +16,18 @@ class WhootTwigExtension extends \Twig_Extension {
         'big_out' => 'having a big night out'
     );
 
+    private $postTypesShort = array(
+        'working' => 'Working',
+        'low_in' => 'Staying In',
+        'low_out' => 'Low Key Out',
+        'big_out' => 'Big Out'
+    );
+
     public function getFilters() {
         return array(
             'debug'       => new \Twig_Filter_Method($this, 'debug'),
             'printPostType'  => new \Twig_Filter_Method($this, 'printPostType'),
+            'printPostTypeShort'  => new \Twig_Filter_Method($this, 'printPostTypeShort'),
             'timeLapse'  => new \Twig_Filter_Method($this, 'timeLapse'),
         );
     }
@@ -35,6 +43,11 @@ class WhootTwigExtension extends \Twig_Extension {
     public function printPostType($key)
     {
         return $this->postTypes[$key];
+    }
+
+    public function printPostTypeShort($key)
+    {
+        return $this->postTypesShort[$key];
     }
 
     /*

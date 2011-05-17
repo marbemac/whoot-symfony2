@@ -1,23 +1,27 @@
 <div id="sidebar">
-    {% block user_panel %}
-        <div id="user_panel">
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <a class="p" href="{{ path('fos_user_user_show', {'username': app.user.username}) }}">
-                Hi, {{ app.user.firstName }}
-            </a> |
-            <a href="{{ path('_security_logout') }}">
-                {{ 'layout.logout'|trans([], 'FOSUserBundle') }}
+    <div id="user_panel">
+        <h2>
+            <a class="name" href="{{ path('fos_user_user_show', {'username': app.user.username}) }}">
+                {{ app.user.firstName }} {{ app.user.lastName }}
             </a>
-        {% else %}
-            <a id="login" href="{{ path('_security_login') }}">
-                {{ 'layout.login'|trans([], 'FOSUserBundle') }}
-            </a> |
-            <a id="register" href="{{ path('fos_user_user_new') }}">
-                {{ 'layout.register'|trans([], 'FOSUserBundle') }}
-            </a>
-        {% endif %}
+            <div class="clear"></div>
+        </h2>
+        <div class="profile_image"></div>
+        <div class="stats">
+            <div class="item">
+                <div class="label">Following</div>
+                <div class="value">49</div>
+            </div>
+            <div class="item">
+                <div class="label">Followers</div>
+                <div class="value">28</div>
+            </div>
         </div>
-    {% endblock user_panel %}
+        <a class="small-link" href="{{ path('homepage') }}">Settings</a>
+        <a class="small-link" href="{{ path('_security_logout') }}">
+            {{ 'layout.logout'|trans([], 'FOSUserBundle') }}
+        </a>
+    </div>
 
     {% if pingCount|length > 0 %}
         Hey, {{ pingCount|length }} people want to know what you're doing tonight!

@@ -7,3 +7,61 @@
 */
 
 #authenticate_box {  }
+
+#user_panel {
+    padding: 7px 5px 15px 5px;
+    margin: 0 5px;
+    border-bottom: 1px solid #F1F1F1;
+
+    .name {
+        font-size: 24px;
+        text-decoration: none;
+        display: block;
+        margin: 0 0 8px 4px;
+        float: left;
+        font-weight: normal;
+    }
+    .name:hover {
+        text-decoration: underline;
+    }
+
+    .profile_image {
+        @include border-radius(5px);
+        width: 50px;
+        height: 60px;
+        background: #CCC;
+        border: 1px solid #666;
+        float: left;
+    }
+
+    .stats {
+        float: left;
+        width: 120px;
+
+        .item {
+            clear: both;
+            margin: 5px 0 5px 10px;
+            
+            .label {
+                float: left;
+                font-size: 14px;
+                color: #666;
+                margin: 0 15px 0 0;
+            }
+            .value {
+                float: left;
+                font-size: 14px;
+                color: #666;
+                font-weight: bold;
+            }
+        }
+    }
+    .small-link {
+        font-size: 12px;
+        text-decoration: none;
+        margin: 0 0 0 10px;
+    }
+    .small-link:hover {
+        text-decoration: underline;
+    }
+}

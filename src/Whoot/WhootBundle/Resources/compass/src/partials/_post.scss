@@ -51,9 +51,106 @@ Purpose of the stylesheet follows.
     }
 }
 
-#post-feed { 
+$feed-filters-margin-top: 8px;
+#feed-filters {
+    $feed-filter-padding: 5px 7px;
+    $feed-filter-border-radius: 5px;
+    $feed-filter-border-color: #CCC;
+    $feed-filter-border-width: 2px;
+    $feed-filter-background: #FFF;
+    @include background-image(linear-gradient(#F9F9F9, #F6F6F6 25%, #EBEBEB 75%, #E8E8E8));
+
+    width: $page_width - $sidebar_width;
+    padding: $feed-filters-margin-top 0 6px 0;
+    margin: 0 0 0 $page_width/2*-1;
+    position: fixed;
+    top: $header_height; left: 50%;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid $sidebar_border_color;
+    z-index: 40;
+
+    .post-types,
+    .feed-sort {
+        position: relative;
+        
+        .label {
+            float: left;
+            margin: 8px 0 0 13px;
+            color: #999;
+            font-size: 12px;
+            cursor: default;
+        }
+        ul {
+            font-size: 14px;
+        }
+        li {
+            float: left;
+        }
+        li.clear {
+            float: none;
+        }
+    }
+    .post-types {
+        float: left;
+
+        ul {
+            @include border-radius($feed-filter-border-radius);
+            float: left;
+            background: $feed-filter-background;
+            border: $feed-filter-border-width solid $feed-filter-border-color;
+            margin: 0 0 0 10px;
+            
+            a {
+                color: #BBB;
+                text-decoration: none;
+                padding: $feed-filter-padding;
+                display: block;
+            }
+            li.on.working a { color: $post-working-color; }
+            li.on.low_in a { color: $post-low_in-color; }
+            li.on.low_out a { color: $post-low_out-color; }
+            li.on.big_out a { color: $post-big_out-color; }
+        }
+        .undecided {
+            float: left;
+            font-size: 14px;
+            text-decoration: none;
+        }
+    }
+    .feed-sort {
+        float: right;
+        width: 173px;
+
+        .arrow-small {
+            position: absolute; top: 14px; right: 18px;
+            z-index: 10;
+        }
+        ul {
+            @include border-radius($feed-filter-border-radius);
+            background: $feed-filter-background;
+            border: $feed-filter-border-width solid $feed-filter-border-color;
+            position: absolute; left: 60px;
+            z-index: 5;
+            width: 100px;
+
+            .arrow {
+
+            }
+
+            a {
+                color: #444;
+                text-decoration: none;
+                padding: $feed-filter-padding;
+                display: block;
+            }
+        }
+    }
+}
+
+#post-feed {
     position: relative;
     width: 100%; height: 100%;
+    padding: $header_height+$feed-filters-margin-top 0 0 0;
 
     .date-separator {
         @include border-radius(5px);
@@ -73,115 +170,17 @@ Purpose of the stylesheet follows.
     }
 }
 
-#feed-filters {
-    $feed-filter-padding: 5px 8px;
-    $feed-filter-border-radius: 5px;
-    $feed-filter-border-color: #ebe8e8;
-    $feed-filter-border-width: 2px;
-
-    padding: 0 0 9px 0;
-    margin: 0 0 15px 0;
-    
-    .post-types,
-    .feed-sort {
-        position: relative;
-        
-        .label {
-            float: left;
-            margin: 9px 0 0 10px;
-            color: #999;
-            font-size: 12px;
-        }
-        ul {
-            display: inline;
-        }
-        li {
-            float: left;
-        }
-    }
-    .post-types {
-        float: left;
-        width: 500px;
-
-        ul {
-            a {
-                color: #999;
-                text-decoration: none;
-            }
-            li {
-                background: #FFF;
-                border-bottom: $feed-filter-border-width solid $feed-filter-border-color;
-                border-top: $feed-filter-border-width solid $feed-filter-border-color;
-                padding: $feed-filter-padding;
-            }
-            li.first {
-                @include border-radius($feed-filter-border-radius 0 0 $feed-filter-border-radius);
-                border-left: $feed-filter-border-width solid $feed-filter-border-color;
-                margin: 0 0 0 15px;
-            }
-            li.last {
-                @include border-radius(0 $feed-filter-border-radius $feed-filter-border-radius 0);
-                border-right: $feed-filter-border-width solid $feed-filter-border-color;
-            }
-            li.on {
-                @include background-image(linear-gradient(white, #EAEAEA 50%, #E2E2E2 70%, #F3F3F3));
-            }
-            li.on a {
-                color: #000;
-            }
-        }
-    }
-    .feed-sort {
-        float: right;
-        width: 190px;
-
-        .arrow-small {
-            position: absolute; top: 14px; right: 23px;
-            z-index: 10;
-        }
-        ul {
-            @include border-radius($feed-filter-border-radius);
-            @include background-image(linear-gradient(white, #EAEAEA 50%, #E2E2E2 70%, #F3F3F3));
-            position: absolute; left: 50px;
-            z-index: 5;
-            border: $feed-filter-border-width solid $feed-filter-border-color;
-            width: 125px;
-
-            .arrow {
-
-            }
-
-            a {
-                color: #444;
-                text-decoration: none;
-            }
-
-            li {
-                padding: $feed-filter-padding;
-            }
-
-            li:hover {
-                cursor: pointer;
-                color: green;
-            }
-
-            li.on {
-            }
-
-            li.on:hover {
-                cursor: default;
-                color: #444;
-            }
-        }
-    }
-}
-
 .teaser.post {
-    
-}
+    div.timer {
+        @include border-radius(10px);
+        width: 20px;
+        height: 20px;
 
-.teaser.post.pending {
-    
+        &.working { background: $post-working-color; }
+        &.low_in { background: $post-low_in-color; }
+        &.low_out { background: $post-low_out-color; }
+        &.big_out { background: $post-big_out-color; }
+    }
 }
 
 .ping-countdown {

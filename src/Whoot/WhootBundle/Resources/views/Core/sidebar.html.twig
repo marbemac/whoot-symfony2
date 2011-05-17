@@ -23,6 +23,8 @@
         Hey, {{ pingCount|length }} people want to know what you're doing tonight!
     {% endif %}
 
+    {% render 'WhootBundle:Post:myPost' %}
+    
     {% render "WhootBundle:User:list" %}
     
 </div>

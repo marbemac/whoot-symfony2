@@ -46,52 +46,116 @@ ul, ol {
 
 /* line 36, ../compass/src/main.scss */
 #wrapper {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #29244d), color-stop(60%, #120a47), color-stop(100%, #222222));
-  background: -webkit-linear-gradient(#29244d, #120a47 60%, #222222);
-  background: -moz-linear-gradient(#29244d, #120a47 60%, #222222);
-  background: -o-linear-gradient(#29244d, #120a47 60%, #222222);
-  background: linear-gradient(#29244d, #120a47 60%, #222222);
   width: 100%;
   height: 100%;
 }
 
-/* line 40, ../compass/src/main.scss */
+/* line 39, ../compass/src/main.scss */
 #application {
   width: 960px;
   height: 100%;
   margin: auto;
 }
 
-/* line 41, ../compass/src/main.scss */
+/* line 40, ../compass/src/main.scss */
 #header {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3077ce), color-stop(25%, #2b6fc6), color-stop(75%, #1b59ae), color-stop(100%, #1551a5));
+  background-image: -webkit-linear-gradient(#3077ce, #2b6fc6 25%, #1b59ae 75%, #1551a5);
+  background-image: -moz-linear-gradient(#3077ce, #2b6fc6 25%, #1b59ae 75%, #1551a5);
+  background-image: -o-linear-gradient(#3077ce, #2b6fc6 25%, #1b59ae 75%, #1551a5);
+  background-image: linear-gradient(#3077ce, #2b6fc6 25%, #1b59ae 75%, #1551a5);
   height: 50px;
-  width: 100%;
-  background: white;
+  width: 960px;
   color: black;
-  border-bottom: 3px solid #000;
+  border-bottom: 1px solid #003277;
+  position: fixed;
+  top: 0px;
+  left: 50%;
+  margin-left: -480px;
+  z-index: 50;
 }
-/* line 47, ../compass/src/main.scss */
+/* line 51, ../compass/src/main.scss */
 #header .logo {
-  padding: 0 20px 0 10px;
+  display: block;
+  padding: 7px 20px 0 55px;
   position: relative;
-  top: 2px;
+  margin: 0 0 0 5px;
+  color: #FFF;
+  font-size: 26px;
+  text-decoration: none;
+}
+/* line 60, ../compass/src/main.scss */
+#header .logo .image {
+  width: 40px;
+  height: 40px;
+  background: #FFF;
+  position: absolute;
+  top: 5px;
+  left: 0px;
+}
+/* line 67, ../compass/src/main.scss */
+#header .nav {
+  position: absolute;
+  top: 0px;
+  left: 420px;
+}
+/* line 70, ../compass/src/main.scss */
+#header .nav a {
+  font-size: 18px;
+  color: #FFF;
+  text-decoration: none;
+  margin: 8px 0 0 0;
+  padding: 6px 25px;
+  display: block;
+  float: left;
+}
+/* line 79, ../compass/src/main.scss */
+#header .nav .feed {
+  border-right: 1px dotted #08192E;
+}
+/* line 82, ../compass/src/main.scss */
+#header .nav .undecided {
+  border-left: 1px dotted #4688DA;
+  border-right: 1px dotted #08192E;
+}
+/* line 87, ../compass/src/main.scss */
+#header .search {
+  position: absolute;
+  top: 7px;
+  right: 0px;
+  border-left: 1px dotted #4688DA;
+  padding: 3px 25px;
+}
+/* line 92, ../compass/src/main.scss */
+#header .search input {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 18px;
+  border: none;
+  padding: 4px 8px;
+  width: 200px;
 }
 
-/* line 55, ../compass/src/main.scss */
+/* line 101, ../compass/src/main.scss */
 #content {
+  padding-top: 50px;
   height: 100%;
 }
 
-/* line 56, ../compass/src/main.scss */
+/* line 102, ../compass/src/main.scss */
 #page {
   position: relative;
-  padding-right: 206px;
+  padding-right: 200px;
   color: black;
   background: #FFF;
   height: 100%;
 }
 
-/* line 63, ../compass/src/main.scss */
+/* line 109, ../compass/src/main.scss */
 #page_content {
   background: white;
   min-height: 800px;
@@ -99,19 +163,22 @@ ul, ol {
   position: relative;
 }
 
-/* line 69, ../compass/src/main.scss */
+/* line 115, ../compass/src/main.scss */
 #sidebar {
-  width: 203px;
+  width: 199px;
   min-height: 800px;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  border-left: 3px solid black;
-  background: white;
+  position: fixed;
+  top: 51px;
+  left: 50%;
+  margin: 0 0 0 280px;
+  z-index: 50;
+  border-left: 1px solid #cfcfcf;
+  border-top: 1px solid #FFF;
+  background: #e4e4e4;
   color: black;
 }
 
-/* line 76, ../compass/src/main.scss */
+/* line 125, ../compass/src/main.scss */
 #footer {
   height: 75px;
   width: 100%;
@@ -119,7 +186,7 @@ ul, ol {
   color: white;
 }
 
-/* line 82, ../compass/src/main.scss */
+/* line 131, ../compass/src/main.scss */
 .clear {
   clear: both;
 }
@@ -320,13 +387,141 @@ Purpose of the stylesheet follows.
   margin: 0 0 0 -250px;
 }
 
-/* line 54, ../compass/src/partials/_post.scss */
+/* line 55, ../compass/src/partials/_post.scss */
+#feed-filters {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f9f9f9), color-stop(25%, #f6f6f6), color-stop(75%, #ebebeb), color-stop(100%, #e8e8e8));
+  background-image: -webkit-linear-gradient(#f9f9f9, #f6f6f6 25%, #ebebeb 75%, #e8e8e8);
+  background-image: -moz-linear-gradient(#f9f9f9, #f6f6f6 25%, #ebebeb 75%, #e8e8e8);
+  background-image: -o-linear-gradient(#f9f9f9, #f6f6f6 25%, #ebebeb 75%, #e8e8e8);
+  background-image: linear-gradient(#f9f9f9, #f6f6f6 25%, #ebebeb 75%, #e8e8e8);
+  width: 761px;
+  padding: 8px 0 6px 0;
+  margin: 0 0 0 -480px;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  border-top: 1px solid #FFF;
+  border-bottom: 1px solid #cfcfcf;
+  z-index: 40;
+}
+/* line 73, ../compass/src/partials/_post.scss */
+#feed-filters .post-types,
+#feed-filters .feed-sort {
+  position: relative;
+}
+/* line 76, ../compass/src/partials/_post.scss */
+#feed-filters .post-types .label,
+#feed-filters .feed-sort .label {
+  float: left;
+  margin: 8px 0 0 13px;
+  color: #999;
+  font-size: 12px;
+  cursor: default;
+}
+/* line 83, ../compass/src/partials/_post.scss */
+#feed-filters .post-types ul,
+#feed-filters .feed-sort ul {
+  font-size: 14px;
+}
+/* line 86, ../compass/src/partials/_post.scss */
+#feed-filters .post-types li,
+#feed-filters .feed-sort li {
+  float: left;
+}
+/* line 89, ../compass/src/partials/_post.scss */
+#feed-filters .post-types li.clear,
+#feed-filters .feed-sort li.clear {
+  float: none;
+}
+/* line 93, ../compass/src/partials/_post.scss */
+#feed-filters .post-types {
+  float: left;
+}
+/* line 96, ../compass/src/partials/_post.scss */
+#feed-filters .post-types ul {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  float: left;
+  background: white;
+  border: 2px solid #cccccc;
+  margin: 0 0 0 10px;
+}
+/* line 103, ../compass/src/partials/_post.scss */
+#feed-filters .post-types ul a {
+  color: #BBB;
+  text-decoration: none;
+  padding: 5px 7px;
+  display: block;
+}
+/* line 109, ../compass/src/partials/_post.scss */
+#feed-filters .post-types ul li.on.working a {
+  color: #009966;
+}
+/* line 110, ../compass/src/partials/_post.scss */
+#feed-filters .post-types ul li.on.low_in a {
+  color: #0066cc;
+}
+/* line 111, ../compass/src/partials/_post.scss */
+#feed-filters .post-types ul li.on.low_out a {
+  color: #ff9900;
+}
+/* line 112, ../compass/src/partials/_post.scss */
+#feed-filters .post-types ul li.on.big_out a {
+  color: #cc3300;
+}
+/* line 114, ../compass/src/partials/_post.scss */
+#feed-filters .post-types .undecided {
+  float: left;
+  font-size: 14px;
+  text-decoration: none;
+}
+/* line 120, ../compass/src/partials/_post.scss */
+#feed-filters .feed-sort {
+  float: right;
+  width: 173px;
+}
+/* line 124, ../compass/src/partials/_post.scss */
+#feed-filters .feed-sort .arrow-small {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  z-index: 10;
+}
+/* line 128, ../compass/src/partials/_post.scss */
+#feed-filters .feed-sort ul {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  background: white;
+  border: 2px solid #cccccc;
+  position: absolute;
+  left: 60px;
+  z-index: 5;
+  width: 100px;
+}
+/* line 140, ../compass/src/partials/_post.scss */
+#feed-filters .feed-sort ul a {
+  color: #444;
+  text-decoration: none;
+  padding: 5px 7px;
+  display: block;
+}
+
+/* line 150, ../compass/src/partials/_post.scss */
 #post-feed {
   position: relative;
   width: 100%;
   height: 100%;
+  padding: 58px 0 0 0;
 }
-/* line 58, ../compass/src/partials/_post.scss */
+/* line 155, ../compass/src/partials/_post.scss */
 #post-feed .date-separator {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -340,147 +535,46 @@ Purpose of the stylesheet follows.
   font-size: 18px;
   background: #DDD;
 }
-/* line 66, ../compass/src/partials/_post.scss */
+/* line 163, ../compass/src/partials/_post.scss */
 #post-feed li {
   margin: 0 10px;
   border-top: 1px solid #CCC;
   padding: 10px;
 }
-/* line 71, ../compass/src/partials/_post.scss */
+/* line 168, ../compass/src/partials/_post.scss */
 #post-feed li.last, #post-feed li.none {
   border-bottom: 1px solid #CCC;
 }
 
-/* line 76, ../compass/src/partials/_post.scss */
-#feed-filters {
-  padding: 0 0 9px 0;
-  margin: 0 0 15px 0;
+/* line 174, ../compass/src/partials/_post.scss */
+.teaser.post div.timer {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
 }
-/* line 86, ../compass/src/partials/_post.scss */
-#feed-filters .post-types,
-#feed-filters .feed-sort {
-  position: relative;
+/* line 179, ../compass/src/partials/_post.scss */
+.teaser.post div.timer.working {
+  background: #009966;
 }
-/* line 89, ../compass/src/partials/_post.scss */
-#feed-filters .post-types .label,
-#feed-filters .feed-sort .label {
-  float: left;
-  margin: 9px 0 0 10px;
-  color: #999;
-  font-size: 12px;
+/* line 180, ../compass/src/partials/_post.scss */
+.teaser.post div.timer.low_in {
+  background: #0066cc;
 }
-/* line 95, ../compass/src/partials/_post.scss */
-#feed-filters .post-types ul,
-#feed-filters .feed-sort ul {
-  display: inline;
+/* line 181, ../compass/src/partials/_post.scss */
+.teaser.post div.timer.low_out {
+  background: #ff9900;
 }
-/* line 98, ../compass/src/partials/_post.scss */
-#feed-filters .post-types li,
-#feed-filters .feed-sort li {
-  float: left;
-}
-/* line 102, ../compass/src/partials/_post.scss */
-#feed-filters .post-types {
-  float: left;
-  width: 500px;
-}
-/* line 107, ../compass/src/partials/_post.scss */
-#feed-filters .post-types ul a {
-  color: #999;
-  text-decoration: none;
-}
-/* line 111, ../compass/src/partials/_post.scss */
-#feed-filters .post-types ul li {
-  background: #FFF;
-  border-bottom: 2px solid #ebe8e8;
-  border-top: 2px solid #ebe8e8;
-  padding: 5px 8px;
-}
-/* line 117, ../compass/src/partials/_post.scss */
-#feed-filters .post-types ul li.first {
-  -moz-border-radius: 5px 0 0 5px;
-  -webkit-border-radius: 5px 0 0 5px;
-  -o-border-radius: 5px 0 0 5px;
-  -ms-border-radius: 5px 0 0 5px;
-  -khtml-border-radius: 5px 0 0 5px;
-  border-radius: 5px 0 0 5px;
-  border-left: 2px solid #ebe8e8;
-  margin: 0 0 0 15px;
-}
-/* line 122, ../compass/src/partials/_post.scss */
-#feed-filters .post-types ul li.last {
-  -moz-border-radius: 0 5px 5px 0;
-  -webkit-border-radius: 0 5px 5px 0;
-  -o-border-radius: 0 5px 5px 0;
-  -ms-border-radius: 0 5px 5px 0;
-  -khtml-border-radius: 0 5px 5px 0;
-  border-radius: 0 5px 5px 0;
-  border-right: 2px solid #ebe8e8;
-}
-/* line 126, ../compass/src/partials/_post.scss */
-#feed-filters .post-types ul li.on {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(50%, #eaeaea), color-stop(70%, #e2e2e2), color-stop(100%, #f3f3f3));
-  background-image: -webkit-linear-gradient(#ffffff, #eaeaea 50%, #e2e2e2 70%, #f3f3f3);
-  background-image: -moz-linear-gradient(#ffffff, #eaeaea 50%, #e2e2e2 70%, #f3f3f3);
-  background-image: -o-linear-gradient(#ffffff, #eaeaea 50%, #e2e2e2 70%, #f3f3f3);
-  background-image: linear-gradient(#ffffff, #eaeaea 50%, #e2e2e2 70%, #f3f3f3);
-}
-/* line 129, ../compass/src/partials/_post.scss */
-#feed-filters .post-types ul li.on a {
-  color: #000;
-}
-/* line 134, ../compass/src/partials/_post.scss */
-#feed-filters .feed-sort {
-  float: right;
-  width: 190px;
-}
-/* line 138, ../compass/src/partials/_post.scss */
-#feed-filters .feed-sort .arrow-small {
-  position: absolute;
-  top: 14px;
-  right: 23px;
-  z-index: 10;
-}
-/* line 142, ../compass/src/partials/_post.scss */
-#feed-filters .feed-sort ul {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(50%, #eaeaea), color-stop(70%, #e2e2e2), color-stop(100%, #f3f3f3));
-  background-image: -webkit-linear-gradient(#ffffff, #eaeaea 50%, #e2e2e2 70%, #f3f3f3);
-  background-image: -moz-linear-gradient(#ffffff, #eaeaea 50%, #e2e2e2 70%, #f3f3f3);
-  background-image: -o-linear-gradient(#ffffff, #eaeaea 50%, #e2e2e2 70%, #f3f3f3);
-  background-image: linear-gradient(#ffffff, #eaeaea 50%, #e2e2e2 70%, #f3f3f3);
-  position: absolute;
-  left: 50px;
-  z-index: 5;
-  border: 2px solid #ebe8e8;
-  width: 125px;
-}
-/* line 154, ../compass/src/partials/_post.scss */
-#feed-filters .feed-sort ul a {
-  color: #444;
-  text-decoration: none;
-}
-/* line 159, ../compass/src/partials/_post.scss */
-#feed-filters .feed-sort ul li {
-  padding: 5px 8px;
-}
-/* line 163, ../compass/src/partials/_post.scss */
-#feed-filters .feed-sort ul li:hover {
-  cursor: pointer;
-  color: green;
-}
-/* line 171, ../compass/src/partials/_post.scss */
-#feed-filters .feed-sort ul li.on:hover {
-  cursor: default;
-  color: #444;
+/* line 182, ../compass/src/partials/_post.scss */
+.teaser.post div.timer.big_out {
+  background: #cc3300;
 }
 
-/* line 187, ../compass/src/partials/_post.scss */
+/* line 186, ../compass/src/partials/_post.scss */
 .ping-countdown {
   font-size: 12px;
   color: #999;

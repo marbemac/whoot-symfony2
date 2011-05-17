@@ -1,4 +1,7 @@
 <div class="teaser post post-{{ post.id }}">
+    <canvas class="timer" width="20" height="20" data-time="{{ post.createdAt|date('U') }}" data-type="{{ post.type }}">
+        <div class="timer {{ post.type }}"></div>
+    </canvas>
     {% for user in post.users %}
         {% set trail = '' %}
         {% if loop.revindex0 == 1 and post.users|length > 2 %}

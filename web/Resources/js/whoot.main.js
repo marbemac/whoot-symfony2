@@ -25,11 +25,66 @@ $(function() {
     /*
      * POSTS
      */
+
     $('#declare-post').livequery(function() {
         $('#post-box').fadeIn(500);
     })
+
     $('#my-post').live('click', function() {
         $('#post-box').fadeIn(500);
+    })
+
+    // Use canvas to draw the post timers
+    var $postColors = {'working': '#009966', 'low_in': '#0066CC', 'low_out': '#FF9900', 'big_out': '#CC3300'};
+    $('.post.teaser .timer').livequery(function() {
+        var $oldestPost = $('#oldestPost').data('time');
+        var $newestPost = $('#newestPost').data('time');
+        var canvas = this;
+
+        // Make sure we don't execute when canvas isn't supported
+        if (canvas.getContext)
+        {
+            var $postType = $(canvas).data('type');
+            // Get this posts time
+            var $postTime = $(canvas).data('time');
+            // Calculate it's time relative to all other posts
+            var $ratio;
+            if ($postTime == $newestPost)
+            {
+                $ratio = 0;
+            }
+            else if ($postTime == $oldestPost)
+            {
+                $ratio = 1;
+            }
+            else
+            {
+                $ratio = ($newestPost - $postTime) / ($newestPost-$oldestPost);
+            }
+
+            ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+            ctx.strokeStyle = $postColors[$postType];
+            ctx.arc(canvas.width/2, canvas.height/2, 9, 0, (360*(Math.PI/180)), true);
+            ctx.stroke();
+
+            // Draw the timer fill
+            if ($ratio > 0)
+            {
+                ctx.beginPath();
+                ctx.fillStyle = $postColors[$postType];
+                ctx.moveTo(canvas.width/2, canvas.height/2);
+                ctx.arc(canvas.width/2, canvas.height/2, 9, -Math.PI/2, ($ratio*270)*(Math.PI/180), false);
+                ctx.lineTo(canvas.width/2, canvas.height/2);
+                ctx.fill();
+            }
+        }
+        else
+        {
+
+        }
     })
 
     /*

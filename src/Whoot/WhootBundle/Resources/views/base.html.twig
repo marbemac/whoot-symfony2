@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>{% block title %}default title{% endblock %} | The Whoot</title>
+        <title>{% block title %}{% endblock %} | The Whoot</title>
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         {% block stylesheets %}
             {% stylesheets 'Resources/css/*.css' '@WhootBundle/Resources/css/main.css' filter='?yui_css' %}
@@ -55,29 +55,30 @@
                         {% block header %}
                         
                             <a class="logo" href="{{ path('homepage') }}">
-                                The Whoot Logo
+                                <div class="image"></div>
+                                The Whoot
                             </a>
 
-                            <div id="nav">
-                                <a class="" href="{{ path('homepage') }}">Main Feed</a>
-                                <a class="" href="{{ path('user_undecided') }}">Undecided Users</a>
-                                <a class="" href="#">Open Invites</a>
+                            <div class="nav">
+                                <a class="feed" href="{{ path('homepage') }}">Feed</a>
+                                <a class="undecided" href="{{ path('user_undecided') }}">Undecided Users</a>
+                            </div>
+
+                            <div class="search">
+                                <input type="text" />
                             </div>
 
                         {% endblock header %}
                     </header>
+                    {% block sidebar %}
+                        {% render 'WhootBundle:Core:sidebar' %}
+                    {% endblock %}
                     <div id="content">
                         {% block content %}
 
                             <div id="page">
                                 {% block page %}
-
-                                    {% block sidebar %}
-                                        {% render 'WhootBundle:Core:sidebar' %}
-                                    {% endblock %}
-
                                     <div id="page_content">{% block page_content %}{% endblock %}</div>
-
                                 {% endblock page %}
                             </div>
 

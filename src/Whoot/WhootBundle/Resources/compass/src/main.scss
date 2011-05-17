@@ -34,27 +34,73 @@ h1,h2,h3,h4,h5,h6,p,div,span {
 ul,ol { list-style: none; margin: 0; padding: 0; }
 
 #wrapper { 
-    @include background(linear-gradient(#29244D, #120A47 60%, #222));
     width: 100%; height: 100%;
 }
 #application { width: 960px; height: 100%; margin: auto; }
 #header {
-    height: 50px; width: 100%;
-    background: $header_background-color;
+    @include background-image(linear-gradient(#3077CE, #2B6FC6 25%, #1B59AE 75%, #1551A5));
+    height: $header_height; width: $header_width;
     color: $header_color;
-    border-bottom: 3px solid #000;
+    border-bottom: 1px solid #003277;
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    margin-left: $page_width/2*-1;
+    z-index: 50;
 
     .logo {
-        padding: 0 20px 0 10px;
+        display: block;
+        padding: 7px 20px 0 55px;
         position: relative;
-        top: 2px;
+        margin: 0 0 0 5px;
+        color: #FFF;
+        font-size: 26px;
+        text-decoration: none;
 
-        img { }
+        .image {
+            width: 40px;
+            height: 40px;
+            background: #FFF;
+            position: absolute; top: 5px; left: 0px;
+        }
+    }
+    .nav {
+        position: absolute; top: 0px; left: 420px;
+
+        a {
+            font-size: 18px;
+            color: #FFF;
+            text-decoration: none;
+            margin: 8px 0 0 0;
+            padding: 6px 25px;
+            display: block;
+            float: left;
+        }
+        .feed {
+            border-right: 1px dotted #08192E;
+        }
+        .undecided {
+            border-left: 1px dotted #4688DA;
+            border-right: 1px dotted #08192E;
+        }
+    }
+    .search {
+        position: absolute; top: 7px; right: 0px;
+        border-left: 1px dotted #4688DA;
+        padding: 3px 25px;
+
+        input {
+            @include border-radius(5px);
+            font-size: 18px;
+            border: none;
+            padding: 4px 8px;
+            width: 200px;
+        }
     }
 }
-#content { height: 100%; }
+#content { padding-top: $header_height; height: 100%; }
 #page { 
-    position: relative; 
+    position: relative;
     padding-right: $sidebar_width+$sidebar_border_width;
     color: $page_content_color;
     background: #FFF;
@@ -68,8 +114,11 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
 }
 #sidebar {
     width: $sidebar_width; min-height: $min-page-height;
-    position: absolute; top: 0px; right: 0px;
-    border-left: $sidebar_border_width solid #000;
+    position: fixed; top: $header_height+1; left: 50%;
+    margin: 0 0 0 280px;
+    z-index: 50;
+    border-left: $sidebar_border_width solid $sidebar_border_color;
+    border-top: 1px solid #FFF;
     background: $sidebar_background-color;
     color: $sidebar_color;
 }

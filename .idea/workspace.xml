@@ -32,19 +32,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sidebar.html.twig" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/sidebar.html.twig">
+      <file leaf-file-name="_user.scss" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="51" selection-start="497" selection-end="497" vertical-scroll-proportion="-6.857143">
+            <state line="80" column="20" selection-start="1679" selection-end="1679" vertical-scroll-proportion="0.95941377">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="whoot.subscribers.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="sidebar.html.twig" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/sidebar.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="22" selection-start="675" selection-end="675" vertical-scroll-proportion="-6.857143">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="whoot.subscribers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="22" selection-start="519" selection-end="519" vertical-scroll-proportion="0.35174745">
+            <state line="10" column="9" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -53,7 +62,7 @@
       <file leaf-file-name="whoot.main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="110" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.0">
+            <state line="84" column="9" selection-start="2632" selection-end="2632" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -95,19 +104,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="whoot.core.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.core.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="teaser.html.twig" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/teaser.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="70" selection-start="805" selection-end="805" vertical-scroll-proportion="-10.857142">
+            <state line="13" column="25" selection-start="501" selection-end="501" vertical-scroll-proportion="-7.428571">
               <folding />
             </state>
           </provider>
@@ -128,7 +128,6 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/feed_filters.html.twig" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Extension/WhootTwigExtension.php" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/myPost.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig" />
@@ -136,13 +135,14 @@
         <option value="$PROJECT_DIR$/web/Resources/js/whoot.preload.js" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/feed_content.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/teaser.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/themes/_default.scss" />
-        <option value="$PROJECT_DIR$/web/Resources/js/whoot.main.js" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/CoreController.php" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/UserManager.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/sidebar.html.twig" />
         <option value="$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/teaser.html.twig" />
+        <option value="$PROJECT_DIR$/web/Resources/js/whoot.main.js" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/sidebar.html.twig" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss" />
       </list>
     </option>
   </component>
@@ -843,13 +843,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/myPost.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="6" selection-start="347" selection-end="347" vertical-scroll-proportion="-6.285714">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state line="80" column="70" selection-start="4034" selection-end="4034" vertical-scroll-proportion="-17.809525">
@@ -881,20 +874,6 @@
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/jiveTag.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="197" column="21" selection-start="4630" selection-end="4630" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/teaser.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="70" selection-start="805" selection-end="805" vertical-scroll-proportion="-10.857142">
           <folding />
         </state>
       </provider>
@@ -934,23 +913,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/sidebar.html.twig">
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="51" selection-start="497" selection-end="497" vertical-scroll-proportion="-6.857143">
+        <state line="10" column="9" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="197" column="21" selection-start="4630" selection-end="4630" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="110" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.0">
+        <state line="84" column="9" selection-start="2632" selection-end="2632" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/teaser.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="22" selection-start="519" selection-end="519" vertical-scroll-proportion="0.35174745">
+        <state line="13" column="25" selection-start="501" selection-end="501" vertical-scroll-proportion="-7.428571">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/sidebar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="22" selection-start="675" selection-end="675" vertical-scroll-proportion="-6.857143">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="20" selection-start="1679" selection-end="1679" vertical-scroll-proportion="0.95941377">
           <folding />
         </state>
       </provider>

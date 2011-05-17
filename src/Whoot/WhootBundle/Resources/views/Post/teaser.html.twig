@@ -28,9 +28,7 @@
                 {% endif %}
 
                 {% if loop.index <= 3 %}
-                    <a class="user" href="{{ path('fos_user_user_show', {'username': user.user.username}) }}">
-                        {{ user.user.firstName }} {{ user.user.lastName }}
-                    </a>
+                    <a class="user" href="{{ path('fos_user_user_show', {'username': user.user.username}) }}">{{ user.user.firstName }} {{ user.user.lastName }}</a>
                 {% endif %}
 
                 {{ trail }}

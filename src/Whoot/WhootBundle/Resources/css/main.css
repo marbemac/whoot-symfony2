@@ -371,40 +371,65 @@ ul, ol {
   background: #CCC;
   border: 1px solid #666;
   float: left;
+  position: relative;
 }
-/* line 37, ../compass/src/partials/_user.scss */
+/* line 38, ../compass/src/partials/_user.scss */
 #user_panel .stats {
   float: left;
   width: 120px;
 }
-/* line 41, ../compass/src/partials/_user.scss */
+/* line 42, ../compass/src/partials/_user.scss */
 #user_panel .stats .item {
   clear: both;
   margin: 5px 0 5px 10px;
 }
-/* line 45, ../compass/src/partials/_user.scss */
+/* line 46, ../compass/src/partials/_user.scss */
 #user_panel .stats .item .label {
   float: left;
   font-size: 14px;
   color: #666;
   margin: 0 15px 0 0;
 }
-/* line 51, ../compass/src/partials/_user.scss */
+/* line 52, ../compass/src/partials/_user.scss */
 #user_panel .stats .item .value {
   float: left;
   font-size: 14px;
   color: #666;
   font-weight: bold;
 }
-/* line 59, ../compass/src/partials/_user.scss */
+/* line 60, ../compass/src/partials/_user.scss */
 #user_panel .small-link {
   font-size: 12px;
   text-decoration: none;
   margin: 0 0 0 10px;
 }
-/* line 64, ../compass/src/partials/_user.scss */
+/* line 65, ../compass/src/partials/_user.scss */
 #user_panel .small-link:hover {
   text-decoration: underline;
+}
+
+/* line 70, ../compass/src/partials/_user.scss */
+#my-pings {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  position: absolute;
+  bottom: -6px;
+  left: -6px;
+  background: #cc3300;
+  font-weight: bold;
+  padding: 2px 5px;
+  color: #FFF;
+  cursor: default;
+}
+
+/* line 79, ../compass/src/partials/_user.scss */
+.my-pings-tip {
+  font-size: 16px;
+  line-height: 1.2em;
 }
 
 /*

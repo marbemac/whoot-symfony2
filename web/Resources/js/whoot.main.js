@@ -95,9 +95,23 @@ $(function() {
                 attr: 'title'
             },
             style: {
-                classes: 'ui-tooltip-blue ui-tooltip-shadow'
+                classes: 'ui-tooltip-blue ui-tooltip-shadow ui-tooltip-rounded'
             }
         })
+    })
+
+    // Add qTips to the post timers
+    $('#my-pings').qtip({
+        content: {
+            attr: 'title'
+        },
+        style: {
+            classes: 'ui-tooltip-blue ui-tooltip-shadow ui-tooltip-rounded my-pings-tip'
+        },
+        position: {
+            my: 'right center',
+            at: 'left center'
+        }
     })
 
     /*

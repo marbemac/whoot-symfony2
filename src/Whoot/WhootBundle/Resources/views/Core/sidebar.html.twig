@@ -6,7 +6,13 @@
             </a>
             <div class="clear"></div>
         </h2>
-        <div class="profile_image"></div>
+        <div class="profile_image">
+            {% if pingCount|length > 0 %}
+                <div id="my-pings" title="{{ pingCount|length }} {{ pingCount|length > 1 ? 'pings' : 'ping' }} today. {{ pingCount|length }} {{ pingCount|length > 1 ? 'people want' : 'person wants' }} to know what you're doing tonight!">
+                    {{ pingCount|length }}
+                </div>
+            {% endif %}
+        </div>
         <div class="stats">
             <div class="item">
                 <div class="label">Following</div>
@@ -22,10 +28,6 @@
             {{ 'layout.logout'|trans([], 'FOSUserBundle') }}
         </a>
     </div>
-
-    {% if pingCount|length > 0 %}
-        Hey, {{ pingCount|length }} people want to know what you're doing tonight!
-    {% endif %}
 
     {% render 'WhootBundle:Post:myPost' %}
     

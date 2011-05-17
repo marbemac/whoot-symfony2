@@ -10,11 +10,11 @@
         <div class="stats">
             <div class="item">
                 <div class="label">Following</div>
-                <div class="value">49</div>
+                <div class="value" id="my-following">{{ followingStats.following[0].cnt }}</div>
             </div>
             <div class="item">
                 <div class="label">Followers</div>
-                <div class="value">28</div>
+                <div class="value">{{ followingStats.followers[0].cnt }}</div>
             </div>
         </div>
         <a class="small-link" href="{{ path('homepage') }}">Settings</a>

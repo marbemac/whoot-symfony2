@@ -23,6 +23,15 @@ $(function(){
 
     amplify.subscribe("follow_toggle", function( data ) {
         actionCommon($('.fol_'+data.userId), data);
+
+        if (data.status == 'new')
+        {
+            $('#my-following').text(parseInt($('#my-following').text()) + 1);
+        }
+        else
+        {
+            $('#my-following').text(parseInt($('#my-following').text()) - 1);
+        }
     });
 
     amplify.subscribe("ping_toggle", function( data ) {

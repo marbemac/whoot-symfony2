@@ -110,4 +110,41 @@ class UserManager extends BaseUserManager
 
         return $users;
     }
+
+    /**
+     * Get the # of followers and following for a user.
+     *
+     * @param  integer $userId
+     * @return array $followingStats
+     */
+    public function getFollowingStats($userId)
+    {
+        $response = array();
+
+        $qb = $this->em->createQueryBuilder();
+        $qb->select(array('count(uf.id) AS cnt'))
+           ->from('Whoot\WhootBundle\Entity\UserFollowing', 'uf')
+           ->where('uf.status = :status AND uf.user = :userId')
+           ->setParameters(array(
+               'userId' => $userId,
+               'status' => 'Active'
+           ));
+
+        $query = $qb->getQuery();
+        $response['following'] = $query->getArrayResult();
+
+        $qb = $this->em->createQueryBuilder();
+        $qb->select(array('count(uf.id) AS cnt'))
+           ->from('Whoot\WhootBundle\Entity\UserFollowing', 'uf')
+           ->where('uf.status = :status AND uf.following = :userId')
+           ->setParameters(array(
+               'userId' => $userId,
+               'status' => 'Active'
+           ));
+
+        $query = $qb->getQuery();
+        $response['followers'] = $query->getArrayResult();
+
+        return $response;
+    }
 }

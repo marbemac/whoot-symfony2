@@ -2,21 +2,47 @@
     <canvas title="{{ post.createdAt|timeLapse }}" class="timer" width="20" height="20" data-time="{{ post.createdAt|date('U') }}" data-type="{{ post.type }}">
         <div class="timer {{ post.type }}"></div>
     </canvas>
-    {% for user in post.users %}
-        {% set trail = '' %}
-        {% if loop.revindex0 == 1 and post.users|length > 2 %}
-            {% set trail = ', and' %}
-        {% elseif loop.revindex0 == 1 %}
-            {% set trail = ' and' %}
-        {% elseif not loop.last %}
-            {% set trail = ',' %}
-        {% endif %}
-        {{ user.user.firstName~trail }}
-    {% endfor %}
-    {{ post.users|length > 1 ? 'are' : 'is' }}
-    {{ post.type|printPostType() }}.
+
+    <div class="profile-images">
+        {% for user in post.users %}
+            {% if loop.index <= 3 %}
+                <div class="image"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="content">
+        {% for user in post.users %}
+            {% if loop.index <= 4 %}
+                {% set trail = '' %}
+                {% if loop.revindex0 == 1 and post.users|length > 2 %}
+                    {% if post.users|length > 3 %}
+                        {% set trail = ', and '~(post.users|length - 3)~' others' %}
+                    {% else %}
+                        {% set trail = ', and' %}
+                    {% endif %}
+                {% elseif loop.revindex0 == 1 %}
+                    {% set trail = ' and' %}
+                {% elseif not loop.last %}
+                    {% set trail = ',' %}
+                {% endif %}
+
+                {% if loop.index <= 3 %}
+                    <a class="user" href="{{ path('fos_user_user_show', {'username': user.user.username}) }}">
+                        {{ user.user.firstName }} {{ user.user.lastName }}
+                    </a>
+                {% endif %}
+
+                {{ trail }}
+            {% endif %}
+        {% endfor %}
+        {{ post.users|length > 1 ? 'are' : 'is' }}
+        {{ post.type|printPostType() }}.
+    </div>
 
     {% if (post.createdAt|date('y-m-d') == "now"|date('y-m-d')) %}
         {% render "WhootBundle:Post:jiveTag" with {'postId': post.id} %}
     {% endif %}
+    
+    <div class="clear"></div>
 </div>

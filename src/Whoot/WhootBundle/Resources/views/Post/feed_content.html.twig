@@ -12,7 +12,7 @@
             {% set newestPost = post[0].createdAt|date('U') %}
         {% endif %}
 
-        <li class="{{ loop.last ? 'last' : '' }}">
+        <li class="{{ loop.first ? 'first' : '' }}">
             {% render 'WhootBundle:Post:teaser' with {'postId': post[0].id} %}
         </li>
     {% else %}

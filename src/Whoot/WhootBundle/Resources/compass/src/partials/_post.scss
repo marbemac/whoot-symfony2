@@ -167,24 +167,61 @@ $feed-filters-margin-top: 8px;
     }
     li {
         margin: 0 10px;
-        border-top: 1px solid #CCC;
-        padding: 10px;
+        border-top: 1px dotted #999;
+        padding: 5px;
+    }
+    li.first {
+        border-top: none;
     }
     li.last,li.none {
-        border-bottom: 1px solid #CCC;
+        border-bottom: 1px dotted #999;
     }
 }
 
 .teaser.post {
-    div.timer {
-        @include border-radius(10px);
+    .timer {
         width: 20px;
         height: 20px;
+        float: left;
+        position: relative;
+        top: 5px;
+        margin: 0 5px 0 0;
+    }
+    div.timer {
+        @include border-radius(10px);
 
         &.working { background: $post-working-color; }
         &.low_in { background: $post-low_in-color; }
         &.low_out { background: $post-low_out-color; }
         &.big_out { background: $post-big_out-color; }
+    }
+    .profile-images {
+        float: left;
+        width: 130px;
+
+        .image {
+            @include border-radius(5px);
+            float: left;
+            width: 30px; height: 30px;
+            background: #999;
+            margin: 0 0 0 5px;
+        }
+    }
+    .content {
+        float: left;
+        position: relative;
+        top: -2px;
+        font-size: 14px;
+        color: #666;
+    }
+    .jive-B {
+        float: right;
+        text-decoration: none;
+        font-size: 20px;
+        margin: 1px 5px 0 0;
+    }
+    .jive-B:hover {
+        text-decoration: underline;
     }
 }
 

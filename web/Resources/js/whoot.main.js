@@ -35,7 +35,7 @@ $(function() {
     })
 
     // Use canvas to draw the post timers
-    var $postColors = {'working': '#009966', 'low_in': '#0066CC', 'low_out': '#FF9900', 'big_out': '#CC3300'};
+    var $postColors = {'working': '#009966', 'low_in': '#996699', 'low_out': '#FF9900', 'big_out': '#CC3300'};
     $('.post.teaser .timer').livequery(function() {
         var $oldestPost = $('#oldestPost').data('time');
         var $newestPost = $('#newestPost').data('time');
@@ -85,6 +85,19 @@ $(function() {
         {
 
         }
+    })
+
+    // Add qTips to the post timers
+    $('.post.teaser .timer').livequery(function() {
+        var $self = $(this);
+        $self.qtip({
+            content: {
+                attr: 'title'
+            },
+            style: {
+                classes: 'ui-tooltip-blue ui-tooltip-shadow'
+            }
+        })
     })
 
     /*

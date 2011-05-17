@@ -551,7 +551,7 @@ Purpose of the stylesheet follows.
 }
 /* line 115, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul li.on.low_in a {
-  color: #0066cc;
+  color: #996699;
 }
 /* line 116, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul li.on.low_out a {
@@ -626,15 +626,28 @@ Purpose of the stylesheet follows.
 /* line 168, ../compass/src/partials/_post.scss */
 #post-feed li {
   margin: 0 10px;
-  border-top: 1px solid #CCC;
-  padding: 10px;
+  border-top: 1px dotted #999;
+  padding: 5px;
 }
 /* line 173, ../compass/src/partials/_post.scss */
+#post-feed li.first {
+  border-top: none;
+}
+/* line 176, ../compass/src/partials/_post.scss */
 #post-feed li.last, #post-feed li.none {
-  border-bottom: 1px solid #CCC;
+  border-bottom: 1px dotted #999;
 }
 
-/* line 179, ../compass/src/partials/_post.scss */
+/* line 182, ../compass/src/partials/_post.scss */
+.teaser.post .timer {
+  width: 20px;
+  height: 20px;
+  float: left;
+  position: relative;
+  top: 5px;
+  margin: 0 5px 0 0;
+}
+/* line 190, ../compass/src/partials/_post.scss */
 .teaser.post div.timer {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -642,27 +655,63 @@ Purpose of the stylesheet follows.
   -ms-border-radius: 10px;
   -khtml-border-radius: 10px;
   border-radius: 10px;
-  width: 20px;
-  height: 20px;
 }
-/* line 184, ../compass/src/partials/_post.scss */
+/* line 193, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.working {
   background: #009966;
 }
-/* line 185, ../compass/src/partials/_post.scss */
+/* line 194, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.low_in {
-  background: #0066cc;
+  background: #996699;
 }
-/* line 186, ../compass/src/partials/_post.scss */
+/* line 195, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.low_out {
   background: #ff9900;
 }
-/* line 187, ../compass/src/partials/_post.scss */
+/* line 196, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.big_out {
   background: #cc3300;
 }
+/* line 198, ../compass/src/partials/_post.scss */
+.teaser.post .profile-images {
+  float: left;
+  width: 130px;
+}
+/* line 202, ../compass/src/partials/_post.scss */
+.teaser.post .profile-images .image {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: #999;
+  margin: 0 0 0 5px;
+}
+/* line 210, ../compass/src/partials/_post.scss */
+.teaser.post .content {
+  float: left;
+  position: relative;
+  top: -2px;
+  font-size: 14px;
+  color: #666;
+}
+/* line 217, ../compass/src/partials/_post.scss */
+.teaser.post .jive-B {
+  float: right;
+  text-decoration: none;
+  font-size: 20px;
+  margin: 1px 5px 0 0;
+}
+/* line 223, ../compass/src/partials/_post.scss */
+.teaser.post .jive-B:hover {
+  text-decoration: underline;
+}
 
-/* line 191, ../compass/src/partials/_post.scss */
+/* line 228, ../compass/src/partials/_post.scss */
 .ping-countdown {
   font-size: 12px;
   color: #999;

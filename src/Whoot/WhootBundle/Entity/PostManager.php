@@ -87,14 +87,14 @@ class PostManager
         if ($createdBy)
         {
             $qb->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status AND pu.user = :userId');
-            $qb->setParameter('user', $createdBy);
+            $qb->setParameter('userId', $createdBy);
         }
         else
         {
             $qb->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status');
-            $qb->setParameter('status', 'Active');
         }
 
+        $qb->setParameter('status', 'Active');
         $qb->innerJoin('pu.user', 'u');
 
         $query = $qb->getQuery();
@@ -174,7 +174,7 @@ class PostManager
         return $objects;
     }
     
-    public function findMyPost($user, $status = 'Active')
+    public function findMyPost($user, $status = 'Active', $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('up', 'p', 'u'))
@@ -190,7 +190,7 @@ class PostManager
            ));
 
         $query = $qb->getQuery();
-        $post = $query->getResult(Query::HYDRATE_OBJECT);
+        $post = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
 
         return isset($post[0]) ? $post[0] : null;
     }
@@ -204,10 +204,10 @@ class PostManager
      * 
      * @return array $result
      */
-    public function togglePost($type, $user)
+    public function togglePost($type, $note, $user)
     {
         $result = array('status' => 'existing');
-        $userPost = $this->findMyPost($user);
+        $userPost = $this->findMyPost($user, 'Active', true);
         if ($userPost)
         {
             $userPost->setStatus('Disabled');
@@ -224,6 +224,7 @@ class PostManager
 
         $post = $this->createPost();
         $post->setType($type);
+        $post->setNote($note);
         $post->setCreatedBy($user);
         $this->updatePost($post, false);
 

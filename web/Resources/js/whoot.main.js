@@ -114,6 +114,29 @@ $(function() {
         }
     })
 
+    // Toggle new post options
+    $('#post-box .type').live('click', function() {
+        $(this).addClass('on').siblings().removeClass('on');
+    })
+
+    // Submit a new post
+    $('#post-box .submit').live('click', function() {
+        var $payload = {};
+        $payload['type'] = $('#post-box .type.on').data('val');
+        $payload['note'] = $('#post-box .note').val();
+
+        if (!$payload['type'])
+        {
+            $('#post-box .status').css('color', 'red').text('Status - You must pick a status!');
+
+            return false;
+        }
+
+        $.post($(this).data('url'), $payload, function(data) {
+            appUpdate(data);
+        }, 'json');
+    })
+
     /*
      * PINGS
      */

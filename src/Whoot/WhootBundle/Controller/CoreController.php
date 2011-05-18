@@ -20,7 +20,11 @@ class CoreController extends ContainerAware
             //return $response;
         }
 
-        return $this->container->get('templating')->renderResponse('WhootBundle:Core:home.html.twig', array(), $response);
+        $myPost = $this->container->get('whoot.post_manager')->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:Core:home.html.twig', array(
+            'myPost' => $myPost        
+        ), $response);
     }
 
     /*

@@ -12,30 +12,35 @@
     </div>
 
     <div class="content">
-        {% for user in post.users %}
-            {% if loop.index <= 4 %}
-                {% set trail = '' %}
-                {% if loop.revindex0 == 1 and post.users|length > 2 %}
-                    {% if post.users|length > 3 %}
-                        {% set trail = ', and '~(post.users|length - 3)~' others' %}
-                    {% else %}
-                        {% set trail = ', and' %}
+        <div class="post">
+
+            {% for user in post.users %}
+                {% if loop.index <= 4 %}
+                    {% set trail = '' %}
+                    {% if loop.revindex0 == 1 and post.users|length > 2 %}
+                        {% if post.users|length > 3 %}
+                            {% set trail = ', and '~(post.users|length - 3)~' others' %}
+                        {% else %}
+                            {% set trail = ', and' %}
+                        {% endif %}
+                    {% elseif loop.revindex0 == 1 %}
+                        {% set trail = ' and' %}
+                    {% elseif not loop.last %}
+                        {% set trail = ',' %}
                     {% endif %}
-                {% elseif loop.revindex0 == 1 %}
-                    {% set trail = ' and' %}
-                {% elseif not loop.last %}
-                    {% set trail = ',' %}
-                {% endif %}
 
-                {% if loop.index <= 3 %}
-                    <a class="user" href="{{ path('fos_user_user_show', {'username': user.user.username}) }}">{{ user.user.firstName }} {{ user.user.lastName }}</a>
-                {% endif %}
+                    {% if loop.index <= 3 %}
+                        <a class="user" href="{{ path('fos_user_user_show', {'username': user.user.username}) }}">{{ user.user.firstName }} {{ user.user.lastName }}</a>
+                    {% endif %}
 
-                {{ trail }}
-            {% endif %}
-        {% endfor %}
-        {{ post.users|length > 1 ? 'are' : 'is' }}
-        {{ post.type|printPostType() }}.
+                    {{ trail }}
+                {% endif %}
+            {% endfor %}
+            {{ post.users|length > 1 ? 'are' : 'is' }}
+            {{ post.type|printPostType() }}.
+        </div>
+
+        <div class="note">{{ post.note ? '" ' : '' }}{{ post.note }}{{ post.note ? ' "' : '' }}</div>
     </div>
 
     {% if (post.createdAt|date('y-m-d') == "now"|date('y-m-d')) %}

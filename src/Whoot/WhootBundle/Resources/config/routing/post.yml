@@ -1,8 +1,8 @@
 post_create:
-    pattern:  /new/{type}
+    pattern:  /new
     defaults: { _controller: WhootBundle:Post:create }
     requirements:
-        _method: POST|GET
+        _method: POST
 
 jive_toggle:
     pattern:  /jive/toggle/{postId}/{go}

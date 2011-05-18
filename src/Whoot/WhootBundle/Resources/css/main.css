@@ -479,7 +479,7 @@ Purpose of the stylesheet follows.
   left: 0px;
   z-index: 15;
 }
-/* line 43, ../compass/src/partials/_post.scss */
+/* line 42, ../compass/src/partials/_post.scss */
 #post-box .options {
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
@@ -496,11 +496,103 @@ Purpose of the stylesheet follows.
   top: 100px;
   left: 50%;
   width: 500px;
-  height: 200px;
   margin: 0 0 0 -250px;
 }
+/* line 52, ../compass/src/partials/_post.scss */
+#post-box .options h2 {
+  text-align: center;
+}
+/* line 56, ../compass/src/partials/_post.scss */
+#post-box .options .label {
+  font-size: 20px;
+  color: #666;
+  margin: 10px 0 0 10px;
+}
+/* line 62, ../compass/src/partials/_post.scss */
+#post-box .options .type {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  float: left;
+  padding: 5px 15px;
+  margin: 5px 0 0 5px;
+  font-size: 16px;
+  border: 2px solid #000;
+  cursor: pointer;
+}
+/* line 71, ../compass/src/partials/_post.scss */
+#post-box .options .type.on {
+  color: #FFF;
+  cursor: default;
+}
+/* line 75, ../compass/src/partials/_post.scss */
+#post-box .options .working {
+  border-color: #009966;
+  color: #009966;
+}
+/* line 79, ../compass/src/partials/_post.scss */
+#post-box .options .low_in {
+  border-color: #996699;
+  color: #996699;
+}
+/* line 83, ../compass/src/partials/_post.scss */
+#post-box .options .low_out {
+  border-color: #ff9900;
+  color: #ff9900;
+}
+/* line 87, ../compass/src/partials/_post.scss */
+#post-box .options .big_out {
+  border-color: #cc3300;
+  color: #cc3300;
+}
+/* line 91, ../compass/src/partials/_post.scss */
+#post-box .options .working.on {
+  background: #009966;
+}
+/* line 94, ../compass/src/partials/_post.scss */
+#post-box .options .low_in.on {
+  background: #996699;
+}
+/* line 97, ../compass/src/partials/_post.scss */
+#post-box .options .low_out.on {
+  background: #ff9900;
+}
+/* line 100, ../compass/src/partials/_post.scss */
+#post-box .options .big_out.on {
+  background: #cc3300;
+}
+/* line 103, ../compass/src/partials/_post.scss */
+#post-box .options .note {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 18px;
+  border: 2px solid #999;
+  padding: 5px;
+  margin: 5px 0 0 5px;
+  width: 475px;
+}
+/* line 111, ../compass/src/partials/_post.scss */
+#post-box .options .submit {
+  font-size: 20px;
+  float: left;
+  font-weight: bold;
+  color: #156cd8;
+  margin: 10px 0 10px 10px;
+}
+/* line 118, ../compass/src/partials/_post.scss */
+#post-box .options .submit:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 
-/* line 60, ../compass/src/partials/_post.scss */
+/* line 126, ../compass/src/partials/_post.scss */
 #feed-filters {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f9f9f9), color-stop(25%, #f6f6f6), color-stop(75%, #ebebeb), color-stop(100%, #e8e8e8));
   background-image: -webkit-linear-gradient(#f9f9f9, #f6f6f6 25%, #ebebeb 75%, #e8e8e8);
@@ -517,12 +609,12 @@ Purpose of the stylesheet follows.
   border-bottom: 1px solid #cfcfcf;
   z-index: 40;
 }
-/* line 78, ../compass/src/partials/_post.scss */
+/* line 144, ../compass/src/partials/_post.scss */
 #feed-filters .post-types,
 #feed-filters .feed-sort {
   position: relative;
 }
-/* line 81, ../compass/src/partials/_post.scss */
+/* line 147, ../compass/src/partials/_post.scss */
 #feed-filters .post-types .label,
 #feed-filters .feed-sort .label {
   float: left;
@@ -531,26 +623,26 @@ Purpose of the stylesheet follows.
   font-size: 12px;
   cursor: default;
 }
-/* line 88, ../compass/src/partials/_post.scss */
+/* line 154, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul,
 #feed-filters .feed-sort ul {
   font-size: 14px;
 }
-/* line 91, ../compass/src/partials/_post.scss */
+/* line 157, ../compass/src/partials/_post.scss */
 #feed-filters .post-types li,
 #feed-filters .feed-sort li {
   float: left;
 }
-/* line 94, ../compass/src/partials/_post.scss */
+/* line 160, ../compass/src/partials/_post.scss */
 #feed-filters .post-types li.clear,
 #feed-filters .feed-sort li.clear {
   float: none;
 }
-/* line 98, ../compass/src/partials/_post.scss */
+/* line 164, ../compass/src/partials/_post.scss */
 #feed-filters .post-types {
   float: left;
 }
-/* line 101, ../compass/src/partials/_post.scss */
+/* line 167, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -563,48 +655,48 @@ Purpose of the stylesheet follows.
   border: 2px solid #cccccc;
   margin: 0 0 0 10px;
 }
-/* line 108, ../compass/src/partials/_post.scss */
+/* line 174, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul a {
   color: #BBB;
   text-decoration: none;
   padding: 5px 7px;
   display: block;
 }
-/* line 114, ../compass/src/partials/_post.scss */
+/* line 180, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul li.on.working a {
   color: #009966;
 }
-/* line 115, ../compass/src/partials/_post.scss */
+/* line 181, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul li.on.low_in a {
   color: #996699;
 }
-/* line 116, ../compass/src/partials/_post.scss */
+/* line 182, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul li.on.low_out a {
   color: #ff9900;
 }
-/* line 117, ../compass/src/partials/_post.scss */
+/* line 183, ../compass/src/partials/_post.scss */
 #feed-filters .post-types ul li.on.big_out a {
   color: #cc3300;
 }
-/* line 119, ../compass/src/partials/_post.scss */
+/* line 185, ../compass/src/partials/_post.scss */
 #feed-filters .post-types .undecided {
   float: left;
   font-size: 14px;
   text-decoration: none;
 }
-/* line 125, ../compass/src/partials/_post.scss */
+/* line 191, ../compass/src/partials/_post.scss */
 #feed-filters .feed-sort {
   float: right;
   width: 173px;
 }
-/* line 129, ../compass/src/partials/_post.scss */
+/* line 195, ../compass/src/partials/_post.scss */
 #feed-filters .feed-sort .arrow-small {
   position: absolute;
   top: 14px;
   right: 18px;
   z-index: 10;
 }
-/* line 133, ../compass/src/partials/_post.scss */
+/* line 199, ../compass/src/partials/_post.scss */
 #feed-filters .feed-sort ul {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -619,7 +711,7 @@ Purpose of the stylesheet follows.
   z-index: 5;
   width: 100px;
 }
-/* line 145, ../compass/src/partials/_post.scss */
+/* line 211, ../compass/src/partials/_post.scss */
 #feed-filters .feed-sort ul a {
   color: #444;
   text-decoration: none;
@@ -627,14 +719,14 @@ Purpose of the stylesheet follows.
   display: block;
 }
 
-/* line 155, ../compass/src/partials/_post.scss */
+/* line 221, ../compass/src/partials/_post.scss */
 #post-feed {
   position: relative;
   width: 100%;
   height: 100%;
   padding: 58px 0 0 0;
 }
-/* line 160, ../compass/src/partials/_post.scss */
+/* line 226, ../compass/src/partials/_post.scss */
 #post-feed .date-separator {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -648,22 +740,22 @@ Purpose of the stylesheet follows.
   font-size: 18px;
   background: #DDD;
 }
-/* line 168, ../compass/src/partials/_post.scss */
+/* line 234, ../compass/src/partials/_post.scss */
 #post-feed li {
   margin: 0 10px;
   border-top: 1px dotted #999;
   padding: 5px;
 }
-/* line 173, ../compass/src/partials/_post.scss */
+/* line 239, ../compass/src/partials/_post.scss */
 #post-feed li.first {
   border-top: none;
 }
-/* line 176, ../compass/src/partials/_post.scss */
+/* line 242, ../compass/src/partials/_post.scss */
 #post-feed li.last, #post-feed li.none {
   border-bottom: 1px dotted #999;
 }
 
-/* line 182, ../compass/src/partials/_post.scss */
+/* line 248, ../compass/src/partials/_post.scss */
 .teaser.post .timer {
   width: 20px;
   height: 20px;
@@ -672,7 +764,7 @@ Purpose of the stylesheet follows.
   top: 5px;
   margin: 0 5px 0 0;
 }
-/* line 190, ../compass/src/partials/_post.scss */
+/* line 256, ../compass/src/partials/_post.scss */
 .teaser.post div.timer {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -681,28 +773,28 @@ Purpose of the stylesheet follows.
   -khtml-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 193, ../compass/src/partials/_post.scss */
+/* line 259, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.working {
   background: #009966;
 }
-/* line 194, ../compass/src/partials/_post.scss */
+/* line 260, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.low_in {
   background: #996699;
 }
-/* line 195, ../compass/src/partials/_post.scss */
+/* line 261, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.low_out {
   background: #ff9900;
 }
-/* line 196, ../compass/src/partials/_post.scss */
+/* line 262, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.big_out {
   background: #cc3300;
 }
-/* line 198, ../compass/src/partials/_post.scss */
+/* line 264, ../compass/src/partials/_post.scss */
 .teaser.post .profile-images {
   float: left;
   width: 130px;
 }
-/* line 202, ../compass/src/partials/_post.scss */
+/* line 268, ../compass/src/partials/_post.scss */
 .teaser.post .profile-images .image {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -716,7 +808,7 @@ Purpose of the stylesheet follows.
   background: #999;
   margin: 0 0 0 5px;
 }
-/* line 210, ../compass/src/partials/_post.scss */
+/* line 276, ../compass/src/partials/_post.scss */
 .teaser.post .content {
   float: left;
   position: relative;
@@ -724,19 +816,24 @@ Purpose of the stylesheet follows.
   font-size: 14px;
   color: #666;
 }
-/* line 217, ../compass/src/partials/_post.scss */
+/* line 283, ../compass/src/partials/_post.scss */
+.teaser.post .content .note {
+  font-size: 12px;
+  font-style: italic;
+}
+/* line 288, ../compass/src/partials/_post.scss */
 .teaser.post .jive-B {
   float: right;
   text-decoration: none;
   font-size: 20px;
   margin: 1px 5px 0 0;
 }
-/* line 223, ../compass/src/partials/_post.scss */
+/* line 294, ../compass/src/partials/_post.scss */
 .teaser.post .jive-B:hover {
   text-decoration: underline;
 }
 
-/* line 228, ../compass/src/partials/_post.scss */
+/* line 299, ../compass/src/partials/_post.scss */
 .ping-countdown {
   font-size: 12px;
   color: #999;

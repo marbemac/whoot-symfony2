@@ -63,8 +63,7 @@ class PostController extends ContainerAware
     public function myPostAction()
     {
         $request = $this->container->get('request');
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        $myPost = $this->container->get('whoot.post_manager')->findMyPost($user, 'Active');
+        $myPost = $this->container->get('whoot.post_manager')->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
 
         $response = new Response();
         $response->setCache(array(
@@ -81,7 +80,7 @@ class PostController extends ContainerAware
     /**
      * Creates a new post for the day. Toggles if the user already has a post for today.
      */
-    public function createAction($type)
+    public function createAction()
     {
         $coreManager = $this->container->get('whoot.core_manager');
         $login = $coreManager->mustLogin();
@@ -91,11 +90,13 @@ class PostController extends ContainerAware
         }
 
         $request = $this->container->get('request');
+        $type = $request->request->get('type', 'working');
+        $note = $request->request->get('note', '');
         $securityContext = $this->container->get('security.context');
         $user = $securityContext->getToken()->getUser();
         $templating = $this->container->get('templating');
 
-        $postResult = $this->container->get('whoot.post_manager')->togglePost($type, $this->container->get('security.context')->getToken()->getUser());
+        $postResult = $this->container->get('whoot.post_manager')->togglePost($type, $note, $this->container->get('security.context')->getToken()->getUser());
 
         if ($this->container->has('security.acl.provider') && $postResult['status'] == 'new') {
             $provider = $this->container->get('security.acl.provider');

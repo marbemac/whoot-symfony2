@@ -1,10 +1,24 @@
 <div id="post-box" class="hide">
     <div class="options">
-        <h2>{{ app.user.firstName }}, first things first. Whatcha doin tonight?</h2>
-        <a class="ac" href="{{ path('post_create', {'type': 'working'}) }}">Working</a>
-        <a class="ac" href="{{ path('post_create', {'type': 'low_in'}) }}">Night In</a>
-        <a class="ac" href="{{ path('post_create', {'type': 'low_out'}) }}">Relaxed Night Out</a>
-        <a class="ac" href="{{ path('post_create', {'type': 'big_out'}) }}">Big Night Out</a>
+
+        {% if myPost is none %}
+            <h2>{{ app.user.firstName }}, first things first. Whatcha doin tonight?</h2>
+        {% else %}
+            <h2>You will change your current post.</h2>
+        {% endif %}
+
+        <div class="label status">Status</div>
+        <div class="type working" data-val="working">Working</div>
+        <div class="type low_in" data-val="low_in">Night In</div>
+        <div class="type low_out" data-val="low_out">Relaxed Night Out</div>
+        <div class="type big_out" data-val="big_out">Big Night Out</div>
+
+        <div class="clear"></div>
+
+        <div class="label">Optional Note</div>
+        <textarea class="note">{{ myPost is not none ? myPost.post.note : '' }}</textarea>
+
+        <div class="submit" data-url="{{ path('post_create') }}">Submit</div>
     </div>
 </div>
 

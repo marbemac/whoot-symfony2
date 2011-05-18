@@ -283,6 +283,9 @@ $feed-filters-margin-top: 8px;
         .note {
             font-size: 12px;
             font-style: italic;
+            position: relative;
+            top: 2px;
+            left: -2px;
         }
     }
     .jive-B {

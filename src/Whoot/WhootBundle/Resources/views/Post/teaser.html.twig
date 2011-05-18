@@ -5,7 +5,7 @@
 
     <div class="profile-images">
         {% for user in post.users %}
-            {% if loop.index <= 3 %}
+            {% if user.status == 'Active' %}
                 <div class="image"></div>
             {% endif %}
         {% endfor %}
@@ -14,38 +14,56 @@
     <div class="content">
         <div class="post">
 
-            {% for user in post.users %}
-                {% if loop.index <= 4 %}
+            {% set activeUsers = post.users|rebuildArray('status', 'Active') %}
+            {% for userPost in activeUsers %}
+                {% if loop.index <= 3 %}
                     {% set trail = '' %}
-                    {% if loop.revindex0 == 1 and post.users|length > 2 %}
-                        {% if post.users|length > 3 %}
-                            {% set trail = ', and '~(post.users|length - 3)~' others' %}
+                    {% if loop.revindex0 == 1 %}
+                        {% if activeUsers|length > 2 %}
+                            {% set trail = ', and '~(activeUsers|length - 2)~' others' %}
                         {% else %}
                             {% set trail = ', and' %}
                         {% endif %}
                     {% elseif loop.revindex0 == 1 %}
                         {% set trail = ' and' %}
-                    {% elseif not loop.last %}
+                    {% elseif not loop.last and loop.index < 2 %}
                         {% set trail = ',' %}
                     {% endif %}
 
-                    {% if loop.index <= 3 %}
-                        <a class="user" href="{{ path('fos_user_user_show', {'username': user.user.username}) }}">{{ user.user.firstName }} {{ user.user.lastName }}</a>
+                    {% if loop.index <= 2 %}
+                        <a class="user" href="{{ path('fos_user_user_show', {'username': userPost.user.username}) }}">{{ userPost.user.firstName }} {{ userPost.user.lastName }}</a>{{ trail }}
+                    {% elseif loop.index == 3 %}
+                        {{ trail }}
                     {% endif %}
 
-                    {{ trail }}
                 {% endif %}
             {% endfor %}
-            {{ post.users|length > 1 ? 'are' : 'is' }}
+            {{ activeUsers|length > 1 ? 'are' : 'is' }}
             {{ post.type|printPostType() }}.
         </div>
 
-        <div class="note">{{ post.note ? '" ' : '' }}{{ post.note }}{{ post.note ? ' "' : '' }}</div>
+        <div class="note">{{ post.note ? '" ' : '' }}{{ post.note|stripSlashes|truncate(75) }}{{ post.note ? ' "' : '' }}</div>
+
+        <div class="activity-list">
+            {% for event in activity %}
+                <div class="activity-post {{ event.class }}">
+                    <div class="time">{{ event.time|timeLapse(1) }}</div>
+
+                    <div class="message">
+                        <a class="user" href="{{ path('fos_user_user_show', {'username': event.user.username}) }}">{{ event.user.firstName }} {{ event.user.lastName }}</a>
+                        {{ event.message }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
     </div>
 
+    <div class="activity-B">Activity</div>
+    
     {% if (post.createdAt|date('y-m-d') == "now"|date('y-m-d')) %}
         {% render "WhootBundle:Post:jiveTag" with {'postId': post.id} %}
     {% endif %}
-    
+
     <div class="clear"></div>
 </div>

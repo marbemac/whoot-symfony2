@@ -63,8 +63,9 @@ class PostManager
     public function findPostBy($postId, $createdBy=null, $createdAt=null, $postStatus=null, $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p', 'pu', 'u'))
-           ->from('Whoot\WhootBundle\Entity\Post', 'p');
+        $qb->select(array('p', 'cb', 'pu', 'u'))
+           ->from('Whoot\WhootBundle\Entity\Post', 'p')
+           ->innerJoin('p.createdBy', 'cb');
 
         if ($postId)
         {
@@ -86,15 +87,15 @@ class PostManager
 
         if ($createdBy)
         {
-            $qb->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status AND pu.user = :userId');
+            $qb->innerJoin('p.users', 'pu', 'WITH', 'pu.user = :userId');
             $qb->setParameter('userId', $createdBy);
         }
         else
         {
-            $qb->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status');
+            $qb->innerJoin('p.users', 'pu');
         }
 
-        $qb->setParameter('status', 'Active');
+//        $qb->setParameter('status', 'Active');
         $qb->innerJoin('pu.user', 'u');
 
         $query = $qb->getQuery();
@@ -334,5 +335,43 @@ class PostManager
         $response['flash'] = array('type' => 'success', 'message' => 'Woot. Jive Successful!');
 
         return $response;
+    }
+
+    /**
+     * Given a post data structure, extract and sort it's activity.
+     *
+     * @param Post $post Must include the post.createdBy, post.users, and post.users.user
+     *
+     * @return array $activity
+     */
+    public function buildActivity($post)
+    {
+        $activity = array();
+        foreach ($post['users'] as $userPost)
+        {
+//            echo '<pre>';
+//            var_dump($userPost);
+//            echo '</pre>';
+//            echo $userPost['id'] . ' * '. $userPost['createdAt']->getTimestamp().' *** '.$userPost['updatedAt']->getTimestamp().' ** ';
+            $activity[$userPost['createdAt']->getTimestamp()] = array('time' => $userPost['createdAt'], 'userPost' => $userPost, 'user' => $userPost['user']);
+
+            if ($post['createdBy']['id'] == $userPost['user']['id'])
+            {
+                $activity[$userPost['createdAt']->getTimestamp()]['message'] = 'created this post.';
+                $activity[$userPost['createdAt']->getTimestamp()]['class'] = 'create';
+            }
+            else
+            {
+                $activity[$userPost['createdAt']->getTimestamp()]['message'] = 'jived with this post.';
+                $activity[$userPost['createdAt']->getTimestamp()]['class'] = 'jive';
+            }
+
+            if ($userPost['createdAt']->getTimestamp() != $userPost['updatedAt']->getTimestamp())
+            {
+                $activity[$userPost['updatedAt']->getTimestamp()] = array('time' => $userPost['updatedAt'], 'userPost' => $userPost, 'user' => $userPost['user'], 'message' => 'left.', 'class' => 'leave');
+            }
+        }
+        krsort($activity);
+        return $activity;
     }
 }

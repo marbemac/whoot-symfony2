@@ -29,6 +29,10 @@ class WhootTwigExtension extends \Twig_Extension {
             'printPostType'  => new \Twig_Filter_Method($this, 'printPostType'),
             'printPostTypeShort'  => new \Twig_Filter_Method($this, 'printPostTypeShort'),
             'timeLapse'  => new \Twig_Filter_Method($this, 'timeLapse'),
+            'stripSlashes'  => new \Twig_Filter_Method($this, 'stripSlashes'),
+            'truncate'  => new \Twig_Filter_Method($this, 'truncate'),
+            'conditionalLength'  => new \Twig_Filter_Method($this, 'conditionalLength'),
+            'rebuildArray'  => new \Twig_Filter_Method($this, 'rebuildArray'),
         );
     }
 
@@ -48,6 +52,44 @@ class WhootTwigExtension extends \Twig_Extension {
     public function printPostTypeShort($key)
     {
         return $this->postTypesShort[$key];
+    }
+
+    public function stripSlashes($val)
+    {
+        return stripslashes($val);
+    }
+
+    public function truncate($val, $length, $append='...')
+    {
+        if (strlen($val) > $length)
+        {
+            $val = substr($val, 0, $length);
+            $val .= $append;
+        }
+
+        return $val;
+    }
+
+    public function conditionalLength($array, $key, $val)
+    {
+        $count = 0;
+        foreach ($array as $item)
+        {
+            if ($item[$key] == $val)
+                $count++;
+        }
+        return $count;
+    }
+
+    public function rebuildArray($array, $key, $val)
+    {
+        $newArray = array();
+        foreach ($array as $item)
+        {
+            if ($item[$key] == $val)
+                $newArray[] = $item;
+        }
+        return $newArray;
     }
 
     /*

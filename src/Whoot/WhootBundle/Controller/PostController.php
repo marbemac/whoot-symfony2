@@ -91,7 +91,7 @@ class PostController extends ContainerAware
 
         $request = $this->container->get('request');
         $type = $request->request->get('type', 'working');
-        $note = $request->request->get('note', '');
+        $note = mysql_escape_string($request->request->get('note', ''));
         $securityContext = $this->container->get('security.context');
         $user = $securityContext->getToken()->getUser();
         $templating = $this->container->get('templating');
@@ -162,9 +162,11 @@ class PostController extends ContainerAware
         }
 
         $post = $this->container->get('whoot.post_manager')->findPostBy($postId, null, null, 'Active', false);
+        $activity = $this->container->get('whoot.post_manager')->buildActivity($post);
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:teaser.html.twig', array(
             'post' => $post,
+            'activity' => $activity,
             'cycleClass' => $cycleClass
         ), $response);
     }

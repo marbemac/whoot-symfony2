@@ -35,7 +35,7 @@ feed_filter_change:
     defaults: { _controller: WhootBundle:Core:changeFeedFilter }
     requirements:
         key:  feedSort
-        value: popularity|created
+        value: popularity|created|activity
         _method: GET|POST
 
 homepage:

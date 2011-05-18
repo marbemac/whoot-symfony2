@@ -245,12 +245,19 @@ $feed-filters-margin-top: 8px;
 }
 
 .teaser.post {
+    overflow: hidden;
+    height: 33px;
+
+    &.on {
+        height: auto;    
+    }
+
     .timer {
         width: 20px;
         height: 20px;
         float: left;
         position: relative;
-        top: 5px;
+        top: 7px;
         margin: 0 5px 0 0;
     }
     div.timer {
@@ -270,7 +277,7 @@ $feed-filters-margin-top: 8px;
             float: left;
             width: 30px; height: 30px;
             background: #999;
-            margin: 0 0 0 5px;
+            margin: 2px 0 0 5px;
         }
     }
     .content {
@@ -286,16 +293,28 @@ $feed-filters-margin-top: 8px;
             position: relative;
             top: 2px;
             left: -2px;
+            min-height: 7px;
         }
     }
-    .jive-B {
+    .jive-B,
+    .activity-B {
+        color: $link-color;
         float: right;
+        font-size: 16px;
         text-decoration: none;
-        font-size: 20px;
-        margin: 1px 5px 0 0;
+        padding: 6px 12px;
     }
     .jive-B:hover {
         text-decoration: underline;
+    }
+    .activity-B {
+        padding-right: 5px;
+        border-left: 1px solid #F1F1F1;
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;    
+        }
     }
 }
 
@@ -304,4 +323,39 @@ $feed-filters-margin-top: 8px;
     color: #999;
     margin: 0 0 0 10px;
     cursor: default;
+}
+
+.activity-list {
+    margin: 10px 0 0 0;
+}
+
+.activity-post {
+    @include clearfix;
+    margin: 5px 0 0 0;
+    
+
+    .time {
+        color: #888;
+        font-size: 10px;
+        width: 70px;
+        float: left;
+        margin: 5px 0 0 0;
+        text-align: right;
+        padding: 0 8px 0 0;
+    }
+    .message {
+        @include border-radius(5px);
+        float: left;
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    &.create .message {
+        background: #F8F7FF;
+    }
+    &.jive .message {
+        background: #F9FFF8;
+    }
+    &.leave .message {
+        background: #FFF7F9;
+    }
 }

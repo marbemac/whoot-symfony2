@@ -38,7 +38,6 @@ $(function() {
     var $postColors = {'working': '#009966', 'low_in': '#996699', 'low_out': '#FF9900', 'big_out': '#CC3300'};
     $('.post.teaser .timer').livequery(function() {
         var $oldestPost = $('#oldestPost').data('time');
-        var $newestPost = $('#newestPost').data('time');
         var canvas = this;
 
         // Make sure we don't execute when canvas isn't supported
@@ -48,18 +47,22 @@ $(function() {
             // Get this posts time
             var $postTime = $(canvas).data('time');
             // Calculate it's time relative to all other posts
-            var $ratio;
-            if ($postTime == $newestPost)
-            {
-                $ratio = 0;
-            }
-            else if ($postTime == $oldestPost)
+            var $ratio,
+                $degrees;
+
+            if ($postTime == $oldestPost)
             {
                 $ratio = 1;
+                $degrees = 270;
             }
             else
             {
-                $ratio = ($newestPost - $postTime) / ($newestPost-$oldestPost);
+                // Get the current time in seconds since the Unix epoch
+                var $time = new Date;
+                $time = $time.getTime();
+                $time = parseInt($time / 1000);
+                $ratio = ($time - $postTime) / ($time-$oldestPost);
+                $degrees = ($ratio*270-90);
             }
 
             ctx = canvas.getContext('2d');
@@ -76,7 +79,7 @@ $(function() {
                 ctx.beginPath();
                 ctx.fillStyle = $postColors[$postType];
                 ctx.moveTo(canvas.width/2, canvas.height/2);
-                ctx.arc(canvas.width/2, canvas.height/2, 9, -Math.PI/2, ($ratio*270)*(Math.PI/180), false);
+                ctx.arc(canvas.width/2, canvas.height/2, 9, -Math.PI/2, $degrees*(Math.PI/180), false);
                 ctx.lineTo(canvas.width/2, canvas.height/2);
                 ctx.fill();
             }

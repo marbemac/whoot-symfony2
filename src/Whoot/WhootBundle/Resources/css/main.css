@@ -107,15 +107,15 @@ ul, ol {
 #header .nav {
   position: absolute;
   top: 0px;
-  left: 427px;
+  left: 535px;
 }
 /* line 78, ../compass/src/main.scss */
 #header .nav a {
   font-size: 18px;
   color: #FFF;
   text-decoration: none;
-  margin: 8px 0 0 0;
-  padding: 10px 25px 6px 25px;
+  margin: 7px 0 0 0;
+  padding: 5px 10px;
   display: block;
   float: left;
 }
@@ -124,7 +124,7 @@ ul, ol {
   border-right: 1px dotted #08192E;
 }
 /* line 90, ../compass/src/main.scss */
-#header .nav .undecided {
+#header .nav .open-invite {
   border-left: 1px dotted #4688DA;
   border-right: 1px dotted #08192E;
 }
@@ -134,7 +134,7 @@ ul, ol {
   top: 7px;
   right: 0px;
   border-left: 1px dotted #4688DA;
-  padding: 3px 10px 3px 25px;
+  padding: 4px 10px 3px 20px;
 }
 /* line 100, ../compass/src/main.scss */
 #header .search input {
@@ -202,7 +202,7 @@ ul, ol {
   bottom: 0px;
   left: 50%;
   margin: 0 0 0 -480px;
-  padding: 6px 0 0 10px;
+  padding: 3px 0 6px 10px;
   font-weight: normal;
   font-size: 14px;
 }
@@ -359,7 +359,7 @@ ul, ol {
   float: left;
   text-decoration: none;
   display: block;
-  margin: 2px 0 5px 4px;
+  margin: 4px 0 7px 4px;
 }
 /* line 22, ../compass/src/partials/_user.scss */
 #user_panel .name:hover {
@@ -388,7 +388,7 @@ ul, ol {
 /* line 40, ../compass/src/partials/_user.scss */
 #user_panel .stats .item {
   clear: both;
-  margin: 9px 0 5px 10px;
+  margin: -2px 0 5px 10px;
 }
 /* line 44, ../compass/src/partials/_user.scss */
 #user_panel .stats .item .label {
@@ -449,7 +449,7 @@ Purpose of the stylesheet follows.
 /* line 9, ../compass/src/partials/_post.scss */
 #my-post {
   border-top: 1px solid #D7D7D7;
-  padding: 8px 5px 0 5px;
+  padding: 15px 5px 0 5px;
   margin: 0 5px;
 }
 /* line 14, ../compass/src/partials/_post.scss */
@@ -463,7 +463,7 @@ Purpose of the stylesheet follows.
   float: right;
   color: #156cd8;
   font-size: 12px;
-  margin: 4px 3px 0 0;
+  margin: -1px 3px 0 0;
   font-weight: bold;
 }
 
@@ -625,7 +625,7 @@ Purpose of the stylesheet follows.
 #feed-filters .post-types .label,
 #feed-filters .feed-sort .label {
   float: left;
-  margin: 8px 0 0 13px;
+  margin: 5px 0 0 13px;
   color: #999;
   font-size: 12px;
   cursor: default;
@@ -666,7 +666,7 @@ Purpose of the stylesheet follows.
 #feed-filters .post-types ul a {
   color: #BBB;
   text-decoration: none;
-  padding: 7px 7px 3px 7px;
+  padding: 2px 10px;
   display: block;
 }
 /* line 180, ../compass/src/partials/_post.scss */
@@ -722,7 +722,7 @@ Purpose of the stylesheet follows.
 #feed-filters .feed-sort ul a {
   color: #444;
   text-decoration: none;
-  padding: 7px 7px 3px 7px;
+  padding: 2px 10px;
   display: block;
 }
 
@@ -838,7 +838,7 @@ Purpose of the stylesheet follows.
 /* line 293, ../compass/src/partials/_post.scss */
 .teaser.post .content .post {
   font-size: 16px;
-  padding: 9px 0 6px 0;
+  padding: 4px 0;
 }
 /* line 297, ../compass/src/partials/_post.scss */
 .teaser.post .content .note {
@@ -853,7 +853,7 @@ Purpose of the stylesheet follows.
   color: #156cd8;
   float: right;
   font-size: 16px;
-  padding: 10px 12px 6px 12px;
+  padding: 3px 12px;
 }
 /* line 311, ../compass/src/partials/_post.scss */
 .teaser.post .jive-B:hover {
@@ -885,7 +885,7 @@ Purpose of the stylesheet follows.
   font-size: 10px;
   width: 70px;
   float: left;
-  margin: 7px 0 0 0;
+  margin: 8px 0 0 0;
   text-align: right;
   padding: 0 8px 0 0;
 }

@@ -1,6 +1,5 @@
 {% if posts|length > 0 %}
     {% set oldestPost = posts[0][0].createdAt|date('U') %}
-    {% set newestPost = posts[0][0].createdAt|date('U') %}
 {% endif %}
 
 <ul>
@@ -8,8 +7,6 @@
     {% for post in posts %}
         {% if post[0].createdAt|date('U') < oldestPost %}
             {% set oldestPost = post[0].createdAt|date('U') %}
-        {% elseif post[0].createdAt|date('U') > newestPost %}
-            {% set newestPost = post[0].createdAt|date('U') %}
         {% endif %}
 
         <li class="{{ loop.first ? 'first' : '' }}">
@@ -25,5 +22,4 @@
 
 {% if posts|length > 0 %}
     <div id="oldestPost" class="hide" data-time="{{ oldestPost }}"></div>
-    <div id="newestPost" class="hide" data-time="{{ newestPost }}"></div>
 {% endif %}

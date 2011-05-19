@@ -64,7 +64,7 @@
 
                             <div class="nav">
                                 <a class="feed" href="{{ path('homepage') }}">Feed</a>
-                                <a class="undecided" href="{{ path('user_undecided') }}">Undecided Users</a>
+                                <a class="open-invite" href="{{ path('homepage') }}">Open Invites</a>
                             </div>
 
                             <div class="search">
@@ -81,7 +81,32 @@
 
                             <div id="page">
                                 {% block page %}
-                                    <div id="page_content">{% block page_content %}{% endblock %}</div>
+                                    <div id="page_content">
+                                        <div id="post-box" class="hide">
+                                            <div class="options">
+
+                                                {% if myPost is none %}
+                                                    <h2>{{ app.user.firstName }}, first things first. Whatcha doin tonight?</h2>
+                                                {% else %}
+                                                    <h2>You will change your current post.</h2>
+                                                {% endif %}
+
+                                                <div class="label status">Status</div>
+                                                <div class="type working" data-val="working">Working</div>
+                                                <div class="type low_in" data-val="low_in">Staying In</div>
+                                                <div class="type low_out" data-val="low_out">Relaxing Out</div>
+                                                <div class="type big_out" data-val="big_out">Raging</div>
+
+                                                <div class="clear"></div>
+
+                                                <div class="label">Optional Note</div>
+                                                <textarea class="note">{{ myPost is not none ? myPost.post.note : '' }}</textarea>
+
+                                                <div class="submit" data-url="{{ path('post_create') }}">Submit</div>
+                                            </div>
+                                        </div>
+                                        {% block page_content %}{% endblock %}
+                                    </div>
                                 {% endblock page %}
                             </div>
 

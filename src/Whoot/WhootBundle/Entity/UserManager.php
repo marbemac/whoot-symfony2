@@ -100,6 +100,8 @@ class UserManager extends BaseUserManager
            ->leftJoin('u.posts', 'up', 'WITH', 'up.createdAt >= :since AND up.status = :status')
            ->having('count(up.id) = 0')
            ->groupBy('u.id')
+           ->orderBy('u.firstName', 'ASC')
+           ->addOrderBy('u.lastName', 'ASC')
            ->setParameters(array(
                'since' => $since,
                'status' => 'Active'

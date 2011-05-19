@@ -9,7 +9,7 @@
 #authenticate_box {  }
 
 #user_panel {
-    padding: 7px 5px 15px 5px;
+    padding: 7px 5px 0 5px;
     margin: 0 5px;
     border-bottom: 1px solid #F1F1F1;
 
@@ -23,12 +23,10 @@
         text-decoration: underline;
     }
 
-    .profile_image {
+    .profile_image img {
         @include border-radius(5px);
         width: 50px;
-        height: 60px;
-        background: #CCC;
-        border: 1px solid #666;
+        height: 50px;
         float: left;
         position: relative;
     }
@@ -39,7 +37,7 @@
 
         .item {
             clear: both;
-            margin: -2px 0 5px 10px;
+            margin: -5px 0 0 10px;
             
             .label {
                 float: left;
@@ -59,6 +57,8 @@
         font-size: 12px;
         text-decoration: none;
         margin: 0 0 0 10px;
+        position: relative;
+        top: -6px;
     }
     .small-link:hover {
         text-decoration: underline;

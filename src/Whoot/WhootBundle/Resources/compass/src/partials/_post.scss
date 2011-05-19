@@ -8,7 +8,7 @@ Purpose of the stylesheet follows.
 
 #my-post {
     border-top: 1px solid #D7D7D7;
-    padding: 15px 5px 0 5px;
+    padding: 9px 5px 10px 5px;
     margin: 0 5px;
 
     h3 {
@@ -278,11 +278,10 @@ $feed-filters-margin-top: 8px;
         li {
             padding: 8px 5px;
         }
-        .image {
+        img {
             @include border-radius(5px);
             float: left;
             width: 30px; height: 30px;
-            background: #999;
             margin: -2px 11px 0 0;
         }
         .actions {
@@ -324,11 +323,10 @@ $feed-filters-margin-top: 8px;
         float: left;
         width: 130px;
 
-        .image {
+        img {
             @include border-radius(5px);
             float: left;
             width: 30px; height: 30px;
-            background: #999;
             margin: 2px 0 0 5px;
         }
     }

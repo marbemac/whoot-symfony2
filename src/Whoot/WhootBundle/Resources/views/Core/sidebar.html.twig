@@ -7,6 +7,7 @@
             <div class="clear"></div>
         </h2>
         <div class="profile_image">
+            <img src="{{ gravatar(app.user.email, '50', 'r', 'mm') }}" />
             {% if pingCount|length > 0 %}
                 <div id="my-pings" title="{{ pingCount|length }} {{ pingCount|length > 1 ? 'pings' : 'ping' }} today. {{ pingCount|length }} {{ pingCount|length > 1 ? 'people want' : 'person wants' }} to know what you're doing tonight!">
                     {{ pingCount|length }}

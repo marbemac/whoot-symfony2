@@ -12,8 +12,8 @@ Purpose of the stylesheet follows.
     margin: 0 5px;
 
     h3 {
-        font-weight: normal;
         float: left;
+        color: #777;
     }
 }
 
@@ -124,7 +124,7 @@ Purpose of the stylesheet follows.
 
 $feed-filters-margin-top: 8px;
 #feed-filters {
-    $feed-filter-padding: 5px 7px;
+    $feed-filter-padding: 7px 7px 3px 7px;
     $feed-filter-border-radius: 5px;
     $feed-filter-border-color: #CCC;
     $feed-filter-border-width: 2px;
@@ -193,7 +193,7 @@ $feed-filters-margin-top: 8px;
         width: 173px;
 
         .arrow-small {
-            position: absolute; top: 14px; right: 18px;
+            position: absolute; top: 12px; right: 18px;
             z-index: 10;
         }
         ul {
@@ -235,6 +235,11 @@ $feed-filters-margin-top: 8px;
         margin: 0 10px;
         border-top: 1px dotted #999;
         padding: 5px;
+
+        &:hover {
+            background: #F8F7FF;
+            cursor: pointer;
+        }
     }
     li.first {
         border-top: none;
@@ -283,38 +288,28 @@ $feed-filters-margin-top: 8px;
     .content {
         float: left;
         position: relative;
-        top: -2px;
-        font-size: 14px;
         color: #666;
 
+        .post {
+            font-size: 16px;
+            padding: 9px 0 6px 0;
+        }
         .note {
             font-size: 12px;
             font-style: italic;
             position: relative;
-            top: 2px;
             left: -2px;
             min-height: 7px;
         }
     }
-    .jive-B,
-    .activity-B {
+    .jive-B {
         color: $link-color;
         float: right;
         font-size: 16px;
-        text-decoration: none;
-        padding: 6px 12px;
+        padding: 10px 12px 6px 12px;
     }
     .jive-B:hover {
         text-decoration: underline;
-    }
-    .activity-B {
-        padding-right: 5px;
-        border-left: 1px solid #F1F1F1;
-
-        &:hover {
-            text-decoration: underline;
-            cursor: pointer;    
-        }
     }
 }
 
@@ -326,7 +321,7 @@ $feed-filters-margin-top: 8px;
 }
 
 .activity-list {
-    margin: 10px 0 0 0;
+    margin: 10px 0 5px 0;
 }
 
 .activity-post {
@@ -339,7 +334,7 @@ $feed-filters-margin-top: 8px;
         font-size: 10px;
         width: 70px;
         float: left;
-        margin: 5px 0 0 0;
+        margin: 7px 0 0 0;
         text-align: right;
         padding: 0 8px 0 0;
     }
@@ -348,6 +343,7 @@ $feed-filters-margin-top: 8px;
         float: left;
         padding: 5px 10px;
         font-size: 12px;
+        border: 2px solid #E7E5FF;
     }
     &.create .message {
         background: #F8F7FF;

@@ -12,15 +12,15 @@ class WhootTwigExtension extends \Twig_Extension {
     private $postTypes = array(
         'working' => 'working tonight',
         'low_in'  => 'staying in tonight',
-        'low_out' => 'having a relaxed night out',
-        'big_out' => 'having a big night out'
+        'low_out' => 'relaxing out tonight',
+        'big_out' => 'raging tonight'
     );
 
     private $postTypesShort = array(
         'working' => 'Working',
         'low_in' => 'Staying In',
-        'low_out' => 'Low Key Out',
-        'big_out' => 'Big Out'
+        'low_out' => 'Relaxing Out',
+        'big_out' => 'Raging'
     );
 
     public function getFilters() {

@@ -14,12 +14,10 @@
     border-bottom: 1px solid #F1F1F1;
 
     .name {
-        font-size: 24px;
+        float: left;
         text-decoration: none;
         display: block;
-        margin: 0 0 8px 4px;
-        float: left;
-        font-weight: normal;
+        margin: 2px 0 5px 4px;
     }
     .name:hover {
         text-decoration: underline;
@@ -41,7 +39,7 @@
 
         .item {
             clear: both;
-            margin: 5px 0 5px 10px;
+            margin: 9px 0 5px 10px;
             
             .label {
                 float: left;

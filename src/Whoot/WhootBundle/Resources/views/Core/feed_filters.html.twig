@@ -4,9 +4,9 @@
             <div class="label">Showing</div>
             <ul class="mc-menu">
                 <li class="working {{ feedFilters and 'working' in feedFilters.postTypes ? 'on' : '' }}"><a href="{{ path('feed_filter_toggle', {'postType': 'working'}) }}" class="ac">Working</a></li>
-                <li class="low_in {{ feedFilters and 'low_in' in feedFilters.postTypes ? 'on' : '' }}"><a href="{{ path('feed_filter_toggle', {'postType': 'low_in'}) }}" class="ac">Night In</a></li>
-                <li class="low_out {{ feedFilters and 'low_out' in feedFilters.postTypes ? 'on' : '' }}"><a href="{{ path('feed_filter_toggle', {'postType': 'low_out'}) }}" class="ac">Relaxed Out</a></li>
-                <li class="big_out {{ feedFilters and 'big_out' in feedFilters.postTypes ? 'on' : '' }}"><a href="{{ path('feed_filter_toggle', {'postType': 'big_out'}) }}" class="ac">Rager Out</a></li>
+                <li class="low_in {{ feedFilters and 'low_in' in feedFilters.postTypes ? 'on' : '' }}"><a href="{{ path('feed_filter_toggle', {'postType': 'low_in'}) }}" class="ac">Staying In</a></li>
+                <li class="low_out {{ feedFilters and 'low_out' in feedFilters.postTypes ? 'on' : '' }}"><a href="{{ path('feed_filter_toggle', {'postType': 'low_out'}) }}" class="ac">Relaxing Out</a></li>
+                <li class="big_out {{ feedFilters and 'big_out' in feedFilters.postTypes ? 'on' : '' }}"><a href="{{ path('feed_filter_toggle', {'postType': 'big_out'}) }}" class="ac">Raging</a></li>
                 <li class="clear"></li>
             </ul>
         </div>

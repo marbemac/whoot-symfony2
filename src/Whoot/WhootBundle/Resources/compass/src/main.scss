@@ -33,6 +33,10 @@ h1,h2,h3,h4,h5,h6,p,div,span {
 
 a {
     color: $link-color;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
 }
 
 ul,ol { list-style: none; margin: 0; padding: 0; }
@@ -69,14 +73,14 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
         }
     }
     .nav {
-        position: absolute; top: 0px; left: 435px;
+        position: absolute; top: 0px; left: 427px;
 
         a {
             font-size: 18px;
             color: #FFF;
             text-decoration: none;
             margin: 8px 0 0 0;
-            padding: 6px 25px;
+            padding: 10px 25px 6px 25px;
             display: block;
             float: left;
         }
@@ -134,7 +138,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
     bottom: 0px;
     left: 50%;
     margin: 0 0 0 $page_width/2*-1;
-    padding: 4px 0 0 10px;
+    padding: 6px 0 0 10px;
     font-weight: normal;
     font-size: 14px;
 }

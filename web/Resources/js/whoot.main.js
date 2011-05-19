@@ -138,10 +138,9 @@ $(function() {
     })
 
     // Toggle the activity of a post
-    $('.post .activity-B').live('click', function() {
+    $('#post-feed li').live('click', function() {
         var $self = $(this);
-        $self.parent().toggleClass('on');
-        $self.text($self.parent().hasClass('on') ? 'Hide' : 'Activity');
+        $self.find('.teaser.post').toggleClass('on');
     })
 
     /*

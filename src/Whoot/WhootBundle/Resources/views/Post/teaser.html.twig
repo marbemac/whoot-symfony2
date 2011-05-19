@@ -16,26 +16,28 @@
 
             {% set activeUsers = post.users|rebuildArray('status', 'Active') %}
             {% for userPost in activeUsers %}
-                {% if loop.index <= 3 %}
+                {% if loop.index <= 4 %}
                     {% set trail = '' %}
-                    {% if loop.revindex0 == 1 %}
-                        {% if activeUsers|length > 2 %}
-                            {% set trail = ', and '~(activeUsers|length - 2)~' others' %}
+                    {% if loop.revindex0 == 1 and activeUsers|length > 2 %}
+                        {% if activeUsers|length > 3 %}
+                            {% set trail = ', and '~(activeUsers|length - 3)~' others' %}
                         {% else %}
                             {% set trail = ', and' %}
                         {% endif %}
                     {% elseif loop.revindex0 == 1 %}
                         {% set trail = ' and' %}
-                    {% elseif not loop.last and loop.index < 2 %}
+                    {% elseif not loop.last %}
                         {% set trail = ',' %}
                     {% endif %}
+                {% elseif loop.revindex0 == 1 %}
+                    {% set trail = ' and' %}
+                {% elseif not loop.last %}
+                    {% set trail = ',' %}
+                {% endif %}
 
-                    {% if loop.index <= 2 %}
-                        <a class="user" href="{{ path('fos_user_user_show', {'username': userPost.user.username}) }}">{{ userPost.user.firstName }} {{ userPost.user.lastName }}</a>{{ trail }}
-                    {% elseif loop.index == 3 %}
-                        {{ trail }}
-                    {% endif %}
-
+                {% if loop.index <= 3 %}
+                    <a class="user" href="{{ path('fos_user_user_show', {'username': userPost.user.username}) }}">{{ userPost.user.firstName }} {{ userPost.user.lastName }}</a>
+                    {{ trail }}
                 {% endif %}
             {% endfor %}
             {{ activeUsers|length > 1 ? 'are' : 'is' }}
@@ -59,9 +61,7 @@
 
     </div>
 
-    <div class="activity-B">Activity</div>
-    
-    {% if (post.createdAt|date('y-m-d') == "now"|date('y-m-d')) %}
+    {% if (post.createdAt|date('y-m-d') == "now-5 hours"|date('y-m-d')) %}
         {% render "WhootBundle:Post:jiveTag" with {'postId': post.id} %}
     {% endif %}
 

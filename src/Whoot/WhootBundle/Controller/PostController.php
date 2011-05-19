@@ -77,6 +77,23 @@ class PostController extends ContainerAware
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:myPost.html.twig', array('myPost' => $myPost), $response);
     }
 
+    public function postBoxAction()
+    {
+        $request = $this->container->get('request');
+        $myPost = $this->container->get('whoot.post_manager')->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
+
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($request)) {
+            // return the 304 Response immediately
+            //return $response;
+        }
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:Post:postBox.html.twig', array('myPost' => $myPost), $response);
+    }
+
     /**
      * Creates a new post for the day. Toggles if the user already has a post for today.
      */

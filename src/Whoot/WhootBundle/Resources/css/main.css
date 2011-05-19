@@ -727,13 +727,53 @@ Purpose of the stylesheet follows.
 }
 
 /* line 221, ../compass/src/partials/_post.scss */
+#feed-stats {
+  float: left;
+}
+/* line 224, ../compass/src/partials/_post.scss */
+#feed-stats div {
+  float: left;
+  margin: -3px 8px 0 8px;
+  font-weight: bold;
+  cursor: default;
+}
+/* line 230, ../compass/src/partials/_post.scss */
+#feed-stats div.working {
+  color: #009966;
+}
+/* line 231, ../compass/src/partials/_post.scss */
+#feed-stats div.low_in {
+  color: #996699;
+}
+/* line 232, ../compass/src/partials/_post.scss */
+#feed-stats div.low_out {
+  color: #ff9900;
+}
+/* line 233, ../compass/src/partials/_post.scss */
+#feed-stats div.big_out {
+  color: #cc3300;
+}
+
+/* line 236, ../compass/src/partials/_post.scss */
 #post-feed {
   position: relative;
   width: 100%;
   height: 100%;
   padding: 58px 0 0 0;
 }
-/* line 226, ../compass/src/partials/_post.scss */
+/* line 241, ../compass/src/partials/_post.scss */
+#post-feed h3 {
+  float: left;
+  margin: 0px 10px 5px 10px;
+  cursor: default;
+}
+/* line 246, ../compass/src/partials/_post.scss */
+#post-feed .undecided-count {
+  float: left;
+  margin: -4px 0 0 10px;
+  cursor: default;
+}
+/* line 251, ../compass/src/partials/_post.scss */
 #post-feed .date-separator {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -747,36 +787,68 @@ Purpose of the stylesheet follows.
   font-size: 18px;
   background: #DDD;
 }
-/* line 234, ../compass/src/partials/_post.scss */
+/* line 259, ../compass/src/partials/_post.scss */
 #post-feed li {
   margin: 0 10px;
   border-top: 1px dotted #999;
   padding: 5px;
 }
-/* line 239, ../compass/src/partials/_post.scss */
-#post-feed li:hover {
-  background: #F8F7FF;
-  cursor: pointer;
-}
-/* line 244, ../compass/src/partials/_post.scss */
+/* line 264, ../compass/src/partials/_post.scss */
 #post-feed li.first {
   border-top: none;
 }
-/* line 247, ../compass/src/partials/_post.scss */
+/* line 267, ../compass/src/partials/_post.scss */
 #post-feed li.last, #post-feed li.none {
   border-bottom: 1px dotted #999;
 }
+/* line 270, ../compass/src/partials/_post.scss */
+#post-feed .decided {
+  margin-bottom: 20px;
+}
+/* line 273, ../compass/src/partials/_post.scss */
+#post-feed .decided li:hover {
+  background: #F8F7FF;
+  cursor: pointer;
+}
+/* line 278, ../compass/src/partials/_post.scss */
+#post-feed .undecided li {
+  padding: 8px 5px;
+}
+/* line 281, ../compass/src/partials/_post.scss */
+#post-feed .undecided .image {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: #999;
+  margin: -2px 11px 0 0;
+}
+/* line 288, ../compass/src/partials/_post.scss */
+#post-feed .undecided .actions {
+  float: right;
+}
+/* line 293, ../compass/src/partials/_post.scss */
+#post-feed .undecided .follow-B,
+#post-feed .undecided .ping-B,
+#post-feed .undecided .pinged {
+  padding: 0 12px;
+}
 
-/* line 252, ../compass/src/partials/_post.scss */
+/* line 299, ../compass/src/partials/_post.scss */
 .teaser.post {
   overflow: hidden;
   height: 33px;
 }
-/* line 256, ../compass/src/partials/_post.scss */
+/* line 303, ../compass/src/partials/_post.scss */
 .teaser.post.on {
   height: auto;
 }
-/* line 260, ../compass/src/partials/_post.scss */
+/* line 307, ../compass/src/partials/_post.scss */
 .teaser.post .timer {
   width: 20px;
   height: 20px;
@@ -785,7 +857,7 @@ Purpose of the stylesheet follows.
   top: 7px;
   margin: 0 5px 0 0;
 }
-/* line 268, ../compass/src/partials/_post.scss */
+/* line 315, ../compass/src/partials/_post.scss */
 .teaser.post div.timer {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -794,28 +866,28 @@ Purpose of the stylesheet follows.
   -khtml-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 271, ../compass/src/partials/_post.scss */
+/* line 318, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.working {
   background: #009966;
 }
-/* line 272, ../compass/src/partials/_post.scss */
+/* line 319, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.low_in {
   background: #996699;
 }
-/* line 273, ../compass/src/partials/_post.scss */
+/* line 320, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.low_out {
   background: #ff9900;
 }
-/* line 274, ../compass/src/partials/_post.scss */
+/* line 321, ../compass/src/partials/_post.scss */
 .teaser.post div.timer.big_out {
   background: #cc3300;
 }
-/* line 276, ../compass/src/partials/_post.scss */
+/* line 323, ../compass/src/partials/_post.scss */
 .teaser.post .profile-images {
   float: left;
   width: 130px;
 }
-/* line 280, ../compass/src/partials/_post.scss */
+/* line 327, ../compass/src/partials/_post.scss */
 .teaser.post .profile-images .image {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -829,18 +901,18 @@ Purpose of the stylesheet follows.
   background: #999;
   margin: 2px 0 0 5px;
 }
-/* line 288, ../compass/src/partials/_post.scss */
+/* line 335, ../compass/src/partials/_post.scss */
 .teaser.post .content {
   float: left;
   position: relative;
   color: #666;
 }
-/* line 293, ../compass/src/partials/_post.scss */
+/* line 340, ../compass/src/partials/_post.scss */
 .teaser.post .content .post {
   font-size: 16px;
   padding: 4px 0;
 }
-/* line 297, ../compass/src/partials/_post.scss */
+/* line 344, ../compass/src/partials/_post.scss */
 .teaser.post .content .note {
   font-size: 12px;
   font-style: italic;
@@ -848,19 +920,19 @@ Purpose of the stylesheet follows.
   left: -2px;
   min-height: 7px;
 }
-/* line 305, ../compass/src/partials/_post.scss */
+/* line 352, ../compass/src/partials/_post.scss */
 .teaser.post .jive-B {
   color: #156cd8;
   float: right;
   font-size: 16px;
   padding: 3px 12px;
 }
-/* line 311, ../compass/src/partials/_post.scss */
+/* line 358, ../compass/src/partials/_post.scss */
 .teaser.post .jive-B:hover {
   text-decoration: underline;
 }
 
-/* line 316, ../compass/src/partials/_post.scss */
+/* line 363, ../compass/src/partials/_post.scss */
 .ping-countdown {
   font-size: 12px;
   color: #999;
@@ -868,18 +940,24 @@ Purpose of the stylesheet follows.
   cursor: default;
 }
 
-/* line 323, ../compass/src/partials/_post.scss */
+/* line 370, ../compass/src/partials/_post.scss */
+.pinged {
+  color: #999;
+  cursor: default;
+}
+
+/* line 375, ../compass/src/partials/_post.scss */
 .activity-list {
   margin: 10px 0 5px 0;
 }
 
-/* line 327, ../compass/src/partials/_post.scss */
+/* line 379, ../compass/src/partials/_post.scss */
 .activity-post {
   overflow: hidden;
   *zoom: 1;
   margin: 5px 0 0 0;
 }
-/* line 332, ../compass/src/partials/_post.scss */
+/* line 384, ../compass/src/partials/_post.scss */
 .activity-post .time {
   color: #888;
   font-size: 10px;
@@ -889,7 +967,7 @@ Purpose of the stylesheet follows.
   text-align: right;
   padding: 0 8px 0 0;
 }
-/* line 341, ../compass/src/partials/_post.scss */
+/* line 393, ../compass/src/partials/_post.scss */
 .activity-post .message {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -902,15 +980,15 @@ Purpose of the stylesheet follows.
   font-size: 12px;
   border: 2px solid #E7E5FF;
 }
-/* line 348, ../compass/src/partials/_post.scss */
+/* line 400, ../compass/src/partials/_post.scss */
 .activity-post.create .message {
   background: #F8F7FF;
 }
-/* line 351, ../compass/src/partials/_post.scss */
+/* line 403, ../compass/src/partials/_post.scss */
 .activity-post.jive .message {
   background: #F9FFF8;
 }
-/* line 354, ../compass/src/partials/_post.scss */
+/* line 406, ../compass/src/partials/_post.scss */
 .activity-post.leave .message {
   background: #FFF7F9;
 }

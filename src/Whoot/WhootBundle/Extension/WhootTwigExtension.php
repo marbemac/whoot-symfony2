@@ -33,6 +33,8 @@ class WhootTwigExtension extends \Twig_Extension {
             'truncate'  => new \Twig_Filter_Method($this, 'truncate'),
             'conditionalLength'  => new \Twig_Filter_Method($this, 'conditionalLength'),
             'rebuildArray'  => new \Twig_Filter_Method($this, 'rebuildArray'),
+            'countStatus'  => new \Twig_Filter_Method($this, 'countStatus'),
+            'round'  => new \Twig_Filter_Method($this, 'round'),
         );
     }
 
@@ -70,6 +72,15 @@ class WhootTwigExtension extends \Twig_Extension {
         return $val;
     }
 
+    /**
+     * Loop through an array and get the count of elements that match given $key => $val
+     *
+     * @param array $array
+     * @param string $key
+     * @param string $val
+     *
+     * @return int $count
+     */
     public function conditionalLength($array, $key, $val)
     {
         $count = 0;
@@ -81,6 +92,15 @@ class WhootTwigExtension extends \Twig_Extension {
         return $count;
     }
 
+    /**
+     * Rebuild an array with just the elements that match $key => $val
+     *
+     * @param array $array
+     * @param sring $key
+     * @param string $val
+     *
+     * @return array $newArray
+     */
     public function rebuildArray($array, $key, $val)
     {
         $newArray = array();
@@ -90,6 +110,47 @@ class WhootTwigExtension extends \Twig_Extension {
                 $newArray[] = $item;
         }
         return $newArray;
+    }
+
+    /**
+     * Given an array of structure posts['post']['users'], see how many posts/users have the given status.
+     *
+     * @param  array $array
+     * @param  string $status
+     *
+     * @return void
+     */
+    public function countStatus($array, $status)
+    {
+        $count = 0;
+        foreach ($array as $post)
+        {
+            $post = $post[0];
+
+            if ($post['type'] == $status)
+            {
+                foreach ($post['users'] as $userPost)
+                {
+                    if ($userPost['status'] == 'Active')
+                    {
+                        $count++;
+                    }
+                }
+            }
+        }
+
+        return $count;
+    }
+
+    /**
+     * Simple round function
+     *
+     * @param  $precision
+     * @return $rounded
+     */
+    public function round($val, $precision)
+    {
+        return round($val, $precision);
     }
 
     /*

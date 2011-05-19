@@ -66,7 +66,7 @@ class PingController extends ContainerAware
             if ($ping)
             {
                 $countdown = time() - $ping['createdAt']->getTimestamp();
-                $countdown = $countdown <= 59 ? 59 - $countdown : null;
+                $countdown = $countdown <= 10 ? 10 - $countdown : null;
             }
         }
         else

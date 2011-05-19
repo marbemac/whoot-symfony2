@@ -39,7 +39,7 @@ $(function(){
 
         if (data.status == 'new')
         {
-            $('.ping-'+data.userId).after('<span class="ping-countdown ping-countdown-'+data.userId+'" data-until="59"></span>');
+            $('.ping-'+data.userId).after('<span class="ping-countdown ping-countdown-'+data.userId+'" data-until="10"></span>');
         }
         else if (data.status == 'deleted')
         {

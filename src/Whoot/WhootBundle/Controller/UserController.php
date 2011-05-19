@@ -18,29 +18,6 @@ use FOS\UserBundle\Controller\UserController as BaseUserController;
 
 class UserController extends ContainerAware
 {
-    /*
-     * Show those users that have not posted what they are doing on a given date.
-     */
-    public function undecidedAction($date=null)
-    {
-        $response = new Response();
-        $response->setCache(array(
-        ));
-
-        if ($response->isNotModified($this->container->get('request'))) {
-            // return the 304 Response immediately
-            // return $response;
-        }
-
-        $date = $date ? $date : date('Y-m-d 05:00:00', time()-(60*60*5));
-
-        $users = $this->container->get('whoot.user_manager')->findUndecided($date);
-
-        return $this->container->get('templating')->renderResponse('WhootBundle:User:undecided.html.twig', array(
-            'users' => $users
-        ), $response);
-    }
-
     /**
      * Show the new form
      *

@@ -40,6 +40,8 @@ class PostController extends ContainerAware
             $posts = $this->container->get('whoot.post_manager')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)));
         }
 
+        $undecidedUsers = $this->container->get('whoot.user_manager')->findUndecided(date('Y-m-d 05:00:00', time()-(60*60*5)));
+
         $response->setCache(array(
         ));
 
@@ -51,12 +53,14 @@ class PostController extends ContainerAware
         if ($this->container->get('request')->isXmlHttpRequest())
         {
             return $this->container->get('templating')->renderResponse('WhootBundle:Post:feed_content.html.twig', array(
-                'posts' => $posts
+                'posts' => $posts,
+                'undecidedUsers' => $undecidedUsers
             ), $response);
         }
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:feed.html.twig', array(
-            'posts' => $posts
+            'posts' => $posts,
+            'undecidedUsers' => $undecidedUsers
         ), $response);
     }
 

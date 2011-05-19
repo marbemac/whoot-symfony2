@@ -103,6 +103,16 @@ $(function() {
         })
     })
 
+    // Add qTips to the feed post stats
+    $('#feed-stats div').qtip({
+        content: {
+            attr: 'title'
+        },
+        style: {
+            classes: 'ui-tooltip-blue ui-tooltip-shadow ui-tooltip-rounded my-pings-tip'
+        }
+    })
+
     // Add qTips to the post timers
     $('#my-pings').qtip({
         content: {
@@ -141,7 +151,10 @@ $(function() {
     })
 
     // Toggle the activity of a post
-    $('#post-feed li').live('click', function() {
+    $('#post-feed li').live('click', function(ev) {
+        if ($(ev.target).is('a'))
+            return;
+
         var $self = $(this);
         $self.find('.teaser.post').toggleClass('on');
     })
@@ -156,7 +169,7 @@ $(function() {
             until: '+'+$self.data('until')+'s',
             onExpiry: function() {
                 console.log('test');
-                $self.before().remove();
+                $self.prev().replaceWith('<span class="pinged">Pinged</span>');
                 $self.remove();
             }
         });

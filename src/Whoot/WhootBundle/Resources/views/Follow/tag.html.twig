@@ -3,7 +3,7 @@
 {% elseif not fromUser %}
     <a class="follow-B fol_{{ toUser }} auth" href="{{ path('follow_toggle', {'userId': toUser}) }}">Follow</a>
 {% elseif connection %}
-    <a class="unfollow-B ac fol_{{ toUser }}" href="{{ path('follow_toggle', {'userId': toUser}) }}">Unfollow</a>
+    <a class="follow-B ac fol_{{ toUser }}" href="{{ path('follow_toggle', {'userId': toUser}) }}">Unfollow</a>
 {% else %}
     <a class="follow-B ac fol_{{ toUser }}" href="{{ path('follow_toggle', {'userId': toUser}) }}">Follow</a>
 {% endif %}

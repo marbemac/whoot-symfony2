@@ -52,8 +52,9 @@
         {% for user in undecidedUsers %}
             <li class="{{ loop.first ? 'first' : '' }}">
                 <a class="profile-image" href="{{ path('fos_user_user_show', {'username': user.username}) }}" title="{{ user.firstName }} {{ user.lastName }}">
-                    <img src="{{ gravatar(user.email, '30', 'r', 'mm') }}" alt="Profile Image" />
-                </a>                <a class="user" href="{{ path('fos_user_user_show', {'username': user.username}) }}">{{ user.firstName }} {{ user.lastName }}</a>
+                    <img src="{{ user.profileImage is defined ? '/slir/w30-h30-c1:1'~user.profileImage : gravatar(user.email, '30', 'r', 'mm') }}" alt="" />
+                </a>
+                <a class="user" href="{{ path('fos_user_user_show', {'username': user.username}) }}">{{ user.firstName }} {{ user.lastName }}</a>
                 <div class="actions">
                     {% render "WhootBundle:Follow:tag" with {'toUser': user.id} %}
                     -

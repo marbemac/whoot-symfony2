@@ -1,2 +1,8 @@
+user_upload_picture:
+    pattern:  /upload-picture
+    defaults: { _controller: WhootBundle:User:uploadPicture }
+    requirements:
+        _method: POST
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/user.xml"

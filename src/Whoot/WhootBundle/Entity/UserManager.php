@@ -23,6 +23,22 @@ class UserManager extends BaseUserManager
         $this->em = $em;
     }
 
+    public function getUser($userId)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select(array('u'))
+           ->from('Whoot\WhootBundle\Entity\User', 'u')
+           ->where('u.id = :userId')
+           ->setParameters(array(
+               'userId' => $userId
+           ));
+
+        $query = $qb->getQuery();
+        $user = $query->getSingleResult(Query::HYDRATE_OBJECT);
+
+        return $user;
+    }
+
     public function getUsersBy($currentUser)
     {
         $qb = $this->em->createQueryBuilder();

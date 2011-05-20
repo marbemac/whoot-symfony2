@@ -21,6 +21,11 @@ $(function() {
             $($self.data('target')).fadeIn(300);
         })
     })
+
+    /**
+     * USERS
+     */
+
     
     /*
      * POSTS

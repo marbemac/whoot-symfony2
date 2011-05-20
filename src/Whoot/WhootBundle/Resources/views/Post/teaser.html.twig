@@ -7,7 +7,7 @@
         {% for userPost in post.users %}
             {% if userPost.status == 'Active' %}
                 <a class="profile-image" href="{{ path('fos_user_user_show', {'username': userPost.user.username}) }}" title="{{ userPost.user.firstName }} {{ userPost.user.lastName }}">
-                    <img src="{{ gravatar(userPost.user.email, '30', 'r', 'mm') }}" alt="Profile Image" />
+                    <img src="{{ app.user.profileImage ? '/slir/w30-h30-c1:1'~app.user.profileImage : gravatar(userPost.user.email, '30', 'r', 'mm') }}" alt="" />
                 </a>
             {% endif %}
         {% endfor %}

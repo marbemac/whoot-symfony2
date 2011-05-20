@@ -28,10 +28,16 @@ class User extends BaseUser
      * @orm:Column(type="string")
      */
     protected $status;
+
+    /**
+     * @var string $profileImage
+     * @orm:Column(type="string", name="profile_image", nullable=true)
+     */
+    protected $profileImage;
     
     /**
      * @var string $firstName
-     * @orm:Column(type="string", length="255")
+     * @orm:Column(type="string", length="255", name="first_name")
      * 
      * @assert:NotBlank()
      * @assert:MinLength(2)
@@ -40,7 +46,7 @@ class User extends BaseUser
     
     /**
      * @var string $lastName
-     * @orm:Column(type="string", length="255")
+     * @orm:Column(type="string", length="255", name="last_name")
      * 
      * @assert:NotBlank()
      * @assert:MinLength(2)
@@ -126,6 +132,26 @@ class User extends BaseUser
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set profileImage
+     *
+     * @param string $profileImage
+     */
+    public function setProfileImage($profileImage)
+    {
+        $this->profileImage = $profileImage;
+    }
+
+    /**
+     * Get profileImage
+     *
+     * @return string $profileImage
+     */
+    public function getProfileImage()
+    {
+        return $this->profileImage;
     }
 
     /**

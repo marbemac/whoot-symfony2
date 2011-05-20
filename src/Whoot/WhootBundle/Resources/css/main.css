@@ -349,23 +349,36 @@ ul, ol {
         Purpose of the stylesheet follows.
 */
 /* line 11, ../compass/src/partials/_user.scss */
+.plupload {
+  cursor: pointer;
+}
+/* line 14, ../compass/src/partials/_user.scss */
+.plupload input {
+  cursor: pointer;
+}
+
+/* line 17, ../compass/src/partials/_user.scss */
 #user_panel {
-  padding: 7px 5px 0 5px;
+  padding: 7px 5px 7px 5px;
   margin: 0 5px;
   border-bottom: 1px solid #F1F1F1;
 }
-/* line 16, ../compass/src/partials/_user.scss */
+/* line 22, ../compass/src/partials/_user.scss */
 #user_panel .name {
   float: left;
   text-decoration: none;
   display: block;
   margin: 4px 0 7px 4px;
 }
-/* line 22, ../compass/src/partials/_user.scss */
+/* line 28, ../compass/src/partials/_user.scss */
 #user_panel .name:hover {
   text-decoration: underline;
 }
-/* line 26, ../compass/src/partials/_user.scss */
+/* line 32, ../compass/src/partials/_user.scss */
+#user_panel .profile_image {
+  position: relative;
+}
+/* line 35, ../compass/src/partials/_user.scss */
 #user_panel .profile_image img {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -373,36 +386,51 @@ ul, ol {
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  width: 50px;
-  height: 50px;
   float: left;
-  position: relative;
 }
-/* line 34, ../compass/src/partials/_user.scss */
+/* line 41, ../compass/src/partials/_user.scss */
+#user_panel #profile-image-upload {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: #FFF;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 1px 5px;
+  color: #156cd8;
+  cursor: default;
+}
+/* line 53, ../compass/src/partials/_user.scss */
 #user_panel .stats {
   float: left;
-  width: 120px;
+  width: 110px;
 }
-/* line 38, ../compass/src/partials/_user.scss */
+/* line 57, ../compass/src/partials/_user.scss */
 #user_panel .stats .item {
   clear: both;
-  margin: -5px 0 0 10px;
+  margin: 3px 0 0 10px;
 }
-/* line 42, ../compass/src/partials/_user.scss */
+/* line 61, ../compass/src/partials/_user.scss */
 #user_panel .stats .item .label {
   float: left;
   font-size: 14px;
   color: #666;
   margin: 0 15px 0 0;
 }
-/* line 48, ../compass/src/partials/_user.scss */
+/* line 67, ../compass/src/partials/_user.scss */
 #user_panel .stats .item .value {
   float: left;
   font-size: 14px;
   color: #666;
   font-weight: bold;
 }
-/* line 56, ../compass/src/partials/_user.scss */
+/* line 75, ../compass/src/partials/_user.scss */
 #user_panel .small-link {
   font-size: 12px;
   text-decoration: none;
@@ -410,12 +438,12 @@ ul, ol {
   position: relative;
   top: -6px;
 }
-/* line 63, ../compass/src/partials/_user.scss */
+/* line 82, ../compass/src/partials/_user.scss */
 #user_panel .small-link:hover {
   text-decoration: underline;
 }
 
-/* line 68, ../compass/src/partials/_user.scss */
+/* line 87, ../compass/src/partials/_user.scss */
 #my-pings {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -433,7 +461,7 @@ ul, ol {
   cursor: default;
 }
 
-/* line 77, ../compass/src/partials/_user.scss */
+/* line 96, ../compass/src/partials/_user.scss */
 .my-pings-tip {
   font-size: 16px;
   line-height: 1.2em;
@@ -895,22 +923,20 @@ Purpose of the stylesheet follows.
   -khtml-border-radius: 5px;
   border-radius: 5px;
   float: left;
-  width: 30px;
-  height: 30px;
   margin: 2px 0 0 5px;
 }
-/* line 333, ../compass/src/partials/_post.scss */
+/* line 332, ../compass/src/partials/_post.scss */
 .teaser.post .content {
   float: left;
   position: relative;
   color: #666;
 }
-/* line 338, ../compass/src/partials/_post.scss */
+/* line 337, ../compass/src/partials/_post.scss */
 .teaser.post .content .post {
   font-size: 16px;
   padding: 4px 0;
 }
-/* line 342, ../compass/src/partials/_post.scss */
+/* line 341, ../compass/src/partials/_post.scss */
 .teaser.post .content .note {
   font-size: 12px;
   font-style: italic;
@@ -918,19 +944,19 @@ Purpose of the stylesheet follows.
   left: -2px;
   min-height: 7px;
 }
-/* line 350, ../compass/src/partials/_post.scss */
+/* line 349, ../compass/src/partials/_post.scss */
 .teaser.post .jive-B {
   color: #156cd8;
   float: right;
   font-size: 16px;
   padding: 3px 12px;
 }
-/* line 356, ../compass/src/partials/_post.scss */
+/* line 355, ../compass/src/partials/_post.scss */
 .teaser.post .jive-B:hover {
   text-decoration: underline;
 }
 
-/* line 361, ../compass/src/partials/_post.scss */
+/* line 360, ../compass/src/partials/_post.scss */
 .ping-countdown {
   font-size: 12px;
   color: #999;
@@ -938,24 +964,24 @@ Purpose of the stylesheet follows.
   cursor: default;
 }
 
-/* line 368, ../compass/src/partials/_post.scss */
+/* line 367, ../compass/src/partials/_post.scss */
 .pinged {
   color: #999;
   cursor: default;
 }
 
-/* line 373, ../compass/src/partials/_post.scss */
+/* line 372, ../compass/src/partials/_post.scss */
 .activity-list {
   margin: 10px 0 5px 0;
 }
 
-/* line 377, ../compass/src/partials/_post.scss */
+/* line 376, ../compass/src/partials/_post.scss */
 .activity-post {
   overflow: hidden;
   *zoom: 1;
   margin: 5px 0 0 0;
 }
-/* line 382, ../compass/src/partials/_post.scss */
+/* line 381, ../compass/src/partials/_post.scss */
 .activity-post .time {
   color: #888;
   font-size: 10px;
@@ -965,7 +991,7 @@ Purpose of the stylesheet follows.
   text-align: right;
   padding: 0 8px 0 0;
 }
-/* line 391, ../compass/src/partials/_post.scss */
+/* line 390, ../compass/src/partials/_post.scss */
 .activity-post .message {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -978,15 +1004,15 @@ Purpose of the stylesheet follows.
   font-size: 12px;
   border: 2px solid #E7E5FF;
 }
-/* line 398, ../compass/src/partials/_post.scss */
+/* line 397, ../compass/src/partials/_post.scss */
 .activity-post.create .message {
   background: #F8F7FF;
 }
-/* line 401, ../compass/src/partials/_post.scss */
+/* line 400, ../compass/src/partials/_post.scss */
 .activity-post.jive .message {
   background: #F9FFF8;
 }
-/* line 404, ../compass/src/partials/_post.scss */
+/* line 403, ../compass/src/partials/_post.scss */
 .activity-post.leave .message {
   background: #FFF7F9;
 }

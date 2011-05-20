@@ -326,7 +326,6 @@ $feed-filters-margin-top: 8px;
         img {
             @include border-radius(5px);
             float: left;
-            width: 30px; height: 30px;
             margin: 2px 0 0 5px;
         }
     }

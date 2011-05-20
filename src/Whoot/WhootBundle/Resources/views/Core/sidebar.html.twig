@@ -7,7 +7,8 @@
             <div class="clear"></div>
         </h2>
         <div class="profile_image">
-            <img src="{{ gravatar(app.user.email, '50', 'r', 'mm') }}" />
+            <a id="profile-image-upload" href="#" data-w="65" data-h="65" data-url="{{ path('user_upload_picture') }}" data-target="#my-profile-image">change</a>
+            <img id="my-profile-image" src="{{ app.user.profileImage ? '/slir/w65-h65-c1:1'~app.user.profileImage : gravatar(app.user.email, '65', 'r', 'mm') }}" />
             {% if pingCount|length > 0 %}
                 <div id="my-pings" title="{{ pingCount|length }} {{ pingCount|length > 1 ? 'pings' : 'ping' }} today. {{ pingCount|length }} {{ pingCount|length > 1 ? 'people want' : 'person wants' }} to know what you're doing tonight!">
                     {{ pingCount|length }}
@@ -28,6 +29,7 @@
         <a class="small-link" href="{{ path('_security_logout') }}">
             {{ 'layout.logout'|trans([], 'FOSUserBundle') }}
         </a>
+        <div class="clear"></div>
     </div>
 
     {% render 'WhootBundle:Post:myPost' %}

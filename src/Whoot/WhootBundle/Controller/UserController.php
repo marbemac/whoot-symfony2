@@ -190,7 +190,46 @@ class UserController extends ContainerAware
             'username'  => $user->getUsername()
         ));
     }
-    
+
+    public function uploadPictureAction()
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        $img = $_FILES['file']['tmp_name'];
+
+        // check that it's an image
+        $fileTypes = array('jpg','jpeg','gif','png'); // File extensions
+        $imgInfo_array = getimagesize($img);
+        $parts = explode('/', $imgInfo_array['mime']);
+        $ext = $parts[count($parts)-1];
+
+        $result = array();
+
+        if ($img > 5000000 || !in_array($ext,$fileTypes))
+        {
+            $result['status'] = 'error';
+        }
+        else
+        {
+            $filename = uniqid('UI') . '.' . $ext;
+            $filepath = $_SERVER['DOCUMENT_ROOT'].'/uploads/user_profile_images/'.$filename;
+            $webpath = '/uploads/user_profile_images/'.$filename;
+            move_uploaded_file($img, $filepath);
+            $result['status'] = 'success';
+            $result['filename'] = $filename;
+            $result['filepath'] = $webpath;
+            $user->setProfileImage($webpath);
+            $this->container->get('doctrine')->getEntityManager()->persist($user);
+            $this->container->get('doctrine')->getEntityManager()->flush();
+        }
+
+        return 'For some reason returning a json response screws things up...';
+
+        $response = new Response(json_encode($result));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
     /**
      * Find a user by a specific property
      *

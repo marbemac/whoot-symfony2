@@ -63,7 +63,7 @@
 
     </div>
 
-    {% if (post.createdAt|date('y-m-d') == "now-5 hours"|date('y-m-d')) %}
+    {% if (post.createdAt|date('y-m-d') == "now-5 hours"|date('y-m-d') or post.createdAt|date('y-m-d') == "now"|date('y-m-d')) %}
         {% render "WhootBundle:Post:jiveTag" with {'postId': post.id} %}
     {% endif %}
 

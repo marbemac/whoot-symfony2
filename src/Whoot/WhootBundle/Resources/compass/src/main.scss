@@ -156,6 +156,13 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
     }
 }
 
+.fb_edge_widget_with_comment {
+    float: right;
+    text-align: right;
+    padding: 0;
+    margin: 0;
+}
+
 @import "partials/utilities";
 @import "partials/sprite";
 @import "partials/splash";

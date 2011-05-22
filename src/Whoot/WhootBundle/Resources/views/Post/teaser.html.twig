@@ -1,4 +1,5 @@
-<div class="teaser post post-{{ post.id }}">
+<a name="post-{{ post.id }}"></a>
+<div class="teaser post" id="post-{{ post.id }}">
     <canvas title="{{ post.createdAt|timeLapse }}" class="timer" width="20" height="20" data-time="{{ post.createdAt|date('U') }}" data-type="{{ post.type }}">
         <div class="timer {{ post.type }}"></div>
     </canvas>

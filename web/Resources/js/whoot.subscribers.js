@@ -62,10 +62,10 @@ $(function(){
 
         if (data.oldPostId)
         {
-            $('.post-'+data.oldPostId).parent().fadeOut(500, function() { $(this).remove() });
+            $('#post-'+data.oldPostId).parent().fadeOut(500, function() { $(this).remove() });
         }
 
-        $('.post-'+data.postId).parent().fadeTo(250, .01, function() {
+        $('#post-'+data.postId).parent().fadeTo(250, .01, function() {
             $(this).html(data.post).fadeTo(250, 1);
         })
     });

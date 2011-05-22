@@ -16,5 +16,11 @@ user_following:
     requirements:
       _method: GET
 
+user_settings:
+    pattern:  /{username}/settings
+    defaults: { _controller: WhootBundle:User:settings }
+    requirements:
+      _method: GET
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/user.xml"

@@ -141,6 +141,12 @@ $(function() {
         $(this).addClass('on').siblings().removeClass('on');
     })
 
+    // Scroll to my post
+    $('#my-post').live('click', function() {
+        location.href = $(this).data('target');
+        $($(this).data('target')).click();
+    })
+
     // Submit a new post
     $('#post-box .submit').live('click', function() {
         var $payload = {};

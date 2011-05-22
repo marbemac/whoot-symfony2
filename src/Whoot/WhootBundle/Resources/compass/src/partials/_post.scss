@@ -8,12 +8,22 @@ Purpose of the stylesheet follows.
 
 #my-post {
     border-top: 1px solid #D7D7D7;
-    padding: 9px 5px 10px 5px;
+    border-bottom: 1px solid #F1F1F1;
+    padding: 9px 5px 5px 5px;
     margin: 0 5px;
 
+    &:hover {
+        cursor: pointer;
+        background: adjust-lightness($sidebar_background-color, -3);
+    }
     h3 {
         float: left;
         color: #777;
+    }
+    .note {
+        font-size: 12px;
+        font-style: italic;
+        color: #666;
     }
 }
 
@@ -30,7 +40,7 @@ Purpose of the stylesheet follows.
 }
 
 #post-box {
-    @include opacity(.9);
+    @include opacity(.95);
 
     background: #000;
     width: 100%; height: 100%;
@@ -47,7 +57,7 @@ Purpose of the stylesheet follows.
         position: absolute;
         top: 100px; left: 50%;
         width: $options-w;
-        margin: 0 0 0 $options-w/2*-1;
+        margin: 0 0 0 -400px;
 
         h2 {
             text-align: center;

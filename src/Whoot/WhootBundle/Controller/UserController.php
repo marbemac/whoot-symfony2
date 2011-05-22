@@ -214,6 +214,30 @@ class UserController extends ContainerAware
         ), $response);        
     }
 
+    public function settingsAction($username)
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if ($username != $user->getUsername())
+        {
+            return new RedirectResponse($this->container->get('router')->generate('homepage'));
+        }
+
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+            // return $response;
+        }
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:User:settings.html.twig', array(
+            'user' => $user,
+            'navSelected' => 'settings'
+        ), $response);
+    }
+
     /**
      * Edit one user, show the edit form
      */

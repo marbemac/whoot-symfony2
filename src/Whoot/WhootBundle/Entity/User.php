@@ -2,6 +2,8 @@
 
 namespace Whoot\WhootBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
     
 use FOS\UserBundle\Entity\User as BaseUser;
@@ -10,54 +12,54 @@ use Whoot\WhootBundle\Entity\Post;
 use Whoot\WhootBundle\Entity\UsersPosts;
 
 /**
- * @orm:Entity
- * @orm:Table(name="user")
+ * @ORM\Entity
+ * @ORM\Table(name="user")
  */
 class User extends BaseUser
 {
     /**
      * @var integer $id
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:generatedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\generatedValue(strategy="AUTO")
      */
     protected $id;
     
     /**
      * @var string $status
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      */
     protected $status;
 
     /**
      * @var string $profileImage
-     * @orm:Column(type="string", name="profile_image", nullable=true)
+     * @ORM\Column(type="string", name="profile_image", nullable=true)
      */
     protected $profileImage;
     
     /**
      * @var string $firstName
-     * @orm:Column(type="string", length="255", name="first_name")
+     * @ORM\Column(type="string", length="255", name="first_name")
      * 
-     * @assert:NotBlank()
-     * @assert:MinLength(2)
+     * @ASSERT\NotBlank()
+     * @ASSERT\MinLength(2)
      */
     private $firstName;
     
     /**
      * @var string $lastName
-     * @orm:Column(type="string", length="255", name="last_name")
+     * @ORM\Column(type="string", length="255", name="last_name")
      * 
-     * @assert:NotBlank()
-     * @assert:MinLength(2)
+     * @ASSERT\NotBlank()
+     * @ASSERT\MinLength(2)
      */    
     private $lastName;
 
     /**
      * @var string $gender
-     * @orm:Column(type="string", length="2")
+     * @ORM\Column(type="string", length="2")
      * 
-     * @assert:Choice(
+     * @ASSERT\Choice(
      *     choices = {"m1", "m2", "m3", "f1", "f2", "f3"},
      *     message = "Choose a valid gender."
      * )
@@ -66,11 +68,11 @@ class User extends BaseUser
     
     /**
      * @var string $zipcode
-     * @orm:Column(type="string", length="25")
+     * @ORM\Column(type="string", length="25")
      * 
-     * @assert:NotBlank()
-     * @assert:MinLength(5)
-     * @assert:Regex(
+     * @ASSERT\NotBlank()
+     * @ASSERT\MinLength(5)
+     * @ASSERT\Regex(
      *     pattern = "/\d+\",
      *     message = "Please input a valid zipcode."
      * )
@@ -80,21 +82,21 @@ class User extends BaseUser
     /**
      * @var UsersPosts
      *
-     * @orm:OneToMany(targetEntity="UsersPosts", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="UsersPosts", mappedBy="user", cascade={"persist"})
      */
     protected $posts;
 
     /**
      * @var UserFollowing
      *
-     * @orm:OneToMany(targetEntity="UserFollowing", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="UserFollowing", mappedBy="user")
      */
     protected $following;
 
     /**
      * @var UserFollowing
      *
-     * @orm:OneToMany(targetEntity="UserFollowing", mappedBy="following")
+     * @ORM\OneToMany(targetEntity="UserFollowing", mappedBy="following")
      */
     protected $followers;
 

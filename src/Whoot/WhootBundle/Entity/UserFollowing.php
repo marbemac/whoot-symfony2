@@ -2,59 +2,60 @@
 
 namespace Whoot\WhootBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
     
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
- * @orm:Entity
- * @orm:Table(name="user_following")
- * @orm:HasLifecycleCallbacks
+ * @ORM\Entity
+ * @ORM\Table(name="user_following")
+ * @ORM\HasLifecycleCallbacks
  */
 class UserFollowing
 {
     /**
      * @var integer $id
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:generatedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\generatedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var string $status
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      */
     protected $status;
 
     /**
      * @var dateTime $createdAt
-     * @orm:Column(type="datetime", name="created_at", nullable=true)
+     * @ORM\Column(type="datetime", name="created_at", nullable=true)
      */
     protected $createdAt;
 
     /**
      * @var dateTime $deletedAt
-     * @orm:Column(type="datetime", name="deleted_at", nullable=true)
+     * @ORM\Column(type="datetime", name="deleted_at", nullable=true)
      */
     protected $deletedAt;
 
     /**
      * @var User $deletedBy
-     * @orm:ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User")
-     * @orm:JoinColumn(name="deleted_by", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User")
+     * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
      */
     protected $deletedBy;    
 
     /**
-     * @orm:ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="following", cascade={"persist"})
-     * @orm:JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="following", cascade={"persist"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
 
     /**
-     * @orm:ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="followers", cascade={"persist"})
-     * @orm:JoinColumn(name="following_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="followers", cascade={"persist"})
+     * @ORM\JoinColumn(name="following_id", referencedColumnName="id")
      */
     protected $following;
 
@@ -186,7 +187,7 @@ class UserFollowing
     }
 
     /**
-     * @orm:prePersist
+     * @ORM\prePersist
      */
     public function touchCreated()
     {

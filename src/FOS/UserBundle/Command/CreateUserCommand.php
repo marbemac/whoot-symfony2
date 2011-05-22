@@ -2,14 +2,13 @@
 
 namespace FOS\UserBundle\Command;
 
-use FOS\UserBundle\Model\User;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Bundle\FrameworkBundle\Command\Command as BaseCommand;
+use Symfony\Bundle\FrameworkBundle\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Output\Output;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use FOS\UserBundle\Model\User;
 
 /*
  * This file is part of the FOS\UserBundle
@@ -22,7 +21,7 @@ use Symfony\Component\Console\Output\Output;
  * with this source code in the file LICENSE.
  */
 
-class CreateUserCommand extends BaseCommand
+class CreateUserCommand extends Command
 {
     /**
      * @see Command
@@ -76,9 +75,9 @@ EOT
         $inactive   = $input->getOption('inactive');
         $superadmin = $input->getOption('super-admin');
 
-        $creator = $this->container->get('fos_user.user_creator');
-
-        $creator->create($username, $password, $email, $inactive, $superadmin);
+        $manipulator = $this->container->get('fos_user.user_manipulator');
+        $user = $manipulator->create($username, $password, $email, !$inactive, $superadmin);
+        $this->container->get('fos_user.ace_manager')->createUserAce($user);
 
         $output->writeln(sprintf('Created user <comment>%s</comment>', $username));
     }

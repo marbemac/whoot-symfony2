@@ -2,17 +2,17 @@
 
 namespace FOS\UserBundle\Command;
 
-use FOS\UserBundle\Model\User;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Bundle\FrameworkBundle\Command\Command as BaseCommand;
+use Symfony\Bundle\FrameworkBundle\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use FOS\UserBundle\Model\User;
 
 /**
  * CreateUserCommand
  */
-class ChangePasswordCommand extends BaseCommand
+class ChangePasswordCommand extends Command
 {
     /**
      * @see Command
@@ -52,9 +52,8 @@ EOT
         $username = $input->getArgument('username');
         $password = $input->getArgument('password');
 
-        $changer = $this->container->get('fos_user.user_password_changer');
-
-        $changer->change($username, $password);
+        $manipulator = $this->container->get('fos_user.user_manipulator');
+        $manipulator->changePassword($username, $password);
 
         $output->writeln(sprintf('Changed password for user <comment>%s</comment>', $username));
     }

@@ -69,16 +69,18 @@ ORM User class
 
     namespace MyProject\MyBundle\Entity;
     use FOS\UserBundle\Entity\User as BaseUser;
+    use Doctrine\ORM\Mapping as ORM;
 
     /**
-     * @orm:Entity
+     * @ORM\Entity
+     * @ORM\Table(name="fos_user")
      */
     class User extends BaseUser
     {
         /**
-         * @orm:Id
-         * @orm:Column(type="integer")
-         * @orm:generatedValue(strategy="AUTO")
+         * @ORM\Id
+         * @ORM\Column(type="integer")
+         * @ORM\generatedValue(strategy="AUTO")
          */
         protected $id;
 
@@ -89,6 +91,10 @@ ORM User class
         }
     }
 
+.. note::
+
+    ``User`` is a reserved keyword in SQL so you cannot use it as table name.
+
 MongoDB User class
 ~~~~~~~~~~~~~~~~~~
 
@@ -98,13 +104,14 @@ MongoDB User class
 
     namespace MyProject\MyBundle\Document;
     use FOS\UserBundle\Document\User as BaseUser;
+    use Doctrine\ODM\MongoDB\Mapping as MongoDB;
 
     /**
-     * @mongodb:Document
+     * @MongoDB\Document
      */
     class User extends BaseUser
     {
-        /** @mongodb:Id(strategy="auto") */
+        /** @MongoDB\Id(strategy="auto") */
         protected $id;
 
         public function __construct()
@@ -280,10 +287,10 @@ routes:
 
     # app/config/routing.yml
     fos_user_security:
-        resource: @FOSUserBundle/Resources/config/routing/security.xml
+        resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
     fos_user_user:
-        resource: @FOSUserBundle/Resources/config/routing/user.xml
+        resource: "@FOSUserBundle/Resources/config/routing/user.xml"
         prefix: /user
 
 ::
@@ -357,9 +364,40 @@ A new instance of your User class can be created by the user manager::
 Updating a User object
 ----------------------
 
-When creating or updating a User object you need to call the ``updateUser``
-method of the user manager to update some fields (encoded password, canonical
-fields...). This will also persist the entity.
+When creating or updating a User object you need to update the encoded password
+and the canonical fields. To make it easier, the bundle comes with a Doctrine
+listener handling this for you behind the scene.
+
+If you don't want to use the Doctrine listener, you can disable it. In this case
+you will have to call the ``updateUser`` method of the user manager each time
+you do a change in your entity.
+
+In YAML:
+
+::
+
+    # app/config/config.yml
+    fos_user:
+        db_driver: orm
+        firewall_name: main
+        use_listener: false
+        class:
+            model:
+                user: MyProject\MyBundle\Entity\User
+
+Or if you prefer XML:
+
+::
+
+    # app/config/config.xml
+
+    <fos_user:config db-driver="orm" firewall-name="main" use-listener="false">
+        <fos_user:class>
+            <fos_user:model
+                user="MyProject\MyBundle\Entity\User"
+            />
+        </fos_user:class>
+    </fos_user:config>
 
 .. note::
 
@@ -421,19 +459,25 @@ ORM
 
     namespace MyProject\MyBundle\Entity;
     use FOS\UserBundle\Entity\Group as BaseGroup;
+    use Doctrine\ORM\Mapping as ORM;
 
     /**
-     * @orm:Entity
+     * @ORM\Entity
+     * @ORM\Table(name="fos_group")
      */
     class Group extends BaseGroup
     {
         /**
-         * @orm:Id
-         * @orm:Column(type="integer")
-         * @orm:generatedValue(strategy="AUTO")
+         * @ORM\Id
+         * @ORM\Column(type="integer")
+         * @ORM\generatedValue(strategy="AUTO")
          */
         protected $id;
     }
+
+.. note::
+
+    ``Group`` is also a reserved keyword in SQL so it cannot be used either.
 
 ODM
 ~~~
@@ -444,13 +488,14 @@ ODM
 
     namespace MyProject\MyBundle\Document;
     use FOS\UserBundle\Document\Group as BaseGroup;
+    use Doctrine\ODM\MongoDB\Mapping as MongoDB;
 
     /**
-     * @mongodb:Document
+     * @MongoDB\Document
      */
     class Group extends BaseGroup
     {
-        /** @mongodb:Id(strategy="auto") */
+        /** @MongoDB\Id(strategy="auto") */
         protected $id;
     }
 
@@ -468,24 +513,26 @@ ORM
 
     namespace MyProject\MyBundle\Entity;
     use FOS\UserBundle\Entity\User as BaseUser;
+    use Doctrine\ORM\Mapping as ORM;
 
     /**
-     * @orm:Entity
+     * @ORM\Entity
+     * @ORM\Table(name="fos_user")
      */
     class User extends BaseUser
     {
         /**
-         * @orm:Id
-         * @orm:Column(type="integer")
-         * @orm:generatedValue(strategy="AUTO")
+         * @ORM\Id
+         * @ORM\Column(type="integer")
+         * @ORM\generatedValue(strategy="AUTO")
          */
         protected $id;
 
         /**
-         * @orm:ManyToMany(targetEntity="MyProject\MyBundle\Entity\Group")
-         * @orm:JoinTable(name="fos_user_user_group",
-         *      joinColumns={@orm:JoinColumn(name="user_id", referencedColumnName="id")},
-         *      inverseJoinColumns={@orm:JoinColumn(name="group_id", referencedColumnName="id")}
+         * @ORM\ManyToMany(targetEntity="MyProject\MyBundle\Entity\Group")
+         * @ORM\JoinTable(name="fos_user_user_group",
+         *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+         *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
          * )
          */
         protected $groups;
@@ -500,16 +547,17 @@ ODM
 
     namespace MyProject\MyBundle\Document;
     use FOS\UserBundle\Document\User as BaseUser;
+    use Doctrine\ODM\MongoDB\Mapping as MongoDB;
 
     /**
-     * @mongodb:Document
+     * @MongoDB\Document
      */
     class User extends BaseUser
     {
-        /** @mongodb:Id(strategy="auto") */
+        /** @MongoDB\Id(strategy="auto") */
         protected $id;
 
-        /** @mongodb:ReferenceMany(targetDocument="MyProject\MyBundle\Document\Group") */
+        /** @MongoDB\ReferenceMany(targetDocument="MyProject\MyBundle\Document\Group") */
         protected $groups;
     }
 
@@ -528,6 +576,7 @@ All configuration options are listed below::
     fos_user:
         db_driver:     mongodb
         firewall_name: main
+        use_listener:  true
         class:
             model:
                 user:  MyProject\MyBundle\Document\User
@@ -552,6 +601,8 @@ All configuration options are listed below::
             reset_password:  ~
         form_validation_groups:
             user: ~             # This value is an array of groups
+            change_password: ~  # This value is an array of groups
+            reset_password: ~   # This value is an array of groups
         email:
             from_email: ~       # { admin@example.com: Sender_name }
             confirmation:
@@ -603,7 +654,7 @@ Security configuration
         firewalls:
             main:
                 pattern:      .*
-                form-login:
+                form_login:
                     provider:       fos_userbundle
                     login_path:     /login
                     use_forward:    false

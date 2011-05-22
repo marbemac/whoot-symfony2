@@ -2,12 +2,10 @@
 
 namespace FOS\UserBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\Command as BaseCommand;
+use Symfony\Bundle\FrameworkBundle\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use FOS\UserBundle\Model\User;
 
@@ -30,7 +28,7 @@ use FOS\UserBundle\Model\User;
  * @author     Matthieu Bontemps <matthieu@knplabs.com>
  * @author     Thibault Duplessis <thibault.duplessis@gmail.com>
  */
-class PromoteSuperAdminCommand extends BaseCommand
+class PromoteSuperAdminCommand extends Command
 {
     /**
      * @see Command
@@ -61,9 +59,8 @@ EOT
 
         $username = $input->getArgument('username');
 
-        $promoter = $this->container->get('fos_user.user_promoter');
-
-        $promoter->promote($username);
+        $manipulator = $this->container->get('fos_user.user_manipulator');
+        $manipulator->promote($username);
 
         $output->writeln(sprintf('User "%s" has been promoted as a super administrator.', $username));
     }

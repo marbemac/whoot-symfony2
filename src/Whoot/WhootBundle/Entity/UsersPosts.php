@@ -2,71 +2,72 @@
 
 namespace Whoot\WhootBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
     
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
- * @orm:Entity
- * @orm:Table(name="users_posts")
- * @orm:HasLifecycleCallbacks
+ * @ORM\Entity
+ * @ORM\Table(name="users_posts")
+ * @ORM\HasLifecycleCallbacks
  */
 class UsersPosts
 {
     /**
      * @var integer $id
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:generatedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\generatedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var string $status
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      */
     protected $status;
 
     /**
      * @var string $approved
-     * @orm:Column(type="boolean")
+     * @ORM\Column(type="boolean")
      */
     protected $approved;
 
     /**
      * @var dateTime $updatedAt
-     * @orm:Column(type="datetime", name="updated_at", nullable=true)
+     * @ORM\Column(type="datetime", name="updated_at", nullable=true)
      */
     protected $updatedAt;
 
     /**
      * @var dateTime $createdAt
-     * @orm:Column(type="datetime", name="created_at", nullable=true)
+     * @ORM\Column(type="datetime", name="created_at", nullable=true)
      */
     protected $createdAt;
 
     /**
      * @var dateTime $deletedAt
-     * @orm:Column(type="datetime", name="deleted_at", nullable=true)
+     * @ORM\Column(type="datetime", name="deleted_at", nullable=true)
      */
     protected $deletedAt;
 
     /**
      * @var User $deletedBy
-     * @orm:ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User")
-     * @orm:JoinColumn(name="deleted_by", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User")
+     * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
      */
     protected $deletedBy;    
 
     /**
-     * @orm:ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="post", cascade={"persist", "remove"})
-     * @orm:JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="post", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
 
     /**
-     * @orm:ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Post", inversedBy="user", cascade={"persist", "remove"})
-     * @orm:JoinColumn(name="post_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Post", inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
     protected $post;
 
@@ -229,7 +230,7 @@ class UsersPosts
     }
 
     /**
-     * @orm:prePersist
+     * @ORM\prePersist
      */
     public function touchCreated()
     {
@@ -237,7 +238,7 @@ class UsersPosts
     }
 
     /**
-     * @orm:preUpdate
+     * @ORM\preUpdate
      */
     public function touchUpdated()
     {

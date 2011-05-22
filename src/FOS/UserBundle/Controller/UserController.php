@@ -9,9 +9,6 @@
 
 namespace FOS\UserBundle\Controller;
 
-use Symfony\Component\Security\Acl\Permission\MaskBuilder;
-use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
-use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -42,6 +39,7 @@ class UserController extends ContainerAware
     public function showAction($username)
     {
         $user = $this->findUserBy('username', $username);
+
         return $this->container->get('templating')->renderResponse('FOSUserBundle:User:show.html.'.$this->getEngine(), array('user' => $user));
     }
 
@@ -58,6 +56,7 @@ class UserController extends ContainerAware
         if ($process) {
             $this->setFlash('fos_user_user_update', 'success');
             $userUrl =  $this->container->get('router')->generate('fos_user_user_show', array('username' => $user->getUsername()));
+
             return new RedirectResponse($userUrl);
         }
 
@@ -89,12 +88,7 @@ class UserController extends ContainerAware
                 $route = 'fos_user_user_confirmed';
             }
 
-            if ($this->container->has('security.acl.provider')) {
-                $provider = $this->container->get('security.acl.provider');
-                $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($user));
-                $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
-                $provider->updateAcl($acl);
-            }
+            $this->container->get('fos_user.ace_manager')->createUserAce($user);
 
             $this->setFlash('fos_user_user_create', 'success');
             $url = $this->container->get('router')->generate($route);
@@ -218,10 +212,10 @@ class UserController extends ContainerAware
         }
 
         $user->generateConfirmationToken();
-        $user->setPasswordRequestedAt(new \DateTime());
-        $this->container->get('fos_user.user_manager')->updateUser($user);
         $this->container->get('session')->set('fos_user_send_resetting_email/email', $user->getEmail());
         $this->container->get('fos_user.mailer')->sendResettingEmailMessage($user, $this->getEngine());
+        $user->setPasswordRequestedAt(new \DateTime());
+        $this->container->get('fos_user.user_manager')->updateUser($user);
 
         return new RedirectResponse( $this->container->get('router')->generate('fos_user_user_check_resetting_email'));
     }
@@ -304,8 +298,8 @@ class UserController extends ContainerAware
     protected function getUser()
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        if (!$user) {
-            throw new AccessDeniedException('A logged in user is required.');
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
         }
 
         return $user;

@@ -7,10 +7,10 @@ framework:
     secret:        %secret%
     charset:       UTF-8
     esi: ~
-    csrf_protection:
-        enabled: true
+    csrf_protection: true
     router:        { resource: "%kernel.root_dir%/config/routing.yml" }
-    validation:    { enabled: true, annotations: true }
+    validation:    { enabled: true, enable_annotations: true }
+    form:          true
     translator:    { fallback: en }
     templating:
         engines: ['twig']

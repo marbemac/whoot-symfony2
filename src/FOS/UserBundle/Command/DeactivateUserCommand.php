@@ -2,12 +2,10 @@
 
 namespace FOS\UserBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\Command as BaseCommand;
+use Symfony\Bundle\FrameworkBundle\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use FOS\UserBundle\Model\User;
 
@@ -29,7 +27,7 @@ use FOS\UserBundle\Model\User;
  * @subpackage FOS\UserBundle
  * @author     Antoine Hérault <antoine.herault@gmail.com>
  */
-class DeactivateUserCommand extends BaseCommand
+class DeactivateUserCommand extends Command
 {
     /**
      * @see Command
@@ -60,9 +58,8 @@ EOT
 
         $username = $input->getArgument('username');
 
-        $deactivator = $this->container->get('fos_user.user_deactivator');
-
-        $deactivator->deactivate($username);
+        $manipulator = $this->container->get('fos_user.user_manipulator');
+        $manipulator->deactivate($username);
 
         $output->writeln(sprintf('User "%s" has been deactivated.', $username));
     }

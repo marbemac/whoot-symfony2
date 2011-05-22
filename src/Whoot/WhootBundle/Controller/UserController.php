@@ -102,7 +102,10 @@ class UserController extends ContainerAware
 
         $user = $this->findUserBy('username', $username);
 
-        return $templating->renderResponse('WhootBundle:User:show.html.twig', array('user' => $user), $response);
+        return $templating->renderResponse('WhootBundle:User:show.html.twig', array(
+            'user' => $user,
+            'navSelected' => 'feed'
+        ), $response);
     }
     
     /**
@@ -167,6 +170,48 @@ class UserController extends ContainerAware
         return $this->container->get('templating')->renderResponse('WhootBundle:User:tag.html.twig', array(
             'object' => $object
         ), $response);
+    }
+
+    public function followersAction($username)
+    {
+        $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
+        $followers = $this->container->get('whoot.user_manager')->getFollowers($user);
+
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+            // return $response;
+        }
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:User:followers.html.twig', array(
+            'user' => $user,
+            'followers' => $followers,
+            'navSelected' => 'followers'
+        ), $response);
+    }
+
+    public function followingAction($username)
+    {
+        $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
+        $following = $this->container->get('whoot.user_manager')->getFollowing($user);
+
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+            // return $response;
+        }
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:User:following.html.twig', array(
+            'user' => $user,
+            'following' => $following,
+            'navSelected' => 'following'
+        ), $response);        
     }
 
     /**

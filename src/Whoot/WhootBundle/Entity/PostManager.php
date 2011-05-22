@@ -133,9 +133,10 @@ class PostManager
             $qb2 = $this->em->createQueryBuilder();
             $qb2->select(array('u.id'))
                ->from('Whoot\WhootBundle\Entity\User', 'u')
-               ->innerJoin('u.followers', 'f', 'WITH', 'f.user = :user')
+               ->innerJoin('u.followers', 'f', 'WITH', 'f.user = :user AND f.status = :status')
                ->setParameters(array(
-                   'user' => $user
+                   'user' => $user,
+                   'status' => 'Active'
                ));
             $query2 = $qb2->getQuery();
             $followingUsers = $query2->getArrayResult();

@@ -4,5 +4,17 @@ user_upload_picture:
     requirements:
         _method: POST
 
+user_followers:
+    pattern:  /{username}/followers
+    defaults: { _controller: WhootBundle:User:followers }
+    requirements:
+      _method: GET
+
+user_following:
+    pattern:  /{username}/following
+    defaults: { _controller: WhootBundle:User:following }
+    requirements:
+      _method: GET
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/user.xml"

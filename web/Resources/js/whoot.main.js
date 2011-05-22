@@ -115,6 +115,10 @@ $(function() {
         },
         style: {
             classes: 'ui-tooltip-blue ui-tooltip-shadow ui-tooltip-rounded my-pings-tip'
+        },
+        position: {
+            my: 'top center',
+            at: 'bottom center'
         }
     })
 

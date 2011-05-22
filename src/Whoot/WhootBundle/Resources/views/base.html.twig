@@ -82,6 +82,7 @@
                     <div id="content">
                         {% block content %}
                             <div id="page">
+                                {% block user_sidebar %}{% endblock %}
                                 {% block page %}
                                     <div id="page_content">
                                         {% render "WhootBundle:Post:postBox" %}

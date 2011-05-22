@@ -23,15 +23,17 @@ class UserManager extends BaseUserManager
         $this->em = $em;
     }
 
-    public function getUser($userId)
+    public function getUser(array $criteria)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
-           ->from('Whoot\WhootBundle\Entity\User', 'u')
-           ->where('u.id = :userId')
-           ->setParameters(array(
-               'userId' => $userId
-           ));
+           ->from('Whoot\WhootBundle\Entity\User', 'u');
+        
+        foreach ($criteria as $key => $val)
+        {
+            $qb->andWhere('u.'.$key.' = :'.$key);
+            $qb->setParameter($key, $val);
+        }
 
         $query = $qb->getQuery();
         $user = $query->getSingleResult(Query::HYDRATE_OBJECT);
@@ -108,7 +110,41 @@ class UserManager extends BaseUserManager
         return $response;
     }
 
-    public function findUndecided($since)
+    public function getFollowing($user)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select(array('u'))
+           ->from('Whoot\WhootBundle\Entity\User', 'u')
+           ->innerJoin('u.followers', 'f', 'WITH', 'f.user = :user AND f.status = :status')
+           ->where('u.status = :status')
+           ->setParameters(array(
+               'user' => $user,
+               'status' => 'Active'
+           ));
+        $query = $qb->getQuery();
+        $followingUsers = $query->getArrayResult();
+
+        return $followingUsers;
+    }
+
+    public function getFollowers($user)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select(array('u'))
+           ->from('Whoot\WhootBundle\Entity\User', 'u')
+           ->innerJoin('u.following', 'f', 'WITH', 'f.following = :user AND f.status = :status')
+           ->where('u.status = :status')
+           ->setParameters(array(
+               'user' => $user,
+               'status' => 'Active'
+           ));
+        $query = $qb->getQuery();
+        $followersUsers = $query->getArrayResult();
+
+        return $followersUsers;
+    }
+
+    public function findUndecided($user, $since)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
@@ -122,6 +158,18 @@ class UserManager extends BaseUserManager
                'since' => $since,
                'status' => 'Active'
            ));
+
+        if ($user)
+        {
+            $followingUsers = $this->getFollowing($user);
+            $following = array();
+            foreach ($followingUsers as $followingUser)
+            {
+                $following[] = $followingUser['id'];
+            }
+            
+            $qb->andwhere($qb->expr()->in('u.id', $following));
+        }
 
         $query = $qb->getQuery();
         $users = $query->getArrayResult();

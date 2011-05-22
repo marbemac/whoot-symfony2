@@ -1,6 +1,11 @@
-<div>
-    User Teaser<br />
-    Score: [<span class="s_{{ object.id }}">{{ object.score }}</span>] <a class="p" href="{{ path('fos_user_user_show', {'username': object.User.username} ) }}">{{ object.User.username }}</a>
-    
-    {% render "WhootBundle:Follow:tag" with {'toObject': object.id} %}
-</div>
+<li class="teaser user {{ loop is defined and loop.first ? 'first' : '' }}">
+    <a class="profile-image" href="{{ path('fos_user_user_show', {'username': user.username}) }}" title="{{ user.firstName }} {{ user.lastName }}">
+        <img src="{{ user.profileImage is defined ? '/slir/w30-h30-c1:1'~user.profileImage : gravatar(user.email, '30', 'r', 'mm') }}" alt="" />
+    </a>
+    <a class="user" href="{{ path('fos_user_user_show', {'username': user.username}) }}">{{ user.firstName }} {{ user.lastName }}</a>
+    <div class="actions">
+        {% render "WhootBundle:Follow:tag" with {'toUser': user.id} %}
+        -
+        {% render "WhootBundle:Ping:tag" with {'toUser': user.id} %}
+    </div>
+</li>

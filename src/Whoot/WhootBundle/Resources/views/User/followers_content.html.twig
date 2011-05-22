@@ -1,0 +1,5 @@
+<ul class="feed followers">
+    {% for user in followers %}
+        {% include "WhootBundle:User:teaser.html.twig" with {'user': user} %}
+    {% endfor %}
+</ul>

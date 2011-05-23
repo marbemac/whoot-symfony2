@@ -18,6 +18,23 @@
         <div class="label">Optional Note</div>
         <textarea class="note">{{ myPost is not none ? myPost.post.note : '' }}</textarea>
 
-        <div class="submit" data-url="{{ path('post_create') }}">Submit</div>
+        <div class="open-invite-toggle">+ Open Invite</div>
+        <div class="open-invite-help">Know exactly what you're doing tonight and want to invite people?</div>
+        <div class="clear"></div>
+
+        <div class="open-invite-C">
+            <div class="label2">Where?</div>
+            <input type="text" id="post-where" data-lat="{{ app.session.get('location')|json_decode.lat }}" data-lon="{{ app.session.get('location')|json_decode.lon }}" />
+            <div class="label2">When?</div>
+            <input type="text" id="post-when" />
+            <div class="clear"></div>
+        </div>
+
+        <div class="actions">
+            <div class="submit" data-url="{{ path('post_create') }}">Submit</div>
+            {% if myPost is not none %}
+                <div class="cancel">Cancel</div>
+            {% endif %}
+        </div>
     </div>
 </div>

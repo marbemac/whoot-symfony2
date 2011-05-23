@@ -142,7 +142,10 @@ $(function() {
     })
 
     // Scroll to my post
-    $('#my-post').live('click', function() {
+    $('#my-post').live('click', function(ev) {
+        if ($(ev.target).attr('id') == 'change-post')
+            return;
+        
         location.href = $(this).data('target');
         $($(this).data('target')).click();
     })
@@ -165,6 +168,11 @@ $(function() {
         }, 'json');
     })
 
+    // Cancel a change post
+    $('#post-box .cancel').live('click', function() {
+        $('#post-box').fadeOut(300);
+    })
+
     // Toggle the activity of a post
     $('#post-feed li').live('click', function(ev) {
         if ($(ev.target).is('a'))
@@ -172,6 +180,15 @@ $(function() {
 
         var $self = $(this);
         $self.find('.teaser.post').toggleClass('on');
+    })
+
+    // Show the post-where places autocomplete
+    $('#post-where').livequery(function() {
+        var $self = $(this);
+        var bounds = new google.maps.LatLngBounds(
+              new google.maps.LatLng($self.data('lat'), $self.data('lon')),
+              new google.maps.LatLng($self.data('lat'), $self.data('lon')));
+        new google.maps.places.Autocomplete(document.getElementById('post-where'), {bounds: bounds});
     })
 
     /*

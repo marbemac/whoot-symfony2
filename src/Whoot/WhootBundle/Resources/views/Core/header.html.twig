@@ -1,0 +1,21 @@
+<header id="header">
+    {% block header %}
+
+        <a class="logo" href="{{ path('homepage') }}">
+            <div class="image"></div>
+            The Whoot
+            | {{ app.session.get('location')|json_decode.location }}
+        </a>
+
+
+        <div class="nav">
+            <a class="feed" href="{{ path('homepage') }}">Feed</a>
+            <a class="open-invite" href="{{ path('homepage') }}">Open Invites</a>
+        </div>
+
+        <div class="search">
+            <input type="text" />
+        </div>
+
+    {% endblock header %}
+</header>

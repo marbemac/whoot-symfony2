@@ -52,7 +52,7 @@ $(function(){
      */
 
     amplify.subscribe("post_created", function( data ) {
-        $('#post-box').fadeOut(500);
+        $('#post-box').fadeOut(300);
 
         $('#my-post').replaceWith(data.myPost);
     });

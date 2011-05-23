@@ -7,6 +7,37 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CoreController extends ContainerAware
 {
+    public function headerAction()
+    {
+        $request = $this->container->get('request');
+
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        $session = $this->container->get('request')->getSession();
+        $location = json_decode($session->get('location'));
+        if (!$location || !$location->zipcode)
+        {
+            $location = $this->container->get('whoot.user_manager')->getLocation($this->container->get('security.context')->getToken()->getUser()->getZipcode());
+            $locationData = array();
+            $locationData['zipcode'] = $location['zipcode'];
+            $locationData['lat'] = $location['lat'];
+            $locationData['lon'] = $location['lon'];
+            $locationData['city'] = $location['city'];
+            $locationData['state'] = $location['state'];
+            $locationData['location'] = $location['locationText'];
+            $session->set('location', json_encode($locationData));
+        }
+
+        if ($response->isNotModified($request)) {
+            // return the 304 Response immediately
+            //return $response;
+        }
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:Core:header.html.twig', array(), $response);
+    }
+
     public function homeAction()
     {
         $request = $this->container->get('request');

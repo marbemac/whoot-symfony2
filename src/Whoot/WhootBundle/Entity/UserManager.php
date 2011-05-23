@@ -213,4 +213,27 @@ class UserManager extends BaseUserManager
 
         return $response;
     }
+
+    /**
+     * Get location data from zipcode.
+     *
+     * @param  integer $zipcode
+     *
+     * @return array
+     */
+    public function getLocation($zipcode)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select(array('l'))
+           ->from('Whoot\WhootBundle\Entity\Zipcode', 'l')
+           ->where('l.zipcode = :zipcode')
+           ->setParameters(array(
+               'zipcode' => $zipcode
+           ));
+
+        $query = $qb->getQuery();
+        $result = $query->getArrayResult();
+
+        return $result[0] ? $result[0] : null;
+    }
 }

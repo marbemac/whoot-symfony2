@@ -61,7 +61,7 @@ Purpose of the stylesheet follows.
 
         h2 {
             text-align: center;
-            margin: 15px 0 0 0;
+            margin: 15px 0 -10px 0;
         }
 
         .label {
@@ -119,16 +119,65 @@ Purpose of the stylesheet follows.
             margin: 5px 0 0 5px;
             width: $options-w - 25;
         }
-        .submit {
+        .open-invite-toggle {
+            float: left;
+            color: $link-color;
+            font-size: 20px;
+            margin: 5px 0 6px 9px;
+        }
+        .open-invite-toggle:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .open-invite-help {
+            float: left;
+            font-size: 14px;
+            color: #666;
+            cursor: default;
+            margin: 11px 0 0 15px;
+        }
+        .open-invite-C {
+            margin: 5px 0 5px 20px;
+
+            .label2 {
+                float: left;
+                clear: both;
+                font-size: 14px;
+                margin: 0 0 10px 0;
+                width: 60px;
+                color: #666;
+            }
+            input {
+                float: left;
+                width: 200px;
+                border: 1px solid #999;
+                padding: 3px 5px;
+            }
+            .pac-container {
+                width: 200px !important;
+                top: 21px !important;
+                left: 60px !important;
+            }
+        }
+        .actions {
+            border-top: 1px solid #DDD;
+            margin: 0 7px;
+        }
+        .submit,
+        .cancel {
             font-size: 20px;
             float: left;
             font-weight: bold;
             color: $link-color;
-            margin: 10px 0 10px 10px;
+            margin: 7px 0 9px 7px;
         }
-        .submit:hover {
+        .submit:hover,
+        .cancel:hover {
             cursor: pointer;
             text-decoration: underline;
+        }
+        .cancel {
+            margin-left: 30px;
         }
     }
 }

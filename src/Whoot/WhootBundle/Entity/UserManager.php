@@ -162,12 +162,17 @@ class UserManager extends BaseUserManager
         if ($user)
         {
             $followingUsers = $this->getFollowing($user);
+
+            // If they are not following anyone, there will be no undecided...
+            if (count($followingUsers) == 0)
+                return array();
+
             $following = array();
             foreach ($followingUsers as $followingUser)
             {
                 $following[] = $followingUser['id'];
             }
-            
+
             $qb->andwhere($qb->expr()->in('u.id', $following));
         }
 
@@ -234,6 +239,6 @@ class UserManager extends BaseUserManager
         $query = $qb->getQuery();
         $result = $query->getArrayResult();
 
-        return $result[0] ? $result[0] : null;
+        return isset($result[0]) ? $result[0] : null;
     }
 }

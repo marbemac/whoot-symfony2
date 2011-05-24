@@ -21,12 +21,12 @@ class CoreController extends ContainerAware
         {
             $location = $this->container->get('whoot.user_manager')->getLocation($this->container->get('security.context')->getToken()->getUser()->getZipcode());
             $locationData = array();
-            $locationData['zipcode'] = $location['zipcode'];
-            $locationData['lat'] = $location['lat'];
-            $locationData['lon'] = $location['lon'];
-            $locationData['city'] = $location['city'];
-            $locationData['state'] = $location['state'];
-            $locationData['location'] = $location['locationText'];
+            $locationData['zipcode'] = isset($location['zipcode']) ? $location['zipcode'] : '';
+            $locationData['lat'] = isset($location['lat']) ? $location['lat'] : '';
+            $locationData['lon'] = isset($location['long']) ? $location['lon'] : '';
+            $locationData['city'] = isset($location['city']) ? $location['city'] : '';
+            $locationData['state'] = isset($location['state']) ? $location['state'] : '';
+            $locationData['location'] = isset($location['locationText']) ? $location['locationText'] : '';
             $session->set('location', json_encode($locationData));
         }
 

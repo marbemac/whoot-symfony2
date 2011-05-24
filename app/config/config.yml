@@ -14,12 +14,14 @@ framework:
     translator:    { fallback: en }
     templating:
         engines: ['twig']
-        assets_version: 0.0.0.1
     session:
         default_locale: %locale%
         lifetime:       3600
         auto_start:     true
         storage_id:     session.storage.pdo
+    annotations:
+        cache: file
+        debug: %kernel.debug%
 
 parameters:
     pdo.db_options:
@@ -51,18 +53,15 @@ doctrine:
         logging:  %kernel.debug%
 
     orm:
-        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+        auto_generate_proxy_classes: true
+        proxy_namespace: Proxies
+        proxy_dir: %kernel.cache_dir%/doctrine/orm/Proxies
         default_entity_manager: default
-        entity_managers:
-            default:
-                connection: default
-                metadata_cache_driver:  array
-                query_cache_driver:     array
-                result_cache_driver:    array
-                mappings:
-                    FOSUserBundle: ~
-                    WhootBundle: ~
-
+        metadata_cache_driver: apc
+        query_cache_driver: apc
+        result_cache_driver: apc
+        
 # Twig Configuration
 twig:
     debug:            %kernel.debug%

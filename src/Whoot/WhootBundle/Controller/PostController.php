@@ -112,10 +112,9 @@ class PostController extends ContainerAware
 
         $request = $this->container->get('request');
         $type = $request->request->get('type', 'working');
-        $note = mysql_escape_string($request->request->get('note', ''));
+        $note = $request->request->get('note', '');
         $securityContext = $this->container->get('security.context');
         $user = $securityContext->getToken()->getUser();
-        $templating = $this->container->get('templating');
 
         $postResult = $this->container->get('whoot.post_manager')->togglePost($type, $note, $this->container->get('security.context')->getToken()->getUser());
 

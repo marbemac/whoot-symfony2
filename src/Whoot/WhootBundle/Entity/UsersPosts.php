@@ -60,13 +60,13 @@ class UsersPosts
     protected $deletedBy;    
 
     /**
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="post", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="post")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Post", inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Post", inversedBy="user")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
     protected $post;

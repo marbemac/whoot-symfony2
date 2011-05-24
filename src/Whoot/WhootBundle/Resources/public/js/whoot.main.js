@@ -196,12 +196,21 @@ $(function() {
     })
 
     // Toggle the activity of a post
-    $('#post-feed li').live('click', function(ev) {
+    $('#post-feed .teaser.post').live('click', function(ev) {
         if ($(ev.target).is('a'))
             return;
 
         var $self = $(this);
-        $self.find('.teaser.post').toggleClass('on');
+        $self.toggleClass('on');
+    })
+
+    // Toggle the activity of an open invite
+    $('#open-invite-feed .teaser.post').live('click', function(ev) {
+        if ($(ev.target).is('a'))
+            return;
+
+        var $self = $(this);
+        $self.next().toggle();
     })
 
     // Toggle the + Open Invite in the post box
@@ -234,6 +243,29 @@ $(function() {
             $('#post-address-lat').val(place.geometry.location.Ia);
             $('#post-address-lon').val(place.geometry.location.Ja);
         })
+    })
+
+    // Draw on post maps
+    $('.post-map').livequery(function() {
+        var $self = $(this);
+
+        var latlng = new google.maps.LatLng($self.data('lat'), $self.data('lon'));
+
+        var myOptions = {
+            zoom: 15,
+            center: latlng,
+            disableDefaultUI: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById($self.attr('id')),
+            myOptions);
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: $self.data('name')
+        });
     })
 
     /*

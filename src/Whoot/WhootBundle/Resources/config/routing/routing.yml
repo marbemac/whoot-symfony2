@@ -17,9 +17,9 @@ ping:
     resource: "@WhootBundle/Resources/config/routing/ping.yml"
     prefix:   /ping
 
-feed:
-  pattern: /f
-  defaults: { _controller: WhootBundle:Post:feed }
+open_invite_feed:
+  pattern: /oi
+  defaults: { _controller: WhootBundle:Post:openInviteFeed }
   requirements:
     _method: GET
 

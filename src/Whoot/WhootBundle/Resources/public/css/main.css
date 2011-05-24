@@ -210,7 +210,7 @@ ul, ol {
 .feed li {
   margin: 0 10px;
   border-top: 1px dotted #999;
-  padding: 5px;
+  padding: 0;
 }
 /* line 151, ../../compass/src/main.scss */
 .feed li.first {
@@ -970,63 +970,55 @@ Purpose of the stylesheet follows.
   color: #cc3300;
 }
 
-/* line 296, ../../compass/src/partials/_post.scss */
-#post-feed {
+/* line 297, ../../compass/src/partials/_post.scss */
+#post-feed,
+#open-invite-feed {
   position: relative;
   width: 100%;
   height: 100%;
   padding: 58px 0 0 0;
 }
-/* line 301, ../../compass/src/partials/_post.scss */
-#post-feed .no-post {
+/* line 302, ../../compass/src/partials/_post.scss */
+#post-feed .no-post,
+#open-invite-feed .no-post {
   margin: 10px;
 }
-/* line 304, ../../compass/src/partials/_post.scss */
-#post-feed h3 {
+/* line 305, ../../compass/src/partials/_post.scss */
+#post-feed h3,
+#open-invite-feed h3 {
   float: left;
   margin: 0px 10px 5px 10px;
   cursor: default;
 }
-/* line 309, ../../compass/src/partials/_post.scss */
+/* line 310, ../../compass/src/partials/_post.scss */
+#post-feed .teaser.post:hover,
+#open-invite-feed .teaser.post:hover {
+  background: #F8F7FF;
+  cursor: pointer;
+}
+
+/* line 318, ../../compass/src/partials/_post.scss */
 #post-feed .undecided-count {
   float: left;
   margin: -4px 0 0 10px;
   cursor: default;
 }
-/* line 314, ../../compass/src/partials/_post.scss */
-#post-feed .date-separator {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-  padding: 3px 10px;
-  margin: 5px 10px;
-  font-weight: bold;
-  font-size: 18px;
-  background: #DDD;
-}
-/* line 322, ../../compass/src/partials/_post.scss */
+/* line 323, ../../compass/src/partials/_post.scss */
 #post-feed .decided {
   margin-bottom: 20px;
 }
-/* line 325, ../../compass/src/partials/_post.scss */
-#post-feed .decided li:hover {
-  background: #F8F7FF;
-  cursor: pointer;
-}
 
-/* line 331, ../../compass/src/partials/_post.scss */
+/* line 328, ../../compass/src/partials/_post.scss */
 .teaser.post {
   overflow: hidden;
   height: 33px;
+  padding: 5px;
 }
-/* line 335, ../../compass/src/partials/_post.scss */
+/* line 333, ../../compass/src/partials/_post.scss */
 .teaser.post.on {
   height: auto;
 }
-/* line 339, ../../compass/src/partials/_post.scss */
+/* line 337, ../../compass/src/partials/_post.scss */
 .teaser.post .timer {
   width: 20px;
   height: 20px;
@@ -1035,7 +1027,7 @@ Purpose of the stylesheet follows.
   top: 7px;
   margin: 0 5px 0 0;
 }
-/* line 347, ../../compass/src/partials/_post.scss */
+/* line 345, ../../compass/src/partials/_post.scss */
 .teaser.post div.timer {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -1044,28 +1036,28 @@ Purpose of the stylesheet follows.
   -khtml-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 350, ../../compass/src/partials/_post.scss */
+/* line 348, ../../compass/src/partials/_post.scss */
 .teaser.post div.timer.working {
   background: #009966;
 }
-/* line 351, ../../compass/src/partials/_post.scss */
+/* line 349, ../../compass/src/partials/_post.scss */
 .teaser.post div.timer.low_in {
   background: #996699;
 }
-/* line 352, ../../compass/src/partials/_post.scss */
+/* line 350, ../../compass/src/partials/_post.scss */
 .teaser.post div.timer.low_out {
   background: #ff9900;
 }
-/* line 353, ../../compass/src/partials/_post.scss */
+/* line 351, ../../compass/src/partials/_post.scss */
 .teaser.post div.timer.big_out {
   background: #cc3300;
 }
-/* line 355, ../../compass/src/partials/_post.scss */
+/* line 353, ../../compass/src/partials/_post.scss */
 .teaser.post .profile-images {
   float: left;
   width: 130px;
 }
-/* line 359, ../../compass/src/partials/_post.scss */
+/* line 357, ../../compass/src/partials/_post.scss */
 .teaser.post .profile-images img {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -1076,18 +1068,18 @@ Purpose of the stylesheet follows.
   float: left;
   margin: 2px 0 0 5px;
 }
-/* line 365, ../../compass/src/partials/_post.scss */
+/* line 363, ../../compass/src/partials/_post.scss */
 .teaser.post .content {
   float: left;
   position: relative;
   color: #666;
 }
-/* line 370, ../../compass/src/partials/_post.scss */
+/* line 368, ../../compass/src/partials/_post.scss */
 .teaser.post .content .post {
   font-size: 16px;
   padding: 4px 0;
 }
-/* line 374, ../../compass/src/partials/_post.scss */
+/* line 372, ../../compass/src/partials/_post.scss */
 .teaser.post .content .note {
   font-size: 12px;
   font-style: italic;
@@ -1095,35 +1087,151 @@ Purpose of the stylesheet follows.
   left: -2px;
   min-height: 7px;
 }
-/* line 382, ../../compass/src/partials/_post.scss */
+/* line 380, ../../compass/src/partials/_post.scss */
 .teaser.post .jive-B {
   color: #156cd8;
   float: right;
   font-size: 16px;
   padding: 3px 12px;
 }
-/* line 388, ../../compass/src/partials/_post.scss */
+/* line 386, ../../compass/src/partials/_post.scss */
 .teaser.post .jive-B:hover {
   text-decoration: underline;
 }
-/* line 391, ../../compass/src/partials/_post.scss */
+/* line 389, ../../compass/src/partials/_post.scss */
+.teaser.post .post span {
+  font-weight: bold;
+}
+/* line 392, ../../compass/src/partials/_post.scss */
 .teaser.post.working .post span {
   color: #009966;
 }
-/* line 394, ../../compass/src/partials/_post.scss */
+/* line 395, ../../compass/src/partials/_post.scss */
 .teaser.post.low_in .post span {
   color: #996699;
 }
-/* line 397, ../../compass/src/partials/_post.scss */
+/* line 398, ../../compass/src/partials/_post.scss */
 .teaser.post.low_out .post span {
   color: #ff9900;
 }
-/* line 400, ../../compass/src/partials/_post.scss */
+/* line 401, ../../compass/src/partials/_post.scss */
 .teaser.post.big_out .post span {
   color: #cc3300;
 }
 
-/* line 405, ../../compass/src/partials/_post.scss */
+/* line 406, ../../compass/src/partials/_post.scss */
+.teaser.invite {
+  overflow: inherit;
+}
+/* line 409, ../../compass/src/partials/_post.scss */
+.teaser.invite .profile-image {
+  float: left;
+  margin: 1px 0 0 10px;
+  width: 50px;
+}
+/* line 414, ../../compass/src/partials/_post.scss */
+.teaser.invite .profile-image img {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 418, ../../compass/src/partials/_post.scss */
+.teaser.invite .post {
+  float: left;
+  margin: 3px 0 0 0;
+}
+/* line 422, ../../compass/src/partials/_post.scss */
+.teaser.invite .num-users {
+  float: right;
+  font-size: 16px;
+  margin: 3px 0 0 0;
+  cursor: default;
+  text-align: right;
+  width: 50px;
+}
+
+/* line 432, ../../compass/src/partials/_post.scss */
+.invite-details {
+  margin: 5px 0 0 0;
+  padding: 10px;
+  display: none;
+}
+/* line 437, ../../compass/src/partials/_post.scss */
+.invite-details .left {
+  float: left;
+  width: 200px;
+}
+/* line 441, ../../compass/src/partials/_post.scss */
+.invite-details .post-map {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  width: 180px;
+  height: 125px;
+  border: 2px solid #CCC;
+  margin: 0;
+}
+/* line 448, ../../compass/src/partials/_post.scss */
+.invite-details .num-people {
+  margin: 13px 0 5px 10px;
+}
+/* line 452, ../../compass/src/partials/_post.scss */
+.invite-details .users li {
+  margin: 5px 0 0 0;
+  border: none;
+}
+/* line 456, ../../compass/src/partials/_post.scss */
+.invite-details .users .profile-image {
+  margin: 0;
+  vertical-align: top;
+}
+/* line 460, ../../compass/src/partials/_post.scss */
+.invite-details .users .profile-image img {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 464, ../../compass/src/partials/_post.scss */
+.invite-details .users .name {
+  margin: 0;
+  padding: 0 0 0 10px;
+  position: relative;
+  top: 2px;
+}
+/* line 470, ../../compass/src/partials/_post.scss */
+.invite-details .right {
+  float: left;
+}
+/* line 473, ../../compass/src/partials/_post.scss */
+.invite-details h4 {
+  margin: 6px 0 0 0;
+}
+/* line 476, ../../compass/src/partials/_post.scss */
+.invite-details h5 {
+  color: #666;
+  margin: 4px 0 8px 0;
+}
+/* line 480, ../../compass/src/partials/_post.scss */
+.invite-details .note {
+  margin: 0 0 0 3px;
+}
+/* line 483, ../../compass/src/partials/_post.scss */
+.invite-details .activity-list {
+  border-top: 1px solid #DDD;
+  width: 510px;
+  padding-top: 10px;
+}
+
+/* line 490, ../../compass/src/partials/_post.scss */
 .ping-countdown {
   font-size: 12px;
   color: #999;
@@ -1131,24 +1239,24 @@ Purpose of the stylesheet follows.
   cursor: default;
 }
 
-/* line 412, ../../compass/src/partials/_post.scss */
+/* line 497, ../../compass/src/partials/_post.scss */
 .pinged {
   color: #999;
   cursor: default;
 }
 
-/* line 417, ../../compass/src/partials/_post.scss */
+/* line 502, ../../compass/src/partials/_post.scss */
 .activity-list {
   margin: 10px 0 5px 0;
 }
 
-/* line 421, ../../compass/src/partials/_post.scss */
+/* line 506, ../../compass/src/partials/_post.scss */
 .activity-post {
   overflow: hidden;
   *zoom: 1;
   margin: 5px 0 0 0;
 }
-/* line 426, ../../compass/src/partials/_post.scss */
+/* line 511, ../../compass/src/partials/_post.scss */
 .activity-post .time {
   color: #888;
   font-size: 10px;
@@ -1158,7 +1266,7 @@ Purpose of the stylesheet follows.
   text-align: right;
   padding: 0 8px 0 0;
 }
-/* line 435, ../../compass/src/partials/_post.scss */
+/* line 520, ../../compass/src/partials/_post.scss */
 .activity-post .message {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -1171,15 +1279,15 @@ Purpose of the stylesheet follows.
   font-size: 12px;
   border: 2px solid #E7E5FF;
 }
-/* line 442, ../../compass/src/partials/_post.scss */
+/* line 527, ../../compass/src/partials/_post.scss */
 .activity-post.create .message {
   background: #F8F7FF;
 }
-/* line 445, ../../compass/src/partials/_post.scss */
+/* line 530, ../../compass/src/partials/_post.scss */
 .activity-post.jive .message {
   background: #F9FFF8;
 }
-/* line 448, ../../compass/src/partials/_post.scss */
+/* line 533, ../../compass/src/partials/_post.scss */
 .activity-post.leave .message {
   background: #FFF7F9;
 }

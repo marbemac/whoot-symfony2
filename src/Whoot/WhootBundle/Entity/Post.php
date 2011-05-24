@@ -294,7 +294,7 @@ class Post
      */
     public function setLon($lon)
     {
-        $this->lat = $lon;
+        $this->lon = $lon;
     }
 
     /**

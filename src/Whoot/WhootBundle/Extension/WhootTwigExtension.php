@@ -23,11 +23,19 @@ class WhootTwigExtension extends \Twig_Extension {
         'big_out' => 'Raging'
     );
 
+    private $postTypesNoun = array(
+        'working' => '<span>work</span>',
+        'low_in' => '<span>stay in</span>',
+        'low_out' => '<span>relax</span>',
+        'big_out' => '<span>rage</span>'
+    );
+
     public function getFilters() {
         return array(
             'debug'       => new \Twig_Filter_Method($this, 'debug'),
             'printPostType'  => new \Twig_Filter_Method($this, 'printPostType'),
             'printPostTypeShort'  => new \Twig_Filter_Method($this, 'printPostTypeShort'),
+            'printPostTypeNoun'  => new \Twig_Filter_Method($this, 'printPostTypeNoun'),
             'timeLapse'  => new \Twig_Filter_Method($this, 'timeLapse'),
             'stripSlashes'  => new \Twig_Filter_Method($this, 'stripSlashes'),
             'truncate'  => new \Twig_Filter_Method($this, 'truncate'),
@@ -55,6 +63,11 @@ class WhootTwigExtension extends \Twig_Extension {
     public function printPostTypeShort($key)
     {
         return $this->postTypesShort[$key];
+    }
+
+    public function printPostTypeNoun($key)
+    {
+        return $this->postTypesNoun[$key];
     }
 
     public function stripSlashes($val)

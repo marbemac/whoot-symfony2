@@ -37,7 +37,7 @@ class PostController extends ContainerAware
         }
         else
         {
-            $posts = $this->container->get('whoot.post_manager')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)));
+            $posts = $this->container->get('whoot.post_manager')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), false);
         }
 
         $undecidedUsers = $this->container->get('whoot.user_manager')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)));
@@ -61,6 +61,49 @@ class PostController extends ContainerAware
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:feed.html.twig', array(
             'posts' => $posts,
             'undecidedUsers' => $undecidedUsers
+        ), $response);
+    }
+
+    /**
+     *
+     */
+    public function openInviteFeedAction($postTypes=null, $feedSort=null)
+    {
+        $response = new Response();
+        $feedFilters = $this->container->get('session')->get('feedFilters');
+
+        $postTypes = !$postTypes ? $feedFilters['postTypes'] : $postTypes;
+        $feedSort = !$feedSort ? $feedFilters['feedSort'] : $feedSort;
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        // Don't even bother getting objects if we aren't including ANY node types
+        if (empty($postTypes))
+        {
+            $openInvites = array();
+        }
+        else
+        {
+            $openInvites = $this->container->get('whoot.post_manager')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), true);
+        }
+
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+            // return $response;
+        }
+
+        if ($this->container->get('request')->isXmlHttpRequest())
+        {
+            return $this->container->get('templating')->renderResponse('WhootBundle:Post:open_invite_feed_content.html.twig', array(
+                'openInvites' => $openInvites
+            ), $response);
+        }
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:Post:open_invite_feed.html.twig', array(
+            'openInvites' => $openInvites
         ), $response);
     }
 
@@ -172,9 +215,6 @@ class PostController extends ContainerAware
         ), $response);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function teaserAction($postId, $cycleClass = '')
     {
         $response = new Response();
@@ -190,6 +230,27 @@ class PostController extends ContainerAware
         $activity = $this->container->get('whoot.post_manager')->buildActivity($post);
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:teaser.html.twig', array(
+            'post' => $post,
+            'activity' => $activity,
+            'cycleClass' => $cycleClass
+        ), $response);
+    }
+
+    public function openInviteTeaserAction($inviteId, $cycleClass = '')
+    {
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+            // return $response;
+        }
+
+        $post = $this->container->get('whoot.post_manager')->findPostBy($inviteId, null, null, 'Active', false);
+        $activity = $this->container->get('whoot.post_manager')->buildActivity($post);
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:Post:openInviteTeaser.html.twig', array(
             'post' => $post,
             'activity' => $activity,
             'cycleClass' => $cycleClass

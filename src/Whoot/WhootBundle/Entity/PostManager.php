@@ -112,10 +112,12 @@ class PostManager
      * @param array $user Get objects of users this user is following.
      * @param array $postTypes Array of strings of posts types to include. Topic|Talk|News|Question|Procon|List|Video|Picture.
      * @param string $sortBy How do we want to sort the list? Popular|Newest|Controversial|Upcoming
+     * @param date $createdAt
+     * @param bool $openInvite
      *
      * @return array $posts
      */
-    public function findPostsBy($user, $postTypes, $sortBy, $createdAt)
+    public function findPostsBy($user, $postTypes, $sortBy, $createdAt, $openInvite=false)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('p, count(pu.id) AS popularity', 'pu'))
@@ -168,6 +170,12 @@ class PostManager
         if ($postTypes)
         {
             $qb->andwhere($qb->expr()->in('p.type', $postTypes));
+        }
+
+        if ($openInvite)
+        {
+            $qb->andWhere('p.isOpenInvite = :isOpenInvite')
+               ->setParameter('isOpenInvite', $openInvite);
         }
 
         $query = $qb->getQuery();

@@ -1,0 +1,33 @@
+{% if openInvites|length > 0 %}
+
+    {% set oldestPost = openInvites[0][0].createdAt|date('U') %}
+    <h3>{{ "now-5 hours"|date('l, F j') }}</h3>
+    <div class="clear"></div>
+
+    <ul class="feed">
+
+        {% for post in openInvites %}
+            {% if post[0].createdAt|date('U') < oldestPost %}
+                {% set oldestPost = post[0].createdAt|date('U') %}
+            {% endif %}
+
+            <li class="{{ loop.first ? 'first' : '' }}">
+                {% render 'WhootBundle:Post:openInviteTeaser' with {'inviteId': post[0].id} %}
+            </li>
+        {% else %}
+            <li class="none">
+                No openInvites for this night... yet.
+            </li>
+        {% endfor %}
+
+    </ul>
+
+    {% if openInvites|length > 0 %}
+        <div id="oldestPost" class="hide" data-time="{{ oldestPost }}"></div>
+    {% endif %}
+
+{% else %}
+
+    <div class="no-post">No open invites...</div>
+
+{% endif %}

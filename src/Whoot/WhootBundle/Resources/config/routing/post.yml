@@ -10,3 +10,10 @@ jive_toggle:
     requirements:
         _method: GET|POST
         postId: \d+
+
+open_invite_details:
+    pattern:  /oi/{postId}
+    defaults: { _controller: WhootBundle:Post:openInviteDetails }
+    requirements:
+        _method: GET
+        postId: \d+

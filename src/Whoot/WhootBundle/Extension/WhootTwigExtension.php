@@ -10,10 +10,10 @@ namespace Whoot\WhootBundle\Extension;
 class WhootTwigExtension extends \Twig_Extension {
 
     private $postTypes = array(
-        'working' => 'working tonight',
-        'low_in'  => 'staying in tonight',
-        'low_out' => 'relaxing out tonight',
-        'big_out' => 'raging tonight'
+        'working' => '<span>working</span> tonight',
+        'low_in'  => '<span>staying in</span> tonight',
+        'low_out' => '<span>relaxing out</span> tonight',
+        'big_out' => '<span>raging</span> tonight'
     );
 
     private $postTypesShort = array(

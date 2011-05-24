@@ -111,12 +111,17 @@ class PostController extends ContainerAware
         }
 
         $request = $this->container->get('request');
-        $type = $request->request->get('type', 'working');
-        $note = $request->request->get('note', '');
+        $data['type'] = $request->request->get('type', 'working');
+        $data['note'] = $request->request->get('note', '');
+        $data['venue'] = $request->request->get('venue', '');
+        $data['address'] = $request->request->get('address', '');
+        $data['address_lat'] = $request->request->get('address_lat', '');
+        $data['address_lon'] = $request->request->get('address_lon', '');
+        $data['time'] = $request->request->get('time', '');
         $securityContext = $this->container->get('security.context');
         $user = $securityContext->getToken()->getUser();
 
-        $postResult = $this->container->get('whoot.post_manager')->togglePost($type, $note, $this->container->get('security.context')->getToken()->getUser());
+        $postResult = $this->container->get('whoot.post_manager')->togglePost($data, $this->container->get('security.context')->getToken()->getUser());
 
         if ($this->container->has('security.acl.provider') && $postResult['status'] == 'new') {
             $provider = $this->container->get('security.acl.provider');

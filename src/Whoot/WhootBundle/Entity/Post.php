@@ -43,9 +43,45 @@ class Post
 
     /**
      * @var string $note
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $note;
+
+    /**
+     * @var string $venue
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $venue;
+
+    /**
+     * @var string $time
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $time;    
+
+    /**
+     * @var string $address
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $address;
+
+    /**
+     * @var float $lat
+     * @ORM\Column(type="float", nullable=true)
+     */
+    protected $lat;
+
+    /**
+     * @var float $lon
+     * @ORM\Column(type="float", nullable=true)
+     */
+    protected $lon;
+
+    /**
+     * @var float $isOpenInvite
+     * @ORM\Column(type="boolean", name="is_open_invite")
+     */
+    protected $isOpenInvite;
 
     /**
      * @var dateTime $updatedAt
@@ -95,7 +131,7 @@ class Post
     public function __construct() {
         $this->users = new ArrayCollection();
         $this->status = 'Active';
-        $this->note = '';
+        $this->isOpenInvite = false;
     }
 
     /**
@@ -156,6 +192,66 @@ class Post
     }
 
     /**
+     * Set venue
+     *
+     * @param string $venue
+     */
+    public function setVenue($venue)
+    {
+        $this->venue = $venue;
+    }
+
+    /**
+     * Get venue
+     *
+     * @return string $venue
+     */
+    public function getVenue()
+    {
+        return $this->venue;
+    }
+
+    /**
+     * Set time
+     *
+     * @param string $time
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+    }
+
+    /**
+     * Get time
+     *
+     * @return string $time
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string $address
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
      * Set note
      *
      * @param string $note
@@ -173,6 +269,57 @@ class Post
     public function getNote()
     {
         return $this->note;
+    }
+
+    /**
+     * @param float $lat
+     * @return void
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * @param float $lon
+     * @return void
+     */
+    public function setLon($lon)
+    {
+        $this->lat = $lon;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLon()
+    {
+        return $this->lon;
+    }
+
+    /**
+     * @param bool $isOpenInvite
+     * @return void
+     */
+    public function setIsOpenInvite($isOpenInvite)
+    {
+        $this->isOpenInvite = $isOpenInvite;
+    }
+
+    /**
+     * @return float
+     */
+    public function getIsOpenInvite()
+    {
+        return $this->isOpenInvite;
     }
 
     /**

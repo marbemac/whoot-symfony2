@@ -1,5 +1,5 @@
 <a name="post-{{ post.id }}"></a>
-<div class="teaser post" id="post-{{ post.id }}">
+<div class="teaser post {{ post.type }}" id="post-{{ post.id }}">
     <canvas title="{{ post.createdAt|timeLapse }}" class="timer" width="20" height="20" data-time="{{ post.createdAt|date('U') }}" data-type="{{ post.type }}">
         <div class="timer {{ post.type }}"></div>
     </canvas>
@@ -44,7 +44,7 @@
                 {% endif %}
             {% endfor %}
             {{ activeUsers|length > 1 ? 'are' : 'is' }}
-            {{ post.type|printPostType() }}.
+            {{ post.type|printPostType|raw }}.
         </div>
 
         <div class="note">{{ post.note ? '" ' : '' }}{{ post.note|stripSlashes|truncate(75) }}{{ post.note ? ' "' : '' }}</div>

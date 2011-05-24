@@ -23,7 +23,7 @@ class CoreController extends ContainerAware
             $locationData = array();
             $locationData['zipcode'] = isset($location['zipcode']) ? $location['zipcode'] : '';
             $locationData['lat'] = isset($location['lat']) ? $location['lat'] : '';
-            $locationData['lon'] = isset($location['long']) ? $location['lon'] : '';
+            $locationData['lon'] = isset($location['lon']) ? $location['lon'] : '';
             $locationData['city'] = isset($location['city']) ? $location['city'] : '';
             $locationData['state'] = isset($location['state']) ? $location['state'] : '';
             $locationData['location'] = isset($location['locationText']) ? $location['locationText'] : '';

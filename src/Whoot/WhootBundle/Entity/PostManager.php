@@ -201,12 +201,12 @@ class PostManager
      * Creates a post for a user if the post does not yet exist today.
      * Updates the post if the user already has a post for the day.
      * 
-     * @param string $type
+     * @param array $data
      * @param User $user
      * 
      * @return array $result
      */
-    public function togglePost($type, $note, $user)
+    public function togglePost($data, $user)
     {
         $result = array('status' => 'existing');
         $userPost = $this->findMyPost($user, 'Active', true);
@@ -225,8 +225,17 @@ class PostManager
         }
 
         $post = $this->createPost();
-        $post->setType($type);
-        $post->setNote($note);
+        $post->setType($data['type']);
+        $post->setNote($data['note']);
+        if ($data['address'])
+        {
+            $post->setVenue($data['venue']);
+            $post->setAddress($data['address']);
+            $post->setLat($data['address_lat']);
+            $post->setLon($data['address_lon']);
+            $post->setTime($data['time']);
+            $post->setIsOpenInvite(true);
+        }
         $post->setCreatedBy($user);
         $this->updatePost($post, false);
 

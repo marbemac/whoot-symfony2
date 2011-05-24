@@ -111,19 +111,19 @@ Purpose of the stylesheet follows.
         .big_out.on {
             background: $post-big_out-color;
         }
-        .note {
+        textarea {
             @include border-radius(5px);
             font-size: 18px;
             border: 2px solid #999;
             padding: 5px;
-            margin: 5px 0 0 5px;
+            margin: 5px 0 10px 5px;
             width: $options-w - 25;
         }
         .open-invite-toggle {
             float: left;
             color: $link-color;
             font-size: 20px;
-            margin: 5px 0 6px 9px;
+            margin: 15px 0 0px 9px;
         }
         .open-invite-toggle:hover {
             text-decoration: underline;
@@ -134,10 +134,11 @@ Purpose of the stylesheet follows.
             font-size: 14px;
             color: #666;
             cursor: default;
-            margin: 11px 0 0 15px;
+            margin: 21px 0 0 15px;
         }
         .open-invite-C {
-            margin: 5px 0 5px 20px;
+            margin: 15px 0 0 20px;
+            display: none;
 
             .label2 {
                 float: left;
@@ -149,18 +150,17 @@ Purpose of the stylesheet follows.
             }
             input {
                 float: left;
-                width: 200px;
+                width: 400px;
                 border: 1px solid #999;
                 padding: 3px 5px;
             }
             .pac-container {
-                width: 200px !important;
-                top: 21px !important;
+                width: 410px !important;
+                top: 52px !important;
                 left: 60px !important;
             }
         }
         .actions {
-            border-top: 1px solid #DDD;
             margin: 0 7px;
         }
         .submit,
@@ -387,6 +387,18 @@ $feed-filters-margin-top: 8px;
     }
     .jive-B:hover {
         text-decoration: underline;
+    }
+    &.working .post span {
+        color: $post-working-color;
+    }
+    &.low_in .post span {
+        color: $post-low_in-color;
+    }
+    &.low_out .post span {
+        color: $post-low_out-color;
+    }
+    &.big_out .post span {
+        color: $post-big_out-color;
     }
 }
 

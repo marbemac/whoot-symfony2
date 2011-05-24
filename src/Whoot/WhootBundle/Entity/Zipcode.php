@@ -13,8 +13,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Zipcode
 {
     /**
-     * @var string $zipcode
+     * @var integer $id
      * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\generatedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string $zipcode
      * @ORM\Column(type="string", name="zip_code")
      */
     protected $zipcode;

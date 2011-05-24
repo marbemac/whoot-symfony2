@@ -138,7 +138,7 @@ $(function() {
 
     // Toggle new post options
     $('#post-box .type').live('click', function() {
-        $(this).addClass('on').siblings().removeClass('on');
+        $(this).addClass('on').siblings('.type').removeClass('on');
     })
 
     // Scroll to my post
@@ -154,14 +154,36 @@ $(function() {
     $('#post-box .submit').live('click', function() {
         var $payload = {};
         $payload['type'] = $('#post-box .type.on').data('val');
-        $payload['note'] = $('#post-box .note').val();
+        $payload['note'] = $('#post-description').val();
+
+        var $error_flag = false;
 
         if (!$payload['type'])
         {
-            $('#post-box .status').css('color', 'red').text('Status - You must pick a status!');
-
-            return false;
+            $error_flag = true;
+            $('#post-box .status').css('color', 'red');
         }
+
+        if ($('#post-box .open-invite-toggle').hasClass('on'))
+        {
+            $payload['venue'] = $('#post-venue').val();
+            $payload['address'] = $('#post-address').val();
+            $payload['address_lat'] = $('#post-address-lat').val();
+            $payload['address_lon'] = $('#post-address-lon').val();
+            $payload['time'] = $('#post-time').val();
+
+            $('.invite-req, #post-address').each(function(index) {
+                $(this).prev().css('color', '#000');
+                if (!$(this).val() || $(this).val() == 'Enter a location')
+                {
+                    $error_flag = true;
+                    $(this).prev().css('color', 'red');
+                }
+            })
+        }
+
+        if ($error_flag)
+            return false;
 
         $.post($(this).data('url'), $payload, function(data) {
             appUpdate(data);
@@ -182,13 +204,36 @@ $(function() {
         $self.find('.teaser.post').toggleClass('on');
     })
 
+    // Toggle the + Open Invite in the post box
+    $('.open-invite-toggle').live('click', function() {
+        var $self = $(this);
+        if ($self.hasClass('on'))
+        {
+            $self.removeClass('on').text('+ Open Invite').siblings('textarea').prev().text('Optional Note');
+        }
+        else
+        {
+            $self.addClass('on').text('- Open Invite').siblings('textarea').prev().text('Invite Description');
+        }
+
+        $('.open-invite-C').toggle();
+    })
+
     // Show the post-where places autocomplete
-    $('#post-where').livequery(function() {
+    $('#post-address').livequery(function() {
         var $self = $(this);
         var bounds = new google.maps.LatLngBounds(
               new google.maps.LatLng($self.data('lat'), $self.data('lon')),
               new google.maps.LatLng($self.data('lat'), $self.data('lon')));
-        new google.maps.places.Autocomplete(document.getElementById('post-where'), {bounds: bounds});
+        var $auto = new google.maps.places.Autocomplete(document.getElementById('post-address'), {bounds: bounds});
+
+        // Handle a place choice
+        google.maps.event.addListener($auto, 'place_changed', function() {
+            var place = $auto.getPlace();
+            $('#post-address-name').val(place.formatted_address);
+            $('#post-address-lat').val(place.geometry.location.Ia);
+            $('#post-address-lon').val(place.geometry.location.Ja);
+        })
     })
 
     /*

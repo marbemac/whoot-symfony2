@@ -1,6 +1,5 @@
 // Prepare Variables
-var History = window.History,
-    $ = window.jQuery,
+var $ = window.jQuery,
     $body = $(document.body),
     $application = $('#application'),
     $pageHeader = $('#page_header'),
@@ -11,7 +10,6 @@ var History = window.History,
     $pageContent = $('#page_content'),
     $sidebar = $('#sidebar'),
     $footer = $('#footer'),
-    rootUrl = History.getRootUrl(),
     pageClicked = false, // Keeps track of wether a page link has been clicked.
     $currentTarget = null; // The current clicked element.
 

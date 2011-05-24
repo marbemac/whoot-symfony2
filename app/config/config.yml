@@ -58,9 +58,9 @@ doctrine:
         proxy_namespace: Proxies
         proxy_dir: %kernel.cache_dir%/doctrine/orm/Proxies
         default_entity_manager: default
-        metadata_cache_driver: apc
-        query_cache_driver: apc
-        result_cache_driver: apc
+        metadata_cache_driver: array
+        query_cache_driver: array
+        result_cache_driver: array
         
 # Twig Configuration
 twig:

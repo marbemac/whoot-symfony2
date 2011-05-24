@@ -257,6 +257,42 @@ class PostController extends ContainerAware
         ), $response);
     }
 
+    public function openInviteDetailsAction($inviteId)
+    {
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+            // return $response;
+        }
+
+        $post = $this->container->get('whoot.post_manager')->findPostBy($inviteId, null, null, 'Active', false);
+        $activity = $this->container->get('whoot.post_manager')->buildActivity($post);
+
+        if ($this->container->get('request')->isXmlHttpRequest())
+        {
+            $result = array();
+            $result['status'] = 'success';
+            $result['details'] = $this->container->get('templating')->render('WhootBundle:Post:openInviteDetails.html.twig', array(
+                                    'post' => $post,
+                                    'activity' => $activity
+                                 ));
+
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:Post:openInviteDetails.html.twig', array(
+            'post' => $post,
+            'activity' => $activity,
+            'cycleClass' => $cycleClass
+        ), $response);
+    }
+
     /**
      * Display a jive tag for the current user.
      *

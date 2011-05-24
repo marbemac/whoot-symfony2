@@ -210,7 +210,16 @@ $(function() {
             return;
 
         var $self = $(this);
-        $self.next().toggle();
+        if ($self.next().hasClass('invite-details'))
+        {
+            $self.next().toggle();
+            
+            return;
+        }
+
+        $.get($self.data('details'), {}, function(data) {
+            $self.after(data.details);
+        }, 'json')
     })
 
     // Toggle the + Open Invite in the post box
@@ -255,6 +264,7 @@ $(function() {
             zoom: 15,
             center: latlng,
             disableDefaultUI: true,
+            scaleControle: true,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 

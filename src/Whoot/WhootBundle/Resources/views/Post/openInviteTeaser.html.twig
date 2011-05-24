@@ -1,5 +1,5 @@
 <a name="post-{{ post.id }}"></a>
-<div class="teaser post invite {{ post.type }}" id="post-{{ post.id }}">
+<div class="teaser post invite {{ post.type }}" id="post-{{ post.id }}" data-details="{{ path('open_invite_details', {'inviteId': post.id}) }}">
     <canvas title="{{ post.createdAt|timeLapse }}" class="timer" width="20" height="20" data-time="{{ post.createdAt|date('U') }}" data-type="{{ post.type }}">
         <div class="timer {{ post.type }}"></div>
     </canvas>
@@ -20,47 +20,5 @@
         {% render "WhootBundle:Post:jiveTag" with {'postId': post.id} %}
     {% endif %}
 
-    <div class="clear"></div>
-</div>
-<div class="invite-details">
-    <div class="left">
-        {% if post.lat is defined and post.lon is defined %}
-            <div id="map-{{ post.id }}" class="post-map" data-name="{{ post.venue }}" data-lat="{{ post.lat }}" data-lon="{{ post.lon }}"></div>
-        {% endif %}
-
-        {% set activeUsers = post.users|rebuildArray('status', 'Active') %}
-        <h4 class="num-people">{{ activeUsers|length }} {{ activeUsers|length > 1 ? 'People' : 'Person' }} Going</h4>
-        <ul class="users">
-            {% for user in activeUsers %}
-                <li>
-                    <a class="profile-image" href="{{ path('fos_user_user_show', {'username': user.user.username}) }}" title="{{ user.user.firstName }} {{ user.user.lastName }}">
-                        <img src="{{ user.user.profileImage is defined ? '/slir/w30-h30-c1:1'~user.user.profileImage : gravatar(user.user.email, '30', 'r', 'mm') }}" alt="" />
-                    </a>
-                    <a class="name" href="{{ path('fos_user_user_show', {'username': post.createdBy.username}) }}">{{ user.user.firstName }} {{ user.user.lastName }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <div class="right">
-        <h4>{{ post.venue }}</h4>
-        <h4>{{ post.time }}</h4>
-        <h5>{{ post.address }}</h5>
-
-        <div class="note">{{ post.note ? '" ' : '' }}{{ post.note|stripSlashes|truncate(75) }}{{ post.note ? ' "' : '' }}</div>
-
-        <div class="activity-list">
-            {% for event in activity %}
-                <div class="activity-post {{ event.class }}">
-                    <div class="time">{{ event.time|timeLapse(1) }}</div>
-
-                    <div class="message">
-                        <a class="user" href="{{ path('fos_user_user_show', {'username': event.user.username}) }}">{{ event.user.firstName }} {{ event.user.lastName }}</a>
-                        {{ event.message }}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
     <div class="clear"></div>
 </div>

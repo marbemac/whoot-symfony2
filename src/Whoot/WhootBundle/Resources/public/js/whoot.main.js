@@ -261,7 +261,7 @@ $(function() {
         var latlng = new google.maps.LatLng($self.data('lat'), $self.data('lon'));
 
         var myOptions = {
-            zoom: 15,
+            zoom: 16,
             center: latlng,
             disableDefaultUI: true,
             scaleControle: true,

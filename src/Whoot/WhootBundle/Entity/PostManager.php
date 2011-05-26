@@ -364,14 +364,23 @@ class PostManager
      */
     public function buildActivity($post)
     {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select(array('c', 'cb'))
+           ->from('Whoot\WhootBundle\Entity\Comment', 'c')
+           ->innerJoin('c.createdBy', 'cb')
+           ->where('c.post = :post AND c.status = :status')
+           ->setParameters(array(
+               'post'    => $post['id'],
+               'status'       => 'Active'
+           ));
+
+        $query = $qb->getQuery();
+        $comments = $query->getResult(Query::HYDRATE_ARRAY);
+
         $activity = array();
         foreach ($post['users'] as $userPost)
         {
-//            echo '<pre>';
-//            var_dump($userPost);
-//            echo '</pre>';
-//            echo $userPost['id'] . ' * '. $userPost['createdAt']->getTimestamp().' *** '.$userPost['updatedAt']->getTimestamp().' ** ';
-            $activity[$userPost['createdAt']->getTimestamp()] = array('time' => $userPost['createdAt'], 'userPost' => $userPost, 'user' => $userPost['user']);
+            $activity[$userPost['createdAt']->getTimestamp()] = array('type' => 'activity', 'time' => $userPost['createdAt'], 'userPost' => $userPost, 'user' => $userPost['user']);
 
             if ($post['createdBy']['id'] == $userPost['user']['id'])
             {
@@ -389,7 +398,12 @@ class PostManager
                 $activity[$userPost['updatedAt']->getTimestamp()] = array('time' => $userPost['updatedAt'], 'userPost' => $userPost, 'user' => $userPost['user'], 'message' => 'left.', 'class' => 'leave');
             }
         }
-        krsort($activity);
+        foreach ($comments as $comment)
+        {
+            $activity[$comment['createdAt']->getTimestamp()] = array('type' => 'comment', 'comment' => $comment);
+        }
+
+        ksort($activity);
         return $activity;
     }
 }

@@ -270,6 +270,16 @@ $(function() {
     })
 
     /*
+     * COMMENTS
+     */
+    $('.comment_new .content').live('keypress', function(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            $(this).siblings('input[type="submit"]').click();
+        }
+    })
+
+    /*
      * PINGS
      */
     $('.ping-countdown').livequery(function() {

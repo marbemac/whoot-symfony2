@@ -435,7 +435,6 @@ $feed-filters-margin-top: 8px;
 
     .left {
         float: left;
-        width: 250px;
     }
     .post-map {
         @include border-radius(5px);
@@ -481,8 +480,24 @@ $feed-filters-margin-top: 8px;
     }
     .activity-list {
         border-top: 1px solid #DDD;
-        width: 460px;
         padding-top: 10px;
+    }
+
+    &.normal {
+        .left {
+            width: 200px;
+        }
+        .activity-list {
+            width: 515px;
+        }
+    }
+    &.invite {
+        .left {
+            width: 250px;
+        }
+        .activity-list {
+            width: 460px;
+        }
     }
 }
 
@@ -502,27 +517,38 @@ $feed-filters-margin-top: 8px;
     margin: 10px 0 5px 0;
 }
 
-.activity-post {
+.activity-post,
+.comment {
     @include clearfix;
     margin: 5px 0 0 0;
-    
 
-    .time {
-        color: #888;
-        font-size: 10px;
-        width: 70px;
+    .submitted {
         float: left;
-        margin: 8px 0 0 0;
+        width: 120px;
         text-align: right;
-        padding: 0 8px 0 0;
+        padding: 0 6px 0 0;
+
+        .time {
+            color: #888;
+            font-size: 10px;
+            text-align: right;
+        }
     }
-    .message {
+    .content {
         @include border-radius(5px);
         float: left;
         padding: 5px 10px;
         font-size: 12px;
         border: 2px solid #E7E5FF;
+        max-width: 360px;
     }
+}
+
+.activity-post {
+    .time {
+        margin-top: 8px;
+    }
+
     &.create .message {
         background: #F8F7FF;
     }

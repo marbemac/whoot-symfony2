@@ -1,0 +1,50 @@
+/*
+Document   : post
+Created on : May 3, 2011, 9:41:00 PM
+Author     : Marc MacLeod (marbemac@gmail.com)
+Description:
+Purpose of the stylesheet follows.
+*/
+
+.comment_new {
+    @include clearfix();
+    margin: 0 0 10px 88px;
+
+    img {
+        @include border-radius(3px);
+        float: left;
+    }
+    textarea {
+        @include border-radius(3px);
+        border: 1px solid #CCC;
+        padding: 5px;
+        margin: 0 0 0 10px;
+        color: #999;
+        font-size: 13px;
+        float: left;
+        width: 250px;
+        height: 20px;
+        resize: none;
+    }
+    .errors {
+        clear: both;
+        ul {
+            font-size: 12px;
+            color: red;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            border: none; padding: 0; margin: 0;
+        }
+    }
+}
+
+.teaser.comment {
+    .user {
+        font-size: 12px;
+        display: block;
+        margin: 0 0 -3px 0;
+    }
+}

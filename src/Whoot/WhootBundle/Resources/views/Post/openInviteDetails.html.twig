@@ -25,18 +25,7 @@
 
         <div class="note">{{ post.note ? '" ' : '' }}{{ post.note|stripSlashes|truncate(75) }}{{ post.note ? ' "' : '' }}</div>
 
-        <div class="activity-list">
-            {% for event in activity %}
-                <div class="activity-post {{ event.class }}">
-                    <div class="time">{{ event.time|timeLapse(1) }}</div>
-
-                    <div class="message">
-                        <a class="user" href="{{ path('fos_user_user_show', {'username': event.user.username}) }}">{{ event.user.firstName }} {{ event.user.lastName }}</a>
-                        {{ event.message }}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+        {% include "WhootBundle:Post:activity.html.twig" with {'post': post, 'activity': activity} %}
     </div>
     <div class="clear"></div>
 </div>

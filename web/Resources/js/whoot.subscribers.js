@@ -70,4 +70,12 @@ $(function(){
         })
     });
 
+    /*
+     * COMMENTS
+     */
+    amplify.subscribe("comment_created", function( data ) {
+        $('.comment_new .content').val($('.comment_new .content').data('default')).blur();
+        $('#post-'+data.postId).next().find('.activity-list').append(data.comment);
+    });
+
 });

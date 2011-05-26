@@ -1,11 +1,20 @@
 <form action="{{ path('comment_new') }}" {{ form_enctype(form) }} method="POST" class="comment_new">
-    {{ form_errors(form.content) }}
-    {{ form_widget(form.content) }}
+    <img src="{{ app.user.profileImage is defined ? '/slir/w28-h28-c1:1'~app.user.profileImage : gravatar(app.user.email, '28', 'r', 'mm') }}" alt="" />
+
+    {% if comment is defined and comment.content %}
+        {{ form_widget(form.content, { 'attr': {'class': 'growfield content'} }) }}
+    {% else %}
+        {{ form_widget(form.content, { 'value': 'Write a comment...', 'attr': {'class': 'growfield iclear content'} }) }}
+    {% endif %}
+
+    <div class="errors">
+        {{ form_errors(form.content) }}
+    </div>
 
     {% if postId is defined %}
        {{ form_widget(form.post, { 'value': postId }) }}
     {% endif %}
 
     {{ form_rest(form) }}
-    <input type="submit" value="Comment" />
+    <input type="submit" value="Add Comment" class="hide" />
 </form>

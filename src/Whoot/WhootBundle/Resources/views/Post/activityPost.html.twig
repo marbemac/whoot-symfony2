@@ -1,0 +1,10 @@
+<div class="activity-post {{ event.class }}">
+    <div class="submitted">
+        <div class="time">{{ event.time|timeLapse(1) }}</div>
+    </div>
+
+    <div class="content">
+        <a class="user" href="{{ path('fos_user_user_show', {'username': event.user.username}) }}">{{ event.user.firstName }} {{ event.user.lastName }}</a>
+        {{ event.message }}
+    </div>
+</div>

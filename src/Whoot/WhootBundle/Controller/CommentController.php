@@ -30,6 +30,7 @@ class CommentController extends ContainerAware
         }
 
         $request = $this->container->get('request');
+        $templating = $this->container->get('templating');
         $securityContext = $this->container->get('security.context');
         $user = $securityContext->getToken()->getUser();
 
@@ -58,7 +59,10 @@ class CommentController extends ContainerAware
             if ($request->isXmlHttpRequest())
             {
                 $result = array();
+                $result['event'] = 'comment_created';
                 $result['flash'] = array('type' => 'notice', 'message' => $flashMessage);
+                $result['postId'] = $comment->getPost()->getId();
+                $result['comment'] = $templating->render('WhootBundle:Comment:teaser.html.twig', array('comment' => $comment));
                 $response = new Response(json_encode($result));
                 $response->headers->set('Content-Type', 'application/json');
                 return $response;
@@ -69,13 +73,11 @@ class CommentController extends ContainerAware
             return new RedirectResponse($url);
         }
 
-        $templating = $this->container->get('templating');
-
         if ($request->isXmlHttpRequest() && $this->container->get('request')->getMethod() == 'POST')
         {
             $result = array();
             $result['result'] = 'error';
-            $result['form'] = $templating->render('WhootBundle:Comment:new.html.twig', array('form' => $form->createView()));
+            $result['form'] = $templating->render('WhootBundle:Comment:new.html.twig', array('form' => $form->createView(), 'comment' => $form->getData()));
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
@@ -195,26 +197,5 @@ class CommentController extends ContainerAware
         $this->container->get('session')->setFlash('notice', 'Talk deleted successfully!');
 
         return new RedirectResponse($_SERVER['HTTP_REFERER']);
-    }
-
-    public function teaserAction($postId, $cycleClass = '')
-    {
-        $response = new Response();
-        $response->setCache(array(
-        ));
-
-        if ($response->isNotModified($this->container->get('request'))) {
-            // return the 304 Response immediately
-            // return $response;
-        }
-
-        $post = $this->container->get('whoot.post_manager')->findPostBy($postId, null, null, 'Active', false);
-        $activity = $this->container->get('whoot.post_manager')->buildActivity($post);
-
-        return $this->container->get('templating')->renderResponse('WhootBundle:Post:teaser.html.twig', array(
-            'post' => $post,
-            'activity' => $activity,
-            'cycleClass' => $cycleClass
-        ), $response);
     }
 }

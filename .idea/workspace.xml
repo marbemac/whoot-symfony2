@@ -32,10 +32,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="openInviteDetails.html.twig" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="openInviteDetails.html.twig" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/openInviteDetails.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="57" selection-end="96" vertical-scroll-proportion="0.06451613">
+            <state line="3" column="0" selection-start="57" selection-end="96" vertical-scroll-proportion="-1.92">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.scss" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="107" column="21" selection-start="2539" selection-end="2539" vertical-scroll-proportion="-18.615385">
               <folding />
             </state>
           </provider>
@@ -54,24 +63,6 @@
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/Post.php">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post.yml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/post.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routing.yml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/routing.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="16" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -104,10 +95,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.html.twig" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="header.html.twig" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/header.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="25" selection-start="200" selection-end="200" vertical-scroll-proportion="-5.76">
+            <state line="13" column="63" selection-start="309" selection-end="309" vertical-scroll-proportion="0.27476883">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="postBox.html.twig" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/postBox.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="93" selection-start="1362" selection-end="1362" vertical-scroll-proportion="-16.64">
               <folding />
             </state>
           </provider>
@@ -127,8 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/activityPost.html.twig" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Form/CommentFormType.php" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/web/Resources/js/whoot.utilities.js" />
         <option value="$PROJECT_DIR$/web/Resources/js/whoot.main.js" />
@@ -139,10 +137,12 @@
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/routing.yml" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PostController.php" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/PostManager.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/header.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/feed_content.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/openInviteDetails.html.twig" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/postBox.html.twig" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/header.html.twig" />
       </list>
     </option>
   </component>
@@ -889,20 +889,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.utilities.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="59" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="278" column="9" selection-start="8293" selection-end="8293" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_comment.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="20" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0">
@@ -952,20 +938,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/home_content.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/header.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="25" selection-start="200" selection-end="200" vertical-scroll-proportion="-5.76">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/Post.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -996,7 +968,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/openInviteDetails.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="57" selection-end="96" vertical-scroll-proportion="0.06451613">
+        <state line="3" column="0" selection-start="57" selection-end="96" vertical-scroll-proportion="-1.92">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="21" selection-start="2539" selection-end="2539" vertical-scroll-proportion="-18.615385">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/home_content.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/postBox.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="93" selection-start="1362" selection-end="1362" vertical-scroll-proportion="-16.64">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/header.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="63" selection-start="309" selection-end="309" vertical-scroll-proportion="0.27476883">
           <folding />
         </state>
       </provider>

@@ -1,11 +1,6 @@
-<div class="post-details invite">
+<div class="post-details normal">
     <div class="left">
-        {% if post.lat is defined and post.lon is defined %}
-            <div id="map-{{ post.id }}" class="post-map" data-name="{{ post.venue }}" data-lat="{{ post.lat }}" data-lon="{{ post.lon }}"></div>
-        {% endif %}
-
         {% set activeUsers = post.users|rebuildArray('status', 'Active') %}
-        <h4 class="num-people">{{ activeUsers|length }} {{ activeUsers|length > 1 ? 'People' : 'Person' }} Going</h4>
         <ul class="users">
             {% for user in activeUsers %}
                 <li>
@@ -19,13 +14,10 @@
     </div>
 
     <div class="right">
-        <h4>{{ post.venue }}</h4>
-        <h4>{{ post.time }}</h4>
-        <h5>{{ post.address }}</h5>
-
         <div class="note">{{ post.note ? '" ' : '' }}{{ post.note|stripSlashes|truncate(75) }}{{ post.note ? ' "' : '' }}</div>
 
         <div class="activity-list">
+            {% render "WhootBundle:Comment:new" with {'postId': post.id} %}
             {% for event in activity %}
                 <div class="activity-post {{ event.class }}">
                     <div class="time">{{ event.time|timeLapse(1) }}</div>

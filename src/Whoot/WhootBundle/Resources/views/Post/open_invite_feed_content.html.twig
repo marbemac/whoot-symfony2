@@ -12,7 +12,7 @@
             {% endif %}
 
             <li class="{{ loop.first ? 'first' : '' }}">
-                {% render 'WhootBundle:Post:openInviteTeaser' with {'inviteId': post[0].id} %}
+                {% render 'WhootBundle:Post:openInviteTeaser' with {'inviteId': post[0].id, 'type': 'openInvite'} %}
             </li>
         {% else %}
             <li class="none">

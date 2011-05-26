@@ -1,0 +1,11 @@
+<form action="{{ path('comment_new') }}" {{ form_enctype(form) }} method="POST" class="comment_new">
+    {{ form_errors(form.content) }}
+    {{ form_widget(form.content) }}
+
+    {% if postId is defined %}
+       {{ form_widget(form.post, { 'value': postId }) }}
+    {% endif %}
+
+    {{ form_rest(form) }}
+    <input type="submit" value="Comment" />
+</form>

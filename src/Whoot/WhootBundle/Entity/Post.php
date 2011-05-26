@@ -128,8 +128,16 @@ class Post
      */
     protected $users;
 
+    /**
+     * @var Limelight\LimelightBundle\Entity\User
+     *
+     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\Comment", mappedBy="post", cascade={"persist"})
+     */
+    protected $comments;
+
     public function __construct() {
         $this->users = new ArrayCollection();
+        $this->comments = new ArrayCollection();
         $this->status = 'Active';
         $this->isOpenInvite = false;
     }
@@ -405,6 +413,11 @@ class Post
     public function getUsers()
     {
         return $this->users;
+    }
+
+    public function getComments()
+    {
+        return $this->comments;
     }
 
     /**

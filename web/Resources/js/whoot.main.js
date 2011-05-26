@@ -196,21 +196,12 @@ $(function() {
     })
 
     // Toggle the activity of a post
-    $('#post-feed .teaser.post').live('click', function(ev) {
+    $('.teaser.post').live('click', function(ev) {
         if ($(ev.target).is('a'))
             return;
 
         var $self = $(this);
-        $self.toggleClass('on');
-    })
-
-    // Toggle the activity of an open invite
-    $('#open-invite-feed .teaser.post').live('click', function(ev) {
-        if ($(ev.target).is('a'))
-            return;
-
-        var $self = $(this);
-        if ($self.next().hasClass('invite-details'))
+        if ($self.next().hasClass('post-details'))
         {
             $self.next().toggle();
             

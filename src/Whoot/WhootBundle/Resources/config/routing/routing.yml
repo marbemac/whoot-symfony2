@@ -17,6 +17,10 @@ ping:
     resource: "@WhootBundle/Resources/config/routing/ping.yml"
     prefix:   /ping
 
+comment:
+    resource: "@WhootBundle/Resources/config/routing/comment.yml"
+    prefix:   /c
+
 open_invite_feed:
   pattern: /oi
   defaults: { _controller: WhootBundle:Post:openInviteFeed }

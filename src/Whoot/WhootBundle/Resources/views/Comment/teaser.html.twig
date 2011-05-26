@@ -1,0 +1,35 @@
+{% extends 'LimelightBundle:Object:teaser_' ~ feedType ~ '.html.twig' %}
+
+{% block image %}
+    <div></div>
+{% endblock %}
+
+{% block title %}
+    {% render "LimelightBundle:User:tag" with {'id': object.createdBy.id} %}
+{% endblock %}
+
+{% block body %}
+    <a class="p" href="{{ path('talk_show', {'id': object.id, 'slug': object.slug}) }}">{{ object.Talk.body }}</a>
+{% endblock %}
+
+{% block score %}
+    {% render "VoteBundle:Vote:show" with {'objectId': object.id } %}
+    Score: [<span class="s_{{ object.id }}">{{ object.score }}</span>]
+{% endblock %}
+
+{% block controls %}
+    {% render "LimelightBundle:Repost:tag" with {'toObject': object.id} %}
+    {% render "LimelightBundle:Favorite:show" with {'objectId': object.id } %}
+{% endblock %}
+
+{% block connectedFrom %}
+    {% for connection in object.connectedFrom %}
+        {% render "LimelightBundle:Topic:tag" with {'id': connection.connectedFrom.id } %}
+    {% else %}
+        No connected topics.
+    {% endfor %}
+{% endblock %}
+
+{% block created %}
+    {{ object.createdAt|timeLapse }}
+{% endblock %}

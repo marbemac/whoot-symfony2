@@ -1,0 +1,25 @@
+comment_new:
+    pattern:  /new
+    defaults: { _controller: WhootBundle:Comment:new }
+    requirements:
+        _method: POST
+
+comment_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: WhootBundle:Comment:edit }
+    requirements:
+        id:  \d+
+        _method: GET
+        _format: html|xml
+
+comment_update:
+    pattern:  /edit/{id}
+    defaults: { _controller: WhootBundle:Comment:update }
+    requirements:
+        _method: POST
+
+comment_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: WhootBundle:Comment:delete }
+    requirements:
+        id:  \d+

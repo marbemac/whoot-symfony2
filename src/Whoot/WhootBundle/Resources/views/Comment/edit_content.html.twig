@@ -1,0 +1,17 @@
+<form action="{{ path('talk_update', {'id': object.id }) }}" {{ form_enctype(form) }} method="POST" class="talk_edit">
+    {{ form_errors(form) }}
+
+    {% for field in form %}
+        {% if not field.ishidden %}
+        <div>
+            {{ form_errors(field) }}
+            {{ form_label(field) }}
+            {{ form_field(field) }}
+        </div>
+        {% endif %}
+    {% endfor %}
+
+    {{ form_hidden(form) }}
+
+    <input type="submit" value="Post Edits" />
+</form>

@@ -1,6 +1,6 @@
 <div class="post-details invite">
     <div class="left">
-        {% if post.lat is defined and post.lon is defined %}
+        {% if post.lat and post.lon %}
             <div id="map-{{ post.id }}" class="post-map" data-name="{{ post.venue }}" data-lat="{{ post.lat }}" data-lon="{{ post.lon }}"></div>
         {% endif %}
 

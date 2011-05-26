@@ -117,7 +117,7 @@ class PostManager
      *
      * @return array $posts
      */
-    public function findPostsBy($user, $postTypes, $sortBy, $createdAt, $openInvite=false)
+    public function findPostsBy($user, $postTypes, $sortBy, $createdAt)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('p, count(pu.id) AS popularity', 'pu'))
@@ -170,12 +170,6 @@ class PostManager
         if ($postTypes)
         {
             $qb->andwhere($qb->expr()->in('p.type', $postTypes));
-        }
-
-        if ($openInvite)
-        {
-            $qb->andWhere('p.isOpenInvite = :isOpenInvite')
-               ->setParameter('isOpenInvite', $openInvite);
         }
 
         $query = $qb->getQuery();

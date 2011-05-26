@@ -21,12 +21,6 @@ comment:
     resource: "@WhootBundle/Resources/config/routing/comment.yml"
     prefix:   /c
 
-open_invite_feed:
-  pattern: /oi
-  defaults: { _controller: WhootBundle:Post:openInviteFeed }
-  requirements:
-    _method: GET
-
 feed_filter_toggle:
     pattern:  /ac/tf/{postType}
     defaults: { _controller: WhootBundle:Core:toggleFeedFilter }

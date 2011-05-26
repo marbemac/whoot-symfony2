@@ -430,21 +430,23 @@ $feed-filters-margin-top: 8px;
 }
 
 .post-details {
+    $left-column-width: 200px;
     margin: 5px 0 0 0;
     padding: 10px;
 
     .left {
         float: left;
+        width: $left-column-width;
     }
     .post-map {
         @include border-radius(5px);
-        width: 230px;
+        width: $left-column-width - 20px;
         height: 175px;
         border: 2px solid #CCC;
-        margin: 0;
+        margin: 0 0 12px 0;
     }
     .num-people {
-        margin: 13px 0 10px 10px;
+        margin: 5px 0 10px 5px;
     }
     .users {
         li {
@@ -484,17 +486,11 @@ $feed-filters-margin-top: 8px;
     }
 
     &.normal {
-        .left {
-            width: 200px;
-        }
         .activity-list {
             width: 515px;
         }
     }
     &.invite {
-        .left {
-            width: 250px;
-        }
         .activity-list {
             width: 460px;
         }

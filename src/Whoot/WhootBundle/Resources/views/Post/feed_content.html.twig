@@ -24,7 +24,8 @@
             {% endif %}
 
             <li class="{{ loop.first ? 'first' : '' }}">
-                {% render 'WhootBundle:Post:teaser' with {'postId': post[0].id, 'type': 'normal'} %}
+                {% set type = post[0].isOpenInvite ? 'openInvite' : 'normal' %}
+                {% render 'WhootBundle:Post:teaser' with {'postId': post[0].id, 'type': type} %}
             </li>
         {% else %}
             <li class="none">

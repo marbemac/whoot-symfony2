@@ -172,7 +172,7 @@ class PostController extends ContainerAware
         ), $response);
     }
 
-    public function teaserAction($postId, $type)
+    public function teaserAction($postId)
     {
         $response = new Response();
         $response->setCache(array(
@@ -184,6 +184,8 @@ class PostController extends ContainerAware
         }
 
         $post = $this->container->get('whoot.post_manager')->findPostBy($postId, null, null, 'Active', false);
+
+        $type = $post['isOpenInvite'] ? 'openInvite' : 'normal';
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:'.$type.'Teaser.html.twig', array(
             'post' => $post

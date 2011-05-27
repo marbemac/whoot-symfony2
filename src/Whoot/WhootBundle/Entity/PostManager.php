@@ -389,7 +389,7 @@ class PostManager
 
             if ($userPost['createdAt']->getTimestamp() != $userPost['updatedAt']->getTimestamp())
             {
-                $activity[$userPost['updatedAt']->getTimestamp()] = array('time' => $userPost['updatedAt'], 'userPost' => $userPost, 'user' => $userPost['user'], 'message' => 'left.', 'class' => 'leave');
+                $activity[$userPost['updatedAt']->getTimestamp()] = array('type' => 'activity', 'time' => $userPost['updatedAt'], 'userPost' => $userPost, 'user' => $userPost['user'], 'message' => 'left.', 'class' => 'leave');
             }
         }
         foreach ($comments as $comment)

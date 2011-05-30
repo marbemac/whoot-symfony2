@@ -8,7 +8,7 @@
         </h2>
         <div class="profile_image">
             <a id="profile-image-upload" href="#" data-w="65" data-h="65" data-url="{{ path('user_upload_picture') }}" data-target="#my-profile-image">change</a>
-            <img id="my-profile-image" src="{{ app.user.profileImage is defined ? '/slir/w65-h65-c1:1'~app.user.profileImage : gravatar(app.user.email, '65', 'r', 'mm') }}" />
+            {% include "WhootBundle:User:profileImage.html.twig" with {'user': app.user, 'dimensions': 65, 'height': 80, 'width': 65, 'id': 'my-profile-image'} %}
             {% if pingCount|length > 0 %}
                 <div id="my-pings" title="{{ pingCount|length }} {{ pingCount|length > 1 ? 'pings' : 'ping' }} today. {{ pingCount|length }} {{ pingCount|length > 1 ? 'people want' : 'person wants' }} to know what you're doing tonight!">
                     {{ pingCount|length }}

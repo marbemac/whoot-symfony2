@@ -1,0 +1,3 @@
+{% set w = width is defined ? width : dimensions %}
+{% set h = height is defined ? height : dimensions %}
+<img class="profileImage" {{ id ? 'id="'~id~'"' : '' }} src="{{ user.profileImage ? '/slir/w'~w~'-h'~h~'-c1:1'~user.profileImage : gravatar(app.user.email, dimensions, 'r', 'mm') }}" />

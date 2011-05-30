@@ -5,7 +5,7 @@
             {% for user in activeUsers %}
                 <li>
                     <a class="profile-image" href="{{ path('fos_user_user_show', {'username': user.user.username}) }}" title="{{ user.user.firstName }} {{ user.user.lastName }}">
-                        <img src="{{ user.user.profileImage is defined ? '/slir/w30-h30-c1:1'~user.user.profileImage : gravatar(user.user.email, '30', 'r', 'mm') }}" alt="" />
+                        {% include "WhootBundle:User:profileImage.html.twig" with {'user': user.user, 'dimensions': 30} %}
                     </a>
                     <a class="name" href="{{ path('fos_user_user_show', {'username': post.createdBy.username}) }}">{{ user.user.firstName }} {{ user.user.lastName }}</a>
                 </li>

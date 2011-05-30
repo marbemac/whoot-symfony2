@@ -9,7 +9,7 @@
         {% for userPost in activeUsers %}
             {% if userPost.status == 'Active' and loop.index <= 3 %}
                 <a class="profile-image" href="{{ path('fos_user_user_show', {'username': userPost.user.username}) }}" title="{{ userPost.user.firstName }} {{ userPost.user.lastName }}">
-                    <img src="{{ userPost.user.profileImage is defined ? '/slir/w30-h30-c1:1'~userPost.user.profileImage : gravatar(userPost.user.email, '30', 'r', 'mm') }}" alt="" />
+                    {% include "WhootBundle:User:profileImage.html.twig" with {'user': userPost.user, 'dimensions': 30} %}
                 </a>
             {% endif %}
         {% endfor %}

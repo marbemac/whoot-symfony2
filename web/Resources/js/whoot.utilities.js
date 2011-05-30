@@ -4,22 +4,45 @@ $(function() {
         $(this).growfield();
     });
 
-    var inputClear = function(target)
-    {
-        if (target.hasClass('cleared') && !$.trim(target.val()))
-        {
-            target.val(target.data('default')).data('default', '').removeClass('cleared');
-        }
-        else if (!target.data('default'))
-        {
-            target.data('default', target.val()).val('').addClass('cleared');
-        }
-    }
+    // Sets the cursor to a position in an input
+    $.fn.selectRange = function(start, end) {
+        return this.each(function() {
+            if (this.setSelectionRange) {
+                this.focus();
+                this.setSelectionRange(start, end);
+            } else if (this.createTextRange) {
+                var range = this.createTextRange();
+                range.collapse(true);
+                range.moveEnd('character', end);
+                range.moveStart('character', start);
+                range.select();
+            }
+        });
+    };
+
     $('.iclear').live('click', function() {
-        inputClear($(this));
+        if (!$(this).hasClass('cleared') && (!$(this).data('default') || $(this).val() == $(this).data('default')))
+        {
+            $(this).addClass('active').data('default', $(this).val()).selectRange(0, 0);
+        }
     })
     $('.iclear').live('blur', function() {
-        inputClear($(this));
+        if (!$.trim($(this).val()) || $(this).val() == $(this).data('default'))
+        {
+            $(this).removeClass('active cleared').val($(this).data('default'));
+        }
+    })
+    $('.iclear').live('keydown', function() {
+        if ($(this).val() == $(this).data('default'))
+        {
+            $(this).removeClass('active').val('');
+        }
+    })
+    $('.iclear').live('keyup', function() {
+        if (!$.trim($(this).val()))
+        {
+            $(this).addClass('active').val($(this).data('default')).selectRange(0, 0);
+        }
     })
 
 })

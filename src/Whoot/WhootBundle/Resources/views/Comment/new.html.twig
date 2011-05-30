@@ -4,7 +4,7 @@
     {% if comment is defined and comment.content %}
         {{ form_widget(form.content, { 'attr': {'class': 'growfield content'} }) }}
     {% else %}
-        {{ form_widget(form.content, { 'value': 'Write a comment...', 'attr': {'class': 'growfield iclear content'} }) }}
+        {{ form_widget(form.content, { 'value': 'Write a comment...', 'attr': {'class': 'growfield iclear b content'} }) }}
     {% endif %}
 
     <div class="errors">

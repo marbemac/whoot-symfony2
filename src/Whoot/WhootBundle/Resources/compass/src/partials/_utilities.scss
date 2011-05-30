@@ -30,6 +30,27 @@
 
 .clear { clear: both; }
 
+// Input clearning (on click for instance)
+.iclear {
+
+    // White text
+    &.w {
+        color: #FFF !important;
+
+        &.active {
+            color: #A3B9D7 !important;
+        }
+    }
+    // Black text
+    &.b {
+        color: #000 !important;
+
+        &.active {
+            color: #BBB !important;
+        }
+    }
+}
+
 // Dragging handles.
 .handle-small { width: 9px; height: 10px; cursor: move; }
 

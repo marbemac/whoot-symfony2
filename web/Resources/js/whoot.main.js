@@ -39,6 +39,11 @@ $(function() {
         $('#post-box').fadeIn(500);
     })
 
+
+    $('#cancel-post').livequery(function() {
+        $(this).colorbox({transition: "none", opacity: .5, inline: true, href: "#cancel-confirm"});
+    })
+
     // Use canvas to draw the post timers
     var $postColors = {'working': '#009966', 'low_in': '#996699', 'low_out': '#FF9900', 'big_out': '#CC3300'};
     $('.post.teaser .timer').livequery(function() {
@@ -143,7 +148,7 @@ $(function() {
 
     // Scroll to my post
     $('#my-post').live('click', function(ev) {
-        if ($(ev.target).attr('id') == 'change-post')
+        if ($(ev.target).attr('id') == 'change-post' || $(ev.target).attr('id') == 'cancel-post')
             return;
         
         location.href = $(this).data('target');

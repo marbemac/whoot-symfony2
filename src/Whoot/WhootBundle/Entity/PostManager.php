@@ -181,9 +181,10 @@ class PostManager
     public function findMyPost($user, $status = 'Active', $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('up', 'p', 'u'))
+        $qb->select(array('up', 'p', 'cb', 'u'))
            ->from('Whoot\WhootBundle\Entity\UsersPosts', 'up')
            ->innerJoin('up.post', 'p')
+           ->innerJoin('p.createdBy', 'cb')
            ->leftJoin('p.users', 'u', 'WITH', 'u.status = :userPostStatus')
            ->where('up.status = :status AND up.createdAt >= :createdAt AND up.user = :createdBy')
            ->setParameters(array(

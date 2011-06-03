@@ -27,16 +27,18 @@ Purpose of the stylesheet follows.
     }
 }
 
-#change-post {
+#change-post,
+#cancel-post {
     float: right;
     color: $link-color;
     font-size: 12px;
     margin: -1px 3px 0 0;
     font-weight: bold;
-}
-#change-post:hover {
-    cursor: pointer;
-    text-decoration: underline;
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
 }
 
 #post-box {
@@ -253,7 +255,7 @@ $feed-filters-margin-top: 8px;
         width: 173px;
 
         .arrow-small {
-            position: absolute; top: 12px; right: 18px;
+            position: absolute; top: 11px; right: 18px;
             z-index: 10;
         }
         ul {
@@ -283,7 +285,7 @@ $feed-filters-margin-top: 8px;
 
     div {
         float: left;
-        margin: -3px 8px 0 8px;
+        margin: -1px 10px 0 10px;
         font-weight: bold;
         cursor: default;
     }
@@ -317,7 +319,7 @@ $feed-filters-margin-top: 8px;
 
     .undecided-count {
         float: left;
-        margin: -4px 0 0 10px;
+        margin: -1px 0 0 10px;
         cursor: default;
     }
     .decided {
@@ -367,7 +369,7 @@ $feed-filters-margin-top: 8px;
 
         .post {
             font-size: 16px;
-            padding: 4px 0;
+            padding: 6px 0;
         }
         .note {
             font-size: 12px;

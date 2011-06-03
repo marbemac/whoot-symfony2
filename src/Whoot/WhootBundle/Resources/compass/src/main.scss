@@ -64,6 +64,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
         color: #FFF;
         font-size: 26px;
         text-decoration: none;
+        float: left;
 
         .image {
             width: 40px;
@@ -103,7 +104,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
             border-top: 1px solid #163967;
             border-bottom: 1px solid #4075BC;
             font-size: 18px;
-            padding: 2px 8px;
+            padding: 4px 8px;
             color: #FFF;
             width: 230px;
         }
@@ -140,7 +141,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
     bottom: 0px;
     left: 50%;
     margin: 0 0 0 $page_width/2*-1;
-    padding: 3px 0 6px 10px;
+    padding: 3px 0 4px 10px;
     font-weight: normal;
     font-size: 14px;
 }

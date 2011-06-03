@@ -3,7 +3,15 @@
         <h3>
             {{ myPost.post.type|printPostTypeShort() }}
         </h3>
-        <div id="change-post">Change</div>
+        {% if myPost.post.createdBy.id == app.user.id %}
+            <div id="cancel-post">Cancel</div>
+            <div id="cancel-confirm" class="hide">
+                <h3>Are you sure you want to cancel your open invite?</h3>
+            </div>
+        {% else %}
+            <div id="change-post">Change</div>
+        {% endif %}
+
         <div class="clear"></div>
 
         <div>

@@ -9,7 +9,9 @@ use Whoot\WhootBundle\Entity\UserFollowing;
 
 use FOS\UserBundle\Entity\UserManager as BaseUserManager;
 
-class UserManager extends BaseUserManager
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+
+class UserManager extends BaseUserManager implements UserProviderInterface
 {
     protected $em;
 

@@ -4,12 +4,12 @@
         <div class="timer {{ post.type }}"></div>
     </canvas>
 
-    <a class="profile-image" href="{{ path('fos_user_user_show', {'username': post.createdBy.username}) }}" title="{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}">
+    <a class="profile-image" href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}" title="{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}">
         {% include "WhootBundle:User:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 30} %}
     </a>
 
     <div class="post">
-        <a class="user" href="{{ path('fos_user_user_show', {'username': post.createdBy.username}) }}">{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}</a>
+        <a class="user" href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}">{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}</a>
         invites you to {{ post.type|printPostTypeNoun|raw }} at {{ post.venue }}
     </div>
 

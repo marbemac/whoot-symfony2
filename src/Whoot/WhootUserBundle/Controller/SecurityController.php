@@ -1,6 +1,6 @@
 <?php
 
-namespace Limelight\LimelightUserBundle\Controller;
+namespace Whoot\WhootUserBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\SecurityContext;
@@ -30,14 +30,14 @@ class SecurityController extends ContainerAware
 
         if ($this->container->get('request')->isXmlHttpRequest() || $chromeless)
         {
-            return $this->container->get('templating')->renderResponse('LimelightUserBundle:Security:login_content.html.twig', array(
+            return $this->container->get('templating')->renderResponse('WhootUserBundle:Security:login_content.html.twig', array(
                 // last username entered by the user
                 'last_username' => $this->container->get('request')->getSession()->get(SecurityContext::LAST_USERNAME),
                 'error'         => $error,
             ));
         }
 
-        return $this->container->get('templating')->renderResponse('LimelightUserBundle:Security:login.html.twig', array(
+        return $this->container->get('templating')->renderResponse('WhootUserBundle:Security:login.html.twig', array(
             // last username entered by the user
             'last_username' => $this->container->get('request')->getSession()->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,

@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(), // FriendsOfSymfony UserBundle
             new Bundle\GravatarBundle\GravatarBundle(),
+            new Whoot\WhootUserBundle\WhootUserBundle(),
             new Whoot\WhootBundle\WhootBundle(),
         );
 

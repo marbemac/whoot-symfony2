@@ -1,13 +1,13 @@
 <?php
 
-namespace Whoot\WhootBundle\Form;
+namespace Whoot\WhootUserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-use FOS\UserBundle\Form\UserFormType as BaseForm;
+use FOS\UserBundle\Form\RegistrationFormType as BaseForm;
 
-class UserFormType extends BaseForm
+class RegistrationFormType extends BaseForm
 {
     public function buildForm(FormBuilder $builder, array $options)
     {

@@ -1,7 +1,7 @@
 {% extends 'WhootUserBundle::layout.html.twig' %}
 
 {% block title %}
-    {{ user.firstName }} {{ user.lastName }} Feed
+    {{ user.firstName }} {{ user.lastName }} Following
 {% endblock %}
 
 {% block user_sidebar %}
@@ -9,5 +9,5 @@
 {% endblock %}
 
 {% block page_content %}
-    {% include "WhootUserBundle:Profile:show_content.html.twig" %}
+    {% include "WhootUserBundle:Profile:followers_content.html.twig" %}
 {% endblock %}

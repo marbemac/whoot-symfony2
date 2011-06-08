@@ -8,7 +8,7 @@
         {% set activeUsers = post.users|rebuildArray('status', 'Active') %}
         {% for userPost in activeUsers %}
             {% if userPost.status == 'Active' and loop.index <= 3 %}
-                <a class="profile-image" href="{{ path('fos_user_user_show', {'username': userPost.user.username}) }}" title="{{ userPost.user.firstName }} {{ userPost.user.lastName }}">
+                <a class="profile-image" href="{{ path('user_profile_show', {'username': userPost.user.username}) }}" title="{{ userPost.user.firstName }} {{ userPost.user.lastName }}">
                     {% include "WhootBundle:User:profileImage.html.twig" with {'user': userPost.user, 'dimensions': 30} %}
                 </a>
             {% endif %}
@@ -39,7 +39,7 @@
                 {% endif %}
 
                 {% if loop.index <= 3 %}
-                    <a class="user" href="{{ path('fos_user_user_show', {'username': userPost.user.username}) }}">{{ userPost.user.firstName }} {{ userPost.user.lastName }}</a>
+                    <a class="user" href="{{ path('user_profile_show', {'username': userPost.user.username}) }}">{{ userPost.user.firstName }} {{ userPost.user.lastName }}</a>
                     {{ trail }}
                 {% endif %}
             {% endfor %}

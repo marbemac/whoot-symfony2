@@ -1,9 +1,9 @@
-{% extends 'LimelightBundle::base.' ~ _format ~ '.twig' %}
+{% extends 'WhootBundle::base.html.twig' %}
 
 {% block title %}
     Login
 {% endblock %}
 
 {% block page_content %}
-    {% include "LimelightBundle:Security:login_content.html.twig" %}
+    {% include "WhootUserBundle:Security:login_content.html.twig" %}
 {% endblock %}

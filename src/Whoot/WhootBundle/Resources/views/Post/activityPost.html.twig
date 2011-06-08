@@ -4,7 +4,7 @@
     </div>
 
     <div class="content">
-        <a class="user" href="{{ path('fos_user_user_show', {'username': event.user.username}) }}">{{ event.user.firstName }} {{ event.user.lastName }}</a>
+        <a class="user" href="{{ path('user_profile_show', {'username': event.user.username}) }}">{{ event.user.firstName }} {{ event.user.lastName }}</a>
         {{ event.message }}
     </div>
 </div>

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Limelight\LimelightUserBundle\Controller;
+namespace Whoot\WhootUserBundle\Controller;
 
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
@@ -33,6 +33,7 @@ class RegistrationController extends ContainerAware
     public function registerAction($_format, $chromeless=false)
     {
         $request = $this->container->get('request');
+        $username = uniqid();
         $form = $this->container->get('fos_user.registration.form');
         $formHandler = $this->container->get('fos_user.registration.form.handler');
 
@@ -49,15 +50,9 @@ class RegistrationController extends ContainerAware
                 $route = 'fos_user_registration_confirmed';
             }
 
-            $user_manager = $this->container->get('limelight.user_manager');
-            $object = $user_manager->createObject();
-            $object->setNode($user);
-            $object->setSlug($user->getUsername());
-            $user_manager->updateObject($object);
-
             if ($this->container->has('security.acl.provider')) {
                 $provider = $this->container->get('security.acl.provider');
-                $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($object));
+                $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($user));
                 $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
                 $provider->updateAcl($acl);
             }
@@ -75,22 +70,22 @@ class RegistrationController extends ContainerAware
             return new RedirectResponse($url);
         }
 
-                if ($chromeless)
+        if ($chromeless)
         {
-            return $this->container->get('templating')->renderResponse('LimelightUserBundle:Registration:register_content.html.twig', array('form' => $form->createView()));
+            return $this->container->get('templating')->renderResponse('WhootUserBundle:Registration:register_content.html.twig', array('form' => $form->createView(), 'username' => $username));
         }
 
         if ($request->isXmlHttpRequest())
         {
             $result = array();
             $result['result'] = 'error';
-            $result['form'] = $this->container->get('templating')->render('LimelightUserBundle:Registration:register_content.html.twig', array('form' => $form->createView()));
+            $result['form'] = $this->container->get('templating')->render('WhootUserBundle:Registration:register_content.html.twig', array('form' => $form->createView(), 'username' => $username));
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         }
 
-        return $this->container->get('templating')->renderResponse('LimelightUserBundle:Registration:register.html.twig', array('form' => $form->createView(), '_format' => $_format));
+        return $this->container->get('templating')->renderResponse('WhootUserBundle:Registration:register.html.twig', array('form' => $form->createView(), 'username' => $username));
     }
 
     /**

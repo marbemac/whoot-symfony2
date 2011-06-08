@@ -43,22 +43,22 @@
         {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <div id="splash">
                 <div class="auth">
-                    <div id="auth-welcome" class="panel {{ app.request.attributes.get('_route') in ['_security_login', 'fos_user_user_new'] ? 'hide' : '' }}">
+                    <div id="auth-welcome" class="panel {{ app.request.attributes.get('_route') in ['fos_user_security_login', 'fos_user_registration_register'] ? 'hide' : '' }}">
                         <div>
                             Pretty Welcome Graphics... go!
                         </div>
                         <div class="button" data-target="#auth-login">Login</div>
                         <div class="button" data-target="#auth-register">Register</div>
                     </div>
-                    <div id="auth-login" class="panel {{ app.request.attributes.get('_route') != '_security_login' ? 'hide' : '' }}">
+                    <div id="auth-login" class="panel {{ app.request.attributes.get('_route') != 'fos_user_security_login' ? 'hide' : '' }}">
                         <h3>Login</h3>
-                        {% render "WhootBundle:Security:login" with { 'chromeless': true } %}
+                        {% render "WhootUserBundle:Security:login" with { 'chromeless': true } %}
                         <div class="button" data-target="#auth-welcome">Back to Welcome</div>
                         <div class="button" data-target="#auth-register">Register</div>
                     </div>
-                    <div id="auth-register" class="panel {{ app.request.attributes.get('_route') != 'fos_user_user_new' ? 'hide' : '' }}">
+                    <div id="auth-register" class="panel {{ app.request.attributes.get('_route') != 'fos_user_registration_register' ? 'hide' : '' }}">
                         <h3>Register</h3>
-                        {% render "WhootBundle:User:new" with { 'chromeless': true } %}
+                        {% render "WhootUserBundle:Registration:register" with { 'chromeless': true } %}
                         <div class="button" data-target="#auth-welcome">Back to Welcome</div>
                         <div class="button" data-target="#auth-login">Login</div>
                     </div>

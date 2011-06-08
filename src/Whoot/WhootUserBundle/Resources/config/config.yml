@@ -1,2 +1,2 @@
 imports:
-    - { resource: "@LimelightUserBundle/Resources/config/manager.yml" }
+    - { resource: "@WhootUserBundle/Resources/config/manager.yml" }

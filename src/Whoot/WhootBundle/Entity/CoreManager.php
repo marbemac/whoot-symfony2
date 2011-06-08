@@ -58,7 +58,7 @@ class CoreManager
             }
             else
             {
-                $response = new RedirectResponse($this->router->generate('_security_login'));
+                $response = new RedirectResponse($this->router->generate('fos_user_security_login'));
             }
             return $response;
         }

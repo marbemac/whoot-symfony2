@@ -250,7 +250,7 @@ class UserController extends ContainerAware
         $process = $formHandler->process($user);
         if ($process) {
             $this->container->get('session')->setFlash('notice', 'Account edited successfully!');
-            $userUrl =  $this->container->get('router')->generate('fos_user_user_show', array('username' => $user->getUsername()));
+            $userUrl =  $this->container->get('router')->generate('user_profile_show', array('username' => $user->getUsername()));
             return new RedirectResponse($userUrl);
         }
 

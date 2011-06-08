@@ -1,7 +1,7 @@
 parameters:
-    limelight.user_manager.class:                  Limelight\LimelightUserBundle\Entity\UserManager
+    whoot.user_manager.class:                  Whoot\WhootUserBundle\Entity\UserManager
 
 services:
-    limelight.user_manager:
-        class:        %limelight.user_manager.class%
-        arguments:    ["@limelight.object_manager", "@doctrine.orm.default_entity_manager"]
+    whoot.user_manager:
+        class:        %whoot.user_manager.class%
+        arguments:    ["@doctrine.orm.default_entity_manager"]

@@ -16,8 +16,32 @@ fos_user_security:
 ###
 
 ### PROFILE
+user_upload_picture:
+    pattern:  /upload-picture
+    defaults: { _controller: WhootUserBundle:Profile:uploadPicture }
+    requirements:
+        _method: POST
+
+user_followers:
+    pattern:  /{username}/followers
+    defaults: { _controller: WhootUserBundle:Profile:followers }
+    requirements:
+      _method: GET
+
+user_following:
+    pattern:  /{username}/following
+    defaults: { _controller: WhootUserBundle:Profile:following }
+    requirements:
+      _method: GET
+
+user_settings:
+    pattern:  /{username}/settings
+    defaults: { _controller: WhootUserBundle:Profile:settings }
+    requirements:
+      _method: GET
+
 user_profile_show:
-    pattern: /profile/{username}.{_format}
+    pattern: /profile/{username}
     defaults: { _controller: FOSUserBundle:Profile:show, _format: html }
     requirements:
         _method: GET

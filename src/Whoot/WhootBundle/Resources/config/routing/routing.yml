@@ -1,10 +1,6 @@
-security:
-    resource: "@WhootBundle/Resources/config/routing/security.yml"
-
 user:
-    resource: "@WhootBundle/Resources/config/routing/user.yml"
-    prefix:   /u
-    
+    resource: "@WhootUserBundle/Resources/config/routing/routing.yml"
+
 post:
     resource: "@WhootBundle/Resources/config/routing/post.yml"
     prefix:   /p

@@ -3,10 +3,26 @@
         <h3>
             {{ myPost.post.type|printPostTypeShort() }}
         </h3>
-        {% if myPost.post.createdBy.id == app.user.id %}
+        {% if myPost.post.createdBy.id == app.user.id and myPost.post.isOpenInvite %}
             <div id="cancel-post">Cancel</div>
-            <div id="cancel-confirm" class="hide">
-                <h3>Are you sure you want to cancel your open invite?</h3>
+            <div class="hide">
+                <div id="invite-cancel-confirm">
+                    <div class="num">
+                        {% if myPost.post.users|conditionalLength('status', 'Active') > 1 %}
+                            {{ myPost.post.users|conditionalLength('status', 'Active')-1 }}
+                            people have jived your post. The invite will be cancelled for them as well!
+                        {% else %}
+                            Looks like your invite wasn't very popular huh? Go ahead, cancel away...
+                        {% endif %}
+                    </div>
+                    <div class="noundo">
+                        You cannot undo this action!
+                    </div>
+                    <div class="actions">
+                        <a class="submit ac" href="{{ path('post_cancel') }}">Confirm Cancellation</a>
+                        <div class="cancel">Nevermind</div>
+                    </div>
+                </div>
             </div>
         {% else %}
             <div id="change-post">Change</div>

@@ -5,7 +5,7 @@
             {% for user in activeUsers %}
                 <li>
                     <a class="profile-image" href="{{ path('user_profile_show', {'username': user.user.username}) }}" title="{{ user.user.firstName }} {{ user.user.lastName }}">
-                        {% include "WhootBundle:User:profileImage.html.twig" with {'user': user.user, 'dimensions': 30} %}
+                        {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user.user, 'dimensions': 30} %}
                     </a>
                     <a class="name" href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}">{{ user.user.firstName }} {{ user.user.lastName }}</a>
                 </li>

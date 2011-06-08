@@ -57,6 +57,12 @@ $(function(){
         $('#my-post').replaceWith(data.myPost);
     });
 
+    amplify.subscribe("post_cancelled", function( data ) {
+        $('#cancel-post').colorbox.remove();
+
+        $('#my-post').replaceWith(data.myPost);
+    });
+
     amplify.subscribe("jive_toggle", function( data ) {
         $('#my-post').replaceWith(data.myPost);
 

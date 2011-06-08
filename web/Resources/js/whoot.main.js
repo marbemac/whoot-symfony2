@@ -39,11 +39,11 @@ $(function() {
         $('#post-box').fadeIn(500);
     })
 
-
+    // Show confirm button for cancel open invite post
     $('#cancel-post').livequery(function() {
-        $(this).colorbox({transition: "none", opacity: .5, inline: true, href: "#cancel-confirm"});
+        $(this).colorbox({title:"Are you sure you want to cancel your open invite?", transition: "none", opacity: .5, inline: true, href: "#invite-cancel-confirm"});
     })
-
+    
     // Use canvas to draw the post timers
     var $postColors = {'working': '#009966', 'low_in': '#996699', 'low_out': '#FF9900', 'big_out': '#CC3300'};
     $('.post.teaser .timer').livequery(function() {
@@ -200,6 +200,11 @@ $(function() {
         $('#post-box').fadeOut(300);
     })
 
+    // Cancel a open invite cancellation
+    $('#invite-cancel-confirm .cancel').live('click', function() {
+        $('#invite-cancel-confirm').colorbox.close();
+    })
+
     // Toggle the activity of a post
     $('.teaser.post').live('click', function(ev) {
         if ($(ev.target).is('a'))
@@ -208,13 +213,13 @@ $(function() {
         var $self = $(this);
         if ($self.next().hasClass('post-details'))
         {
-            $self.next().toggle();
+            $self.toggleClass('on').next().toggle();
             
             return;
         }
 
         $.get($self.data('details'), {}, function(data) {
-            $self.after(data.details);
+            $self.after(data.details).toggleClass('on');
         }, 'json')
     })
 
@@ -246,7 +251,7 @@ $(function() {
             var place = $auto.getPlace();
             $('#post-address-name').val(place.formatted_address);
             $('#post-address-lat').val(place.geometry.location.Ia);
-            $('#post-address-lon').val(place.geometry.location.Ja);
+            $('#post-address-lon').val(place.geometry.location.Ha);
         })
     })
 

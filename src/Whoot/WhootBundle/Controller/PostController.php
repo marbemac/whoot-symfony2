@@ -129,7 +129,7 @@ class PostController extends ContainerAware
             $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
             $provider->updateAcl($acl);
         }
-        
+
         if ($request->isXmlHttpRequest())
         {
             $result = array();
@@ -138,6 +138,55 @@ class PostController extends ContainerAware
             $result['result'] = 'success';
             $result['event'] = 'post_created';
             $result['flash'] = array('type' => 'success', 'message' => 'Your status has been updated.');
+            $myPost = $this->container->get('http_kernel')->forward('WhootBundle:Post:myPost', array());
+            $result['myPost'] = $myPost->getContent();
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
+
+        return new RedirectResponse($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : $this->container->get('router')->generate('homepage'));
+    }
+
+    /**
+     * Get's the users current post and cancels it if they created it and it's an open invite
+     */
+    public function cancelAction()
+    {
+        $coreManager = $this->container->get('whoot.core_manager');
+        $login = $coreManager->mustLogin();
+        if ($login)
+        {
+            return $login;
+        }
+
+        $request = $this->container->get('request');
+        $myPost = $this->container->get('whoot.post_manager')->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
+        if ($myPost['post']['createdBy']['id'] != $this->container->get('security.context')->getToken()->getUser()->getId() || !$myPost['post']['isOpenInvite'])
+        {
+            if ($request->isXmlHttpRequest())
+            {
+                $result = array();
+                $result['result'] = 'error';
+                $result['flash'] = array('type' => 'error', 'message' => 'You can only cancel your own open invites!');
+                $response = new Response(json_encode($result));
+                $response->headers->set('Content-Type', 'application/json');
+
+                return $response;
+            }
+        }
+
+        $this->container->get('whoot.post_manager')->cancelPost($myPost['post']['id']);
+
+        if ($request->isXmlHttpRequest())
+        {
+            $result = array();
+            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());
+            $result['feed'] = $feed->getContent();
+            $result['result'] = 'success';
+            $result['event'] = 'post_cancelled';
+            $result['flash'] = array('type' => 'success', 'message' => 'Your invite has been cancelled.');
             $myPost = $this->container->get('http_kernel')->forward('WhootBundle:Post:myPost', array());
             $result['myPost'] = $myPost->getContent();
             $response = new Response(json_encode($result));
@@ -271,6 +320,23 @@ class PostController extends ContainerAware
 
         $request = $this->container->get('request');
         $postManager = $this->container->get('whoot.post_manager');
+
+        // Check to see if this user is the creator of a currently active open invite
+        $myPost = $postManager->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
+        if ($myPost['post']['createdBy']['id'] == $this->container->get('security.context')->getToken()->getUser()->getId() && $myPost['post']['isOpenInvite'])
+        {
+            if ($request->isXmlHttpRequest())
+            {
+                $result = array();
+                $result['result'] = 'error';
+                $result['flash'] = array('type' => 'error', 'message' => 'You created an open invite. Cancel it first (button on right sidebar).');
+                $response = new Response(json_encode($result));
+                $response->headers->set('Content-Type', 'application/json');
+
+                return $response;
+            }
+        }
+
         $result = $postManager->toggleJive($this->container->get('security.context')->getToken()->getUser(), $postId, true);
 
         if ($request->isXmlHttpRequest())

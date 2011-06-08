@@ -1,5 +1,5 @@
 <form action="{{ path('comment_new') }}" {{ form_enctype(form) }} method="POST" class="comment_new">
-    <img src="{{ app.user.profileImage is defined ? '/slir/w28-h28-c1:1'~app.user.profileImage : gravatar(app.user.email, '28', 'r', 'mm') }}" alt="" />
+    {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': app.user, 'dimensions': 28} %}
 
     {% if comment is defined and comment.content %}
         {{ form_widget(form.content, { 'attr': {'class': 'growfield content'} }) }}

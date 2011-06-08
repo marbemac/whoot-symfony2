@@ -1,6 +1,6 @@
 <li class="teaser user {{ loop is defined and loop.first ? 'first' : '' }}">
     <a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.firstName }} {{ user.lastName }}">
-        {% include "WhootBundle:User:profileImage.html.twig" with {'user': user, 'dimensions': 30, 'height': 30, 'width': 30} %}
+        {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user, 'dimensions': 30, 'height': 30, 'width': 30} %}
     </a>
     <a class="user" href="{{ path('user_profile_show', {'username': user.username}) }}">{{ user.firstName }} {{ user.lastName }}</a>
     <div class="actions">

@@ -5,7 +5,7 @@
     </canvas>
 
     <a class="profile-image" href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}" title="{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}">
-        {% include "WhootBundle:User:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 30} %}
+        {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 30} %}
     </a>
 
     <div class="post">

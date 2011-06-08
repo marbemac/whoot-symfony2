@@ -41,6 +41,41 @@ Purpose of the stylesheet follows.
     }
 }
 
+#invite-cancel-confirm {
+    .num {
+        font-size: 18px;
+        margin:  0 20px 10px 5px;
+    }
+    .noundo {
+        font-size: 14px;
+        font-style: italic;
+        margin:  0 20px 5px 5px;
+    }
+}
+
+#post-box,
+#invite-cancel-confirm {
+    .actions {
+        margin: 0 7px;
+    }
+    .submit,
+    .cancel {
+        font-size: 20px;
+        float: left;
+        font-weight: bold;
+        color: $link-color;
+        margin: 7px 0 9px 7px;
+    }
+    .submit:hover,
+    .cancel:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    .cancel {
+        margin-left: 30px;
+    }
+}
+
 #post-box {
     @include opacity(.95);
 
@@ -162,25 +197,6 @@ Purpose of the stylesheet follows.
                 left: 60px !important;
             }
         }
-        .actions {
-            margin: 0 7px;
-        }
-        .submit,
-        .cancel {
-            font-size: 20px;
-            float: left;
-            font-weight: bold;
-            color: $link-color;
-            margin: 7px 0 9px 7px;
-        }
-        .submit:hover,
-        .cancel:hover {
-            cursor: pointer;
-            text-decoration: underline;
-        }
-        .cancel {
-            margin-left: 30px;
-        }
     }
 }
 
@@ -295,6 +311,7 @@ $feed-filters-margin-top: 8px;
     div.big_out { color: $post-big_out-color; }
 }
 
+$post-hover-color: #E7EDFF;
 #post-feed,
 #open-invite-feed {
     position: relative;
@@ -309,14 +326,16 @@ $feed-filters-margin-top: 8px;
         margin: 0px 10px 5px 10px;
         cursor: default;
     }
-    .teaser.post:hover {
-        background: #F8F7FF;
-        cursor: pointer;
+    .teaser.post {
+        &:hover,
+        &.on {
+            background: $post-hover-color;
+            cursor: pointer;
+        }
     }
 }
 
 #post-feed {
-
     .undecided-count {
         float: left;
         margin: -1px 0 0 10px;
@@ -327,22 +346,22 @@ $feed-filters-margin-top: 8px;
     }
 }
 
-.teaser.post {
-    overflow: hidden;
-    height: 33px;
-    padding: 5px;
-
-    &.on {
-        height: auto;    
+.teaser.post,
+.teaser.invite {
+    .post {
+        float: left;
+        padding:  9px 0;
     }
+}
 
+.teaser.post {
     .timer {
         width: 20px;
         height: 20px;
         float: left;
         position: relative;
         top: 7px;
-        margin: 0 5px 0 0;
+        margin: 3px 5px 0 5px;
     }
     div.timer {
         @include border-radius(10px);
@@ -355,35 +374,18 @@ $feed-filters-margin-top: 8px;
     .profile-images {
         float: left;
         width: 130px;
-
+    
         img {
             @include border-radius(5px);
             float: left;
-            margin: 2px 0 0 5px;
-        }
-    }
-    .content {
-        float: left;
-        position: relative;
-        color: #666;
-
-        .post {
-            font-size: 16px;
-            padding: 6px 0;
-        }
-        .note {
-            font-size: 12px;
-            font-style: italic;
-            position: relative;
-            left: -2px;
-            min-height: 7px;
+            margin: 5px 0 0 5px;
         }
     }
     .jive-B {
         color: $link-color;
         float: right;
         font-size: 16px;
-        padding: 3px 12px;
+        padding: 9px;
     }
     .jive-B:hover {
         text-decoration: underline;
@@ -410,21 +412,17 @@ $feed-filters-margin-top: 8px;
     
     .profile-image {
         float: left;
-        margin: 1px 0 0 5px;
+        margin: 5px 0 0 5px;
         width: 50px;
 
         img {
             @include border-radius(5px);
         }
     }
-    .post {
-        float: left;
-        margin: 3px 0 0 0;
-    }
     .num-users {
         float: right;
         font-size: 16px;
-        margin: 3px 0 0 0;
+        padding: 9px;
         cursor: default;
         text-align: right;
         width: 50px;
@@ -433,8 +431,13 @@ $feed-filters-margin-top: 8px;
 
 .post-details {
     $left-column-width: 200px;
-    margin: 5px 0 0 0;
+
+    @include border-bottom-radius(5px);
+
     padding: 10px;
+    border: 5px solid $post-hover-color;
+    border-top: none;
+    margin-bottom: 10px;
 
     .left {
         float: left;

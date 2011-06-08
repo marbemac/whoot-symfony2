@@ -51,7 +51,7 @@
     <div class="clear"></div>
     <ul class="undecided feed">
         {% for user in undecidedUsers %}
-            {% include "WhootBundle:User:teaser.html.twig" with {'user': user} %}
+            {% include "WhootUserBundle:Profile:teaser.html.twig" with {'user': user} %}
         {% endfor %}
     </ul>
 {% endif %}

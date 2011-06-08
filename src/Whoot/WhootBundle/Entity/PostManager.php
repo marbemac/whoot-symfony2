@@ -256,6 +256,55 @@ class PostManager
     }
 
     /*
+     * Cancel a post.
+     * Set all users connected to this post to their previous posts.
+     *
+     * @param integer $postId
+     */
+    public function cancelPost($postId)
+    {
+        $post = $this->findPostBy($postId, null, null, null, true);
+        if (!$post)
+        {
+            return false;
+        }
+
+        // Loop through and re-assign posts to a users most recent post before this one
+        foreach ($post->getUsers() as $userPost)
+        {
+            $qb = $this->em->createQueryBuilder();
+            $qb->select(array('up'))
+               ->from('Whoot\WhootBundle\Entity\UsersPosts', 'up')
+               ->innerJoin('up.post', 'p')
+               ->where('up.status != :status AND up.user = :user AND p.isOpenInvite = 0')
+               ->orderBy('up.createdAt', 'DESC')
+               ->setMaxResults(1)
+               ->setParameters(array(
+                   'user'    => $userPost->getUser()->getId(),
+                   'status'       => 'Active',
+               ));
+
+            $query = $qb->getQuery();
+
+            $prevPost = $query->getResult(Query::HYDRATE_OBJECT);
+            $prevPost = $prevPost[0];
+            $prevPost->setStatus('Active');
+            $prevPost->getPost()->setStatus('Active');
+            $this->em->persist($prevPost);
+
+            $userPost->setStatus('Disabled');
+            $this->em->persist($userPost);
+        }
+
+        $post->setStatus('Cancelled');
+        $this->em->persist($post);
+
+        $this->em->flush();
+
+        return true;
+    }
+
+    /*
      * Check for jives. Return if found.
      *
      * @param integer $fromUser

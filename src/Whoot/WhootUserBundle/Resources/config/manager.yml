@@ -1,0 +1,7 @@
+parameters:
+    limelight.user_manager.class:                  Limelight\LimelightUserBundle\Entity\UserManager
+
+services:
+    limelight.user_manager:
+        class:        %limelight.user_manager.class%
+        arguments:    ["@limelight.object_manager", "@doctrine.orm.default_entity_manager"]

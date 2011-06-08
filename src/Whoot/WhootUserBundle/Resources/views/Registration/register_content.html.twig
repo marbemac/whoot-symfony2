@@ -1,0 +1,19 @@
+<h3>Register</h3>
+
+<form action="{{ path('user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="user_new">
+    {{ form_errors(form) }}
+
+    {% for field in form %}
+        {% if not false %}
+        <div>
+            {{ form_errors(field) }}
+            {{ form_label(field) }}
+            {{ form_widget(field) }}
+        </div>
+        {% endif %}
+    {% endfor %}
+
+    {{ form_rest(form) }}
+
+    <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+</form>

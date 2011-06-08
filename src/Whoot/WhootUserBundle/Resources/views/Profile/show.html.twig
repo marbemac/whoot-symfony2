@@ -1,0 +1,19 @@
+{% extends 'LimelightUserBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ object.User.username }}
+{% endblock %}
+
+{% block sidebar_right %}
+    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") or app.user.username != object.User.username %}
+        {% include "LimelightUserBundle:Profile:show_sidebar.html.twig" %}
+    {% endif %}
+{% endblock %}
+
+{% block feed_filters %}
+    {% render "LimelightBundle:Object:feedFilters" %}
+{% endblock %}
+
+{% block page_content %}
+    {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+{% endblock %}

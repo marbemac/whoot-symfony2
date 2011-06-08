@@ -1,0 +1,11 @@
+{% extends "LimelightUserBundle::layout.html.twig" %}
+
+{% block title %}
+    Account Confirmed!
+{% endblock %}
+
+{% block page_content %}
+
+    {{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}
+
+{% endblock %}

@@ -1,0 +1,6 @@
+<div>
+    User Teaser<br />
+    Score: [<span class="s_{{ object.id }}">{{ object.score }}</span>] <a class="p" href="{{ path('user_profile_show', {'username': object.User.username} ) }}">{{ object.User.username }}</a>
+    
+    {% render "LimelightBundle:Follow:tag" with {'toObject': object.id} %}
+</div>

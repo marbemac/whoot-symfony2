@@ -1,0 +1,9 @@
+{% extends 'LimelightBundle::base.' ~ _format ~ '.twig' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block page_content %}
+    {% include "LimelightBundle:Security:login_content.html.twig" %}
+{% endblock %}

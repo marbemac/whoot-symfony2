@@ -9,7 +9,7 @@
     </a>
 
     <div class="post">
-        <a class="user" href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}">{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}</a>
+        {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': post.createdBy} %}
         invites you to {{ post.type|printPostTypeNoun|raw }} at {{ post.venue }}
     </div>
 

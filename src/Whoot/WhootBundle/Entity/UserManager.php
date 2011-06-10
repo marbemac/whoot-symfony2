@@ -243,4 +243,44 @@ class UserManager extends BaseUserManager implements UserProviderInterface
 
         return isset($result[0]) ? $result[0] : null;
     }
+
+    /*
+     * Get users for a search query. Return followed users first.
+     *
+     * @param integer $userId
+     * @param string $query
+     */
+    public function findForSearch($userId, $query)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select(array('u', 'up', 'p'))
+           ->from('Whoot\WhootBundle\Entity\User', 'u')
+           ->leftJoin('u.posts', 'up', 'WITH', 'up.status = :status AND up.createdAt >= :createdAt')
+           ->leftJoin('up.post', 'p', 'WITH', 'p.status = :status')
+           ->where(
+               $qb->expr()->like('CONCAT(u.firstName, u.lastName)', ':query')
+           )
+           ->setParameters(array(
+               'query' => '%'.$query.'%',
+               'status' => 'Active',
+                'createdAt'    => date('Y-m-d 05:00:00', time()-(60*60*5))
+           ));
+
+        $query = $qb->getQuery();
+        $results = $query->getArrayResult();
+
+        $response = array();
+        foreach ($results as $result)
+        {
+            $response[] = array(
+                'name' => $result['firstName'].' '.$result['lastName'],
+                'username' => $result['username'],
+                'id' => $result['id'],
+                'profileImage' => $result['profileImage'] ? $result['profileImage'] : 'gravatar',
+                'postId' => isset($result['posts'][0]) ? $result['posts'][0]['post']['id'] : null
+            );
+        }
+
+        return $response;
+    }
 }

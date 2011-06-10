@@ -7,7 +7,7 @@
                     <a class="profile-image" href="{{ path('user_profile_show', {'username': user.user.username}) }}" title="{{ user.user.firstName }} {{ user.user.lastName }}">
                         {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user.user, 'dimensions': 30} %}
                     </a>
-                    <a class="name" href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}">{{ user.user.firstName }} {{ user.user.lastName }}</a>
+                    {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': post.createdBy} %}
                 </li>
             {% endfor %}
         </ul>

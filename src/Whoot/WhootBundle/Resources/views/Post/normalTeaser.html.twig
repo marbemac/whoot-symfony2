@@ -38,7 +38,7 @@
             {% endif %}
 
             {% if loop.index <= 3 %}
-                <a class="user" href="{{ path('user_profile_show', {'username': userPost.user.username}) }}">{{ userPost.user.firstName }} {{ userPost.user.lastName }}</a>
+                {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': userPost.user} %}
                 {{ trail }}
             {% endif %}
         {% endfor %}

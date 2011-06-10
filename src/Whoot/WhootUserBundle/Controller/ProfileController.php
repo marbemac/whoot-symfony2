@@ -226,6 +226,40 @@ class ProfileController extends ContainerAware
         return $response;
     }
 
+    public function ajaxSearchAction()
+    {
+        $query = $this->container->get('request')->query->get('q');
+
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+            // return $response;
+        }
+
+        if (!$query)
+        {
+            return $response;
+        }
+
+        $results = $this->container->get('whoot.user_manager')->findForSearch(
+            $this->container->get('security.context')->getToken()->getUser()->getId(),
+            $query
+        );
+
+        $response->setContent(json_encode($results));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    public function searchAction()
+    {
+        return new Response();
+    }
+
     /**
      * Find a user by a specific property
      *

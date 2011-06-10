@@ -22,6 +22,18 @@ user_upload_picture:
     requirements:
         _method: POST
 
+user_ajax_search:
+    pattern:  /ajax-search
+    defaults: { _controller: WhootUserBundle:Profile:ajaxSearch }
+    requirements:
+        _method: GET
+
+user_search:
+    pattern:  /search
+    defaults: { _controller: WhootUserBundle:Profile:search }
+    requirements:
+        _method: GET
+
 user_followers:
     pattern:  /{username}/followers
     defaults: { _controller: WhootUserBundle:Profile:followers }

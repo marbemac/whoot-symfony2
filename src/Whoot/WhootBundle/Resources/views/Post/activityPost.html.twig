@@ -4,7 +4,7 @@
     </div>
 
     <div class="content">
-        <a class="user" href="{{ path('user_profile_show', {'username': event.user.username}) }}">{{ event.user.firstName }} {{ event.user.lastName }}</a>
+        {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': event.user} %}
         {{ event.message }}
     </div>
 </div>

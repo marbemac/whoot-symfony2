@@ -43,7 +43,14 @@ $(function() {
     $('#cancel-post').livequery(function() {
         $(this).colorbox({title:"Are you sure you want to cancel your open invite?", transition: "none", opacity: .5, inline: true, href: "#invite-cancel-confirm"});
     })
-    
+
+    // Scroll to undecided posts
+    $('#feed-filters .undecided').live('click', function() {
+        $.scrollTo('.undecided-count', {
+            duration: 500
+        })
+    })
+
     // Use canvas to draw the post timers
     var $postColors = {'working': '#009966', 'low_in': '#996699', 'low_out': '#FF9900', 'big_out': '#CC3300'};
     $('.post.teaser .timer').livequery(function() {
@@ -150,9 +157,14 @@ $(function() {
     $('#my-post').live('click', function(ev) {
         if ($(ev.target).attr('id') == 'change-post' || $(ev.target).attr('id') == 'cancel-post')
             return;
-        
-        location.href = $(this).data('target');
-        $($(this).data('target')).click();
+
+        var $self = $(this);
+        $.scrollTo($self.data('target'), {
+            duration: 500,
+            onAfter: function() {
+                $($self.data('target')).click();
+            }
+        })
     })
 
     // Submit a new post
@@ -326,4 +338,82 @@ $(function() {
     $('.mc-menu a').live('click', function() {
         $(this).parent().toggleClass('on');
     })
+
+    /*
+     * SEARCH
+     */
+    
+    $(".search input").autocomplete($('.search input').data('url'), {
+        minChars: 3,
+        width: 245,
+        matchContains: true,
+        autoFill: false,
+        searchKey: 'name',
+        formatItem: function(row, i, max) {
+            return row.name;
+        },
+        formatMatch: function(row, i, max) {
+            return row.name;
+        },
+        formatResult: function(row) {
+            return row.name;
+        }
+    });
+    $(".search input").result(function(event, data, formatted) {
+        $(".search input").val($(".search input").data('default'));
+        if (data.postId && $('#post-'+data.postId))
+        {
+            $.scrollTo('#post-'+data.postId, {
+                duration: 500,
+                onAfter: function() {
+                    $('#post-'+data.postId).click();
+
+                    $(this).oneTime(1000, "show-search-tip", function() {
+                        $('.user-'+data.id).qtip({
+                            content: 'Found!',
+                            style: {
+                                classes: 'ui-tooltip-red ui-tooltip-shadow ui-tooltip-rounded my-pings-tip'
+                            },
+                            position: {
+                                my: 'bottom center',
+                                at: 'top center'
+                            }
+                        });
+                        $('.user-'+data.id).qtip('show');
+
+
+                        $(this).oneTime(3000, "hide-search-tip", function() {
+                            $('.user-'+data.id).qtip('destroy');
+                        })
+                    });
+                }
+            })
+        }
+        else
+        {
+            $.scrollTo('.user-'+data.id, {
+                duration: 500,
+                onAfter: function() {
+                    $(this).oneTime(1000, "show-search-tip", function() {
+                        $('.user-'+data.id).qtip({
+                            content: 'Found!',
+                            style: {
+                                classes: 'ui-tooltip-red ui-tooltip-shadow ui-tooltip-rounded my-pings-tip'
+                            },
+                            position: {
+                                my: 'bottom center',
+                                at: 'top center'
+                            }
+                        });
+                        $('.user-'+data.id).qtip('show');
+
+
+                        $(this).oneTime(3000, "hide-search-tip", function() {
+                            $('.user-'+data.id).qtip('destroy');
+                        })
+                    });
+                }
+            })
+        }
+    });
 })

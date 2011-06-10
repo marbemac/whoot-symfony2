@@ -1,6 +1,6 @@
 <div class="teaser comment">
     <div class="submitted">
-        <a class="user" href="{{ path('user_profile_show', {'username': comment.createdBy.username}) }}">{{ comment.createdBy.firstName }} {{ comment.createdBy.lastName }}</a>
+        {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': comment.createdBy} %}
         <div class="time">{{ comment.createdAt|timeLapse(1) }}</div>
     </div>
 

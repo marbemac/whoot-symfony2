@@ -3,10 +3,10 @@ set :application, "The Whoot"
 set :domain,      "thewhoot.com"
 set :deploy_to,   "/srv/www/whoot"
 
-#set :repository,  "https://marbemac@github.com/whoot/whoot.git"
-#set :scm,         :git
-set :repository,  "file:///srv/www/whoot"
-set :scm,         :none
+set :repository,  "https://marbemac@github.com/whoot/whoot.git"
+set :scm,         :git
+#set :repository,  "file:///srv/www/whoot"
+#set :scm,         :none
 set :deploy_via,  :rsync_with_remote_cache
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `subversion`, `mercurial`, `perforce`, `subversion` or `none`
 
@@ -21,17 +21,17 @@ set  :dump_assetic_assets, true
 set  :use_sudo,            true
 set  :keep_releases,       3
 
-#namespace :symfony do
-#  desc "Update the vendor libraries"
-#  task :update_vendors do
-#    run "cd #{latest_release} && #{php_bin} bin/vendors install"
-#  end
-#end
+namespace :symfony do
+  desc "Update the vendor libraries"
+  task :update_vendors do
+    run "cd #{latest_release} && #{php_bin} bin/vendors install"
+  end
+end
 
-#before "deploy:finalize_update" do
-#  # share the children first (to get the vendor symlink)
-#  deploy.share_childs
+before "deploy:finalize_update" do
+  # share the children first (to get the vendor symlink)
+  deploy.share_childs
 
-#  # update the vendors
-#  symfony.update_vendors
-#end
+  # update the vendors
+  symfony.update_vendors
+end

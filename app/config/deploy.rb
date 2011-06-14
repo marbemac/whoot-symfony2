@@ -16,8 +16,8 @@ role :app,        domain                         # This may be the same as your 
 role :db,         domain, :primary => true       # This is where Rails migrations will run
 
 set :dump_assetic_assets, true
-#set   :use_sudo,      false
-set  :keep_releases,  3
+set   :use_sudo,          true
+set  :keep_releases,      3
 
 namespace :symfony do
   desc "Update the vendor libraries"

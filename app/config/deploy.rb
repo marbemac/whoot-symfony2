@@ -10,8 +10,8 @@ set :scm,         :git
 set :deploy_via,  :rsync_with_remote_cache
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `subversion`, `mercurial`, `perforce`, `subversion` or `none`
 
-#set :shared_files,      ["app/config/parameters.ini"]
-set :shared_children,     [app_path + "/logs", web_path + "/uploads"]
+set :shared_files,      ["app/config/parameters.ini"]
+set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor"]
 
 role :web,        domain                         # Your HTTP server, Apache/etc
 role :app,        domain                         # This may be the same as your `Web` server
@@ -24,7 +24,7 @@ set  :keep_releases,       3
 namespace :symfony do
   desc "Update the vendor libraries"
   task :update_vendors do
-    run "cd #{latest_release} && #{php_bin} bin/vendors install"
+    run "cd #{latest_release} && #{php_bin} bin/vendors update"
   end
 end
 

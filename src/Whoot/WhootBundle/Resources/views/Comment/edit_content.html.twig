@@ -6,12 +6,12 @@
         <div>
             {{ form_errors(field) }}
             {{ form_label(field) }}
-            {{ form_field(field) }}
+            {{ form_widget(field) }}
         </div>
         {% endif %}
     {% endfor %}
 
-    {{ form_hidden(form) }}
+    {{ form_rest(form) }}
 
     <input type="submit" value="Post Edits" />
 </form>

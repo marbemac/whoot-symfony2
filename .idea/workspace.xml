@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="base.html.twig" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="base.html.twig" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="30" selection-start="2953" selection-end="2953" vertical-scroll-proportion="0.17158177">
+            <state line="98" column="34" selection-start="5007" selection-end="5007" vertical-scroll-proportion="-27.52">
               <folding />
             </state>
           </provider>
@@ -68,10 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deploy.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="deploy.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/config/deploy.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="0" selection-start="1399" selection-end="1399" vertical-scroll-proportion="0.0">
+            <state line="15" column="29" selection-start="599" selection-end="599" vertical-scroll-proportion="0.30612245">
               <folding />
             </state>
           </provider>
@@ -138,11 +138,11 @@
         <option value="$PROJECT_DIR$/web/app.php" />
         <option value="$PROJECT_DIR$/deps" />
         <option value="$PROJECT_DIR$/deps.lock" />
-        <option value="$PROJECT_DIR$/app/config/deploy.rb" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Extension/WhootTwigExtension.php" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/under_contruction.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_splash.scss" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/deploy.rb" />
       </list>
     </option>
   </component>
@@ -1398,13 +1398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/deploy.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1399" selection-end="1399" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Extension/WhootTwigExtension.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="31" selection-start="1943" selection-end="1943" vertical-scroll-proportion="0.0">
@@ -1435,7 +1428,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="30" selection-start="2953" selection-end="2953" vertical-scroll-proportion="0.17158177">
+        <state line="98" column="34" selection-start="5007" selection-end="5007" vertical-scroll-proportion="-27.52">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/deploy.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="29" selection-start="599" selection-end="599" vertical-scroll-proportion="0.30612245">
           <folding />
         </state>
       </provider>

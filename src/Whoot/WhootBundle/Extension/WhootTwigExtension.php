@@ -33,6 +33,7 @@ class WhootTwigExtension extends \Twig_Extension {
     public function getFilters() {
         return array(
             'debug'       => new \Twig_Filter_Method($this, 'debug'),
+            'gethostname'       => new \Twig_Filter_Method($this, 'gethostname'),
             'printPostType'  => new \Twig_Filter_Method($this, 'printPostType'),
             'printPostTypeShort'  => new \Twig_Filter_Method($this, 'printPostTypeShort'),
             'printPostTypeNoun'  => new \Twig_Filter_Method($this, 'printPostTypeNoun'),
@@ -53,6 +54,11 @@ class WhootTwigExtension extends \Twig_Extension {
         $return .= var_export($var, true);
         $return .= '</pre>';
         return $return;
+    }
+
+    public function gethostname()
+    {
+        return gethostname();
     }
 
     public function printPostType($key)

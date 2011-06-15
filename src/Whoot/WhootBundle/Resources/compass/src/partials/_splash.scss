@@ -9,6 +9,21 @@
 $auth_width:  650px;
 $auth_height: 350px;
 
+html.coming-soon {
+    background-color: #FFF;
+    
+    body {
+        background-color: #FFF;
+    }
+}
+#coming-soon {
+    @include border-radius(10px);
+    padding: 20px;
+    .logo {
+       position: absolute; top: 50%; left: 50%; margin: 100px 0 0 -335px;
+    }
+}
+
 #splash {
     @include background-image(linear-gradient(#222, #666 60%, #AAA));
     

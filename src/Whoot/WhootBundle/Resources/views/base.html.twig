@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="{{ ''|gethostname == 'whoot-app' ? 'coming-soon' : '' }}">
     <head>
         <meta charset="utf-8" />
         <title>{% block title %}{% endblock %} | The Whoot</title>
@@ -60,6 +60,11 @@
 
     </head>
     <body>
+        {# Show the contruction page: #}
+        {% if ''|gethostname == 'whoot-app' %}
+            {% include "WhootBundle:Core:under_contruction.html.twig" %}
+        {% else %}
+
         {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <div id="splash">
                 <div class="auth">
@@ -180,6 +185,8 @@
         <div style="dislay: none">
             
         </div>
+        
+        {% endif %} {# end the under contruction loop #}
 
     </body>
 </html>

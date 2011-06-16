@@ -46,7 +46,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
 }
 #application { width: 960px; height: 100%; margin: auto; }
 #header {
-    @include background-image(linear-gradient(#3077CE, #2B6FC6 25%, #1B59AE 75%, #1551A5));
+    background-color: #222;
     height: $header_height; width: $header_width;
     color: $header_color;
     border-bottom: 1px solid #003277;
@@ -59,7 +59,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
     .logo {
         display: block;
         position: relative;
-        margin: 0 0 0 5px;
+        margin: 11px 0 0 0;
         color: #FFF;
         font-size: 26px;
         text-decoration: none;
@@ -86,8 +86,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
         }
     }
     .search {
-        position: absolute; top: 7px; right: 0px;
-        padding: 1px 10px 3px 20px;
+        position: absolute; top: 18px; right: 5px;
 
         input {
             @include border-radius(5px);
@@ -102,8 +101,11 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
         }
     }
 }
-#content { padding-top: $header_height; height: 100%; }
-#page { 
+#content {
+    padding-top: $header_height; height: 100%;
+}
+#page {
+    @include border-radius(10px);
     position: relative;
     padding-right: $sidebar_width+$sidebar_border_width;
     color: $page_content_color;
@@ -111,11 +113,11 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
     height: 100%;
 }
 #page_content {
-    background: $page_content_background-color;
     min-height: $min-page-height;
     height: 100%;
 }
 #sidebar {
+    @include border-top-right-radius(10px);
     width: $sidebar_width; min-height: $min-page-height;
     position: fixed; top: $header_height+1; left: 50%;
     margin: 0 0 0 280px;

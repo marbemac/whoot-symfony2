@@ -87,7 +87,6 @@ ul, ol {
 /* line 59, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #header .logo {
   display: block;
-  padding: 7px 20px 0 55px;
   position: relative;
   margin: 0 0 0 5px;
   color: #FFF;
@@ -95,22 +94,13 @@ ul, ol {
   text-decoration: none;
   float: left;
 }
-/* line 69, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
-#header .logo .image {
-  width: 40px;
-  height: 40px;
-  background: #FFF;
-  position: absolute;
-  top: 5px;
-  left: 0px;
-}
-/* line 76, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 68, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #header .nav {
   position: absolute;
   top: 0px;
   left: 535px;
 }
-/* line 79, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 71, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #header .nav a {
   font-size: 18px;
   color: #FFF;
@@ -120,23 +110,23 @@ ul, ol {
   display: block;
   float: left;
 }
-/* line 88, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 80, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #header .nav .feed {
   border-right: 1px dotted #08192E;
 }
-/* line 91, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 83, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #header .nav .open-invite {
   border-left: 1px dotted #4688DA;
   border-right: 1px dotted #08192E;
 }
-/* line 96, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 88, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #header .search {
   position: absolute;
   top: 7px;
   right: 0px;
   padding: 1px 10px 3px 20px;
 }
-/* line 100, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 92, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #header .search input {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -158,13 +148,13 @@ ul, ol {
   width: 230px;
 }
 
-/* line 113, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 105, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #content {
   padding-top: 50px;
   height: 100%;
 }
 
-/* line 114, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 106, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #page {
   position: relative;
   padding-right: 200px;
@@ -173,14 +163,14 @@ ul, ol {
   height: 100%;
 }
 
-/* line 121, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 113, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #page_content {
   background: white;
   min-height: 800px;
   height: 100%;
 }
 
-/* line 126, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 118, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #sidebar {
   width: 199px;
   min-height: 800px;
@@ -195,7 +185,7 @@ ul, ol {
   color: black;
 }
 
-/* line 136, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 128, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #footer {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3077ce), color-stop(25%, #2b6fc6), color-stop(75%, #1b59ae), color-stop(100%, #1551a5));
   background-image: -webkit-linear-gradient(#3077ce, #2b6fc6 25%, #1b59ae 75%, #1551a5);
@@ -214,22 +204,22 @@ ul, ol {
   font-size: 14px;
 }
 
-/* line 150, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 142, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 .feed li {
   margin: 0 10px;
   border-top: 1px dotted #999;
   padding: 0;
 }
-/* line 155, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 147, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 .feed li.first {
   border-top: none;
 }
-/* line 158, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 150, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 .feed li.last, .feed li.none {
   border-bottom: 1px dotted #999;
 }
 
-/* line 163, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 155, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 .fb_edge_widget_with_comment {
   float: right;
   text-align: right;

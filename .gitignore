@@ -1,9 +1,9 @@
-web/bundles/
 app/bootstrap*
 app/cache/*
 app/logs/*
 build/
 vendor/
+/.idea/
 
 /src/Whoot/WhootBundle/Resources/compass/.sass-cache
 /web/uploads/*

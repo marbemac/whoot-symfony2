@@ -24,7 +24,7 @@ set  :keep_releases,       3
 namespace :symfony do
   desc "Update the vendor libraries"
   task :update_vendors do
-    run "cd #{latest_release} && #{php_bin} bin/vendors update"
+    run "cd #{latest_release} && bin/vendors install"
   end
 end
 

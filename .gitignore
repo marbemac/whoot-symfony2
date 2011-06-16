@@ -6,6 +6,5 @@ build/
 vendor/
 
 /src/Whoot/WhootBundle/Resources/compass/.sass-cache
-/web/uploads/user_profile_images/*
 /web/slir/cache/*
 /.rsync_cache/

@@ -71,6 +71,25 @@ if (PHP_OS != 'WINNT' && !function_exists('posix_isatty')) {
 
 if (!class_exists('Locale')) {
     $minorProblems[] = 'Install and enable the <strong>intl</strong> extension.';
+} else {
+    $version = '';
+
+    if (defined('INTL_ICU_VERSION')) {
+        $version =  INTL_ICU_VERSION;
+    } else {
+        $reflector = new \ReflectionExtension('intl');
+
+        ob_start();
+        $reflector->info();
+        $output = strip_tags(ob_get_clean());
+
+        preg_match('/^ICU version (.*)$/m', $output, $matches);
+        $version = $matches[1];
+    }
+
+    if(!version_compare($matches[1], '4.0', '>=')) {
+        $minorProblems[] = 'Upgrade your intl extension with a newer ICU version (4+).';
+    }
 }
 
 if (!class_exists('SQLite3') && !in_array('sqlite', PDO::getAvailableDrivers())) {
@@ -125,7 +144,7 @@ if (ini_get('session.auto_start')) {
                 <div class="symfony-block-content">
                     <h1>Welcome!</h1>
                     <p>Welcome to your new Symfony project.</p>
-                    <p>This script will guide you through the basic configuration of your project. You can also do the same by editing the ‘<strong>app/config/parameters.ini</strong>’ file directly.</p>
+                    <p>This script will guide you through the basic configuration of your project. You can also do the same by editing the â€˜<strong>app/config/parameters.ini</strong>â€™ file directly.</p>
 
                     <?php if (count($majorProblems)): ?>
                         <h2>
@@ -146,7 +165,7 @@ if (ini_get('session.auto_start')) {
                                 Additionally, to
                             <?php else: ?>
                                 To<?php endif; ?>
-                            enhance your Symfony experience, it’s recommended that you fix the following :
+                            enhance your Symfony experience, itâ€™s recommended that you fix the following :
                         </p>
                         <ol>
                             <?php foreach ($minorProblems as $problem): ?>
@@ -156,7 +175,7 @@ if (ini_get('session.auto_start')) {
                     <?php endif ?>
 
                     <?php if ($phpini): ?>
-                            <a name="phpini"></a>
+                            <a id="phpini"></a>
                                 <p>*
                                     <?php if (get_cfg_var('cfg_file_path')): ?>
                                         Changes to the <strong>php.ini</strong> file must be done in "<strong><?php echo get_cfg_var('cfg_file_path') ?></strong>".

@@ -7,7 +7,7 @@ framework:
     secret:        %secret%
     charset:       UTF-8
     esi: ~
-    csrf_protection: true
+    csrf_protection: false
     router:        { resource: "%kernel.root_dir%/config/routing.yml" }
     validation:    { enabled: true, enable_annotations: true }
     form:          true

@@ -302,6 +302,38 @@ $(function() {
     })
 
     /*
+     * LISTS
+     */
+    $("#list-add-user").autocomplete($('#list-add-user').data('url'), {
+        minChars: 3,
+        width: 143,
+        matchContains: true,
+        autoFill: false,
+        searchKey: 'name',
+        formatItem: function(row, i, max) {
+            return row.name;
+        },
+        formatMatch: function(row, i, max) {
+            return row.name;
+        },
+        formatResult: function(row) {
+            return row.name;
+        }
+    });
+    $("#list-add-user").result(function(event, data, formatted) {
+        $.post($('#list-add-user').data('url-add'), {'userId': data.id}, function(data) {
+            appUpdate(data);
+            $('#list-add-user').val($('#list-add-user').data('default'));
+
+            if (data.result != 'error')
+            {
+                $('.list-left ul').prepend('<li>'+data.user+'</li>');
+                $('.list-left ul .none').remove();
+            }
+        }, 'json');
+    });
+
+    /*
      * PINGS
      */
     $('.ping-countdown').livequery(function() {

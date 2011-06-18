@@ -9,10 +9,10 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user_following")
+ * @ORM\Table(name="user_list")
  * @ORM\HasLifecycleCallbacks
  */
-class UserFollowing
+class UserLList
 {
     /**
      * @var integer $id
@@ -48,16 +48,16 @@ class UserFollowing
     protected $deletedBy;    
 
     /**
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="following", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="lists", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="followers", cascade={"persist"})
-     * @ORM\JoinColumn(name="following_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\LList", inversedBy="users", cascade={"persist"})
+     * @ORM\JoinColumn(name="list_id", referencedColumnName="id")
      */
-    protected $following;
+    protected $list;
 
     public function __construct()
     {
@@ -115,26 +115,6 @@ class UserFollowing
     }
 
     /**
-     * Set following
-     *
-     * @param integer $following
-     */
-    public function setFollowing($following)
-    {
-        $this->following = $following;
-    }
-
-    /**
-     * Get following
-     *
-     * @return integer $following
-     */
-    public function getFollowing()
-    {
-        return $this->following;
-    }
-
-    /**
      * Set user
      *
      * @param integer $user
@@ -152,6 +132,26 @@ class UserFollowing
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set list
+     *
+     * @param integer $list
+     */
+    public function setList($list)
+    {
+        $this->list = $list;
+    }
+
+    /**
+     * Get list
+     *
+     * @return integer $list
+     */
+    public function getList()
+    {
+        return $this->list;
     }
 
     /**

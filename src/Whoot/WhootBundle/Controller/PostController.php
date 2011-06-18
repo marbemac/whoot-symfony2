@@ -20,7 +20,7 @@ class PostController extends ContainerAware
     /**
      * 
      */
-    public function feedAction($postTypes=null, $feedSort=null)
+    public function feedAction($postTypes=null, $feedSort=null, $listId=null)
     {
         $response = new Response();
         $feedFilters = $this->container->get('session')->get('feedFilters');
@@ -37,10 +37,10 @@ class PostController extends ContainerAware
         }
         else
         {
-            $posts = $this->container->get('whoot.post_manager')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)));
+            $posts = $this->container->get('whoot.post_manager')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), $listId);
         }
 
-        $undecidedUsers = $this->container->get('whoot.user_manager')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)));
+        $undecidedUsers = $this->container->get('whoot.user_manager')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), $listId);
 
         $response->setCache(array(
         ));

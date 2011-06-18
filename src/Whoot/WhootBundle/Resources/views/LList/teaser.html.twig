@@ -1,0 +1,4 @@
+<div class="teaser llist l_{{ list.id }}">
+    <a class="p" href="{{ path('list_show', {'id': list.id, 'slug': list.slug}) }}">{{ list.name }}</a>
+    <a class="delete ac" title="Delete this list." href="{{ path('list_delete', {'id': list.id}) }}">X</a>
+</div>

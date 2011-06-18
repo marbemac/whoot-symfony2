@@ -1,33 +1,17 @@
 // Wait for Document
 $(function(){
 
-    $('a.ac').live('click',function(event){
+    // Perform an action. .ac for POST actions, .acg for GET actions.
+    $('.ac, .acg').live('click',function(event){
         // Ajaxify this link
         var $this = $(this),
-            url = $this.attr('href');
+            url = $this.attr('href') ? $this.attr('href') : $this.data('url'),
+            requestType = $this.hasClass('ac') ? 'POST' : 'GET';
 
-        $currentTarget = $(this);
-        doAction({'url':url}, null, null);
+        doAction({'url': url, 'requestType': requestType}, null, null);
         event.preventDefault();
 
         return false;
     });
-
-    /*
-     * Perform an action.
-     */
-    var doAction = function(params, success, error) {
-
-        console.log('Action:' + params.url);
-
-        amplify.request( "doAction", { 'url': params.url }, function ( data ) {
-            appUpdate(data);
-            if (success)
-            {
-                success({'url': params.url}, data);
-            }
-        })
-
-    }; // end onStateChange
 
 }); // end onDomLoad

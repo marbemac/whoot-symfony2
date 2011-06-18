@@ -4,6 +4,7 @@ parameters:
     whoot.post_manager.class:                  Whoot\WhootBundle\Entity\PostManager
     whoot.ping_manager.class:                  Whoot\WhootBundle\Entity\PingManager
     whoot.comment_manager.class:               Whoot\WhootBundle\Entity\CommentManager
+    whoot.list_manager.class:                  Whoot\WhootBundle\Entity\LListManager
 
 services:
     whoot.core_manager:
@@ -22,3 +23,6 @@ services:
     whoot.comment_manager:
         class:        %whoot.comment_manager.class%
         arguments:    ["@doctrine.orm.default_entity_manager", "@security.context"]
+    whoot.list_manager:
+        class:        %whoot.list_manager.class%
+        arguments:    ["@whoot.user_manager", "@doctrine.orm.default_entity_manager", "@security.context"]

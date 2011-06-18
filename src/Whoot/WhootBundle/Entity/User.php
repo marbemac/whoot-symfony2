@@ -100,8 +100,18 @@ class User extends BaseUser
      */
     protected $followers;
 
+    /**
+     * @var UserList
+     *
+     * @ORM\OneToMany(targetEntity="UserLList", mappedBy="user")
+     */
+    protected $lists;
+
     public function __construct() {
         $this->posts = new ArrayCollection();
+        $this->following = new ArrayCollection();
+        $this->followers = new ArrayCollection();
+        $this->lists = new ArrayCollection();
         $this->status = 'Active';
         parent::__construct();
     }

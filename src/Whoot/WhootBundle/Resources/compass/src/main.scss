@@ -39,6 +39,17 @@ a:hover {
     text-decoration: underline;
 }
 
+input,textarea {
+    @include border-radius(3px);
+    padding: 3px 6px;
+    font-size: 14px;
+    border:  1px solid #BBB;
+    width: 200px;
+}
+input.submit {
+    @include orange-button(3px, 14px);
+}
+
 ul,ol { list-style: none; margin: 0; padding: 0; }
 
 #wrapper { 
@@ -49,7 +60,6 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
     background-color: #222;
     height: $header_height; width: $header_width;
     color: $header_color;
-    border-bottom: 1px solid #003277;
     position: fixed;
     top: 0px;
     left: 50%;
@@ -115,6 +125,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
 #page_content {
     min-height: $min-page-height;
     height: 100%;
+    padding: 50px 0 0 0;
 }
 #sidebar {
     @include border-top-right-radius(10px);
@@ -167,4 +178,5 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
 @import "partials/user";
 @import "partials/post";
 @import "partials/comment";
+@import "partials/llist";
 @import "partials/library";

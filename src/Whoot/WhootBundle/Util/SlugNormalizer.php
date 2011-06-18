@@ -1,6 +1,6 @@
 <?php
 
-namespace Limelight\LimelightBundle\Util;
+namespace Whoot\WhootBundle\Util;
 
 class SlugNormalizer
 {

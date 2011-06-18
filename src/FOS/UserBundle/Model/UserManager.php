@@ -78,13 +78,13 @@ abstract class UserManager implements UserManagerInterface, UserProviderInterfac
      * @param string $username
      * @return UserInterface
      */
-    public function findUserByUsername($username)
+    public function findUserByUsername($usernameOrEmail)
     {
-        if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
-            return $this->findUserBy(array('emailCanonical' => $this->emailCanonicalizer->canonicalize($username)));
+        if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)) {
+            return $this->findUserByEmail($usernameOrEmail);
         }
 
-        return $this->findUserBy(array('usernameCanonical' => $this->usernameCanonicalizer->canonicalize($username)));
+        return $this->findUserBy(array('usernameCanonical' => $this->usernameCanonicalizer->canonicalize($usernameOrEmail)));
     }
 
     /**
@@ -122,7 +122,7 @@ abstract class UserManager implements UserManagerInterface, UserProviderInterfac
      * @param SecurityUserInterface $user
      * @return UserInterface
      */
-    public function loadUser(SecurityUserInterface $user)
+    public function refreshUser(SecurityUserInterface $user)
     {
         if (!$user instanceof UserInterface) {
             throw new UnsupportedUserException('Account is not supported.');

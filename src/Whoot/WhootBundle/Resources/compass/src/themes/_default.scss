@@ -34,3 +34,30 @@ $post-working-color: #009966;
 $post-low_in-color: #996699;
 $post-low_out-color: #FF9900;
 $post-big_out-color: #CC3300;
+
+
+@mixin link {
+    color: $link-color;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+@mixin orange-button($radius, $font-size) {
+    @include border-radius($radius);
+    @include background-image(linear-gradient(#FF9A10, #FD8F13 25%, #FC770D 75%, #FF6600));
+    color: #FFF;
+    font-weight: bold;
+    font-size: $font-size;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    width: auto;
+    border: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}

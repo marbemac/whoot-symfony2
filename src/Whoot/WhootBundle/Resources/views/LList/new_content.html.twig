@@ -1,0 +1,7 @@
+<form action="{{ path('list_create') }}" {{ form_enctype(form) }} method="POST" class="list_new">
+    {{ form_errors(form.name) }}
+    {{ form_label(form.name, 'Give your list a name:') }}
+    {{ form_widget(form.name) }}
+
+    <input type="submit" class="submit" value="Create List" />
+</form>

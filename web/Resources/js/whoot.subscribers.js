@@ -84,4 +84,25 @@ $(function(){
         $('#post-'+data.postId).next().find('.activity-list').append(data.comment);
     });
 
+    /*
+     * LISTS
+     */
+
+    // Listens for when the add list button is clicked
+    amplify.subscribe("list_form", function( data ) {
+        $.colorbox({title:"Create a List!", transition: "none", scrolling: false, opacity: .5, html: data.form });
+    });
+
+    // Listens for when a list is created
+    amplify.subscribe("list_created", function( data ) {
+        $.colorbox.remove();
+        $('.my-lists .lists').append('<li>'+data.object+'</li>').find('.none').remove();
+    });
+
+    // Listens for when a list is deleted
+    amplify.subscribe("list_deleted", function( data ) {
+        $('.l_'+data.objectId).remove();
+    });
+
+
 });

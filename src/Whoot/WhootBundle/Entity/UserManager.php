@@ -11,7 +11,7 @@ use FOS\UserBundle\Entity\UserManager as BaseUserManager;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-class UserManager extends BaseUserManager implements UserProviderInterface
+class UserManager extends BaseUserManager
 {
     protected $em;
 
@@ -146,7 +146,7 @@ class UserManager extends BaseUserManager implements UserProviderInterface
         return $followersUsers;
     }
 
-    public function findUndecided($user, $since)
+    public function findUndecided($user, $since, $listId)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
@@ -161,7 +161,34 @@ class UserManager extends BaseUserManager implements UserProviderInterface
                'status' => 'Active'
            ));
 
-        if ($user)
+        if ($listId)
+        {
+            // get the users in the list
+            $qb2 = $this->em->createQueryBuilder();
+            $qb2->select(array('ul', 'u'))
+               ->from('Whoot\WhootBundle\Entity\UserLList', 'ul')
+               ->innerJoin('ul.user', 'u', 'WITH', 'u.status = :status')
+               ->where('ul.list = :listId')
+               ->setParameters(array(
+                   'status' => 'Active',
+                   'listId' => $listId
+               ));
+            $query2 = $qb2->getQuery();
+            $listUsers = $query2->getArrayResult();
+            $users = array();
+            foreach ($listUsers as $listUser)
+            {
+                $users[] = $listUser['user']['id'];
+            }
+
+            if (count($users) == 0)
+            {
+                return array();
+            }
+
+            $qb->andwhere($qb->expr()->in('u.id', $users));
+        }
+        else if ($user)
         {
             $followingUsers = $this->getFollowing($user);
 

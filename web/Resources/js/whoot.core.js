@@ -77,6 +77,21 @@ var appUpdate = function(params)
     return true;
 }
 
+/*
+ * Main site-wide action function.
+ */
+var doAction = function(params, success, error) {
+    console.log('Action:' + params.url);
+    var $action = params.requestType == 'POST' ? 'postAction' : 'getAction';
+    amplify.request( $action, { 'url': params.url }, function ( data ) {
+        appUpdate(data);
+        if (success)
+        {
+            success({'url': params.url}, data);
+        }
+    })
+};
+
 var feedReload = function($url)
 {
     $.get($url, {}, function(html) {

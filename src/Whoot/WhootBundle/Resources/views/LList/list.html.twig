@@ -1,0 +1,16 @@
+<div class="my-lists">
+    <h3>My Lists</h3>
+    <div class="list-createB acg" data-url="{{ path('list_new') }}">+ New</div>
+
+    <div class="clear"></div>
+
+    <ul class="lists">
+      {% for list in lists %}
+          <li class=" {{ loop.first ? 'first' : '' }} {{ loop.last ? 'last' : '' }}">
+              {% include "WhootBundle:LList:teaser.html.twig" with {'list': list} %}
+          </li>
+      {% else %}
+          <li class="none">Create lists to organize and keep track of your friends!</li>
+      {% endfor %}
+    </ul>
+</div>

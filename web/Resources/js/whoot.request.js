@@ -31,11 +31,21 @@ $(function() {
         }
     });
 
+
     /*
-     * Handles actions (votes, etc).
+     * Handles actions that use POST (votes, etc).
      */
-    amplify.request.define( "doAction", "ajax", {
-        type: 'POST',
+    amplify.request.define( "postAction", "ajax", {
+        type: "POST",
+        url: "{url}",
+        dataType: 'json'
+    });
+
+    /*
+     * Handles actions that use GET (topic edit form).
+     */
+    amplify.request.define( "getAction", "ajax", {
+        type: "GET",
         url: "{url}",
         dataType: 'json'
     });

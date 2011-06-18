@@ -113,11 +113,11 @@ class PostManager
      * @param array $postTypes Array of strings of posts types to include. Topic|Talk|News|Question|Procon|List|Video|Picture.
      * @param string $sortBy How do we want to sort the list? Popular|Newest|Controversial|Upcoming
      * @param date $createdAt
-     * @param bool $openInvite
+     * @param integer $listId Are we pulling from list users?
      *
      * @return array $posts
      */
-    public function findPostsBy($user, $postTypes, $sortBy, $createdAt)
+    public function findPostsBy($user, $postTypes, $sortBy, $createdAt, $listId)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('p, count(pu.id) AS popularity', 'pu'))
@@ -129,7 +129,35 @@ class PostManager
                'status' => 'Active',
            ));
 
-        if ($user)
+        if ($listId)
+        {
+            // get the users in the list
+            $qb2 = $this->em->createQueryBuilder();
+            $qb2->select(array('ul', 'u'))
+               ->from('Whoot\WhootBundle\Entity\UserLList', 'ul')
+               ->innerJoin('ul.user', 'u', 'WITH', 'u.status = :status')
+               ->where('ul.list = :listId')
+               ->setParameters(array(
+                   'status' => 'Active',
+                   'listId' => $listId
+               ));
+            $query2 = $qb2->getQuery();
+            $listUsers = $query2->getArrayResult();
+            $users = array();
+
+            foreach ($listUsers as $listUser)
+            {
+                $users[] = $listUser['user']['id'];
+            }
+
+            if (count($users) == 0)
+            {
+                return array();
+            }
+
+            $qb->andwhere($qb->expr()->in('pu.user', $users));
+        }
+        else if ($user)
         {
             // get the users this user is following
             $qb2 = $this->em->createQueryBuilder();

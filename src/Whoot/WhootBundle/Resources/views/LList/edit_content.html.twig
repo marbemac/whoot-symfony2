@@ -1,0 +1,17 @@
+<form action="{{ path('list_update', {'id': object.id }) }}" {{ form_enctype(form) }} method="POST" class="list_edit">
+    {{ form_errors(form) }}
+
+    {% for field in form %}
+        {% if not field.ishidden %}
+        <div>
+            {{ form_errors(field) }}
+            {{ form_label(field) }}
+            {{ form_widget(field) }}
+        </div>
+        {% endif %}
+    {% endfor %}
+
+    {{ form_rest(form) }}
+
+    <input type="submit" value="Post Edits" />
+</form>

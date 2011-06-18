@@ -1,0 +1,9 @@
+{% extends 'WhootBundle:LList:layout.html.twig' %}
+
+{% block title %}
+    {{ list.name }}
+{% endblock %}
+
+{% block page_content %}
+    {% include "WhootBundle:LList:show_content.html.twig" %}
+{% endblock %}

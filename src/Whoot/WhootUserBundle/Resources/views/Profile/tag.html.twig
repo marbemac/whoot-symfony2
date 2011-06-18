@@ -1,4 +1,6 @@
-<div class="tag drag user" data-d='{ "id":{{ object.id }} }'>
-    <div class="handle-small"></div>
-    <a class="p" href="{{ path('user_profile_show', {'username': object.User.username} ) }}">{{ object.User.username }}</a>
+<div class="user tag">
+    <a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.firstName }} {{ user.lastName }}">
+        {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user, 'dimensions': 30} %}
+    </a>
+    {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user} %}
 </div>

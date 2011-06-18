@@ -17,6 +17,10 @@ comment:
     resource: "@WhootBundle/Resources/config/routing/comment.yml"
     prefix:   /c
 
+list:
+    resource: "@WhootBundle/Resources/config/routing/list.yml"
+    prefix:   /l
+
 feed_filter_toggle:
     pattern:  /ac/tf/{postType}
     defaults: { _controller: WhootBundle:Core:toggleFeedFilter }

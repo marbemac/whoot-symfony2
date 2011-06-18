@@ -1,0 +1,22 @@
+{% render "WhootBundle:Core:feedFilters" %}
+
+<div class="list-page">
+    <div class="list-left">
+        <h2>Users</h2>
+        <input id="list-add-user" data-url-add="{{ path('list_user_add', {'listId': list.id}) }}" type="text" class="iclear b" data-url="{{ path('user_ajax_search') }}" autocomplete="off" value="Add a friend..." />
+        <ul>
+            {% for listUser in list.users %}
+                <li>
+                    {% include "WhootUserBundle:Profile:tag.html.twig" with {'user': listUser.user} %}
+                </li>
+            {% else %}
+                <li class="none">You have not added any friends to this list.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="list-feed">
+        <h2>{{ list.name }}</h2>
+        {% render 'WhootBundle:Post:feed' with {'listId': list.id} %}
+    </div>
+</div>

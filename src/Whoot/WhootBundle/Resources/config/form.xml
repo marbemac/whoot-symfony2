@@ -27,6 +27,25 @@
             <argument type="service" id="whoot.post_manager" />
         </service>
 
+        <!-- LLIST -->
+        <service id="whoot.form.list" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
+            <argument type="service" id="whoot.form.type.list" />
+            <argument type="collection">
+                <argument key="data_class">Whoot\WhootBundle\Entity\LList</argument>
+            </argument>
+        </service>
+
+        <service id="whoot.form.type.list" class="Whoot\WhootBundle\Form\ListFormType">
+            <argument>whoot.form.list</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="whoot.form.handler.list" class="Whoot\WhootBundle\Form\ListFormHandler" scope="request">
+            <argument type="service" id="whoot.form.list" />
+            <argument type="service" id="request" />
+            <argument type="service" id="whoot.list_manager" />
+        </service>
+
     </services>
 
 </container>

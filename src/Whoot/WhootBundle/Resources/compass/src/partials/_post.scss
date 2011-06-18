@@ -32,7 +32,7 @@ Purpose of the stylesheet follows.
     float: right;
     color: $link-color;
     font-size: 12px;
-    margin: -1px 3px 0 0;
+    margin: 0 3px 0 0;
     font-weight: bold;
 
     &:hover {
@@ -318,8 +318,7 @@ $post-hover-color: #E7EDFF;
 #open-invite-feed {
     position: relative;
     width: 100%; height: 100%;
-    padding: $header_height+$feed-filters-margin-top 0 0 0;
-    
+
     .no-post {
         margin: 10px;
     }

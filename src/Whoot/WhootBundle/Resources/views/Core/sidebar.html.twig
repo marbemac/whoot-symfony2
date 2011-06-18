@@ -33,7 +33,7 @@
     </div>
 
     {% render 'WhootBundle:Post:myPost' %}
-    
-    {% render "WhootUserBundle:Profile:list" %}
-    
+
+    {% render "WhootBundle:LList:list" with {'userId': app.user.id}, {'standalone': true} %}
+
 </div>

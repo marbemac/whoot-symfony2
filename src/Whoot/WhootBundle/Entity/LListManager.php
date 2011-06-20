@@ -121,7 +121,7 @@ class LListManager
         return $listUsers;
     }
 
-    public function addUser($list, $userId)
+    public function addUser($userList, $list, $userId)
     {
         $user = $this->userManager->getUser(array('id' => $userId));
         if (!$user)
@@ -129,10 +129,18 @@ class LListManager
             return false;
         }
 
-        $lu = new UserLList();
-        $lu->setUser($user);
-        $lu->setList($list);
-        $this->em->persist($lu);
+        if ($userList)
+        {
+            $userList->setStatus('Active');
+        }
+        else
+        {
+            $userList = new UserLList();
+            $userList->setUser($user);
+            $userList->setList($list);
+        }
+
+        $this->em->persist($userList);
         $this->em->flush();
 
         return $user;
@@ -141,21 +149,30 @@ class LListManager
     /*
      * Find a given user-list
      */
-    public function findUserList($listId, $userId)
+    public function findUserList(array $criteria, $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('ul.id'))
-           ->from('Whoot\WhootBundle\Entity\UserLList', 'ul')
-           ->where('ul.list = :listId')
-           ->andWhere('ul.user = :userId')
-           ->setParameters(array(
-               'listId' => $listId,
-               'userId' => $userId
-           ));
+        $qb->select(array('ul'))
+           ->from('Whoot\WhootBundle\Entity\UserLList', 'ul');
+
+        foreach ($criteria as $key => $val)
+        {
+            $qb->andWhere('ul.'.$key.' = :'.$key);
+        }
+        $qb->setParameters($criteria);
 
         $query = $qb->getQuery();
-        $userList = $query->getArrayResult();
+        $userList = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
 
         return isset($userList[0]) ? $userList[0] : null;
+    }
+
+    public function deleteUserList($userList)
+    {
+        $userList->setStatus('Deleted');
+        $this->em->persist($userList);
+        $this->em->flush();
+        
+        return true;
     }
 }

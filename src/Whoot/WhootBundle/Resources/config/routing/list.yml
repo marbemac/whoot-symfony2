@@ -40,11 +40,10 @@ list_user_add:
         _method: POST
 
 list_user_delete:
-    pattern:  /delete/u/{listId}
+    pattern:  /delete/u
     defaults: { _controller: WhootBundle:LList:userDelete }
     requirements:
-        listId:  \d+
-        userId:  \d+
+        userListId:  \d+
         _method: POST
 
 list_show:

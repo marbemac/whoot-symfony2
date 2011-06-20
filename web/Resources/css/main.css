@@ -1631,16 +1631,35 @@ Purpose of the stylesheet follows.
 .list-page .list-left .none {
   font-style: italic;
 }
-/* line 106, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 105, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+.list-page .list-left li {
+  padding-right: 25px;
+  position: relative;
+}
+/* line 109, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+.list-page .list-left .delete {
+  color: #156cd8;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 12px;
+  font-weight: bold;
+}
+/* line 42, ../../../src/Whoot/WhootBundle/Resources/compass/src/themes/_default.scss */
+.list-page .list-left .delete:hover {
+  text-decoration: underline;
+}
+/* line 118, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list-page .list-feed {
   padding-left: 175px;
 }
-/* line 107, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 119, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list-page .list-feed h2 {
   margin-left: 10px;
 }
 
-/* line 113, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 125, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 #list-add-user {
   width: 130px;
   margin: -1px 0 10px 0;

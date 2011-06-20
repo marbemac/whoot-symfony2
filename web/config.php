@@ -88,7 +88,7 @@ if (!class_exists('Locale')) {
     }
 
     if(!version_compare($matches[1], '4.0', '>=')) {
-        $minorProblems[] = 'Upgrade your intl extension with a newer ICU version (4+).';
+        $minorProblems[] = 'Upgrade your <strong>intl</strong> extension with a newer ICU version (4+).';
     }
 }
 
@@ -196,6 +196,6 @@ if (ini_get('session.auto_start')) {
                 </div>
             </div>
         </div>
-        <div class="version">Symfony Standard Edition v.<?php echo file_get_contents(__DIR__.'/../VERSION') ?></div>
+        <div class="version">Symfony Standard Edition</div>
     </body>
 </html>

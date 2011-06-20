@@ -262,8 +262,8 @@ $(function() {
         google.maps.event.addListener($auto, 'place_changed', function() {
             var place = $auto.getPlace();
             $('#post-address-name').val(place.formatted_address);
-            $('#post-address-lat').val(place.geometry.location.Ia);
-            $('#post-address-lon').val(place.geometry.location.Ha);
+            $('#post-address-lat').val(place.geometry.location.Ha);
+            $('#post-address-lon').val(place.geometry.location.Ia);
         })
     })
 
@@ -277,7 +277,7 @@ $(function() {
             zoom: 16,
             center: latlng,
             disableDefaultUI: true,
-            scaleControle: true,
+            scaleControls: true,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 

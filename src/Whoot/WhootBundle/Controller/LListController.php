@@ -261,9 +261,9 @@ class LListController extends ContainerAware
     }
 
     /*
-     * Follows/Unfollows a user for the current user.
+     * Adds a user to a list
      *
-     * @param integer $objectId
+     * @param integer $listId
      */
     public function userAddAction($listId)
     {
@@ -287,8 +287,8 @@ class LListController extends ContainerAware
             return $response;
         }
 
-        $userList = $this->container->get('whoot.list_manager')->findUserList($listId, $userId);
-        if ($userList)
+        $userList = $this->container->get('whoot.list_manager')->findUserList(array('list' => $listId, 'user' => $userId), true);
+        if ($userList && $userList->getStatus() == 'Active')
         {
             $result = array();
             $result['result'] = 'error';
@@ -300,14 +300,13 @@ class LListController extends ContainerAware
         }
 
         $list = $this->container->get('whoot.list_manager')->findListBy(array('id' => $listId), true);
+//        $denied = $coreManager->accessDenied('EDIT', $list, 'error', 'You do not have permission to edit this list!');
+//        if ($denied)
+//        {
+//            return $denied;
+//        }
 
-        $denied = $coreManager->accessDenied('EDIT', $list, 'error', 'You do not have permission to edit this list!');
-        if ($denied)
-        {
-            return $denied;
-        }
-
-        $user = $this->container->get('whoot.list_manager')->addUser($list, $userId);
+        $user = $this->container->get('whoot.list_manager')->addUser($userList, $list, $userId);
 
         if ($user && $request->isXmlHttpRequest())
         {
@@ -317,6 +316,73 @@ class LListController extends ContainerAware
             $result['feed'] = $feed->getContent();
             $result['user'] = $this->container->get('templating')->render('WhootUserBundle:Profile:tag.html.twig', array('user' => $user));
             $result['flash'] = array('type' => 'success', 'message' => 'User added successfully!');
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
+
+        return new RedirectResponse($_SERVER['HTTP_REFERER']);
+    }
+    
+    /*
+     * Deletes a user from a list.
+     *
+     * @param integer $userListId
+     */
+    public function userDeleteAction()
+    {
+        $coreManager = $this->container->get('whoot.core_manager');
+        $login = $coreManager->mustLogin();
+        if ($login)
+        {
+            return $login;
+        }
+
+        $request = $this->container->get('request');
+        $userListId = $request->query->get('userListId', null);
+        $listId = $request->query->get('listId', null);
+
+        if (!$userListId || !$listId)
+        {
+            $result = array();
+            $result['result'] = 'error';
+            $result['flash'] = array('type' => 'error', 'message' => 'Oops, there was an error! [C: LUD01]');
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
+
+        $userList = $this->container->get('whoot.list_manager')->findUserList(array('id' => $userListId), true);
+        if (!$userList)
+        {
+            $result = array();
+            $result['result'] = 'error';
+            $result['flash'] = array('type' => 'error', 'message' => 'Hmm... This user doesn\'t seem to belong to this list!');
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
+
+//        $list = $this->container->get('whoot.list_manager')->findListBy(array('id' => $listId), true);
+//        $denied = $coreManager->accessDenied('EDIT', $list, 'error', 'You do not have permission to edit this list!');
+//        if ($denied)
+//        {
+//            return $denied;
+//        }
+
+        $user = $this->container->get('whoot.list_manager')->deleteUserList($userList);
+
+        if ($user && $request->isXmlHttpRequest())
+        {
+            $result = array();
+            $result['event'] = 'list_user_deleted';
+            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array('listId' => $listId));
+            $result['feed'] = $feed->getContent();
+            $result['flash'] = array('type' => 'success', 'message' => 'User removed successfully!');
+            $result['objectId'] = $userListId;
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 

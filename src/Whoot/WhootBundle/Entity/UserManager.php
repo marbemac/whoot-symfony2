@@ -169,6 +169,7 @@ class UserManager extends BaseUserManager
                ->from('Whoot\WhootBundle\Entity\UserLList', 'ul')
                ->innerJoin('ul.user', 'u', 'WITH', 'u.status = :status')
                ->where('ul.list = :listId')
+               ->andWhere('ul.status = :status')
                ->setParameters(array(
                    'status' => 'Active',
                    'listId' => $listId

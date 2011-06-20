@@ -104,5 +104,10 @@ $(function(){
         $('.l_'+data.objectId).remove();
     });
 
+    // Listens for when a list user is deleted
+    amplify.subscribe("list_user_deleted", function( data ) {
+        $('#uld-'+data.objectId).parent().remove();
+    });
+
 
 });

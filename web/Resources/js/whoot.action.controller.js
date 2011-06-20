@@ -5,6 +5,7 @@ $(function(){
     $('.ac, .acg').live('click',function(event){
         // Ajaxify this link
         var $this = $(this),
+            $currentTarget = $this,
             url = $this.attr('href') ? $this.attr('href') : $this.data('url'),
             requestType = $this.hasClass('ac') ? 'POST' : 'GET';
 

@@ -53,7 +53,7 @@
       <file leaf-file-name="UserManager.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FOS/UserBundle/Model/UserManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="45" selection-start="2437" selection-end="2437" vertical-scroll-proportion="0.4910486">
+            <state line="83" column="51" selection-start="2559" selection-end="2559" vertical-scroll-proportion="0.40920717">
               <folding />
             </state>
           </provider>
@@ -1541,7 +1541,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FOS/UserBundle/Model/UserManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="45" selection-start="2437" selection-end="2437" vertical-scroll-proportion="0.4910486">
+        <state line="83" column="51" selection-start="2559" selection-end="2559" vertical-scroll-proportion="0.40920717">
           <folding />
         </state>
       </provider>

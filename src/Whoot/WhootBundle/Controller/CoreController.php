@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CoreController extends ContainerAware
 {
-    public function headerAction()
+    public function headerAction($page=null)
     {
         $request = $this->container->get('request');
 
@@ -35,7 +35,9 @@ class CoreController extends ContainerAware
             //return $response;
         }
 
-        return $this->container->get('templating')->renderResponse('WhootBundle:Core:header.html.twig', array(), $response);
+        return $this->container->get('templating')->renderResponse('WhootBundle:Core:header.html.twig', array(
+            'page' => $page
+        ), $response);
     }
 
     public function homeAction()
@@ -55,6 +57,26 @@ class CoreController extends ContainerAware
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Core:home.html.twig', array(
             'myPost' => $myPost        
+        ), $response);
+    }
+
+    public function dealsAction()
+    {
+        $request = $this->container->get('request');
+
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($request)) {
+            // return the 304 Response immediately
+            //return $response;
+        }
+
+        $myPost = $this->container->get('whoot.post_manager')->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:Core:deals.html.twig', array(
+            'myPost' => $myPost
         ), $response);
     }
 

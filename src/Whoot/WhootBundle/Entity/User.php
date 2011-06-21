@@ -206,6 +206,14 @@ class User extends BaseUser
         return $this->lastName;
     }
 
+    /*
+     * Returns a users full name, capitalized.
+     */
+    public function getFullName()
+    {
+        return ucwords($this->firstName.'  '.$this->lastName);
+    }
+
     /**
      * Set gender
      *

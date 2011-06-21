@@ -6,6 +6,6 @@
 
 {% block page_content %}
 
-    {{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}
+    <h1>Here's the confirmed account page. Congrats {{ user.fullName }}</h1>
 
 {% endblock %}

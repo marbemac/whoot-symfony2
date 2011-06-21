@@ -168,7 +168,14 @@ $(function() {
     })
 
     // Submit a new post
+    var postSubmit = false;
     $('#post-box .submit').live('click', function() {
+        if (postSubmit)
+            return;
+
+        postSubmit = true;
+        var $self = $(this);
+        $self.text('Working...');
         var $payload = {};
         $payload['type'] = $('#post-box .type.on').data('val');
         $payload['note'] = $('#post-description').val();
@@ -200,10 +207,16 @@ $(function() {
         }
 
         if ($error_flag)
+        {
+            $self.text('Submit');
+            postSubmit = false;
             return false;
+        }
 
         $.post($(this).data('url'), $payload, function(data) {
             appUpdate(data);
+            $self.text('Submit');
+            postSubmit = false;
         }, 'json');
     })
 
@@ -218,20 +231,24 @@ $(function() {
     })
 
     // Toggle the activity of a post
+    var postActivityToggle = false;
     $('.teaser.post').live('click', function(ev) {
-        if ($(ev.target).is('a'))
+        if ($(ev.target).is('a') || postActivityToggle)
             return;
 
+        postActivityToggle = true;
         var $self = $(this);
         if ($self.next().hasClass('post-details'))
         {
             $self.toggleClass('on').next().toggle();
-            
+            postActivityToggle = false;
+
             return;
         }
 
         $.get($self.data('details'), {}, function(data) {
             $self.after(data.details).toggleClass('on');
+            postActivityToggle = false;
         }, 'json')
     })
 
@@ -393,7 +410,7 @@ $(function() {
     });
     $(".search input").result(function(event, data, formatted) {
         $(".search input").val($(".search input").data('default'));
-        if (data.postId && $('#post-'+data.postId))
+        if (data.postId && $('#post-'+data.postId).length > 0)
         {
             $.scrollTo('#post-'+data.postId, {
                 duration: 500,
@@ -421,7 +438,7 @@ $(function() {
                 }
             })
         }
-        else
+        else if ($('.user-'+data.id).length > 0)
         {
             $.scrollTo('.user-'+data.id, {
                 duration: 500,
@@ -446,6 +463,10 @@ $(function() {
                     });
                 }
             })
+        }
+        else
+        {
+            window.location = '/'+data.username+'/following';
         }
     });
 })

@@ -36,6 +36,10 @@ feed_filter_change:
         value: popularity|created|activity
         _method: GET|POST
 
+deal_feed:
+    pattern:  /deals
+    defaults: { _controller: WhootBundle:Core:deals }
+
 homepage:
     pattern:  /
     defaults: { _controller: WhootBundle:Core:home }

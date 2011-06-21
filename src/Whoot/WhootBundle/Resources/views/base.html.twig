@@ -92,7 +92,7 @@
         {% else %}
             <div id="wrapper">
                 <div id="application">
-                    {% render "WhootBundle:Core:header" %}
+                    {% render "WhootBundle:Core:header" with {'page': app.request.attributes.get('_route')} %}
 
                     {% block sidebar %}
                         {% render 'WhootBundle:Core:sidebar' %}
@@ -103,7 +103,10 @@
                                 {% block user_sidebar %}{% endblock %}
                                 {% block page %}
                                     <div id="page_content">
-                                        {% render "WhootBundle:Post:postBox" %}
+                                        {% if app.request.attributes.get('_route') == 'homepage' %}
+                                            {% render "WhootBundle:Post:postBox" %}
+                                        {% endif %}
+
                                         {% block page_content %}{% endblock %}
                                     </div>
                                 {% endblock page %}

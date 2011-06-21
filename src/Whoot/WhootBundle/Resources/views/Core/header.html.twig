@@ -7,6 +7,9 @@
 
 
         <div class="nav">
+
+            <a href="{{ path('homepage') }}" class="{{ page == 'homepage' ? 'on' : '' }}">My Feed</a>
+            <a href="{{ path('deal_feed') }}" class="{{ page == 'deal_feed' ? 'on' : '' }}">Deal Feed</a>
         </div>
 
         <div class="search">

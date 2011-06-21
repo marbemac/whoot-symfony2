@@ -76,16 +76,28 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
         float: left;
     }
     .nav {
-        position: absolute; top: 0px; left: 535px;
+        position: absolute; top: 16px; left: 365px;
 
         a {
-            font-size: 18px;
+            @include border-radius(4px);
+            font-size: 22px;
             color: #FFF;
             text-decoration: none;
-            margin: 7px 0 0 0;
+            margin: 0 5px;
             padding: 5px 10px;
             display: block;
             float: left;
+        }
+        a:hover {
+            background: #444;
+        }
+        a.on {
+            background: #FFF;
+            color: #333;
+        }
+        a.on:hover {
+            background: #FFF;
+            cursor: default;
         }
         .feed {
             border-right: 1px dotted #08192E;
@@ -125,7 +137,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
 #page_content {
     min-height: $min-page-height;
     height: 100%;
-    padding: 50px 0 0 0;
+    padding: 10px 0 0 0;
 }
 #sidebar {
     @include border-top-right-radius(10px);

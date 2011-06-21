@@ -255,6 +255,14 @@ class ProfileController extends ContainerAware
             $query
         );
 
+        // Add the images
+        foreach ($results as $key => $result)
+        {
+            $results[$key]['formattedItem'] = $this->container->get('templating')->render('WhootUserBundle:Profile:search_result.html.twig', array(
+                'data' => $result
+            ));
+        }
+
         $response->setContent(json_encode($results));
         $response->headers->set('Content-Type', 'application/json');
 

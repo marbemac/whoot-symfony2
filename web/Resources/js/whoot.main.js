@@ -399,7 +399,7 @@ $(function() {
         autoFill: false,
         searchKey: 'name',
         formatItem: function(row, i, max) {
-            return row.name;
+            return row.formattedItem;
         },
         formatMatch: function(row, i, max) {
             return row.name;

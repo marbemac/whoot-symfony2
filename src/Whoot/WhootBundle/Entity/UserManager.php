@@ -267,6 +267,7 @@ class UserManager extends BaseUserManager
            ));
 
         $query = $qb->getQuery();
+        $query->useResultCache(true, 86000, 'location_'.$zipcode);
         $result = $query->getArrayResult();
 
         return isset($result[0]) ? $result[0] : null;
@@ -278,7 +279,7 @@ class UserManager extends BaseUserManager
      * @param integer $userId
      * @param string $query
      */
-    public function findForSearch($userId, $query)
+    public function findForSearch($userId, $search)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u', 'up', 'p'))
@@ -289,22 +290,26 @@ class UserManager extends BaseUserManager
                $qb->expr()->like('CONCAT(u.firstName, u.lastName)', ':query')
            )
            ->setParameters(array(
-               'query' => '%'.$query.'%',
+               'query' => '%'.$search.'%',
                'status' => 'Active',
                 'createdAt'    => date('Y-m-d 05:00:00', time()-(60*60*5))
            ));
 
         $query = $qb->getQuery();
+        $query->useResultCache(true, 300, 'user_search_'.$search);
         $results = $query->getArrayResult();
 
         $response = array();
         foreach ($results as $result)
         {
+            $location = $this->getLocation($result['zipcode']);
+
             $response[] = array(
                 'name' => $result['firstName'].' '.$result['lastName'],
                 'username' => $result['username'],
                 'id' => $result['id'],
-                'profileImage' => $result['profileImage'] ? $result['profileImage'] : 'gravatar',
+                'location' => isset($location['locationText']) ? $location['locationText'] : null,
+                'profileImage' => $result['profileImage'],
                 'postId' => isset($result['posts'][0]) ? $result['posts'][0]['post']['id'] : null
             );
         }

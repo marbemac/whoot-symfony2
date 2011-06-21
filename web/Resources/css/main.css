@@ -604,15 +604,53 @@ html.coming-soon body {
   margin: 0;
 }
 /* line 117, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+#user-sidebar .location {
+  font-style: italic;
+}
+/* line 120, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .follow-B {
   overflow: hidden;
   *zoom: 1;
-  margin: 3px 0 0 2px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9a10), color-stop(25%, #fd8f13), color-stop(75%, #fc770d), color-stop(100%, #ff6600));
+  background-image: -webkit-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
+  background-image: -moz-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
+  background-image: -o-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
+  background-image: linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
+  color: #FFF;
+  font-weight: bold;
   font-size: 20px;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+  float: left;
+  width: auto;
+  border: none;
+  margin: 6px 0 0 0px;
+  padding: 2px 10px;
   display: block;
   float: left;
 }
-/* line 126, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 60, ../../../src/Whoot/WhootBundle/Resources/compass/src/themes/_default.scss */
+#user-sidebar .follow-B:hover {
+  text-decoration: none;
+}
+/* line 128, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+#user-sidebar .profileImage {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  margin: 10px 0 0 0;
+}
+/* line 134, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .nav a {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -624,33 +662,33 @@ html.coming-soon body {
   padding: 1px 8px;
   margin: 3px 0;
 }
-/* line 132, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 140, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .nav a:hover {
   background: #ffece5;
   text-decoration: none;
 }
-/* line 136, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 144, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .nav .on {
   cursor: default;
   color: #FFF;
   background: #CC3300;
 }
-/* line 141, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 149, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .nav .on:hover {
   background: #CC3300;
 }
 
-/* line 148, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 156, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .following.feed,
 .followers.feed {
   padding: 10px 0 0 0;
 }
 
-/* line 152, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 160, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .teaser.user {
   padding: 8px 5px;
 }
-/* line 155, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 163, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .teaser.user img {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -663,22 +701,22 @@ html.coming-soon body {
   height: 30px;
   margin: -5px 10px 0 0;
 }
-/* line 161, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 169, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .teaser.user .actions {
   float: right;
 }
-/* line 166, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 174, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .teaser.user .follow-B,
 .teaser.user .ping-B,
 .teaser.user .pinged {
   padding: 0 12px;
 }
 
-/* line 172, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 180, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .tag.user .profile-image {
   margin: 0;
 }
-/* line 175, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 183, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .tag.user .profile-image img {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -687,7 +725,7 @@ html.coming-soon body {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 179, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 187, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .tag.user .user {
   margin: 0;
   padding: 0 0 0 10px;

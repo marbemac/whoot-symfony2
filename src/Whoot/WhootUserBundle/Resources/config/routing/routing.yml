@@ -53,10 +53,10 @@ user_settings:
       _method: GET
 
 user_profile_show:
-    pattern: /profile/{username}
-    defaults: { _controller: FOSUserBundle:Profile:show, _format: html }
+    pattern:  /{username}/following
+    defaults: { _controller: WhootUserBundle:Profile:following }
     requirements:
-        _method: GET
+      _method: GET
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"

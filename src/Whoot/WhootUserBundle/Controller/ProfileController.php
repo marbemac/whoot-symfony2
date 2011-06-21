@@ -124,6 +124,7 @@ class ProfileController extends ContainerAware
     public function followersAction($username)
     {
         $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
+        $location = $this->container->get('whoot.user_manager')->getLocation($user->getZipcode());
         $followers = $this->container->get('whoot.user_manager')->getFollowers($user);
 
         $response = new Response();
@@ -137,6 +138,7 @@ class ProfileController extends ContainerAware
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:followers.html.twig', array(
             'user' => $user,
+            'location' => $location,
             'followers' => $followers,
             'navSelected' => 'followers'
         ), $response);
@@ -145,6 +147,7 @@ class ProfileController extends ContainerAware
     public function followingAction($username)
     {
         $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
+        $location = $this->container->get('whoot.user_manager')->getLocation($user->getZipcode());
         $following = $this->container->get('whoot.user_manager')->getFollowing($user);
 
         $response = new Response();
@@ -158,6 +161,7 @@ class ProfileController extends ContainerAware
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:following.html.twig', array(
             'user' => $user,
+            'location' => $location,
             'following' => $following,
             'navSelected' => 'following'
         ), $response);
@@ -166,6 +170,7 @@ class ProfileController extends ContainerAware
     public function settingsAction($username)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
+        $location = $this->container->get('whoot.user_manager')->getLocation($user->getZipcode());
 
         if ($username != $user->getUsername())
         {
@@ -183,6 +188,7 @@ class ProfileController extends ContainerAware
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:settings.html.twig', array(
             'user' => $user,
+            'location' => $location,
             'navSelected' => 'settings'
         ), $response);
     }

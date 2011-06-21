@@ -99,7 +99,7 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="UserFollowing", mappedBy="following")
      */
     protected $followers;
-
+    
     /**
      * @var UserList
      *

@@ -41,46 +41,57 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PostManager.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PostManager.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/PostManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-5.1139674">
+            <state line="386" column="51" selection-start="11617" selection-end="11617" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show_sidebar.html.twig" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/views/Profile/show_sidebar.html.twig">
+      <file leaf-file-name="ProfileController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootUserBundle/Controller/ProfileController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="191" column="0" selection-start="6568" selection-end="6568" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show_content.html.twig" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/views/Profile/show_content.html.twig">
+      <file leaf-file-name="UserManager.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/UserManager.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="260" column="19" selection-start="7660" selection-end="7660" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="101" column="4" selection-start="2210" selection-end="2210" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoreManager.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/CoreManager.php">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
+              <folding>
+                <marker date="1307993172000" expanded="true" signature="1309:1399" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/views/Profile/show.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sidebar.html.twig" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="sidebar.html.twig" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/views/Profile/sidebar.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="6" selection-start="1114" selection-end="1114" vertical-scroll-proportion="-10.88">
+            <state line="4" column="32" selection-start="138" selection-end="138" vertical-scroll-proportion="0.054468084">
               <folding />
             </state>
           </provider>
@@ -104,15 +115,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sidebar.html.twig" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/sidebar.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="56" selection-start="114" selection-end="114" vertical-scroll-proportion="-1.92">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -127,8 +129,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/web/Resources/js/whoot.main.js" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/openInviteTeaser.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/list.yml" />
@@ -141,8 +141,10 @@
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/LListController.php" />
         <option value="$PROJECT_DIR$/src/FOS/UserBundle/Model/UserManager.php" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/config/routing/routing.yml" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/views/Profile/sidebar.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootUserBundle/Controller/ProfileController.php" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/views/Profile/sidebar.html.twig" />
       </list>
     </option>
   </component>
@@ -1356,34 +1358,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="29" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/LList/show_content.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="51" selection-start="564" selection-end="568" vertical-scroll-proportion="-6.4">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="51" selection-start="2971" selection-end="2971" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/LListController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="373" column="11" selection-start="13346" selection-end="13346" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/FOS/UserBundle/Entity/UserManager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -1433,20 +1407,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/CoreController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/views/Profile/sidebar.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="6" selection-start="1114" selection-end="1114" vertical-scroll-proportion="-10.88">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state line="115" column="5" selection-start="2214" selection-end="2214" vertical-scroll-proportion="0.0">
@@ -1463,7 +1423,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/PostManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-5.1139674">
+        <state line="386" column="51" selection-start="11617" selection-end="11617" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/CoreController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/CoreManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1307993172000" expanded="true" signature="1309:1399" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="4" selection-start="2210" selection-end="2210" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/UserManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="260" column="19" selection-start="7660" selection-end="7660" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootUserBundle/Controller/ProfileController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="191" column="0" selection-start="6568" selection-end="6568" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/views/Profile/sidebar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="32" selection-start="138" selection-end="138" vertical-scroll-proportion="0.054468084">
           <folding />
         </state>
       </provider>

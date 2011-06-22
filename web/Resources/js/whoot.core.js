@@ -84,8 +84,12 @@
      */
     doAction = function(params, success, error) {
         console.log('Action:' + params.url);
+
         var $action = params.requestType == 'POST' ? 'postAction' : 'getAction';
-        amplify.request( $action, { 'url': params.url }, function ( data ) {
+        var $payload = params.payload ? params.payload : {};
+        $payload['url'] = params.url;
+
+        amplify.request( $action, $payload, function ( data ) {
             appUpdate(data);
             if (success)
             {

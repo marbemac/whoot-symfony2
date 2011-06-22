@@ -276,6 +276,8 @@ class LListController extends ContainerAware
 
         $request = $this->container->get('request');
         $userId = $request->request->get('userId', null);
+        $feedReload = $request->request->get('feedReload', true);
+
         if (!$userId)
         {
             $result = array();
@@ -312,10 +314,13 @@ class LListController extends ContainerAware
         {
             $result = array();
             $result['event'] = 'list_user_added';
-            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array('listId' => $listId));
-            $result['feed'] = $feed->getContent();
+            if ($feedReload != 'no')
+            {
+                $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array('listId' => $listId));
+                $result['feed'] = $feed->getContent();
+            }
             $result['user'] = $this->container->get('templating')->render('WhootUserBundle:Profile:tag.html.twig', array('user' => $user));
-            $result['flash'] = array('type' => 'success', 'message' => 'User added successfully!');
+            $result['flash'] = array('type' => 'success', 'message' => 'User added to list successfully!');
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 

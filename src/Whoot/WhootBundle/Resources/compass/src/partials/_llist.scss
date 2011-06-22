@@ -63,6 +63,18 @@
             .delete { display: block; }
         }
     }
+    .dragging {
+        .p {
+            background: #87C07E;
+            color: #FFF;
+        }
+    }
+    .dropping {
+        .p {
+            background: green;
+            color: #FFF;
+        }
+    }
     .list-view {
         font-size: 12px;
         margin: 0 0 0 2px;

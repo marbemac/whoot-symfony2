@@ -184,7 +184,7 @@
             @include border-radius(5px);
         }
     }
-    .user {
+    .user-link {
         margin: 0;
         padding: 0 0 0 10px;
         position: relative; bottom: 7px;
@@ -208,5 +208,34 @@
     }
     .location {
         font-style: italic;
+    }
+}
+
+.user-link {
+    position: relative;
+    padding: 0 0 0 7px;
+    z-index: 100;
+
+    .drag-handleC {
+        position: absolute;
+        top: 50%;
+        margin-top: -10px;
+        left: -16px;
+        cursor: move;
+        background: #FFF;
+        padding: 3px;
+        display: none;
+
+        div {
+            border:  2px dotted #999;
+            height: 10px;
+            width: 10px;
+        }
+    }
+    &:hover {
+        text-decoration: none;
+        .drag-handleC {
+            display: block;
+        }
     }
 }

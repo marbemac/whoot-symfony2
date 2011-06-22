@@ -26,6 +26,33 @@ $(function() {
      * USERS
      */
 
+    // Enabling dragging of user tags.
+    $(".user-link").livequery(function() {
+        $(this).draggable({
+            opacity: 0.7,
+            helper: "clone",
+            handle: ".drag-handleC",
+            appendTo: "body"
+        });
+    });
+    // Enabling dropping of user tags.
+    $('.my-lists .teaser').livequery(function() {
+        $(this).droppable({
+            accept:      ".user-link",
+            activeClass: "dragging",
+            hoverClass:  "dropping",
+            drop: function(event, ui) {
+
+                // Get the base follow_add url and add the target users ID to the end.
+                var $url = $(this).data('d').url;
+                var $payload = {};
+                $payload['userId'] = ui.draggable.data('d').id;
+                $payload['feedReload'] = 'no';
+
+                doAction({'url': $url, 'requestType': 'POST', 'payload': $payload}, null, null);
+            }
+        })
+    });
     
     /*
      * POSTS

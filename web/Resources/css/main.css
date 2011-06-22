@@ -746,7 +746,7 @@ html.coming-soon body {
   border-radius: 5px;
 }
 /* line 187, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
-.tag.user .user {
+.tag.user .user-link {
   margin: 0;
   padding: 0 0 0 10px;
   position: relative;
@@ -775,6 +775,38 @@ html.coming-soon body {
 /* line 209, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .search-result.user .location {
   font-style: italic;
+}
+
+/* line 214, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+.user-link {
+  position: relative;
+  padding: 0 0 0 7px;
+  z-index: 100;
+}
+/* line 219, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+.user-link .drag-handleC {
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  left: -16px;
+  cursor: move;
+  background: #FFF;
+  padding: 3px;
+  display: none;
+}
+/* line 229, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+.user-link .drag-handleC div {
+  border: 2px dotted #999;
+  height: 10px;
+  width: 10px;
+}
+/* line 235, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+.user-link:hover {
+  text-decoration: none;
+}
+/* line 237, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+.user-link:hover .drag-handleC {
+  display: block;
 }
 
 /*
@@ -1673,41 +1705,51 @@ Purpose of the stylesheet follows.
 .my-lists li:hover .delete {
   display: block;
 }
-/* line 66, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 67, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+.my-lists .dragging .p {
+  background: #87C07E;
+  color: #FFF;
+}
+/* line 73, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+.my-lists .dropping .p {
+  background: green;
+  color: #FFF;
+}
+/* line 78, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .my-lists .list-view {
   font-size: 12px;
   margin: 0 0 0 2px;
 }
 
-/* line 72, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 84, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list_new {
   padding: 10px;
 }
-/* line 75, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 87, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list_new label {
   display: block;
   font-weight: bold;
   color: #777;
   margin: 0 0 0 3px;
 }
-/* line 81, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 93, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list_new input {
   display: block;
 }
-/* line 84, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 96, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list_new .submit {
   margin: 10px 0 0 0;
 }
 
-/* line 89, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 101, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list-page {
   position: relative;
 }
-/* line 93, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 105, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list-page h2 {
   margin: 5px 0 10px 0;
 }
-/* line 96, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 108, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list-page .list-left {
   position: absolute;
   top: -5px;
@@ -1715,16 +1757,16 @@ Purpose of the stylesheet follows.
   width: 175px;
   padding: 0 0 0 10px;
 }
-/* line 102, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 114, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list-page .list-left .none {
   font-style: italic;
 }
-/* line 105, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 117, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list-page .list-left li {
   padding-right: 25px;
   position: relative;
 }
-/* line 109, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 121, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list-page .list-left .delete {
   color: #156cd8;
   cursor: pointer;
@@ -1738,16 +1780,16 @@ Purpose of the stylesheet follows.
 .list-page .list-left .delete:hover {
   text-decoration: underline;
 }
-/* line 118, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 130, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list-page .list-feed {
   padding-left: 175px;
 }
-/* line 119, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 131, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 .list-page .list-feed h2 {
   margin-left: 10px;
 }
 
-/* line 125, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
+/* line 137, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_llist.scss */
 #list-add-user {
   width: 130px;
   margin: -1px 0 10px 0;

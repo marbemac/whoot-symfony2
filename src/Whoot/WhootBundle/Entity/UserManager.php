@@ -25,7 +25,7 @@ class UserManager extends BaseUserManager
         $this->em = $em;
     }
 
-    public function getUser(array $criteria)
+    public function getUser(array $criteria, $returnObject = true)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
@@ -38,7 +38,7 @@ class UserManager extends BaseUserManager
         }
 
         $query = $qb->getQuery();
-        $user = $query->getSingleResult(Query::HYDRATE_OBJECT);
+        $user = $query->getSingleResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
 
         return $user;
     }

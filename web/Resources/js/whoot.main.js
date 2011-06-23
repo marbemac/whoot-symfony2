@@ -10,7 +10,9 @@ $(function() {
      * CONTRIBUTE
      */
 
-    $('#contribute').colorbox({title:"Give us some shit!", transition: "none", opacity: .5, href: function() {return $(this).attr('href') + '.xml'}});
+    $('#contribute').colorbox({title:"Give us some shit!", transition: "none", opacity: .5, href: function() {
+        return $(this).attr('href') + '.xml'
+    }});
 
     /*
      * SPLASH PAGE
@@ -53,7 +55,37 @@ $(function() {
             }
         })
     });
-    
+
+    $('.user-link').livequery(function() {
+        $(this).each(function() {
+            var $self = $(this);
+            $self.qtip({
+                content: {
+                    text: 'Loading...',
+                    ajax: {
+                        once: true,
+                        url: $self.data("d").tab,
+                        type: 'get',
+                        success: function(data) {
+                            $('.user-'+$self.data('d').id).qtip('option', {
+                                'content.text': data,
+                                'content.ajax': false
+                            });
+                        }
+                    }
+                },
+                style: {classes: 'ui-tooltip-shadow ui-tooltip-light', tip: true},
+                position: {
+                    my: 'bottom center',
+                    at: 'top center',
+                    viewport: $(window)
+                },
+                show: {delay: 400},
+                hide: {delay: 300, fixed: true}
+            })
+        })
+    })
+
     /*
      * POSTS
      */
@@ -85,28 +117,25 @@ $(function() {
         var canvas = this;
 
         // Make sure we don't execute when canvas isn't supported
-        if (canvas.getContext)
-        {
+        if (canvas.getContext) {
             var $postType = $(canvas).data('type');
             // Get this posts time
             var $postTime = $(canvas).data('time');
             // Calculate it's time relative to all other posts
             var $ratio,
-                $degrees;
+                    $degrees;
 
-            if ($postTime == $oldestPost)
-            {
+            if ($postTime == $oldestPost) {
                 $ratio = 1;
                 $degrees = 270;
             }
-            else
-            {
+            else {
                 // Get the current time in seconds since the Unix epoch
                 var $time = new Date;
                 $time = $time.getTime();
                 $time = parseInt($time / 1000);
-                $ratio = ($time - $postTime) / ($time-$oldestPost);
-                $degrees = ($ratio*270-90);
+                $ratio = ($time - $postTime) / ($time - $oldestPost);
+                $degrees = ($ratio * 270 - 90);
             }
 
             ctx = canvas.getContext('2d');
@@ -114,22 +143,20 @@ $(function() {
 
             ctx.beginPath();
             ctx.strokeStyle = $postColors[$postType];
-            ctx.arc(canvas.width/2, canvas.height/2, 9, 0, (360*(Math.PI/180)), true);
+            ctx.arc(canvas.width / 2, canvas.height / 2, 9, 0, (360 * (Math.PI / 180)), true);
             ctx.stroke();
 
             // Draw the timer fill
-            if ($ratio > 0)
-            {
+            if ($ratio > 0) {
                 ctx.beginPath();
                 ctx.fillStyle = $postColors[$postType];
-                ctx.moveTo(canvas.width/2, canvas.height/2);
-                ctx.arc(canvas.width/2, canvas.height/2, 9, -Math.PI/2, $degrees*(Math.PI/180), false);
-                ctx.lineTo(canvas.width/2, canvas.height/2);
+                ctx.moveTo(canvas.width / 2, canvas.height / 2);
+                ctx.arc(canvas.width / 2, canvas.height / 2, 9, -Math.PI / 2, $degrees * (Math.PI / 180), false);
+                ctx.lineTo(canvas.width / 2, canvas.height / 2);
                 ctx.fill();
             }
         }
-        else
-        {
+        else {
 
         }
     })
@@ -209,14 +236,12 @@ $(function() {
 
         var $error_flag = false;
 
-        if (!$payload['type'])
-        {
+        if (!$payload['type']) {
             $error_flag = true;
             $('#post-box .status').css('color', 'red');
         }
 
-        if ($('#post-box .open-invite-toggle').hasClass('on'))
-        {
+        if ($('#post-box .open-invite-toggle').hasClass('on')) {
             $payload['venue'] = $('#post-venue').val();
             $payload['address'] = $('#post-address').val();
             $payload['address_lat'] = $('#post-address-lat').val();
@@ -225,16 +250,14 @@ $(function() {
 
             $('.invite-req, #post-address').each(function(index) {
                 $(this).prev().css('color', '#000');
-                if (!$(this).val() || $(this).val() == 'Enter a location')
-                {
+                if (!$(this).val() || $(this).val() == 'Enter a location') {
                     $error_flag = true;
                     $(this).prev().css('color', 'red');
                 }
             })
         }
 
-        if ($error_flag)
-        {
+        if ($error_flag) {
             $self.text('Submit');
             postSubmit = false;
             return false;
@@ -265,8 +288,7 @@ $(function() {
 
         postActivityToggle = true;
         var $self = $(this);
-        if ($self.next().hasClass('post-details'))
-        {
+        if ($self.next().hasClass('post-details')) {
             $self.toggleClass('on').next().toggle();
             postActivityToggle = false;
 
@@ -274,20 +296,18 @@ $(function() {
         }
 
         $.get($self.data('details'), {}, function(data) {
-            $self.after(data.details).toggleClass('on');
-            postActivityToggle = false;
-        }, 'json')
+                    $self.after(data.details).toggleClass('on');
+                    postActivityToggle = false;
+                }, 'json')
     })
 
     // Toggle the + Open Invite in the post box
     $('.open-invite-toggle').live('click', function() {
         var $self = $(this);
-        if ($self.hasClass('on'))
-        {
+        if ($self.hasClass('on')) {
             $self.removeClass('on').text('+ Open Invite').siblings('textarea').prev().text('Optional Note');
         }
-        else
-        {
+        else {
             $self.addClass('on').text('- Open Invite').siblings('textarea').prev().text('Invite Description');
         }
 
@@ -298,8 +318,8 @@ $(function() {
     $('#post-address').livequery(function() {
         var $self = $(this);
         var bounds = new google.maps.LatLngBounds(
-              new google.maps.LatLng($self.data('lat'), $self.data('lon')),
-              new google.maps.LatLng($self.data('lat'), $self.data('lon')));
+                new google.maps.LatLng($self.data('lat'), $self.data('lon')),
+                new google.maps.LatLng($self.data('lat'), $self.data('lon')));
         var $auto = new google.maps.places.Autocomplete(document.getElementById('post-address'), {bounds: bounds});
 
         // Handle a place choice
@@ -326,7 +346,7 @@ $(function() {
         };
 
         var map = new google.maps.Map(document.getElementById($self.attr('id')),
-            myOptions);
+                myOptions);
 
         var marker = new google.maps.Marker({
             position: latlng,
@@ -366,15 +386,14 @@ $(function() {
     });
     $("#list-add-user").result(function(event, data, formatted) {
         $.post($('#list-add-user').data('url-add'), {'userId': data.id}, function(data) {
-            appUpdate(data);
-            $('#list-add-user').val($('#list-add-user').data('default'));
+                    appUpdate(data);
+                    $('#list-add-user').val($('#list-add-user').data('default'));
 
-            if (data.result != 'error')
-            {
-                $('.list-left ul').prepend('<li>'+data.user+'</li>');
-                $('.list-left ul .none').remove();
-            }
-        }, 'json');
+                    if (data.result != 'error') {
+                        $('.list-left ul').prepend('<li>' + data.user + '</li>');
+                        $('.list-left ul .none').remove();
+                    }
+                }, 'json');
     });
 
     /*
@@ -384,7 +403,7 @@ $(function() {
         var $self = $(this);
         $self.countdown({
             layout: '{sn}',
-            until: '+'+$self.data('until')+'s',
+            until: '+' + $self.data('until') + 's',
             onExpiry: function() {
                 console.log('test');
                 $self.prev().replaceWith('<span class="pinged">Pinged</span>');
@@ -418,7 +437,7 @@ $(function() {
     /*
      * SEARCH
      */
-    
+
     $(".search input").autocomplete($('.search input').data('url'), {
         minChars: 3,
         width: 245,
@@ -437,15 +456,14 @@ $(function() {
     });
     $(".search input").result(function(event, data, formatted) {
         $(".search input").val($(".search input").data('default'));
-        if (data.postId && $('#post-'+data.postId).length > 0)
-        {
-            $.scrollTo('#post-'+data.postId, {
+        if (data.postId && $('#post-' + data.postId).length > 0) {
+            $.scrollTo('#post-' + data.postId, {
                 duration: 500,
                 onAfter: function() {
-                    $('#post-'+data.postId).click();
+                    $('#post-' + data.postId).click();
 
                     $(this).oneTime(1000, "show-search-tip", function() {
-                        $('.user-'+data.id).qtip({
+                        $('.user-' + data.id).qtip({
                             content: 'Found!',
                             style: {
                                 classes: 'ui-tooltip-red ui-tooltip-shadow ui-tooltip-rounded my-pings-tip'
@@ -455,23 +473,22 @@ $(function() {
                                 at: 'top center'
                             }
                         });
-                        $('.user-'+data.id).qtip('show');
+                        $('.user-' + data.id).qtip('show');
 
 
                         $(this).oneTime(3000, "hide-search-tip", function() {
-                            $('.user-'+data.id).qtip('destroy');
+                            $('.user-' + data.id).qtip('destroy');
                         })
                     });
                 }
             })
         }
-        else if ($('.user-'+data.id).length > 0)
-        {
-            $.scrollTo('.user-'+data.id, {
+        else if ($('.user-' + data.id).length > 0) {
+            $.scrollTo('.user-' + data.id, {
                 duration: 500,
                 onAfter: function() {
                     $(this).oneTime(1000, "show-search-tip", function() {
-                        $('.user-'+data.id).qtip({
+                        $('.user-' + data.id).qtip({
                             content: 'Found!',
                             style: {
                                 classes: 'ui-tooltip-red ui-tooltip-shadow ui-tooltip-rounded my-pings-tip'
@@ -481,19 +498,18 @@ $(function() {
                                 at: 'top center'
                             }
                         });
-                        $('.user-'+data.id).qtip('show');
+                        $('.user-' + data.id).qtip('show');
 
 
                         $(this).oneTime(3000, "hide-search-tip", function() {
-                            $('.user-'+data.id).qtip('destroy');
+                            $('.user-' + data.id).qtip('destroy');
                         })
                     });
                 }
             })
         }
-        else
-        {
-            window.location = '/'+data.username+'/following';
+        else {
+            window.location = '/' + data.username + '/following';
         }
     });
 })

@@ -55,6 +55,9 @@ Purpose of the stylesheet follows.
 
 #post-box,
 #invite-cancel-confirm {
+    z-index: 110;
+    width: 760px;
+
     .actions {
         margin: 0 7px;
     }
@@ -80,10 +83,9 @@ Purpose of the stylesheet follows.
     @include opacity(.95);
 
     background: #000;
-    width: 100%; height: 100%;
+    height: 100%;
     position: absolute;
     top: 0px; left: 0px;
-    z-index: 15;
 
     $options-w: 600px;
     .options {
@@ -94,7 +96,7 @@ Purpose of the stylesheet follows.
         position: absolute;
         top: 100px; left: 50%;
         width: $options-w;
-        margin: 0 0 0 -400px;
+        margin: 0 0 0 -300px;
 
         h2 {
             text-align: center;

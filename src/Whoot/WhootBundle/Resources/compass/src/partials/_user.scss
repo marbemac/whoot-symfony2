@@ -239,3 +239,43 @@
         }
     }
 }
+
+.user-hover-tab {
+    position: relative;
+    padding: 0 0 0 70px;
+
+    .profileImage {
+        @include border-radius(3px);
+        position: absolute;
+        top: -5px;
+        left: -5px;
+    }
+    .follow-B {
+        @include orange-button(3px, 12px);
+        position: absolute;
+        bottom: 0;
+        left: -5px;
+        padding: 3px 8px;
+    }
+    .name {
+        font-size: 20px;
+        margin-top: 6px;
+    }
+    .location {
+        font-size: 16px;
+        font-style: italic;
+        margin: 8px 0 0 0;
+    }
+    .stats {
+        @include clearfix();
+        border-top: 1px solid #AAA;
+        margin: 6px 0 0 0;
+        padding: 6px 0 15px 0;
+        font-size: 14px;
+
+        div {
+            float: left;
+            margin:  0 7px 0 0;
+        }
+    }
+}

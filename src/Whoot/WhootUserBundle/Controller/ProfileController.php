@@ -269,6 +269,20 @@ class ProfileController extends ContainerAware
         return $response;
     }
 
+    /*
+     * The tab that is shown to users when hovering over a user name.
+     */
+    public function hoverTabAction($id)
+    {
+        $user = $this->container->get('whoot.user_manager')->getUser(array('id' => $id), false);
+        $location = $this->container->get('whoot.user_manager')->getLocation($user['zipcode']);
+
+        return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:hover_tab.html.twig', array(
+            'user' => $user,
+            'location' => $location
+        ));
+    }
+
     public function searchAction()
     {
         return new Response();

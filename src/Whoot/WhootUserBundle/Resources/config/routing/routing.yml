@@ -58,6 +58,12 @@ user_profile_show:
     requirements:
       _method: GET
 
+user_hover_tab:
+    pattern:  /{id}/ht
+    defaults: { _controller: WhootUserBundle:Profile:hoverTab }
+    requirements:
+      _method: GET
+
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
     prefix: /profile

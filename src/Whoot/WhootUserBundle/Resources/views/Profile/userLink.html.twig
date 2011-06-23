@@ -1,4 +1,4 @@
-<a class="user-link user-{{ user.id }}" href="{{ path('user_profile_show', {'username': user.username}) }}" data-d='{"id":"{{ user.id }}"}'>
+<a class="user-link user-{{ user.id }}" href="{{ path('user_profile_show', {'username': user.username}) }}" data-d='{"id":"{{ user.id }}", "tab":"{{ path('user_hover_tab', {'id':user.id}) }}"}'>
     <div class="drag-handleC" title="Drag this user to a list to add him/her!">
         <div></div>
     </div>

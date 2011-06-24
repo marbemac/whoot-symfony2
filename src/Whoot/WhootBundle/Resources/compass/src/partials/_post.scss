@@ -216,6 +216,7 @@ $feed-filters-margin-top: 8px;
     @include background-image(linear-gradient(#F9F9F9, #F6F6F6 25%, #EBEBEB 75%, #E8E8E8));
     @include border-top-left-radius(10px);
 
+    background: #EBEBEB;
     width: $page_width - $sidebar_width;
     padding: $feed-filters-margin-top 0 6px 0;
     margin: 0 0 0 $page_width/2*-1;

@@ -274,13 +274,26 @@ class ProfileController extends ContainerAware
      */
     public function hoverTabAction($id)
     {
+        $response = new Response();
+        $response->setCache(array(
+            'etag'          => 'user-hover-'.$id,
+            's_maxage'      => 300,
+            'public'        => true
+        ));
+
+        // Check that the Response is not modified for the given Request
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+            return $response;
+        }
+
         $user = $this->container->get('whoot.user_manager')->getUser(array('id' => $id), false);
         $location = $this->container->get('whoot.user_manager')->getLocation($user['zipcode']);
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:hover_tab.html.twig', array(
             'user' => $user,
             'location' => $location
-        ));
+        ), $response);
     }
 
     public function searchAction()

@@ -20,7 +20,7 @@ class PostController extends ContainerAware
     /**
      * 
      */
-    public function feedAction($postTypes=null, $feedSort=null, $listId=null)
+    public function feedAction($postTypes=null, $feedSort=null, $listId=null, $offset=0, $limit=null, $_format='html', $type=null)
     {
         $response = new Response();
         $feedFilters = $this->container->get('session')->get('feedFilters');
@@ -37,10 +37,10 @@ class PostController extends ContainerAware
         }
         else
         {
-            $posts = $this->container->get('whoot.post_manager')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), $listId);
+            $posts = $this->container->get('whoot.post_manager')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), $listId, $offset, $limit);
         }
 
-        $undecidedUsers = $this->container->get('whoot.user_manager')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), $listId);
+        $undecidedUsers = $this->container->get('whoot.user_manager')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), $listId, $offset, $limit);
 
         $response->setCache(array(
         ));
@@ -48,6 +48,15 @@ class PostController extends ContainerAware
         if ($response->isNotModified($this->container->get('request'))) {
             // return the 304 Response immediately
             // return $response;
+        }
+
+        // Used by the API (feed/undecided)
+        if ($type)
+        {
+            return $this->container->get('templating')->renderResponse('WhootBundle:Post:'.$type.'.'.$_format.'.twig', array(
+                'posts' => $posts,
+                'undecidedUsers' => $undecidedUsers
+            ), $response);
         }
 
         if ($this->container->get('request')->isXmlHttpRequest())
@@ -64,7 +73,7 @@ class PostController extends ContainerAware
         ), $response);
     }
 
-    public function myPostAction()
+    public function myPostAction($_format='html')
     {
         $request = $this->container->get('request');
         $myPost = $this->container->get('whoot.post_manager')->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
@@ -78,7 +87,7 @@ class PostController extends ContainerAware
             //return $response;
         }
 
-        return $this->container->get('templating')->renderResponse('WhootBundle:Post:myPost.html.twig', array('myPost' => $myPost), $response);
+        return $this->container->get('templating')->renderResponse('WhootBundle:Post:myPost.'.$_format.'.twig', array('myPost' => $myPost), $response);
     }
 
     public function postBoxAction()
@@ -101,7 +110,7 @@ class PostController extends ContainerAware
     /**
      * Creates a new post for the day. Toggles if the user already has a post for today.
      */
-    public function createAction()
+    public function createAction($_format='html')
     {
         $coreManager = $this->container->get('whoot.core_manager');
         $login = $coreManager->mustLogin();
@@ -128,6 +137,15 @@ class PostController extends ContainerAware
             $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($postResult['post']));
             $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
             $provider->updateAcl($acl);
+        }
+
+        if ($_format == 'json')
+        {
+            $result = array();
+            $result['result'] = 'success';
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
         }
 
         if ($request->isXmlHttpRequest())
@@ -221,7 +239,7 @@ class PostController extends ContainerAware
         ), $response);
     }
 
-    public function teaserAction($postId)
+    public function teaserAction($postId, $_format='html')
     {
         $response = new Response();
         $response->setCache(array(
@@ -236,12 +254,12 @@ class PostController extends ContainerAware
 
         $type = $post['isOpenInvite'] ? 'openInvite' : 'normal';
 
-        return $this->container->get('templating')->renderResponse('WhootBundle:Post:'.$type.'Teaser.html.twig', array(
+        return $this->container->get('templating')->renderResponse('WhootBundle:Post:'.$type.'Teaser.'.$_format.'.twig', array(
             'post' => $post
         ), $response);
     }
 
-    public function postDetailsAction($postId, $type)
+    public function postDetailsAction($postId, $_format='html')
     {
         $response = new Response();
         $response->setCache(array(
@@ -253,7 +271,16 @@ class PostController extends ContainerAware
         }
 
         $post = $this->container->get('whoot.post_manager')->findPostBy($postId, null, null, 'Active', false);
+        $type = $post['isOpenInvite'] ? 'openInvite': 'normal';
         $activity = $this->container->get('whoot.post_manager')->buildActivity($post);
+
+        if ($_format == 'json')
+        {
+            return $this->container->get('templating')->renderResponse('WhootBundle:Post:'.$type.'Details.json.twig', array(
+                'post' => $post,
+                'activity' => $activity
+            ), $response);
+        }
 
         if ($this->container->get('request')->isXmlHttpRequest())
         {
@@ -281,7 +308,7 @@ class PostController extends ContainerAware
      *
      * @param integer $postId
      */
-    public function jiveTagAction($postId)
+    public function jiveTagAction($postId, $_format='html')
     {
         $securityContext = $this->container->get('security.context');
 
@@ -296,7 +323,7 @@ class PostController extends ContainerAware
             $connection = null;
         }
 
-        return $this->container->get('templating')->renderResponse('WhootBundle:Post:jiveTag.html.twig', array(
+        return $this->container->get('templating')->renderResponse('WhootBundle:Post:jiveTag.'.$_format.'.twig', array(
             'fromUser' => $fromUser,
             'postId' => $postId,
             'connection' => $connection
@@ -307,9 +334,8 @@ class PostController extends ContainerAware
      * Toggles on/off a post invite request for the current user.
      *
      * @param integer $postId
-     * @param bool $go If set to false will not excute if the user already has a pending invite.
      */
-    public function jiveToggleAction($postId, $go)
+    public function jiveToggleAction($postId, $_format='html')
     {
         $coreManager = $this->container->get('whoot.core_manager');
         $login = $coreManager->mustLogin();
@@ -325,19 +351,25 @@ class PostController extends ContainerAware
         $myPost = $postManager->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
         if ($myPost['post']['createdBy']['id'] == $this->container->get('security.context')->getToken()->getUser()->getId() && $myPost['post']['isOpenInvite'])
         {
-            if ($request->isXmlHttpRequest())
-            {
-                $result = array();
-                $result['result'] = 'error';
-                $result['flash'] = array('type' => 'error', 'message' => 'You created an open invite. Cancel it first (button on right sidebar).');
-                $response = new Response(json_encode($result));
-                $response->headers->set('Content-Type', 'application/json');
+            $result = array();
+            $result['result'] = 'error';
+            $result['flash'] = array('type' => 'error', 'message' => 'You created an open invite. Cancel it first (button on right sidebar).');
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
 
-                return $response;
-            }
+            return $response;
         }
 
         $result = $postManager->toggleJive($this->container->get('security.context')->getToken()->getUser(), $postId, true);
+
+        if ($_format == 'json')
+        {
+            $result = array('status' => 'success');
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
 
         if ($request->isXmlHttpRequest())
         {

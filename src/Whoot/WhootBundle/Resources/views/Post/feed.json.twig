@@ -1,0 +1,15 @@
+{% extends 'WhootBundle::base.json.twig' %}
+
+{% block result %}success{% endblock %}
+
+{% block data %}
+    {
+        "posts":
+        [
+            {% for post in posts %}
+                {% render 'WhootBundle:Post:teaser' with {'postId': post[0].id, '_format': 'json'} %}
+                {{ loop.last ? '' : ',' }}
+            {% endfor %}
+        ]
+    }
+{% endblock %}

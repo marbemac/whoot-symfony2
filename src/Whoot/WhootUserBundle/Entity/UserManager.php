@@ -160,7 +160,7 @@ class UserManager extends BaseUserManager
         return $followersUsers;
     }
 
-    public function findUndecided($user, $since, $listId)
+    public function findUndecided($user, $since, $listId, $offset, $limit)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
@@ -220,10 +220,31 @@ class UserManager extends BaseUserManager
             $qb->andwhere($qb->expr()->in('u.id', $following));
         }
 
+        if ($limit && $offset)
+        {
+            $qb->setFirstResult($offset)
+               ->setMaxResults($limit);
+        }
+
         $query = $qb->getQuery();
         $users = $query->getArrayResult();
 
         return $users;
+    }
+
+    /**
+     * Finds a user by username or email
+     *
+     * @param string $usernameOrEmail
+     * @return UserInterface
+     */
+    public function findUserByUsername($usernameOrEmail)
+    {
+        if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)) {
+            return $this->findUserByEmail($usernameOrEmail);
+        }
+
+        return $this->findUserBy(array('usernameCanonical' => $this->canonicalizeUsername($usernameOrEmail)));
     }
 
     /**

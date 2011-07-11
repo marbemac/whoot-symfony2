@@ -114,10 +114,12 @@ class PostManager
      * @param string $sortBy How do we want to sort the list? Popular|Newest|Controversial|Upcoming
      * @param date $createdAt
      * @param integer $listId Are we pulling from list users?
+     * @param integer $offset
+     * @param integer $limit
      *
      * @return array $posts
      */
-    public function findPostsBy($user, $postTypes, $sortBy, $createdAt, $listId)
+    public function findPostsBy($user, $postTypes, $sortBy, $createdAt, $listId, $offset, $limit)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('p, count(pu.id) AS popularity', 'pu'))
@@ -198,6 +200,16 @@ class PostManager
         if ($postTypes)
         {
             $qb->andwhere($qb->expr()->in('p.type', $postTypes));
+        }
+
+        if ($offset)
+        {
+            $qb->setFirstResult($offset);
+        }
+        
+        if ($limit)
+        {
+            $qb->setMaxResults($limit);
         }
 
         $query = $qb->getQuery();

@@ -1,0 +1,6 @@
+{
+    "class":"{{ event.class }}",
+    "timeLapse":"{{ event.time|timeLapse(1) }}",
+    "message":"{{ event.message }}",
+    "user":{% include "WhootUserBundle:Profile:teaser.json.twig" with {'user': event.user} %}
+}

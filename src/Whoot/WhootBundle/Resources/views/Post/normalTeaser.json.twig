@@ -1,0 +1,21 @@
+{
+    "id":{{ post.id }},
+    "createdAt":"{{ post.createdAt.date }}",
+    "postType":"{{ post.type }}",
+    "note":"{{ post.note }}",
+    "venue":"{{ post.venue }}",
+    "time":"{{ post.time }}",
+    "address":"{{ post.address }}",
+    "lat":"{{ post.lat }}",
+    "lon":"{{ post.lon }}",
+    "isOpenInvite":"{{ post.isOpenInvite }}",
+    "jived":"{% render "WhootBundle:Post:jiveTag" with {'postId': post.id, '_format': 'json'} %}",
+    "users":
+    [
+        {% set activeUsers = post.users|rebuildArray('status', 'Active') %}
+        {% for user in activeUsers %}
+               {% include "WhootUserBundle:Profile:teaser.json.twig" with {'user': user.user} %}
+               {{ loop.last ? '' : ',' }}
+        {% endfor %}
+    ]
+}

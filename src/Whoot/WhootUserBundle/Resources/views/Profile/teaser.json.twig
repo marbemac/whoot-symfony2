@@ -1,0 +1,13 @@
+{
+    "id":{{ user.id }},
+    "createdAt":"{{ user.createdAt.date }}",
+    "username":"{{ user.username }}",
+    "email":"{{ user.email }}",
+    "lastLogin":"{{ user.lastLogin ? user.lastLogin.date : null }}",
+    "status":"{{ user.status }}",
+    "profileImage":"{{ user.profileImage ? user.profileImage : gravatar(user.profileImage, 50, 'r', 'mm') }}",
+    "firstName":"{{ user.firstName }}",
+    "lastName":"{{ user.lastName }}",
+    "gender":"{{ user.gender }}",
+    "zipcode":"{{ user.zipcode }}"
+}

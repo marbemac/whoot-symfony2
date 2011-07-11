@@ -41,7 +41,7 @@ class CommentFormHandler
             if ($this->form->isValid()) {
 
                 $params = $this->request->request->all();
-                $post = $this->postManager->findPostBy($params['comment']['post'], null, null, null, true);
+                $post = $this->postManager->findPostBy($params['whoot_comment_form']['post'], null, null, null, true);
 
                 $comment->setPost($post);
                 $this->commentManager->updateComment($comment);

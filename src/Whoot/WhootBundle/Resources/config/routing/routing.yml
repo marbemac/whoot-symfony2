@@ -4,10 +4,18 @@ user:
 post:
     resource: "@WhootBundle/Resources/config/routing/post.yml"
     prefix:   /p
+    
+post_api:
+    resource: "@WhootBundle/Resources/config/routing/post_api.yml"
+    prefix:   /api/post
 
 follow:
     resource: "@WhootBundle/Resources/config/routing/follow.yml"
     prefix:   /f
+
+follow_api:
+    resource: "@WhootBundle/Resources/config/routing/follow_api.yml"
+    prefix:   /api/f
 
 ping:
     resource: "@WhootBundle/Resources/config/routing/ping.yml"
@@ -23,10 +31,6 @@ list:
 
 user_api:
     resource: "@WhootUserBundle/Resources/config/routing/api.yml"
-    prefix:   /api
-
-api:
-    resource: "@WhootBundle/Resources/config/routing/api.yml"
     prefix:   /api
 
 feed_filter_toggle:
@@ -48,8 +52,9 @@ deal_feed:
     pattern:  /deals
     defaults: { _controller: WhootBundle:Core:deals }
 
-_security_check:
-    pattern:  /login_check
+facebook_security_check:
+    pattern:  /fb/login_check
+    defaults: { _controller: FOSUserBundle:Security:login }
 
 _security_logout:
     pattern:  /logout

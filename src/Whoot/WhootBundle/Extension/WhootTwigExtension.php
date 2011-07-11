@@ -44,6 +44,7 @@ class WhootTwigExtension extends \Twig_Extension {
             'rebuildArray'  => new \Twig_Filter_Method($this, 'rebuildArray'),
             'countStatus'  => new \Twig_Filter_Method($this, 'countStatus'),
             'round'  => new \Twig_Filter_Method($this, 'round'),
+            'json_encode'  => new \Twig_Filter_Method($this, 'json_encode'),
             'json_decode'  => new \Twig_Filter_Method($this, 'json_decode'),
         );
     }
@@ -171,6 +172,17 @@ class WhootTwigExtension extends \Twig_Extension {
     public function round($val, $precision)
     {
         return round($val, $precision);
+    }
+
+    /**
+     * encode and return a json string
+     *
+     * @param  array $object
+     * @return string
+     */
+    public function json_encode($object)
+    {
+        return json_encode($object);
     }
 
     /**

@@ -1,15 +1,16 @@
 <?php
 
-namespace Whoot\WhootBundle\Entity;
+namespace Whoot\WhootUserBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 
 use Whoot\WhootBundle\Entity\UserFollowing;
 
+use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Entity\UserManager as BaseUserManager;
-
-use Symfony\Component\Security\Core\User\UserProviderInterface;
+use FOS\UserBundle\Util\CanonicalizerInterface;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class UserManager extends BaseUserManager
 {
@@ -20,17 +21,26 @@ class UserManager extends BaseUserManager
      *
      * @param EntityManager           $em
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EncoderFactoryInterface $encoderFactory, $algorithm, CanonicalizerInterface $usernameCanonicalizer, CanonicalizerInterface $emailCanonicalizer, EntityManager $em, $class)
     {
+        parent::__construct($encoderFactory, $algorithm, $usernameCanonicalizer, $emailCanonicalizer, $em, $class);
         $this->em = $em;
+    }
+
+    public function createUser()
+    {
+        $user = new User();
+        $user->setAlgorithm($this->algorithm);
+
+        return $user;
     }
 
     public function getUser(array $criteria, $returnObject = true)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
-           ->from('Whoot\WhootBundle\Entity\User', 'u');
-        
+           ->from('Whoot\WhootUserBundle\Entity\User', 'u');
+
         foreach ($criteria as $key => $val)
         {
             $qb->andWhere('u.'.$key.' = :'.$key);
@@ -38,7 +48,11 @@ class UserManager extends BaseUserManager
         }
 
         $query = $qb->getQuery();
-        $user = $query->getSingleResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
+        try {
+            $user = $query->getSingleResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
+        } catch (\Doctrine\Orm\NoResultException $e) {
+            $user = null;
+        }
 
         return $user;
     }
@@ -47,7 +61,7 @@ class UserManager extends BaseUserManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
-           ->from('Whoot\WhootBundle\Entity\User', 'u')
+           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
            ->where('u.status = :status AND u.id != :currentUser')
            ->setParameters(array(
                'status' => 'Active',
@@ -96,8 +110,8 @@ class UserManager extends BaseUserManager
         }
         else
         {
-            $fromUser = $this->em->getRepository('WhootBundle:User')->find($fromUser);
-            $toUser = $this->em->getRepository('WhootBundle:User')->find($toUser);
+            $fromUser = $this->em->getRepository('WhootUserBundle:User')->find($fromUser);
+            $toUser = $this->em->getRepository('WhootUserBundle:User')->find($toUser);
 
             $response['status'] = 'new';
 
@@ -116,7 +130,7 @@ class UserManager extends BaseUserManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
-           ->from('Whoot\WhootBundle\Entity\User', 'u')
+           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
            ->innerJoin('u.followers', 'f', 'WITH', 'f.user = :user AND f.status = :status')
            ->where('u.status = :status')
            ->setParameters(array(
@@ -133,7 +147,7 @@ class UserManager extends BaseUserManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
-           ->from('Whoot\WhootBundle\Entity\User', 'u')
+           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
            ->innerJoin('u.following', 'f', 'WITH', 'f.following = :user AND f.status = :status')
            ->where('u.status = :status')
            ->setParameters(array(
@@ -150,7 +164,7 @@ class UserManager extends BaseUserManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
-           ->from('Whoot\WhootBundle\Entity\User', 'u')
+           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
            ->leftJoin('u.posts', 'up', 'WITH', 'up.createdAt >= :since AND up.status = :status')
            ->having('count(up.id) = 0')
            ->groupBy('u.id')
@@ -283,7 +297,7 @@ class UserManager extends BaseUserManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u', 'up', 'p'))
-           ->from('Whoot\WhootBundle\Entity\User', 'u')
+           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
            ->leftJoin('u.posts', 'up', 'WITH', 'up.status = :status AND up.createdAt >= :createdAt')
            ->leftJoin('up.post', 'p', 'WITH', 'p.status = :status')
            ->where(

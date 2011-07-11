@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="{{ ''|gethostname == 'whoot-app' ? 'coming-soon' : '' }}">
+<html class="{{ ''|gethostname == 'whoot-app' ? 'coming-soon' : '' }}" xmlns:fb="http://www.facebook.com/2008/fbml">
     <head>
         <meta charset="utf-8" />
         <title>{% block title %}{% endblock %} | The Whoot</title>
@@ -60,6 +60,8 @@
 
     </head>
     <body>
+        {{ facebook_initialize({'xfbml': true}) }}
+
         {# Show the contruction page: #}
         {% if ''|gethostname == 'whoot-app' %}
             {% include "WhootBundle:Core:under_contruction.html.twig" %}
@@ -68,25 +70,7 @@
         {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <div id="splash">
                 <div class="auth">
-                    <div id="auth-welcome" class="panel {{ app.request.attributes.get('_route') in ['fos_user_security_login', 'fos_user_registration_register'] ? 'hide' : '' }}">
-                        <div>
-                            Pretty Welcome Graphics... go!
-                        </div>
-                        <div class="button" data-target="#auth-login">Login</div>
-                        <div class="button" data-target="#auth-register">Register</div>
-                    </div>
-                    <div id="auth-login" class="panel {{ app.request.attributes.get('_route') != 'fos_user_security_login' ? 'hide' : '' }}">
-                        <h3>Login</h3>
-                        {% render "WhootUserBundle:Security:login" with { 'chromeless': true } %}
-                        <div class="button" data-target="#auth-welcome">Back to Welcome</div>
-                        <div class="button" data-target="#auth-register">Register</div>
-                    </div>
-                    <div id="auth-register" class="panel {{ app.request.attributes.get('_route') != 'fos_user_registration_register' ? 'hide' : '' }}">
-                        <h3>Register</h3>
-                        {% render "WhootUserBundle:Registration:register" with { 'chromeless': true } %}
-                        <div class="button" data-target="#auth-welcome">Back to Welcome</div>
-                        <div class="button" data-target="#auth-login">Login</div>
-                    </div>
+                    {{ facebook_login_button({'autologoutlink': true}) }}
                 </div>
             </div>
         {% else %}
@@ -181,9 +165,24 @@
         <script src="{{ asset('Resources/js/whoot.utilities.js') }}"></script>
         <script src="{{ asset('Resources/js/whoot.main.js') }}"></script>
 
-        <div id="fb-root"></div>
-        <script src="http://connect.facebook.net/en_US/all.js#appId=224410564236351&amp;xfbml=1"></script>
-        
+        <script>
+            window.fbAsyncInit = (function(originalFunc) {
+                return function() {
+                    if (originalFunc)
+                    {
+                        originalFunc();
+                    }
+                    
+                    FB.Event.subscribe('auth.login', function(response) {
+                        window.location = '{{ path('_security_check') }}';
+                    });
+                    FB.Event.subscribe('auth.logout', function(response) {
+                        window.location = '{{ path('_security_logout') }}';
+                    });
+                };
+            })(window.fbAsyncInit);
+        </script>
+                
         <!-- HIDDEN TOOLS -->
         <div style="dislay: none">
             

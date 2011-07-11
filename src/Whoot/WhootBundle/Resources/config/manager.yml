@@ -1,6 +1,5 @@
 parameters:
     whoot.core_manager.class:                  Whoot\WhootBundle\Entity\CoreManager
-    whoot.user_manager.class:                  Whoot\WhootBundle\Entity\UserManager
     whoot.post_manager.class:                  Whoot\WhootBundle\Entity\PostManager
     whoot.ping_manager.class:                  Whoot\WhootBundle\Entity\PingManager
     whoot.comment_manager.class:               Whoot\WhootBundle\Entity\CommentManager
@@ -11,9 +10,6 @@ services:
         class:        %whoot.core_manager.class%
         arguments:    ["@request", "@router", "@security.context"]
         scope:       request
-    whoot.user_manager:
-        class:        %whoot.user_manager.class%
-        arguments:    ["@doctrine.orm.default_entity_manager"]
     whoot.post_manager:
         class:        %whoot.post_manager.class%
         arguments:    ["@whoot.user_manager", "@doctrine.orm.default_entity_manager"]

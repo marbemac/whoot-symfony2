@@ -5,7 +5,7 @@ namespace Whoot\WhootBundle\Entity;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 
-use Whoot\WhootBundle\Entity\UserManager;
+use Whoot\WhootUserBundle\Entity\UserManager;
 
 
 class PostManager
@@ -18,7 +18,7 @@ class PostManager
      *
      * @param EntityManager $em
      */
-    public function __construct(UserManager $userManager, EntityManager $em)
+    public function __construct($userManager, EntityManager $em)
     {
         $this->userManager = $userManager;
         $this->em = $em;
@@ -162,7 +162,7 @@ class PostManager
             // get the users this user is following
             $qb2 = $this->em->createQueryBuilder();
             $qb2->select(array('u.id'))
-               ->from('Whoot\WhootBundle\Entity\User', 'u')
+               ->from('Whoot\WhootUserBundle\Entity\User', 'u')
                ->innerJoin('u.followers', 'f', 'WITH', 'f.user = :user AND f.status = :status')
                ->setParameters(array(
                    'user' => $user,

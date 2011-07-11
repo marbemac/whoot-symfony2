@@ -1,0 +1,6 @@
+### REGISTRATION
+api_user_registration_register:
+    pattern: /register.{_format}
+    defaults: { _controller: FOSUserBundle:Registration:register, _format: json }
+    requirements:
+        _method: POST

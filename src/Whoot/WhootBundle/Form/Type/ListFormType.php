@@ -1,6 +1,6 @@
 <?php
 
-namespace Whoot\WhootBundle\Form;
+namespace Whoot\WhootBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
@@ -11,5 +11,10 @@ class ListFormType extends AbstractType
     {
         $builder
             ->add('name', 'text');
+    }
+
+    public function getName()
+    {
+        return 'whoot_list_form';
     }
 }

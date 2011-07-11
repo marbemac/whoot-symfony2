@@ -1,13 +1,13 @@
 <?php
 
-namespace Whoot\WhootUserBundle\Form;
+namespace Whoot\WhootUserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
 use FOS\UserBundle\Form\RegistrationFormType as BaseForm;
 
-class RegistrationFormType extends BaseForm
+class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
@@ -17,12 +17,17 @@ class RegistrationFormType extends BaseForm
             ->add('email')
             ->add('gender', 'choice', array(
                 'choices' => array(
-                    'm1' => 'Male', 'm2' => 'Guy', 'm3' => 'Dude',
-                    'f1' => 'Female', 'f2' => 'Girl', 'f3' => 'Chick'
+                    'm' => 'Male',
+                    'f' => 'Female'
                 )
             ))
             ->add('zipcode')
             ->add('plainPassword', 'repeated', array('type' => 'password'))
             ->add('username', 'hidden');
+    }
+
+    public function getName()
+    {
+        return 'whoot_user_registration';
     }
 }

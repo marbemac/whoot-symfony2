@@ -21,6 +21,14 @@ list:
     resource: "@WhootBundle/Resources/config/routing/list.yml"
     prefix:   /l
 
+user_api:
+    resource: "@WhootUserBundle/Resources/config/routing/api.yml"
+    prefix:   /api
+
+api:
+    resource: "@WhootBundle/Resources/config/routing/api.yml"
+    prefix:   /api
+
 feed_filter_toggle:
     pattern:  /ac/tf/{postType}
     defaults: { _controller: WhootBundle:Core:toggleFeedFilter }
@@ -39,6 +47,12 @@ feed_filter_change:
 deal_feed:
     pattern:  /deals
     defaults: { _controller: WhootBundle:Core:deals }
+
+_security_check:
+    pattern:  /login_check
+
+_security_logout:
+    pattern:  /logout
 
 homepage:
     pattern:  /

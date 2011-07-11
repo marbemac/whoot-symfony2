@@ -6,8 +6,8 @@
         Purpose of the stylesheet follows.
 */
 
-$auth_width:  650px;
-$auth_height: 350px;
+$auth_width:  750px;
+$auth_height: 450px;
 
 html.coming-soon {
     background-color: #FFF;
@@ -41,8 +41,11 @@ html.coming-soon {
         margin: $auth_height/2*-1 0 0 $auth_width/2*-1;
         width: $auth_width; height: $auth_height;
         
-        .panel { 
-            width: $auth_height; height: $auth_height;
+        .panel {
+            @include clearfix();
+            width: $auth_height/2.1;
+            float: left;
+            padding: 10px;
         }
         
         .button { 

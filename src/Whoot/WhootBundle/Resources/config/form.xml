@@ -15,12 +15,12 @@
             </argument>
         </service>
 
-        <service id="whoot.form.type.comment" class="Whoot\WhootBundle\Form\CommentFormType">
+        <service id="whoot.form.type.comment" class="Whoot\WhootBundle\Form\Type\CommentFormType">
             <argument>whoot.form.comment</argument>
             <tag name="form.type" />
         </service>
 
-        <service id="whoot.form.handler.comment" class="Whoot\WhootBundle\Form\CommentFormHandler" scope="request">
+        <service id="whoot.form.handler.comment" class="Whoot\WhootBundle\Form\Handler\CommentFormHandler" scope="request">
             <argument type="service" id="whoot.form.comment" />
             <argument type="service" id="request" />
             <argument type="service" id="whoot.comment_manager" />
@@ -35,12 +35,12 @@
             </argument>
         </service>
 
-        <service id="whoot.form.type.list" class="Whoot\WhootBundle\Form\ListFormType">
+        <service id="whoot.form.type.list" class="Whoot\WhootBundle\Form\Type\ListFormType">
             <argument>whoot.form.list</argument>
             <tag name="form.type" />
         </service>
 
-        <service id="whoot.form.handler.list" class="Whoot\WhootBundle\Form\ListFormHandler" scope="request">
+        <service id="whoot.form.handler.list" class="Whoot\WhootBundle\Form\Handler\ListFormHandler" scope="request">
             <argument type="service" id="whoot.form.list" />
             <argument type="service" id="request" />
             <argument type="service" id="whoot.list_manager" />

@@ -1,6 +1,6 @@
 <?php
 
-namespace Whoot\WhootBundle\Form;
+namespace Whoot\WhootBundle\Form\Handler;
 
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\Error;

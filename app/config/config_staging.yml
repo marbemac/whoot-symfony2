@@ -13,3 +13,7 @@ monolog:
         firephp:
             type:  firephp
             level: info
+
+fos_facebook:
+    app_id: 224248554281682
+    secret: 3b506fd0f596fa72567b8379095f1647

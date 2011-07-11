@@ -1,6 +1,6 @@
 <?php
 
-namespace Whoot\WhootBundle\Entity;
+namespace Whoot\WhootUserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -80,30 +80,37 @@ class User extends BaseUser
     private $zipcode;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length="255", name="facebook_id", nullable=true)
+     */
+    protected $facebookId;
+
+    /**
      * @var UsersPosts
      *
-     * @ORM\OneToMany(targetEntity="UsersPosts", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\UsersPosts", mappedBy="user", cascade={"persist"})
      */
     protected $posts;
 
     /**
      * @var UserFollowing
      *
-     * @ORM\OneToMany(targetEntity="UserFollowing", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\UserFollowing", mappedBy="user")
      */
     protected $following;
 
     /**
      * @var UserFollowing
      *
-     * @ORM\OneToMany(targetEntity="UserFollowing", mappedBy="following")
+     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\UserFollowing", mappedBy="following")
      */
     protected $followers;
     
     /**
      * @var UserList
      *
-     * @ORM\OneToMany(targetEntity="UserLList", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\UserLList", mappedBy="user")
      */
     protected $lists;
 
@@ -272,5 +279,44 @@ class User extends BaseUser
     public function setPost(Post $post)
     {
         $this->posts[] = $post;
+    }
+    
+    /**
+     * @param string $facebookID
+     * @return void
+     */
+    public function setFacebookId($facebookID)
+    {
+        $this->facebookId = $facebookID;
+        $this->setUsername($facebookID);
+        $this->salt = '';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * @param Array
+     */
+    public function setFBData($fbdata)
+    {
+        if (isset($fbdata['id'])) {
+            $this->setFacebookId($fbdata['id']);
+            $this->addRole('ROLE_FACEBOOK');
+        }
+        if (isset($fbdata['first_name'])) {
+            $this->setFirstname($fbdata['first_name']);
+        }
+        if (isset($fbdata['last_name'])) {
+            $this->setLastname($fbdata['last_name']);
+        }
+        if (isset($fbdata['email'])) {
+            $this->setEmail($fbdata['email']);
+        }
     }
 }

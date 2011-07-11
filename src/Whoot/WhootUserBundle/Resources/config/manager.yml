@@ -4,4 +4,9 @@ parameters:
 services:
     whoot.user_manager:
         class:        %whoot.user_manager.class%
-        arguments:    ["@doctrine.orm.default_entity_manager"]
+        arguments:
+            - %fos_user.encoder.algorithm%
+            - @fos_user.util.username_canonicalizer
+            - @fos_user.util.email_canonicalizer
+            - @doctrine.orm.default_entity_manager
+            - %fos_user.model.user.class%

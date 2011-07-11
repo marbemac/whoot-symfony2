@@ -60,6 +60,13 @@ class RegistrationController extends ContainerAware
             $this->container->get('session')->setFlash('notice', 'Account created successfully!');
             $url = $this->container->get('router')->generate($route);
 
+            if ($_format == 'json')
+            {
+                $response = new Response(json_encode(array('status' => 'success')));
+                $response->headers->set('Content-Type', 'application/json');
+                return $response;
+            }
+
             if ($request->isXmlHttpRequest())
             {
                 $response = new Response(json_encode(array('redirect' => $url)));
@@ -68,6 +75,22 @@ class RegistrationController extends ContainerAware
             }
 
             return new RedirectResponse($url);
+        }
+
+        if ($_format == 'json')
+        {
+            $result = array();
+            $result['status'] = 'error';
+            foreach ($form->getChildren() as $child)
+            {
+                if ($child->hasErrors())
+                {
+                    $result['errors'][] = $child->getErrors();
+                }
+            }
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
         }
 
         if ($chromeless)

@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(), // FriendsOfSymfony UserBundle
+            new FOS\FacebookBundle\FOSFacebookBundle(),
             new Bundle\GravatarBundle\GravatarBundle(),
             new Whoot\WhootUserBundle\WhootUserBundle(),
             new Whoot\WhootBundle\WhootBundle(),

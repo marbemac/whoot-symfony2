@@ -16,8 +16,8 @@ framework:
         engines: ['twig']
     session:
         default_locale: %locale%
-        lifetime:       3600
         auto_start:     true
+        lifetime:       3600
         storage_id:     session.storage.pdo
     annotations:
         cache: file
@@ -41,7 +41,15 @@ services:
                 dsn:      "mysql:dbname=%database_name%"
                 user:     %database_user%
                 password: %database_password%
-                
+
+    whoot.facebook.user:
+        class: Whoot\WhootBundle\Security\User\Provider\FacebookProvider
+        arguments:
+            facebook:    "@fos_facebook.api"
+            userManager: "@whoot.user_manager"
+            validator:   "@validator"
+            container:   "@service_container"
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -94,100 +102,74 @@ jms_security_extra:
 
 gravatar: ~
 
+# FOS Facebook config
+fos_facebook:
+    file:   %kernel.root_dir%/../vendor/facebook/src/facebook.php
+    alias:  facebook
+    cookie: true
+    permissions: [email, user_birthday, user_hometown, user_location]
+
 # FriendsOfSymfony UserBundle Configuration
 fos_user:
-        db_driver:     orm
-        firewall_name: main
-        user_class:    Whoot\WhootBundle\Entity\User
-        use_listener:  true
-        from_email:     { marc@thewhoot.com: Admin }
-#        profile:
-#            form:
-#                type:               FOS\UserBundle\Form\ProfileFormType
-#                handler:            FOS\UserBundle\Form\ProfileFormHandler
-#                name:               fos_user_profile_form
-#                validation_groups:  [Profile]
-#        change_password:
-#            form:
-#                type:               FOS\UserBundle\Form\ChangePasswordFormType
-#                handler:            FOS\UserBundle\Form\ChangePasswordFormHandler
-#                name:               fos_user_change_password_form
-#                validation_groups:  [ChangePassword]
-        registration:
-#            confirmation:
-#                from_email: ~
-#                enabled:    false
-#                template:   FOSUserBundle:Registration:email.txt.twig
-            form:
-                type:               Whoot\WhootUserBundle\Form\RegistrationFormType
-#                handler:            FOS\UserBundle\Form\RegistrationFormHandler
-#                name:               fos_user_registration_form
-#                validation_groups:  [Registration]
-#        resetting:
-#            token_ttl: 86400
-#            email:
-#                from_email: ~
-#                template:   FOSUserBundle:Resetting:email.txt.twig
-#            form:
-#                type:               FOS\UserBundle\Form\ResettingFormType
-#                handler:            FOS\UserBundle\Form\ResettingFormHandler
-#                name:               fos_user_resetting_form
-#                validation_groups:  [ResetPassword]
-#        service:
-#            mailer:                 fos_user.util.mailer.default
-#            email_canonicalizer:    fos_user.util.email_canonicalizer.default
-#            username_canonicalizer: fos_user.util.username_canonicalizer.default
-#        encoder:
-#            algorithm:          sha512
-#            encode_as_base64:   false
-#            iterations:         1
-#        template:
-#            engine: twig
-#            theme:  FOSUserBundle::form.html.twig
-#        group:
-#            group_class:    ~ # Required when using groups
-#            form:
-#                type:               FOS\UserBundle\Form\GroupFormType
-#                handler:            FOS\UserBundle\Form\GroupHandler
-#                name:               fos_user_group_form
-#                validation_groups:  [Registration]
-
-#            form:
-#                user:            ~
-#                change_password: ~
-#                reset_password:  ~
-#            controller:
-#                user:      Limelight\LimelightBundle\Controller\UserController
-#                security:  Limelight\LimelightBundle\Controller\SecurityController
-#        service:
-#            mailer: ~
-#            email_canonicalizer:    ~
-#            username_canonicalizer: ~
-#        encoder:
-#            algorithm: sha512
-#            encode-as-base64: true
-#            iterations: 5
-#        form_name:
-#            user:            ~
-#            change_password: ~
-#            reset_password:  ~
-#        form_validation_groups:
-#            user: ~             # This value is an array of groups
+    db_driver:     orm
+    firewall_name: main
+    user_class:    Whoot\WhootUserBundle\Entity\User
+    use_listener:  true
+    from_email:
+        address: marc@thewhoot.com
+        sender_name: Marc
+#    profile:
+#        form:
+#            type:               fos_user_profile
+#            handler:            fos_user.profile.form.handler.default
+#            name:               fos_user_profile_form
+#            validation_groups:  [Profile]
+#    change_password:
+#        form:
+#            type:               fos_user_change_password
+#            handler:            fos_user.change_password.form.handler.default
+#            name:               fos_user_change_password_form
+#            validation_groups:  [ChangePassword]
+    registration:
+#        confirmation:
+#            from_email: # Use this node only if you don't want the global email address for the confirmation email
+#                address:        ...
+#                sender_name:    ...
+#            enabled:    false
+#            template:   FOSUserBundle:Registration:email.txt.twig
+        form:
+                type:               whoot_user_registration
+#            handler:            fos_user.registration.form.handler.default
+#            name:               fos_user_registration_form
+#            validation_groups:  [Registration]
+#    resetting:
+#        token_ttl: 86400
 #        email:
-#            from_email: ~       # { admin@example.com: Sender_name }
-#            confirmation:
-#                enabled:    ~
-#                template:   ~
-#            resetting_password:
-#                template:   ~
-#                token_ttl:  ~
-#        template:
-#            engine: ~
-#            theme:  ~
-#        group:
-#            class:
-#                model: MyProject\MyBundle\Document\Group
-#                controller: ~
-#                form: ~
-#            form_name: ~
-#            form_validation_groups: ~
+#            from_email: # Use this node only if you don't want the global email address for the resetting email
+#                address:        ...
+#                sender_name:    ...
+#            template:   FOSUserBundle:Resetting:email.txt.twig
+#        form:
+#            type:               fos_user_resetting
+#            handler:            fos_user.resetting.form.handler.default
+#            name:               fos_user_resetting_form
+#            validation_groups:  [ResetPassword]
+#    service:
+#        mailer:                 fos_user.util.mailer.default
+#        email_canonicalizer:    fos_user.util.email_canonicalizer.default
+#        username_canonicalizer: fos_user.util.username_canonicalizer.default
+#        user_manager:           fos_user.user_manager.default
+#    encoder:
+#        algorithm:          sha512
+#        encode_as_base64:   false
+#        iterations:         1
+#    template:
+#        engine: twig
+#        theme:  FOSUserBundle::form.html.twig
+#    group:
+#        group_class:    ~ # Required when using groups
+#        form:
+#            type:               fos_user_group
+#            handler:            fos_user.group.form.handler.default
+#            name:               fos_user_group_form
+#            validation_groups:  [Registration]

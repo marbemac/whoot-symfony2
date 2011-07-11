@@ -54,13 +54,13 @@ class UsersPosts
 
     /**
      * @var User $deletedBy
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User")
      * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
      */
     protected $deletedBy;    
 
     /**
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\User", inversedBy="posts")
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User", inversedBy="posts")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;

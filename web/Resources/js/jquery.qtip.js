@@ -9,7 +9,7 @@
 *   http://en.wikipedia.org/wiki/MIT_License
 *   http://en.wikipedia.org/wiki/GNU_General_Public_License
 *
-* Date: Sat Jun 18 06:06:00 PDT 2011
+* Date: Fri Jul  8 03:46:50 PDT 2011
 */
 
 /*jslint browser: true, onevar: true, undef: true, nomen: true, bitwise: true, regexp: true, newcap: true, immed: true, strict: true */
@@ -45,8 +45,9 @@
 	function log() {
 		log.history = log.history || [];
 		log.history.push(arguments);
-		if(console){
-			(console.warn || console.log)(Array.prototype.slice.call(arguments));
+		if('object' === typeof console) {
+			var c = console[ console.warn ? 'warn' : 'log' ],
+			a = c.apply ? c.apply(console, arguments) : c(Array.prototype.slice.call(arguments));
 		}
 	}
 
@@ -299,8 +300,11 @@ function QTip(target, options, id, attr)
 	{
 		var elem = elements.title;
 
+		// Remove title if content is FALSE
+		if(elem && content === FALSE) { removeTitle(); }
+		
 		// Make sure tooltip is rendered and if not, return
-		if(!self.rendered || !content) { return FALSE; }
+		else if(!self.rendered || !content) { return FALSE; }
 
 		// Use function to parse content
 		if($.isFunction(content)) {
@@ -2626,7 +2630,7 @@ function Modal(api)
 				var oEvent = event.originalEvent;
 				
 				// Make sure mouseout doesn't trigger a hide when showing the modal and mousing onto backdrop
-				if(oEvent && event.type === 'tooltiphide' && /mouse(leave|enter)/.test(oEvent.type) && oEvent.relatedTarget.closest(overlay[0]).length) {
+				if(oEvent && event.type === 'tooltiphide' && /mouse(leave|enter)/.test(oEvent.type) && $(oEvent.relatedTarget).closest(overlay[0]).length) {
 					event.preventDefault();
 				}
 				else {
@@ -2724,7 +2728,7 @@ function Modal(api)
 			}
 			else {
 				// Undelegate focus handler
-				docBody.undelegate('*', 'focus'+namespace);
+				docBody.undelegate('*', 'focusin'+namespace);
 			}
 
 			// Stop all animations
@@ -2779,7 +2783,7 @@ function Modal(api)
 				}
 
 				// Undelegate focus handler
-				docBody.undelegate('*', 'focus'+namespace);
+				docBody.undelegate('*', 'focusin'+namespace);
 			}
 
 			// Remove bound events

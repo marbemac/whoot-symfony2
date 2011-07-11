@@ -106,8 +106,8 @@ class PingManager
         }
         else
         {
-            $fromUser = $this->em->getRepository('WhootBundle:User')->find($fromUser);
-            $toUser = $this->em->getRepository('WhootBundle:User')->find($toUser);
+            $fromUser = $this->em->getRepository('WhootUserBundle:User')->find($fromUser);
+            $toUser = $this->em->getRepository('WhootUserBundle:User')->find($toUser);
 
             $response['status'] = 'new';
 

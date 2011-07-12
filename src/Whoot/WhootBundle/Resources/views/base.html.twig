@@ -198,7 +198,9 @@
             {% endif %} {# end the under contruction loop #}
         </div>
         {# Background Starscape #}
-        <div id="stars-bg">&nbsp;</div>
+        {% if calculateTimeOfDay() != 'day' %}
+            <div id="stars-bg" class="{{ calculateTimeOfDay() == 'sunset' ? 'fade' : '' }}">&nbsp;</div>
+        {% endif %}
         <div id="city-bg">&nbsp;</div>
     </body>
 </html>

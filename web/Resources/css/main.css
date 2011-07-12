@@ -310,10 +310,18 @@ ul, ol {
   width: 100%;
   height: 100%;
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: -10;
 }
+/* line 194, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+#stars-bg.fade {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  opacity: 0.4;
+}
 
-/* line 193, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 198, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #city-bg {
   background-image: url('/images/city-bg.png?1310479515');
   background-repeat: repeat-x;
@@ -327,22 +335,22 @@ ul, ol {
   z-index: -5;
 }
 
-/* line 208, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 213, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 .feed li {
   margin: 0 10px;
   border-top: 1px dotted #999;
   padding: 0;
 }
-/* line 213, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 218, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 .feed li.first {
   border-top: none;
 }
-/* line 216, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 221, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 .feed li.last, .feed li.none {
   border-bottom: 1px dotted #999;
 }
 
-/* line 221, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
+/* line 226, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 .fb_edge_widget_with_comment {
   float: right;
   text-align: right;

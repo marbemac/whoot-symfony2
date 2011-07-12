@@ -28,11 +28,11 @@ html, body {
 /* line 25, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 body.night {
   background-color: #091F35;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #05162e), color-stop(35%, #06192f), color-stop(60%, #091f35), color-stop(100%, #091f35));
-  background-image: -webkit-linear-gradient(#05162e, #06192f 35%, #091f35 60%, #091f35);
-  background-image: -moz-linear-gradient(#05162e, #06192f 35%, #091f35 60%, #091f35);
-  background-image: -o-linear-gradient(#05162e, #06192f 35%, #091f35 60%, #091f35);
-  background-image: linear-gradient(#05162e, #06192f 35%, #091f35 60%, #091f35);
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #05162e), color-stop(30%, #09213b), color-stop(50%, #0c2b4b), color-stop(100%, #0f3762));
+  background-image: -webkit-linear-gradient(#05162e, #09213b 30%, #0c2b4b 50%, #0f3762);
+  background-image: -moz-linear-gradient(#05162e, #09213b 30%, #0c2b4b 50%, #0f3762);
+  background-image: -o-linear-gradient(#05162e, #09213b 30%, #0c2b4b 50%, #0f3762);
+  background-image: linear-gradient(#05162e, #09213b 30%, #0c2b4b 50%, #0f3762);
 }
 
 /* line 29, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */

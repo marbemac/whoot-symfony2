@@ -2,25 +2,25 @@
  * Control the main content resizing
  */
 
-var resizeLayout = function(target)
+var resizeLayout = function()
 {
+    console.log('test');
     var h = $(window).height() - $('#header').height();
-    target.css('height', h);
-
-    $('#page_content').css('min-height', h-$('#footer').height())
+    $('#sidebar').css('height', h);
+    $('#page_content').css('height', h-parseInt($('#page_content').css('margin-top').replace("px", ""))-parseInt($('#page_content').css('margin-bottom').replace('px', '')));
 }
 
 // On page loads
 $("#sidebar").livequery(function() {
-    resizeLayout($(this));
+    resizeLayout();
 })
 
 // on first load
-resizeLayout($("#sidebar"));
+resizeLayout();
 
 // on window resize
 $(window).resize(function(){
-    resizeLayout($("#sidebar"));
+    resizeLayout();
 });
 
 /*

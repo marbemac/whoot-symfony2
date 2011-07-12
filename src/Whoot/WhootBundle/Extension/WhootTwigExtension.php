@@ -49,6 +49,12 @@ class WhootTwigExtension extends \Twig_Extension {
         );
     }
 
+    public function getFunctions() {
+        return array(
+            'calculateTimeOfDay'  => new \Twig_Function_Method($this, 'calculateTimeOfDay')
+        );
+    }
+
     public function debug($var)
     {
         $return = '<pre>';
@@ -234,6 +240,23 @@ class WhootTwigExtension extends \Twig_Extension {
             }
         }
         return $output ? $output.' ago' : "Just now";
+    }
+
+    /*
+     * Returns a string corresponding to the time of day.
+     * This is used in the body tag to change the site background gradient.
+     */
+    public function calculateTimeOfDay()
+    {
+        $hour = date('G', time());
+        switch (true) {
+            case ($hour >= 5 && $hour < 18):
+                return 'day';
+            case ($hour >= 18 && $hour < 20):
+                return 'sunset';
+            case ($hour >= 20 && $hour < 5):
+                return 'night';
+        }
     }
 
     public function getName()

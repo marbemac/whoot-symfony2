@@ -25,9 +25,6 @@ html.coming-soon {
 }
 
 #splash {
-    @include background-image(linear-gradient(#222, #666 60%, #AAA));
-
-    background: #666;
     width: 100%;
     height: 100%;
     

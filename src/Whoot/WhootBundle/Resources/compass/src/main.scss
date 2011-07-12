@@ -16,10 +16,23 @@
 html, body {
     margin: 0; padding: 0;
     width: 100%;
+    height: 100%;
     border: 0;
-    background-color: #222;
     position: relative; z-index: 0;
     font-family: Tahoma, Arial, "times New Roman"; color: #000;
+}
+
+body.night {
+    background-color: #091F35;
+    @include background-image(linear-gradient(#05162E, #06192F 35%, #091F35 60%, #091F35));
+}
+body.sunset {
+    background-color: #FFA45E;
+    @include background-image(linear-gradient(#995A51, #D2785E 15%, #EB885F 30%, #FFA45E 55%, #FFC681));
+}
+body.day {
+    background-color: #80B0E7;
+    @include background-image(linear-gradient(#4178A2, #73A3CD 30%, #80B0E7 60%, #A2C5E7));
 }
 
 header, footer, article, section, nav, menu, hgroup {
@@ -51,13 +64,8 @@ input.submit {
 }
 
 ul,ol { list-style: none; margin: 0; padding: 0; }
-
-#wrapper { 
-    width: 100%; height: 100%;
-}
 #application { width: 960px; height: 100%; margin: auto; }
 #header {
-    background-color: #222;
     height: $header_height; width: $header_width;
     color: $header_color;
     position: fixed;
@@ -130,6 +138,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
 }
 #content {
     padding-top: $header_height; height: 100%;
+    overflow: auto;
 }
 #page {
     @include border-radius(10px);
@@ -140,14 +149,16 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
     height: 100%;
 }
 #page_content {
-    min-height: $min-page-height;
-    height: 100%;
-    padding: 10px 0 0 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 36px 0 25px 0;
 }
 #sidebar {
     @include border-top-right-radius(10px);
-    width: $sidebar_width; min-height: $min-page-height;
-    position: fixed; top: $header_height+1; left: 50%;
+    width: $sidebar_width;
+    position: fixed;
+    top: $header_height;
+    left: 50%;
     margin: 0 0 0 280px;
     z-index: 50;
     border-left: $sidebar_border_width solid $sidebar_border_color;
@@ -168,7 +179,31 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
     font-weight: normal;
     font-size: 14px;
 }
-
+#stars-bg {
+    background: {
+        image: image-url("stars-bg.png");
+        repeat: repeat;
+        position: top left;
+    }
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -10;
+}
+#city-bg {
+    background: {
+        image: image-url("city-bg.png");
+        repeat: repeat-x;
+        position: bottom left;
+        color: transparent;
+    }
+    width: 100%;
+    height: 466px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: -5;
+}
 .feed {
     li {
         margin: 0 10px;

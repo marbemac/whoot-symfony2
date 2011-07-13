@@ -94,13 +94,13 @@ class PingManager
         {
             if ($ping->getStatus() == 'Deleted')
             {
-                $response['status'] = 'new';
+                $response['state'] = 'new';
                 $ping->setStatus('Active');
                 $this->updatePing($ping);
             }
             else
             {
-                $response['status'] = 'deleted';
+                $response['state'] = 'deleted';
                 $this->deletePing($ping);
             }
         }
@@ -109,7 +109,7 @@ class PingManager
             $fromUser = $this->em->getRepository('WhootUserBundle:User')->find($fromUser);
             $toUser = $this->em->getRepository('WhootUserBundle:User')->find($toUser);
 
-            $response['status'] = 'new';
+            $response['state'] = 'new';
 
             $ping = $this->createPing();
 

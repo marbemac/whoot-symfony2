@@ -1,0 +1,15 @@
+{% extends 'WhootBundle::base.json.twig' %}
+
+{% block result %}success{% endblock %}
+
+{% block data %}
+    {
+        "users":
+        [
+            {% for user in followers %}
+                {% include 'WhootUserBundle:Profile:teaser.json.twig' with {'user': user} %}
+                {{ loop.last ? '' : ',' }}
+            {% endfor %}
+        ]
+    }
+{% endblock %}

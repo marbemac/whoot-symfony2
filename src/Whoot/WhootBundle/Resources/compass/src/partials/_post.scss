@@ -204,7 +204,7 @@ Purpose of the stylesheet follows.
 
 $feed-filters-margin-top: 8px;
 #feed-filters-placeholder {
-    height: 40px;
+    height: 20px;
     width: 100%;
 }
 #feed-filters {
@@ -363,54 +363,46 @@ $post-hover-color: #E7EDFF;
 }
 
 .teaser.post {
-    .timer {
-        width: 20px;
-        height: 20px;
+    font-size: 18px;
+    .profile-image {
         float: left;
         position: relative;
-        top: 7px;
-        margin: 3px 5px 0 5px;
-    }
-    div.timer {
-        @include border-radius(10px);
-
-        &.working { background: $post-working-color; }
-        &.low_in { background: $post-low_in-color; }
-        &.low_out { background: $post-low_out-color; }
-        &.big_out { background: $post-big_out-color; }
-    }
-    .profile-images {
-        float: left;
-        width: 130px;
-    
+        top: 3px;
+        left: 3px;
+        
         img {
             @include border-radius(5px);
-            float: left;
-            margin: 5px 0 0 5px;
         }
     }
-    .jive-B {
-        color: $link-color;
-        float: right;
-        font-size: 16px;
-        padding: 9px;
+    .user-link {
+        float: left;
+        width: 100px;
+        overflow: hidden;
+        padding: 14px 0 0 20px;
+        white-space: nowrap;
     }
-    .jive-B:hover {
-        text-decoration: underline;
+    .what {
+        float: left;
+        width: 110px;
+        overflow: hidden;
+        padding: 14px 0 0 10px;
     }
-    .post span {
-        font-weight: bold;
+    .note {
+        float: left;
+        overflow: hidden;
+        padding: 14px 0 0 20px;
+        font-style: italic;
     }
-    &.working .post span {
+    &.working .what {
         color: $post-working-color;
     }
-    &.low_in .post span {
+    &.low_in .what {
         color: $post-low_in-color;
     }
-    &.low_out .post span {
+    &.low_out .what {
         color: $post-low_out-color;
     }
-    &.big_out .post span {
+    &.big_out .what {
         color: $post-big_out-color;
     }
 }
@@ -479,10 +471,7 @@ $post-hover-color: #E7EDFF;
             position: relative; bottom: 7px;
         }
     }
-    .right {
-        float: left;
-        width: 465px;
-    }
+
     h4 {
         margin: 6px 0 0 0;
     }
@@ -499,13 +488,14 @@ $post-hover-color: #E7EDFF;
     }
 
     &.normal {
-        .activity-list {
-            width: 515px;
-        }
     }
     &.invite {
         .activity-list {
             width: 460px;
+        }
+        .right {
+            float: left;
+            width: 465px;
         }
     }
 }

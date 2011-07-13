@@ -12,6 +12,7 @@
             <argument type="service" id="fos_user.util.email_canonicalizer" />
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%fos_user.model.user.class%</argument>
+            <argument type="service" id="whoot.location_manager" />
         </service>
     </services>
 

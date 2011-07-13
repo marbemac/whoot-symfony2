@@ -16,13 +16,15 @@ class FacebookProvider implements UserProviderInterface
      */
     protected $facebook;
     protected $userManager;
+    protected $locationManager;
     protected $validator;
 
-    public function __construct(Facebook $facebook, $userManager, $validator)
+    public function __construct(Facebook $facebook, $userManager, $locationManager, $validator, $serviceContainer)
     {
         $facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYPEER] = false;
         $this->facebook = $facebook;
         $this->userManager = $userManager;
+        $this->locationManager = $locationManager;
         $this->validator = $validator;
     }
 
@@ -67,6 +69,10 @@ class FacebookProvider implements UserProviderInterface
 
             // TODO use http://developers.facebook.com/docs/api/realtime
             $user->setFBData($fbdata);
+            if (isset($fbdata['location']))
+            {
+                $user->setLocation($this->locationManager->getFBLocation($fbdata['location']['name']));
+            }
 
             if (count($this->validator->validate($user, 'Facebook'))) {
                 // TODO: the user was found obviously, but doesnt match our expectations, do something smart

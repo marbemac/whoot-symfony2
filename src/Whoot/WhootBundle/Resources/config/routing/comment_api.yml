@@ -1,0 +1,8 @@
+api_comment_toggle:
+    pattern:  /create
+    defaults:
+        _controller: WhootBundle:Comment:new
+        _format: json
+    requirements:
+        _method: POST
+        _format: json

@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 
 use Whoot\WhootBundle\Entity\UserFollowing;
+use Whoot\WhootBundle\Entity\LocationManager;
 
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Entity\UserManager as BaseUserManager;
@@ -15,16 +16,18 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 class UserManager extends BaseUserManager
 {
     protected $em;
+    protected $locationManager;
 
     /**
      * Constructor.
      *
      * @param EntityManager           $em
      */
-    public function __construct(EncoderFactoryInterface $encoderFactory, $algorithm, CanonicalizerInterface $usernameCanonicalizer, CanonicalizerInterface $emailCanonicalizer, EntityManager $em, $class)
+    public function __construct(EncoderFactoryInterface $encoderFactory, $algorithm, CanonicalizerInterface $usernameCanonicalizer, CanonicalizerInterface $emailCanonicalizer, EntityManager $em, $class, LocationManager $locationManager)
     {
         parent::__construct($encoderFactory, $algorithm, $usernameCanonicalizer, $emailCanonicalizer, $em, $class);
         $this->em = $em;
+        $this->locationManager = $locationManager;
     }
 
     public function createUser()
@@ -38,8 +41,9 @@ class UserManager extends BaseUserManager
     public function getUser(array $criteria, $returnObject = true)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('u'))
-           ->from('Whoot\WhootUserBundle\Entity\User', 'u');
+        $qb->select(array('u', 'l'))
+           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
+           ->leftJoin('u.location', 'l');
 
         foreach ($criteria as $key => $val)
         {
@@ -284,30 +288,6 @@ class UserManager extends BaseUserManager
         return $response;
     }
 
-    /**
-     * Get location data from zipcode.
-     *
-     * @param  integer $zipcode
-     *
-     * @return array
-     */
-    public function getLocation($zipcode)
-    {
-        $qb = $this->em->createQueryBuilder();
-        $qb->select(array('l'))
-           ->from('Whoot\WhootBundle\Entity\Zipcode', 'l')
-           ->where('l.zipcode = :zipcode')
-           ->setParameters(array(
-               'zipcode' => $zipcode
-           ));
-
-        $query = $qb->getQuery();
-        $query->useResultCache(true, 86000, 'location_'.$zipcode);
-        $result = $query->getArrayResult();
-
-        return isset($result[0]) ? $result[0] : null;
-    }
-
     /*
      * Get users for a search query. Return followed users first.
      *
@@ -317,10 +297,11 @@ class UserManager extends BaseUserManager
     public function findForSearch($userId, $search)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('u', 'up', 'p'))
+        $qb->select(array('u', 'up', 'p', 'l'))
            ->from('Whoot\WhootUserBundle\Entity\User', 'u')
            ->leftJoin('u.posts', 'up', 'WITH', 'up.status = :status AND up.createdAt >= :createdAt')
            ->leftJoin('up.post', 'p', 'WITH', 'p.status = :status')
+           ->leftJoin('u.location', 'l')
            ->where(
                $qb->expr()->like('CONCAT(u.firstName, u.lastName)', ':query')
            )
@@ -337,13 +318,11 @@ class UserManager extends BaseUserManager
         $response = array();
         foreach ($results as $result)
         {
-            $location = $this->getLocation($result['zipcode']);
-
             $response[] = array(
                 'name' => $result['firstName'].' '.$result['lastName'],
                 'username' => $result['username'],
                 'id' => $result['id'],
-                'location' => isset($location['locationText']) ? $location['locationText'] : null,
+                'location' => isset($result['location']['cityName']) ? $result['location']['cityName'].', '.$result['location']['stateName'] : 'Outer Space',
                 'profileImage' => $result['profileImage'],
                 'postId' => isset($result['posts'][0]) ? $result['posts'][0]['post']['id'] : null
             );

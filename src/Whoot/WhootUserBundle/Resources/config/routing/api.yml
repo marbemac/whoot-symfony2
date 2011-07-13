@@ -1,6 +1,15 @@
-### REGISTRATION
-api_user_registration_register:
-    pattern: /register.{_format}
-    defaults: { _controller: FOSUserBundle:Registration:register, _format: json }
+api_user_following:
+    pattern: /following
+    defaults:
+        _controller: WhootUserBundle:Profile:following
+        _format: json
     requirements:
-        _method: POST
+        _method: GET
+
+api_user_followers:
+    pattern: /followers
+    defaults:
+        _controller: WhootUserBundle:Profile:followers
+        _format: json
+    requirements:
+        _method: GET

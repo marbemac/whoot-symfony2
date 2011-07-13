@@ -6,8 +6,14 @@ var resizeLayout = function()
 {
     console.log('test');
     var h = $(window).height() - $('#header').height();
-    $('#sidebar').css('height', h);
-    $('#page_content').css('height', h-parseInt($('#page_content').css('margin-top').replace("px", ""))-parseInt($('#page_content').css('margin-bottom').replace('px', '')));
+    if ($('#sidebar').length > 0)
+    {
+        $('#sidebar').css('height', h);
+    }
+    if ($('#page_content').length > 0)
+    {
+        $('#page_content').css('height', h-parseInt($('#page_content').css('margin-top').replace("px", ""))-parseInt($('#page_content').css('margin-bottom').replace('px', '')));
+    }
 }
 
 // On page loads

@@ -30,14 +30,14 @@ class PingController extends ContainerAware
         }
 
         $request = $this->container->get('request');
-        $userManager = $this->container->get('whoot.ping_manager');
+        $pingManager = $this->container->get('whoot.ping_manager');
 
-        $result = $userManager->togglePing($this->container->get('security.context')->getToken()->getUser()->getId(), $userId);
+        $result = $pingManager->togglePing($this->container->get('security.context')->getToken()->getUser()->getId(), $userId);
 
         if ($_format == 'json')
         {
-            $result = array('status' => 'success');
-            $result['newText'] = $result['status'] == 'deleted' ? 'Ping' : 'Undo Ping';
+            $result['status'] = 'success';
+            $result['newText'] = $result['state'] == 'deleted' ? 'Ping' : 'Undo Ping';
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 
@@ -49,7 +49,7 @@ class PingController extends ContainerAware
             $result['userId'] = $userId;
             $result['event'] = 'ping_toggle';
             $result['flash'] = array('type' => 'success', 'message' => 'User ' . ($result['status'] == 'deleted' ? 'unpinged' : 'pinged') .' successfully!');
-            $result['newText'] = $result['status'] == 'deleted' ? 'Ping' : 'Undo Ping';
+            $result['newText'] = $result['state'] == 'deleted' ? 'Ping' : 'Undo Ping';
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 

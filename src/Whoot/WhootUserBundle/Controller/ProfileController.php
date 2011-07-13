@@ -121,9 +121,17 @@ class ProfileController extends ContainerAware
         ));
     }
 
-    public function followersAction($username)
+    public function followersAction($username=null, $_format='html')
     {
-        $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
+        if ($username)
+        {
+            $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
+        }
+        else
+        {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+        }
+        
         $location = $this->container->get('whoot.user_manager')->getLocation($user->getZipcode());
         $followers = $this->container->get('whoot.user_manager')->getFollowers($user);
 
@@ -136,7 +144,7 @@ class ProfileController extends ContainerAware
             // return $response;
         }
 
-        return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:followers.html.twig', array(
+        return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:followers.'.$_format.'.twig', array(
             'user' => $user,
             'location' => $location,
             'followers' => $followers,
@@ -144,9 +152,17 @@ class ProfileController extends ContainerAware
         ), $response);
     }
 
-    public function followingAction($username)
+    public function followingAction($username=null, $_format='html')
     {
-        $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
+        if ($username)
+        {
+            $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
+        }
+        else
+        {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+        }
+        
         $location = $this->container->get('whoot.user_manager')->getLocation($user->getZipcode());
         $following = $this->container->get('whoot.user_manager')->getFollowing($user);
 
@@ -159,7 +175,7 @@ class ProfileController extends ContainerAware
             // return $response;
         }
 
-        return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:following.html.twig', array(
+        return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:following.'.$_format.'.twig', array(
             'user' => $user,
             'location' => $location,
             'following' => $following,

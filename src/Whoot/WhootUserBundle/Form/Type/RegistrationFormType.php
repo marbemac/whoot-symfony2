@@ -21,7 +21,6 @@ class RegistrationFormType extends AbstractType
                     'f' => 'Female'
                 )
             ))
-            ->add('zipcode')
             ->add('plainPassword', 'repeated', array('type' => 'password'))
             ->add('username', 'hidden');
     }

@@ -1,54 +1,18 @@
 <a name="post-{{ post.id }}"></a>
 <div class="teaser post {{ post.type }}" id="post-{{ post.id }}" data-details="{{ path('post_details', {'postId': post.id, 'type': 'normal'}) }}">
-    <canvas title="{{ post.createdAt|timeLapse }}" class="timer" width="20" height="20" data-time="{{ post.createdAt|date('U') }}" data-type="{{ post.type }}">
-        <div class="timer {{ post.type }}"></div>
-    </canvas>
+    <a class="profile-image" href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}" title="{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}">
+        {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 45} %}
+    </a>
 
-    <div class="profile-images">
-        {% set activeUsers = post.users|rebuildArray('status', 'Active') %}
-        {% for userPost in activeUsers %}
-            {% if userPost.status == 'Active' and loop.index <= 3 %}
-                <a class="profile-image" href="{{ path('user_profile_show', {'username': userPost.user.username}) }}" title="{{ userPost.user.firstName }} {{ userPost.user.lastName }}">
-                    {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': userPost.user, 'dimensions': 30} %}
-                </a>
-            {% endif %}
-        {% endfor %}
+    {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': post.createdBy, 'nameLimit': 10} %}
+
+    <div class="what">
+        {{ post.type|printPostTypeShort }}
     </div>
 
-    <div class="post">
-
-        {% for userPost in activeUsers %}
-            {% if loop.index <= 4 %}
-                {% set trail = '' %}
-                {% if loop.revindex0 == 1 and activeUsers|length > 2 %}
-                    {% if activeUsers|length > 3 %}
-                        {% set trail = ', and '~(activeUsers|length - 3)~' others' %}
-                    {% else %}
-                        {% set trail = ', and' %}
-                    {% endif %}
-                {% elseif loop.revindex0 == 1 %}
-                    {% set trail = ' and' %}
-                {% elseif not loop.last %}
-                    {% set trail = ',' %}
-                {% endif %}
-            {% elseif loop.revindex0 == 1 %}
-                {% set trail = ' and' %}
-            {% elseif not loop.last %}
-                {% set trail = ',' %}
-            {% endif %}
-
-            {% if loop.index <= 3 %}
-                {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': userPost.user} %}
-                {{ trail }}
-            {% endif %}
-        {% endfor %}
-        {{ activeUsers|length > 1 ? 'are' : 'is' }}
-        {{ post.type|printPostType|raw }}.
+    <div class="note">
+        {{ post.note }}
     </div>
-
-    {% if (post.createdAt|date('y-m-d') == "now-5 hours"|date('y-m-d') or post.createdAt|date('y-m-d') == "now"|date('y-m-d')) %}
-        {% render "WhootBundle:Post:jiveTag" with {'postId': post.id} %}
-    {% endif %}
 
     <div class="clear"></div>
 </div>

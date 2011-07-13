@@ -69,19 +69,7 @@
             {% else %}
 
             {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <div id="splash">
-                    <div class="auth">
-                        {{ facebook_login_button({'autologoutlink': true}) }}
-                        <div id="auth-login" class="panel">
-                            <h3>Login</h3>
-                            {% render "WhootUserBundle:Security:login" with { 'chromeless': true } %}
-                        </div>
-                        <div id="auth-register" class="panel">
-                            <h3>Register</h3>
-                            {% render "WhootUserBundle:Registration:register" with { 'chromeless': true } %}
-                        </div>
-                    </div>
-                </div>
+                {% include "WhootBundle:Core:splash.html.twig" %}
             {% else %}
                 <div id="application">
                     {% render "WhootBundle:Core:header" with {'page': app.request.attributes.get('_route')} %}

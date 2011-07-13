@@ -23,7 +23,7 @@
             <div class="label2">Venue</div>
             <input type="text" id="post-venue" class="invite-req" name="venue" value="" autocomplete="off" />
             <div class="label2">Address</div>
-            <input type="text" id="post-address" name="address" data-lat="{{ app.session.get('location')|json_decode.lat }}" data-lon="{{ app.session.get('location')|json_decode.lon }}" />
+            <input type="text" id="post-address" name="address" data-lat="{#{{ app.session.get('location')|json_decode.lat }}#}" data-lon="{#{{ app.session.get('location')|json_decode.lon }}#}" />
             <input type="hidden" id="post-address-name" name="address_name" value="" autocomplete="off" />
             <input type="hidden" id="post-address-lat" name="address_lat" value="" autocomplete="off" />
             <input type="hidden" id="post-address-lon" name="address_lon" value="" autocomplete="off" />

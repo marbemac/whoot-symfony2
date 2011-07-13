@@ -2,5 +2,9 @@
     <div class="drag-handleC" title="Drag this user to a list to add him/her!">
         <div></div>
     </div>
-    {{ user.firstName }} {{ user.lastName }}
+    {% if nameLimit is defined %}
+        {{ (user.firstName~' '~user.lastName)|truncate(nameLimit, '..') }}
+    {% else %}
+        {{ user.firstName~' '~user.lastName }}
+    {% endif %}
 </a>

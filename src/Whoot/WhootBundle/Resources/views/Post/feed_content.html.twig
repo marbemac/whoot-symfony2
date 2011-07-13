@@ -44,14 +44,14 @@
 
 {% endif %}
 
-{% if undecidedUsers|length > 0 %}
-    <h3>Undecided People</h3>
-    <a name="undecided"></a>
-    <div class="undecided-count">{{ undecidedUsers|length }}</div>
-    <div class="clear"></div>
-    <ul class="undecided feed">
-        {% for user in undecidedUsers %}
-            {% include "WhootUserBundle:Profile:teaser.html.twig" with {'user': user} %}
-        {% endfor %}
-    </ul>
-{% endif %}
+{#{% if undecidedUsers|length > 0 %}#}
+    {#<h3>Undecided People</h3>#}
+    {#<a name="undecided"></a>#}
+    {#<div class="undecided-count">{{ undecidedUsers|length }}</div>#}
+    {#<div class="clear"></div>#}
+    {#<ul class="undecided feed">#}
+        {#{% for user in undecidedUsers %}#}
+            {#{% include "WhootUserBundle:Profile:teaser.html.twig" with {'user': user} %}#}
+        {#{% endfor %}#}
+    {#</ul>#}
+{#{% endif %}#}

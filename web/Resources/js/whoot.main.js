@@ -17,11 +17,15 @@ $(function() {
     /*
      * SPLASH PAGE
      */
-    $('#splash .button').live('click', function() {
-        var $self = $(this);
-        $self.parents('.panel').fadeOut(300, function() {
-            $($self.data('target')).fadeIn(300);
-        })
+
+    // show the hidden login form on ctrl+L
+    $(window).keypress(function(e) {
+        var $code = e.which ? e.which : e.keyCode;
+        if (e.ctrlKey && $code == 108)
+        {
+            $('#auth-login').fadeToggle(300);
+        }
+
     })
 
     /**

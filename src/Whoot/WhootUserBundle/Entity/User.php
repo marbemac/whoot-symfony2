@@ -60,24 +60,11 @@ class User extends BaseUser
      * @ORM\Column(type="string", length="2")
      * 
      * @ASSERT\Choice(
-     *     choices = {"m1", "m2", "m3", "f1", "f2", "f3"},
+     *     choices = {"m", "f"},
      *     message = "Choose a valid gender."
      * )
      */
     private $gender;
-    
-    /**
-     * @var string $zipcode
-     * @ORM\Column(type="string", length="25")
-     * 
-     * @ASSERT\NotBlank()
-     * @ASSERT\MinLength(5)
-     * @ASSERT\Regex(
-     *     pattern = "/\d+\",
-     *     message = "Please input a valid zipcode."
-     * )
-     */
-    private $zipcode;
 
     /**
      * @var string
@@ -85,6 +72,13 @@ class User extends BaseUser
      * @ORM\Column(type="string", length="255", name="facebook_id", nullable=true)
      */
     protected $facebookId;
+
+    /**
+     * @var Location
+     *
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Location", inversedBy="users")
+     */
+    protected $location;
 
     /**
      * @var UsersPosts
@@ -228,7 +222,14 @@ class User extends BaseUser
      */
     public function setGender($gender)
     {
-        $this->gender = $gender;
+        if (in_array($gender, array('male', 'm', 'man')))
+        {
+            $this->gender = 'm';
+        }
+        else if (in_array($gender, array('female', 'f', 'girl', 'woman')))
+        {
+            $this->gender = 'f';
+        }
     }
 
     /**
@@ -240,25 +241,25 @@ class User extends BaseUser
     {
         return $this->gender;
     }
-
+    
     /**
-     * Set zipcode
+     * Get a user's location.
      *
-     * @param string $zipcode
+     * @return Location $location
      */
-    public function setZipcode($zipcode)
+    public function getLocation()
     {
-        $this->zipcode = $zipcode;
+        return $this->location;
     }
 
     /**
-     * Get zipcode
+     * @param Location $location
      *
-     * @return string $zipcode
+     * @return void
      */
-    public function getZipcode()
+    public function setLocation($location)
     {
-        return $this->zipcode;
+        $this->location = $location;
     }
 
     /**
@@ -317,6 +318,9 @@ class User extends BaseUser
         }
         if (isset($fbdata['email'])) {
             $this->setEmail($fbdata['email']);
+        }
+        if (isset($fbdata['gender'])) {
+            $this->setGender($fbdata['gender']);
         }
     }
 }

@@ -29,13 +29,17 @@ comment:
     resource: "@WhootBundle/Resources/config/routing/comment.yml"
     prefix:   /c
 
+comment_api:
+    resource: "@WhootBundle/Resources/config/routing/comment_api.yml"
+    prefix:   /api/comment
+
 list:
     resource: "@WhootBundle/Resources/config/routing/list.yml"
     prefix:   /l
 
 user_api:
     resource: "@WhootUserBundle/Resources/config/routing/api.yml"
-    prefix:   /api
+    prefix:   /api/user
 
 feed_filter_toggle:
     pattern:  /ac/tf/{postType}

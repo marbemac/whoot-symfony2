@@ -5,11 +5,10 @@
             <img src="{{ asset('bundles/whoot/images/logo-top.png') }}" alt="The Whoot" />
         </a>
 
-
         <div class="nav">
-
             <a href="{{ path('homepage') }}" class="{{ page == 'homepage' ? 'on' : '' }}">My Feed</a>
-            <a href="{{ path('deal_feed') }}" class="{{ page == 'deal_feed' ? 'on' : '' }}">Deal Feed</a>
+            <a href="{{ path('homepage') }}" class="{{ page == 'open_invite' ? 'on' : '' }}">Open Invites</a>
+            <a href="{{ path('deal_feed') }}" class="{{ page == 'deal_feed' ? 'on' : '' }}">Deals</a>
         </div>
 
         <div class="search">

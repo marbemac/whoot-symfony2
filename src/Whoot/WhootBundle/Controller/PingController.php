@@ -20,7 +20,7 @@ class PingController extends ContainerAware
      *
      * @param integer $userId
      */
-    public function toggleAction($userId)
+    public function toggleAction($userId, $_format='html')
     {
         $coreManager = $this->container->get('whoot.core_manager');
         $login = $coreManager->mustLogin();
@@ -33,6 +33,16 @@ class PingController extends ContainerAware
         $userManager = $this->container->get('whoot.ping_manager');
 
         $result = $userManager->togglePing($this->container->get('security.context')->getToken()->getUser()->getId(), $userId);
+
+        if ($_format == 'json')
+        {
+            $result = array('status' => 'success');
+            $result['newText'] = $result['status'] == 'deleted' ? 'Ping' : 'Undo Ping';
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
 
         if ($request->isXmlHttpRequest())
         {

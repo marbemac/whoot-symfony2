@@ -254,7 +254,7 @@ class WhootTwigExtension extends \Twig_Extension {
                 return 'day';
             case ($hour >= 18 && $hour < 20):
                 return 'sunset';
-            case ($hour >= 20 && $hour < 5):
+            case ($hour >= 20 || $hour < 5):
                 return 'night';
         }
     }

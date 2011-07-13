@@ -15,11 +15,15 @@ follow:
 
 follow_api:
     resource: "@WhootBundle/Resources/config/routing/follow_api.yml"
-    prefix:   /api/f
+    prefix:   /api/follow
 
 ping:
     resource: "@WhootBundle/Resources/config/routing/ping.yml"
     prefix:   /ping
+
+ping_api:
+    resource: "@WhootBundle/Resources/config/routing/ping_api.yml"
+    prefix:   /api/ping
 
 comment:
     resource: "@WhootBundle/Resources/config/routing/comment.yml"

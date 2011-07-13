@@ -1,0 +1,9 @@
+api_ping_toggle:
+    pattern:  /toggle/{userId}
+    defaults:
+        _controller: WhootBundle:Ping:toggle
+        _format: json
+    requirements:
+        _method: POST|GET
+        _format: json
+        userId: \d+

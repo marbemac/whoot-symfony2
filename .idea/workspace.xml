@@ -23,46 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.scss" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss">
+      <file leaf-file-name="ping_api.yml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/ping_api.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="12" selection-start="484" selection-end="484" vertical-scroll-proportion="0.38600725">
+            <state line="8" column="0" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_post.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss">
+      <file leaf-file-name="PingController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PingController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="345" column="12" selection-start="7968" selection-end="7968" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="whoot.preload.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.preload.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="2" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WhootTwigExtension.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Extension/WhootTwigExtension.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="251" column="23" selection-start="6998" selection-end="6998" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_splash.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_splash.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="482" selection-end="482" vertical-scroll-proportion="0.0">
+            <state line="55" column="22" selection-start="2193" selection-end="2193" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -71,16 +44,34 @@
       <file leaf-file-name="base.html.twig" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="201" column="90" selection-start="9947" selection-end="9947" vertical-scroll-proportion="-25.88">
+            <state line="201" column="90" selection-start="9947" selection-end="9947" vertical-scroll-proportion="-113.4">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="whoot.main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.main.js">
+      <file leaf-file-name="WhootTwigExtension.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Extension/WhootTwigExtension.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="436" column="6" selection-start="13492" selection-end="13492" vertical-scroll-proportion="0.0">
+            <state line="256" column="32" selection-start="7185" selection-end="7185" vertical-scroll-proportion="0.78719866">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FollowController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/FollowController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="46" column="0" selection-start="1375" selection-end="1733" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routing.yml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/routing.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="25" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -100,13 +91,9 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/config/config_prod.yml" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/PingManager.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/views/Registration/register_content.html.twig" />
         <option value="$PROJECT_DIR$/web/app.php" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_splash.scss" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Extension/WhootTwigExtension.php" />
         <option value="$PROJECT_DIR$/web/Resources/js/jquery.jscrollpane.min.js" />
         <option value="$PROJECT_DIR$/web/Resources/js/jquery.mousewheel.js" />
         <option value="$PROJECT_DIR$/web/Resources/js/mwheelIntent.js" />
@@ -116,6 +103,10 @@
         <option value="$PROJECT_DIR$/web/Resources/js/whoot.preload.js" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/routing.yml" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/ping_api.yml" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PingController.php" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Extension/WhootTwigExtension.php" />
       </list>
     </option>
   </component>
@@ -161,7 +152,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1451,6 +1441,7 @@
         </subPane>
       </pane>
       <pane id="Favorites" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1458,8 +1449,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="xslt.associations" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../FOSFacebookBundle" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PublishConfig" serverName="socialite.local" serverId="a3b11430-97c4-40d7-b4a0-87c7e4babd8a">
     <servers>
@@ -1488,9 +1479,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing" />
       <recent name="$PROJECT_DIR$/web/Resources/css" />
       <recent name="$PROJECT_DIR$/web/Resources/js" />
-      <recent name="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing" />
       <recent name="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Comment" />
       <recent name="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post" />
     </key>
@@ -1565,14 +1556,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1893" y="75" width="1841" height="976" extended-state="0" />
+    <frame x="1722" y="48" width="2401" height="1350" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32545045" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19632234" sideWeight="0.31756756" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25701705" sideWeight="0.6734234" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.256626" sideWeight="0.6734234" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1641,30 +1632,9 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/PingManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="23" selection-start="2821" selection-end="2821" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="217" column="12" selection-start="4013" selection-end="4013" vertical-scroll-proportion="-15.346154">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/config/routing/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="26" selection-start="1814" selection-end="1840" vertical-scroll-proportion="0.46526054" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootUserBundle/Resources/views/Registration/register_content.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="49" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="49" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/app_staging.php">
@@ -1674,9 +1644,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/app.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="28" selection-start="384" selection-end="384" vertical-scroll-proportion="0.21836229">
-          <folding />
-        </state>
+        <state line="11" column="28" selection-start="384" selection-end="384" vertical-scroll-proportion="0.21836229" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_sprite.scss">
@@ -1686,56 +1654,66 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/Resources/css/jquery.jscrollpane.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="1" selection-start="1423" selection-end="1423" vertical-scroll-proportion="0.94416875">
-          <folding />
-        </state>
+        <state line="119" column="1" selection-start="1423" selection-end="1423" vertical-scroll-proportion="0.94416875" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="345" column="12" selection-start="7968" selection-end="7968" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="345" column="12" selection-start="7968" selection-end="7968" vertical-scroll-proportion="0.019300362" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.preload.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="2" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Extension/WhootTwigExtension.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="251" column="23" selection-start="6998" selection-end="6998" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="25" column="2" selection-start="559" selection-end="559" vertical-scroll-proportion="0.49019608" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_splash.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="482" selection-end="482" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="27" column="0" selection-start="482" selection-end="482" vertical-scroll-proportion="0.36308807" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="436" column="6" selection-start="13492" selection-end="13492" vertical-scroll-proportion="0.0">
+        <state line="436" column="6" selection-start="13492" selection-end="13492" vertical-scroll-proportion="0.019607844" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="1" selection-start="761" selection-end="761" vertical-scroll-proportion="0.52110976" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/ping_api.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/FollowController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="0" selection-start="1375" selection-end="1733" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="25" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PingController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="22" selection-start="2193" selection-end="2193" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="201" column="90" selection-start="9947" selection-end="9947" vertical-scroll-proportion="-25.88">
+        <state line="201" column="90" selection-start="9947" selection-end="9947" vertical-scroll-proportion="-113.4">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/main.scss">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Extension/WhootTwigExtension.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="12" selection-start="484" selection-end="484" vertical-scroll-proportion="0.38600725">
+        <state line="256" column="32" selection-start="7185" selection-end="7185" vertical-scroll-proportion="0.78719866">
           <folding />
         </state>
       </provider>

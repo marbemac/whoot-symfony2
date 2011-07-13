@@ -1,9 +1,11 @@
 <div class="user-hover-tab">
     {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user':user, 'dimensions':50} %}
     {% render "WhootBundle:Follow:tag" with {'toUser': user.id} %}
-    
+
     <div class="name">{{ user.firstName }} {{ user.lastName }}</div>
-    <div class="location">{{ location.locationText }}</div>
+    <div class="location">
+        {{ user.location.cityName is defined and user.location.cityName|length > 2 ? user.location.cityName~', '~user.location.stateCode : 'Outer Space' }}
+    </div>
     <div class="stats">
         <div class="followers">23 Followers</div>
         <div class="pings">5 Pings</div>

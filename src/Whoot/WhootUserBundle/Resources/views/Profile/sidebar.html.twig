@@ -2,7 +2,7 @@
     <h1>{{ user.firstName }} {{ user.lastName }}</h1>
 
     <div class="location">
-        {{ location.locationText is defined ? location.locationText : 'Outer Space' }}
+        {{ user.location.cityName is defined and user.location.cityName|length > 2 ? user.location.cityName~', '~user.location.stateCode : 'Outer Space' }}
     </div>
 
     {% render "WhootBundle:Follow:tag" with {'toUser': user.id} %}

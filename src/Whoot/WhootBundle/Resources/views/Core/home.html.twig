@@ -4,6 +4,10 @@
     Home
 {% endblock %}
 
+{% block feed_filters %}
+    {% render "WhootBundle:Core:feedFilters" %}
+{% endblock %}
+
 {% block page_content %}
     {% include "WhootBundle:Core:home_content.html.twig" %}
 {% endblock %}

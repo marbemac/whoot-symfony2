@@ -39,7 +39,7 @@ class ProfileController extends ContainerAware
             // return $response;
         }
 
-        $user = $this->findUserBy('username', $username);
+        $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
 
         return $templating->renderResponse('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
@@ -132,7 +132,6 @@ class ProfileController extends ContainerAware
             $user = $this->container->get('security.context')->getToken()->getUser();
         }
         
-        $location = $this->container->get('whoot.user_manager')->getLocation($user->getZipcode());
         $followers = $this->container->get('whoot.user_manager')->getFollowers($user);
 
         $response = new Response();
@@ -146,7 +145,6 @@ class ProfileController extends ContainerAware
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:followers.'.$_format.'.twig', array(
             'user' => $user,
-            'location' => $location,
             'followers' => $followers,
             'navSelected' => 'followers'
         ), $response);
@@ -163,7 +161,6 @@ class ProfileController extends ContainerAware
             $user = $this->container->get('security.context')->getToken()->getUser();
         }
         
-        $location = $this->container->get('whoot.user_manager')->getLocation($user->getZipcode());
         $following = $this->container->get('whoot.user_manager')->getFollowing($user);
 
         $response = new Response();
@@ -177,7 +174,6 @@ class ProfileController extends ContainerAware
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:following.'.$_format.'.twig', array(
             'user' => $user,
-            'location' => $location,
             'following' => $following,
             'navSelected' => 'following'
         ), $response);
@@ -304,38 +300,15 @@ class ProfileController extends ContainerAware
         }
 
         $user = $this->container->get('whoot.user_manager')->getUser(array('id' => $id), false);
-        $location = $this->container->get('whoot.user_manager')->getLocation($user['zipcode']);
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:hover_tab.html.twig', array(
-            'user' => $user,
-            'location' => $location
+            'user' => $user
         ), $response);
     }
 
     public function searchAction()
     {
         return new Response();
-    }
-
-    /**
-     * Find a user by a specific property
-     *
-     * @param string $key property name
-     * @param mixed $value property value
-     * @throws NotFoundException if user does not exist
-     * @return User
-     */
-    protected function findUserBy($key, $value)
-    {
-        if (!empty($value)) {
-            $user = $this->container->get('fos_user.user_manager')->{'findUserBy'.ucfirst($key)}($value);
-        }
-
-        if (empty($user)) {
-            throw new NotFoundHttpException(sprintf('The user with "%s" does not exist for value "%s"', $key, $value));
-        }
-
-        return $user;
     }
 
     /**

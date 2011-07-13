@@ -4,7 +4,6 @@
 
 var resizeLayout = function()
 {
-    console.log('test');
     var h = $(window).height() - $('#header').height();
     if ($('#sidebar').length > 0)
     {
@@ -12,14 +11,16 @@ var resizeLayout = function()
     }
     if ($('#page_content').length > 0)
     {
-        $('#page_content').css('height', h-parseInt($('#page_content').css('margin-top').replace("px", ""))-parseInt($('#page_content').css('margin-bottom').replace('px', '')));
+        var $feedFiltersAdjust = 0;
+        if ($('#feed-filters').length > 0)
+        {
+            $feedFiltersAdjust = 10 + $('#feed-filters').height() +
+                                parseInt($('#feed-filters').css('margin-bottom').replace("px", "")) +
+                                parseInt($('#feed-filters').css('padding-bottom').replace("px", ""))*2;
+        }
+        $('#page_content').css('height', h-$feedFiltersAdjust-parseInt($('#page_content').css('margin-bottom').replace('px', '')));
     }
 }
-
-// On page loads
-$("#sidebar").livequery(function() {
-    resizeLayout();
-})
 
 // on first load
 resizeLayout();

@@ -146,7 +146,8 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
     overflow: auto;
 }
 #page {
-    @include border-radius(10px);
+    @include border-top-left-radius(10px);
+    @include border-top-right-radius(10px);
     position: relative;
     padding-right: $sidebar_width+$sidebar_border_width;
     color: $page_content_color;
@@ -156,7 +157,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
 #page_content {
     overflow-y: auto;
     overflow-x: hidden;
-    margin: 36px 0 25px 0;
+    margin: 0 0 25px 0;
 }
 #sidebar {
     @include border-top-right-radius(10px);

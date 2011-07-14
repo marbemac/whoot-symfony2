@@ -9,3 +9,16 @@
 @import "icon/*.png";
 .handle-small { @include icon-sprite(handle-small); }
 .arrow-small { @include icon-sprite(arrow-small); }
+
+.check-working { @include icon-sprite(check-working); }
+.check-low_in { @include icon-sprite(check-low_in); }
+.check-low_out { @include icon-sprite(check-low_out); }
+.check-big_out { @include icon-sprite(check-big_out); }
+
+.check-working,
+.check-low_in,
+.check-low_out,
+.check-big_out {
+    width: 15px;
+    height: 14px;
+}

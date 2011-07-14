@@ -1,3 +1,19 @@
 {% set w = width is defined ? width : dimensions %}
 {% set h = height is defined ? height : dimensions %}
-<img class="profileImage" {{ id is defined ? 'id="'~id~'"' : '' }} src="{{ user.profileImage ? '/slir/w'~w~'-h'~h~'-c1:1'~user.profileImage : gravatar(user.profileImage, dimensions, 'r', 'mm') }}" />
+
+{% if user.profileImage %}
+    {% set src = '/slir/w'~w~'-h'~h~'-c1:1'~user.profileImage %}
+{% elseif user.facebookId %}
+    {% if w <= 50 %}
+        {% set type = 'square' %}
+    {% elseif w <= 100 %}
+        {% set type = 'small' %}
+    {% else %}
+        {% set type = 'normal' %}
+    {% endif %}
+    {% set src = 'https://graph.facebook.com/'~user.facebookId~'/picture?type='~type %}
+{% else %}
+    {% set src = gravatar(user.profileImage, dimensions, 'r', 'mm') %}
+{% endif %}
+
+<img class="profileImage" {{ id is defined ? 'id="'~id~'"' : '' }} src="{{ src }}" />

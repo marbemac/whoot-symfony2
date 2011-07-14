@@ -383,7 +383,7 @@ class PostManager
         $post = $this->createPost();
         $post->setType($data['type']);
         $post->setNote($data['note']);
-        if ($data['address'])
+        if (isset($data['address']) && $data['address'])
         {
             $post->setVenue($data['venue']);
             $post->setAddress($data['address']);

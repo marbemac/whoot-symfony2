@@ -204,7 +204,6 @@ Purpose of the stylesheet follows.
 
 $feed-filters-margin-top: 8px;
 #feed-filters {
-    $feed-filter-padding: 2px 10px;
     $feed-filter-border-radius: 5px;
     $feed-filter-border-color: #CCC;
     $feed-filter-border-width: 2px;
@@ -249,11 +248,23 @@ $feed-filters-margin-top: 8px;
             background: $feed-filter-background;
             border: $feed-filter-border-width solid $feed-filter-border-color;
             margin: 0 0 0 10px;
-            
+
+            .icon {
+                position: absolute;
+                left: 7px;
+                top: 4px;
+                display: none;
+            }
+            li.on {
+                .icon {
+                    display: block;
+                }
+            }
             a {
+                position: relative;
+                padding: 2px 10px 2px 25px;
                 color: #BBB;
                 text-decoration: none;
-                padding: $feed-filter-padding;
                 display: block;
             }
             li.on.working a { color: $post-working-color; }
@@ -291,7 +302,7 @@ $feed-filters-margin-top: 8px;
             a {
                 color: #444;
                 text-decoration: none;
-                padding: $feed-filter-padding;
+                padding: 2px 10px;
                 display: block;
             }
         }
@@ -366,20 +377,23 @@ $post-hover-color: #E7EDFF;
         float: left;
         width: 150px;
         overflow: hidden;
-        padding: 14px 0 0 20px;
+        padding: 17px 0 0 20px;
         white-space: nowrap;
     }
     .what {
         float: left;
         width: 110px;
         overflow: hidden;
-        padding: 14px 0 0 10px;
+        padding: 17px 0 0 10px;
     }
     .note {
         float: left;
         overflow: hidden;
-        padding: 14px 0 0 20px;
+        padding: 17px 0 0 20px;
         font-style: italic;
+        width: 370px;
+        overflow: hidden;
+        white-space: nowrap;
     }
     &.working .what {
         color: $post-working-color;
@@ -600,12 +614,14 @@ $post-hover-color: #E7EDFF;
         height: 10px;
         overflow: hidden;
         white-space: nowrap;
-
+        font-size: 13px;
+        color: #555;
     }
     .ping-B,
     .pinged {
         display: block;
-        margin: -4px 0 0 7px;
+        margin: -3px 0 0 7px;
+        font-size: 13px;
     }
     &:hover {
         .bg {

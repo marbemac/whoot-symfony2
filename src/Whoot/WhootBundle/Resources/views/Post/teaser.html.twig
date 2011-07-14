@@ -1,7 +1,7 @@
 <a name="post-{{ post.id }}"></a>
 <div class="teaser post {{ post.type }}" id="post-{{ post.id }}" data-details="{{ path('post_details', {'postId': post.id, 'type': 'normal'}) }}">
     <a class="profile-image" href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}" title="{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}">
-        {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 45} %}
+        {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 50} %}
     </a>
 
     {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': post.createdBy, 'nameLimit': 15} %}

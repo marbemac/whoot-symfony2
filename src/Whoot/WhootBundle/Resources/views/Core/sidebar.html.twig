@@ -36,4 +36,6 @@
 
     {% render "WhootBundle:LList:list" with {'userId': app.user.id}, {'standalone': true} %}
 
+    {% include 'WhootBundle:Post:undecided.html.twig' with {'users': undecidedUsers} %}
+
 </div>

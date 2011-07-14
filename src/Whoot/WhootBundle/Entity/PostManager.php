@@ -122,6 +122,119 @@ class PostManager
     public function findPostsBy($user, $postTypes, $sortBy, $createdAt, $listId, $offset, $limit)
     {
         $qb = $this->em->createQueryBuilder();
+        $qb->select(array('p', 'cb', '1 AS popularity'))
+           ->from('Whoot\WhootBundle\Entity\Post', 'p')
+           ->innerJoin('p.createdBy', 'cb')
+//           ->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status')
+           ->where('p.status = :status')
+           ->groupBy('p.id')
+           ->setParameters(array(
+               'status' => 'Active'
+           ));
+
+        if ($listId)
+        {
+            // get the users in the list
+            $qb2 = $this->em->createQueryBuilder();
+            $qb2->select(array('ul', 'u'))
+               ->from('Whoot\WhootBundle\Entity\UserLList', 'ul')
+               ->innerJoin('ul.user', 'u', 'WITH', 'u.status = :status')
+               ->where('ul.list = :listId')
+               ->setParameters(array(
+                   'status' => 'Active',
+                   'listId' => $listId
+               ));
+            $query2 = $qb2->getQuery();
+            $listUsers = $query2->getArrayResult();
+            $users = array();
+
+            foreach ($listUsers as $listUser)
+            {
+                $users[] = $listUser['user']['id'];
+            }
+
+            if (count($users) == 0)
+            {
+                return array();
+            }
+
+            $qb->andwhere($qb->expr()->in('cb.id', $users));
+        }
+        else if ($user)
+        {
+            // get the users this user is following
+            $qb2 = $this->em->createQueryBuilder();
+            $qb2->select(array('u.id'))
+               ->from('Whoot\WhootUserBundle\Entity\User', 'u')
+               ->innerJoin('u.followers', 'f', 'WITH', 'f.user = :user AND f.status = :status')
+               ->setParameters(array(
+                   'user' => $user,
+                   'status' => 'Active'
+               ));
+            $query2 = $qb2->getQuery();
+            $followingUsers = $query2->getArrayResult();
+            $following = array($user->getId());
+            foreach ($followingUsers as $followingUser)
+            {
+                $following[] = $followingUser['id'];
+            }
+
+            $qb->andwhere($qb->expr()->in('cb.id', $following));
+        }
+
+        switch ($sortBy)
+        {
+            case 'popularity':
+                $qb->orderBy('popularity', 'DESC');
+                $qb->addOrderBy('p.createdAt', 'DESC');
+                break;
+            default:
+                $qb->orderBy('p.createdAt', 'DESC');
+        }
+
+        if ($createdAt)
+        {
+            $qb->andWhere('p.createdAt >= :createdAt');
+            $qb->setParameter('createdAt', $createdAt);
+        }
+
+        if ($postTypes)
+        {
+            $qb->andwhere($qb->expr()->in('p.type', $postTypes));
+        }
+
+        if ($offset)
+        {
+            $qb->setFirstResult($offset);
+        }
+        
+        if ($limit)
+        {
+            $qb->setMaxResults($limit);
+        }
+
+        $query = $qb->getQuery();
+        $objects = $query->getArrayResult();
+
+        return $objects;
+    }
+
+    /*
+     * The main way to get feeds. Returns an array of posts based on specified conditions.
+     *
+     * @param array $user Get objects of users this user is following.
+     * @param array $postTypes Array of strings of posts types to include. Topic|Talk|News|Question|Procon|List|Video|Picture.
+     * @param string $sortBy How do we want to sort the list? Popular|Newest|Controversial|Upcoming
+     * @param date $createdAt
+     * @param integer $listId Are we pulling from list users?
+     * @param integer $offset
+     * @param integer $limit
+     *
+     * @return array $posts
+     */
+    public function findInvitesBy($user, $postTypes, $sortBy, $createdAt, $listId, $offset, $limit)
+    {
+        $qb = $this->em->createQueryBuilder();
         $qb->select(array('p, count(pu.id) AS popularity', 'pu'))
            ->from('Whoot\WhootBundle\Entity\Post', 'p')
            ->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status')
@@ -206,7 +319,7 @@ class PostManager
         {
             $qb->setFirstResult($offset);
         }
-        
+
         if ($limit)
         {
             $qb->setMaxResults($limit);

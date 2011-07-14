@@ -205,6 +205,7 @@ class CoreController extends ContainerAware
         $user = $this->container->get('security.context')->getToken()->getUser()->getId();
         $pingCount = $this->container->get('whoot.ping_manager')->findPingsBy($user, date('Y-m-d 05:00:00', time()-(60*60*5)));
         $followingStats = $this->container->get('whoot.user_manager')->getFollowingStats($user);
+        $undecidedUsers = $this->container->get('whoot.user_manager')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), null, 0, 0);
 
         $response = new Response();
         $response->setCache(array(
@@ -219,7 +220,8 @@ class CoreController extends ContainerAware
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Core:sidebar.html.twig', array(
                     'pingCount' => $pingCount,
-                    'followingStats' => $followingStats
+                    'followingStats' => $followingStats,
+                    'undecidedUsers' => $undecidedUsers
                 ), $response);
     }
 }

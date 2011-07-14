@@ -1,0 +1,22 @@
+<div class="post-details normal">
+    <div class="left">
+        {#{% set activeUsers = post.users|rebuildArray('status', 'Active') %}#}
+        {#<ul class="users">#}
+            {#{% for user in activeUsers %}#}
+                {#<li>#}
+                    {#<a class="profile-image" href="{{ path('user_profile_show', {'username': user.user.username}) }}" title="{{ user.user.firstName }} {{ user.user.lastName }}">#}
+                        {#{% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user.user, 'dimensions': 30} %}#}
+                    {#</a>#}
+                    {#{% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user.user} %}#}
+                {#</li>#}
+            {#{% endfor %}#}
+        {#</ul>#}
+    </div>
+
+    <div class="right">
+        <div class="note">{{ post.note ? '" ' : '' }}{{ post.note|stripSlashes|truncate(75) }}{{ post.note ? ' "' : '' }}</div>
+
+        {% include "WhootBundle:Post:activity.html.twig" with {'post': post, 'activity': activity} %}
+    </div>
+    <div class="clear"></div>
+</div>

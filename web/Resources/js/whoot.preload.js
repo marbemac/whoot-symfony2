@@ -38,3 +38,8 @@ $(window).resize(function(){
 $('.sf-toolbarreset').livequery(function() {
     $('#footer').css('bottom', $('.sf-toolbarreset').height());
 })
+
+if ($('body').width() > 1300)
+{
+    $('.undecidedC').removeClass('collapsed');
+}

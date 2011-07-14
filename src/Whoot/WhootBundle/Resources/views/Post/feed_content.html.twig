@@ -19,10 +19,6 @@
     <ul class="decided feed">
 
         {% for post in posts %}
-            {% if post[0].createdAt|date('U') < oldestPost %}
-                {% set oldestPost = post[0].createdAt|date('U') %}
-            {% endif %}
-
             <li class="{{ loop.first ? 'first' : '' }}">
                 {% render 'WhootBundle:Post:teaser' with {'postId': post[0].id} %}
             </li>
@@ -33,10 +29,6 @@
         {% endfor %}
 
     </ul>
-
-    {% if posts|length > 0 %}
-        <div id="oldestPost" class="hide" data-time="{{ oldestPost }}"></div>
-    {% endif %}
 
 {% else %}
 

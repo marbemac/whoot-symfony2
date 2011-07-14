@@ -1,5 +1,0 @@
-<div class="post-details normal">
-    <div class="note">{{ post.note ? '" ' : '' }}{{ post.note|stripSlashes|truncate(75) }}{{ post.note ? ' "' : '' }}</div>
-
-    {% include "WhootBundle:Post:activity.html.twig" with {'post': post, 'activity': activity} %}
-</div>

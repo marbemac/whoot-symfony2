@@ -262,9 +262,9 @@ $feed-filters-margin-top: 8px;
             li.on.big_out a { color: $post-big_out-color; }
         }
         .undecided {
-            float: left;
-            font-size: 14px;
-            margin: 4px 0 0 10px;
+            position: relative;
+            top: 3px;
+            left: 10px;
             cursor: pointer;
         }
     }
@@ -337,11 +337,6 @@ $post-hover-color: #E7EDFF;
 }
 
 #post-feed {
-    .undecided-count {
-        float: left;
-        margin: -1px 0 0 10px;
-        cursor: default;
-    }
     .decided {
         margin-bottom: 20px;
     }
@@ -369,7 +364,7 @@ $post-hover-color: #E7EDFF;
     }
     .user-link {
         float: left;
-        width: 100px;
+        width: 150px;
         overflow: hidden;
         padding: 14px 0 0 20px;
         white-space: nowrap;
@@ -549,5 +544,75 @@ $post-hover-color: #E7EDFF;
     }
     &.leave .message {
         background: #FFF7F9;
+    }
+}
+
+.undecidedC {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: $undecided_width;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 0 0 5px;
+    z-index: 10;
+
+    h4 {
+        margin: 10px 0 8px 17px;
+    }
+    .bg {
+        @include opacity(.9);
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: #FFF;
+        z-index: -1;
+    }
+    .side-toggle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 8px;
+        height: 100%;
+        cursor: pointer;
+        background-color: #0f3f81;
+        &:hover {
+            background-color: #FF9900;
+        }
+    }
+    .item {
+        padding: 5px 5px 0 40px;
+        position: relative;
+    }
+    .profile-image {
+        position: absolute;
+        top: 9px;
+        left: 10px;
+        img {
+            @include border-radius(3px);
+        }
+    }
+    .user-link {
+        margin: 0;
+        height: 10px;
+        overflow: hidden;
+        white-space: nowrap;
+
+    }
+    .ping-B,
+    .pinged {
+        display: block;
+        margin: -4px 0 0 7px;
+    }
+    &:hover {
+        .bg {
+            @include opacity(1);
+        }
+    }
+    &.collapsed {
+        width: 7px;
     }
 }

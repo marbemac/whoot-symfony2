@@ -107,75 +107,9 @@ $(function() {
         $(this).colorbox({title:"Are you sure you want to cancel your open invite?", transition: "none", opacity: .5, inline: true, href: "#invite-cancel-confirm"});
     })
 
-    // Scroll to undecided posts
-    $('#feed-filters .undecided').live('click', function() {
-        $.scrollTo('.undecided-count', {
-            duration: 500
-        })
-    })
-
-    // Use canvas to draw the post timers
-    var $postColors = {'working': '#009966', 'low_in': '#996699', 'low_out': '#FF9900', 'big_out': '#CC3300'};
-    $('.post.teaser .timer').livequery(function() {
-        var $oldestPost = $('#oldestPost').data('time');
-        var canvas = this;
-
-        // Make sure we don't execute when canvas isn't supported
-        if (canvas.getContext) {
-            var $postType = $(canvas).data('type');
-            // Get this posts time
-            var $postTime = $(canvas).data('time');
-            // Calculate it's time relative to all other posts
-            var $ratio,
-                    $degrees;
-
-            if ($postTime == $oldestPost) {
-                $ratio = 1;
-                $degrees = 270;
-            }
-            else {
-                // Get the current time in seconds since the Unix epoch
-                var $time = new Date;
-                $time = $time.getTime();
-                $time = parseInt($time / 1000);
-                $ratio = ($time - $postTime) / ($time - $oldestPost);
-                $degrees = ($ratio * 270 - 90);
-            }
-
-            ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            ctx.beginPath();
-            ctx.strokeStyle = $postColors[$postType];
-            ctx.arc(canvas.width / 2, canvas.height / 2, 9, 0, (360 * (Math.PI / 180)), true);
-            ctx.stroke();
-
-            // Draw the timer fill
-            if ($ratio > 0) {
-                ctx.beginPath();
-                ctx.fillStyle = $postColors[$postType];
-                ctx.moveTo(canvas.width / 2, canvas.height / 2);
-                ctx.arc(canvas.width / 2, canvas.height / 2, 9, -Math.PI / 2, $degrees * (Math.PI / 180), false);
-                ctx.lineTo(canvas.width / 2, canvas.height / 2);
-                ctx.fill();
-            }
-        }
-        else {
-
-        }
-    })
-
-    // Add qTips to the post timers
-    $('.post.teaser .timer').livequery(function() {
-        var $self = $(this);
-        $self.qtip({
-            content: {
-                attr: 'title'
-            },
-            style: {
-                classes: 'ui-tooltip-blue ui-tooltip-shadow ui-tooltip-rounded'
-            }
-        })
+    // Toggle collapse right undecided bar
+    $('.undecidedC .side-toggle, #feed-filters .undecided').live('click', function() {
+        $('.undecidedC').toggleClass('collapsed');
     })
 
     // Add qTips to the feed post stats

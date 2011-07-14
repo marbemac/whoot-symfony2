@@ -4,14 +4,14 @@
         {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 45} %}
     </a>
 
-    {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': post.createdBy, 'nameLimit': 10} %}
+    {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': post.createdBy, 'nameLimit': 15} %}
 
     <div class="what">
         {{ post.type|printPostTypeShort }}
     </div>
 
     <div class="note">
-        {{ post.note }}
+        {{ post.isOpenInvite ? 'Open Invite:' : ''}} {{ post.note }}
     </div>
 
     <div class="clear"></div>

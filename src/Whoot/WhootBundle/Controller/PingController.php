@@ -48,7 +48,7 @@ class PingController extends ContainerAware
         {
             $result['userId'] = $userId;
             $result['event'] = 'ping_toggle';
-            $result['flash'] = array('type' => 'success', 'message' => 'User ' . ($result['status'] == 'deleted' ? 'unpinged' : 'pinged') .' successfully!');
+            $result['flash'] = array('type' => 'success', 'message' => 'User ' . ($result['state'] == 'deleted' ? 'unpinged' : 'pinged') .' successfully!');
             $result['newText'] = $result['state'] == 'deleted' ? 'Ping' : 'Undo Ping';
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');

@@ -140,7 +140,7 @@ class WhootTwigExtension extends \Twig_Extension {
     }
 
     /**
-     * Given an array of structure posts['post']['users'], see how many posts/users have the given status.
+     * Given an array of structure posts['post'], see how many posts/users have the given status.
      *
      * @param  array $array
      * @param  string $status
@@ -156,13 +156,7 @@ class WhootTwigExtension extends \Twig_Extension {
 
             if ($post['type'] == $status)
             {
-                foreach ($post['users'] as $userPost)
-                {
-                    if ($userPost['status'] == 'Active')
-                    {
-                        $count++;
-                    }
-                }
+                $count++;
             }
         }
 

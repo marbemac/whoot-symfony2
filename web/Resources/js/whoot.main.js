@@ -126,23 +126,10 @@ $(function() {
         }
     })
 
-    // Add qTips to the post timers
-    $('#my-pings').qtip({
-        content: {
-            attr: 'title'
-        },
-        style: {
-            classes: 'ui-tooltip-blue ui-tooltip-shadow ui-tooltip-rounded my-pings-tip'
-        },
-        position: {
-            my: 'right center',
-            at: 'left center'
-        }
-    })
-
     // Toggle new post options
     $('#post-box .type').live('click', function() {
         $(this).addClass('on').siblings('.type').removeClass('on');
+        $('#whoot_post_form_type').val($(this).data('val'));
     })
 
     // Scroll to my post
@@ -161,49 +148,64 @@ $(function() {
 
     // Submit a new post
     var postSubmit = false;
-    $('#post-box .submit').live('click', function() {
+    $('.post_create .submit').live('click', function() {
         if (postSubmit)
             return;
 
         postSubmit = true;
         var $self = $(this);
-        $self.text('Working...');
-        var $payload = {};
-        $payload['type'] = $('#post-box .type.on').data('val');
-        $payload['note'] = $('#post-description').val();
-
         var $error_flag = false;
 
-        if (!$payload['type']) {
+        $('#post-box .status').removeClass('error');
+        $self.text('Working...');
+
+        var $payload = {};
+        $payload[$('#whoot_post_form_type').attr('name')] = $('#whoot_post_form_type').val();
+        $wordCount = 0;
+        $.each($('input.word'), function() {
+            if ($.trim($(this).val()).length > 0)
+            {
+                $wordCount++;
+            }
+            $payload[$(this).attr('name')] = $(this).val();
+        })
+
+        if ($.inArray($payload[$('#whoot_post_form_type').attr('name')], ['working', 'low_in', 'low_out', 'big_out']) == -1) {
             $error_flag = true;
-            $('#post-box .status').css('color', 'red');
+            $('#post-box .status').addClass('error');
         }
 
-        if ($('#post-box .open-invite-toggle').hasClass('on')) {
-            $payload['venue'] = $('#post-venue').val();
-            $payload['address'] = $('#post-address').val();
-            $payload['address_lat'] = $('#post-address-lat').val();
-            $payload['address_lon'] = $('#post-address-lon').val();
-            $payload['time'] = $('#post-time').val();
-
-            $('.invite-req, #post-address').each(function(index) {
-                $(this).prev().css('color', '#000');
-                if (!$(this).val() || $(this).val() == 'Enter a location') {
-                    $error_flag = true;
-                    $(this).prev().css('color', 'red');
-                }
-            })
+        if ($wordCount == 0)
+        {
+            $error_flag = true;
+            $('.post_create .errors').text('You must input 1 - 5 words! Be sure to press enter after inputting them.');
         }
+
+//        if ($('#post-box .open-invite-toggle').hasClass('on')) {
+//            $payload['venue'] = $('#post-venue').val();
+//            $payload['address'] = $('#post-address').val();
+//            $payload['address_lat'] = $('#post-address-lat').val();
+//            $payload['address_lon'] = $('#post-address-lon').val();
+//            $payload['time'] = $('#post-time').val();
+//
+//            $('.invite-req, #post-address').each(function(index) {
+//                $(this).prev().css('color', '#000');
+//                if (!$(this).val() || $(this).val() == 'Enter a location') {
+//                    $error_flag = true;
+//                    $(this).prev().css('color', 'red');
+//                }
+//            })
+//        }
 
         if ($error_flag) {
-            $self.text('Submit');
+            $self.text('Submit Post');
             postSubmit = false;
             return false;
         }
 
-        $.post($(this).data('url'), $payload, function(data) {
+        $.post($('.post_create').attr('action'), $payload, function(data) {
             appUpdate(data);
-            $self.text('Submit');
+            $self.text('Submit Post');
             postSubmit = false;
         }, 'json');
     })
@@ -221,7 +223,7 @@ $(function() {
     // Toggle the activity of a post
     var postActivityToggle = false;
     $('.teaser.post').live('click', function(ev) {
-        if ($(ev.target).is('a') || postActivityToggle)
+        if ($(ev.target).is('a') || $(ev.target).hasClass('word') || postActivityToggle)
             return;
 
         postActivityToggle = true;
@@ -300,6 +302,123 @@ $(function() {
         if (e.keyCode == 13) {
             e.preventDefault();
             $(this).siblings('input[type="submit"]').click();
+        }
+    })
+
+    /*
+     * WORDS
+     */
+
+    // Handle post words
+    // How many words are we allowed?
+    var $wordMax = 5;
+    // How many characters per word (avg)
+    var $characterMax = 10;
+    $('.post_create .words').live('keypress', function(e) {
+        var $code = e.which ? e.which : e.keyCode;
+        $(this).siblings('.errors').text('');
+
+        // Get the number of words the user is trying to add
+        $wordNum = $.trim($(this).val()).split(' ').length;
+
+        // 13 enter keypress
+        if ($code == 13)
+        {
+            // Calculate how many words the user has already added
+            $currentWords = '';
+            $.each($('input.word'), function() {
+                if ($.trim($(this).val()).length > 0)
+                {
+                    $currentWords += $(this).val() + ' ';
+                }
+            })
+
+            if ($currentWords.replace(' ', '').length + $(this).val().replace(' ', '').length > $wordMax*$characterMax)
+            {
+                $(this).siblings('.error').text('Stop using such big words. You may use a maximum of '+$wordMax*$characterMax+' characters for your 5 words.');
+            }
+            else if ($.trim($currentWords).split(' ').length + $wordNum > $wordMax)
+            {
+                $(this).siblings('.errors').text('You cannot use more than '+$wordMax+' words total.');
+            }
+            // Add the word
+            else
+            {
+                var target = $(this).siblings('.wordsC .word:not(.on):first');
+                target.addClass('on').prepend('<div>'+$(this).val()+'</div>');
+                $(target.data('target')).val($(this).val());
+                $(this).val('');
+            }
+            e.preventDefault();
+        }
+        else
+        {
+            // We only allow phrases of 3 or less words...
+            if (($wordNum > 3 || ($wordNum == 3 && $code == 32)) && $code != 8 && $code != 46)
+            {
+                e.preventDefault();
+                $(this).siblings('.errors').text('You cannot use more than three words in a single phrase');
+            }
+        }
+    })
+
+    // Used to delete an already added word (on the submit post form)
+    $('.post_create .word span').live('click', function() {
+        $(this).siblings().remove();
+        $($(this).parent().removeClass('on').data('target')).val('');
+    })
+
+    // Filter posts by word
+    $('.word').live('click', function() {
+        var $self = $(this);
+
+        if ($('.word-filters .w-'+$(this).data('id')).length == 0)
+        {
+            $('.word-filters').show();
+            
+            $('.word-filters').append($(this).clone().append('<span>x</span>'));
+            $('.teaser').each(function() {
+                if ($(this).find('.w-'+$self.data('id')).length == 0)
+                {
+                    $(this).hide();
+                }
+            })
+        }
+    })
+
+    // Remove a filtered word
+    $('.word-filters .word').live('click', function() {
+        var $word = $(this);
+
+        var $filteredFound = false;
+        var $filteredWords = '';
+        $.each($('.word-filters .word'), function() {
+            if ($(this).data('id') != $word.data('id'))
+            {
+                $filteredFound = true;
+                $filteredWords += '.w-'+$(this).data('id')+', ';
+            }
+        })
+
+        if (!$filteredFound)
+        {
+            $('.teaser').fadeIn(150);
+        }
+        else
+        {
+            console.log($filteredWords);
+            $('.teaser').each(function() {
+                if ($(this).find($filteredWords).length != 0)
+                {
+                    $(this).fadeIn(150);
+                }
+            })
+        }
+        $(this).remove();
+
+        if ($('.word-filters .word').length == 0)
+        {
+            $('.word-filters').hide();
         }
     })
 

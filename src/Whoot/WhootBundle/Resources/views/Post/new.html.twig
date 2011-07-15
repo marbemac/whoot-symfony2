@@ -1,0 +1,33 @@
+<form action="{{ path('post_create') }}" {{ form_enctype(form) }} method="POST" class="post_create">
+    {{ form_errors(form) }}
+
+    {{ form_widget(form.type, { 'attr': {'autocomplete': 'off'} })}}
+    {{ form_widget(form.words) }}
+
+    <div class="label">Words</div>
+    <input type="text" id="words" autocomplete="off" name="words" class="words iclear b" value="Type 1-3 words at a time and press enter" />
+    <div class="errors"></div>
+    <div class="words-help">
+        How do you feel about tonight? Have a bar in mind? Feel like dancing?
+        <br />
+        You've got 5 words total, make'em count
+    </div>
+
+    <div class="wordsC">
+        <div class="word" data-target="#word1"><span>x</span></div>
+        <div class="word" data-target="#word2"><span>x</span></div>
+        <div class="word" data-target="#word3"><span>x</span></div>
+        <div class="word" data-target="#word4"><span>x</span></div>
+        <div class="word" data-target="#word5"><span>x</span></div>
+    </div>
+
+    <input id="word1" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][0][content]" />
+    <input id="word2" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][1][content]" />
+    <input id="word3" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][2][content]" />
+    <input id="word4" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][3][content]" />
+    <input id="word5" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][4][content]" />
+
+    {{ form_rest(form) }}
+
+    <div class="submit">Submit Post</div>
+</form>

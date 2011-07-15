@@ -1,0 +1,50 @@
+/*
+Document   : word
+Created on : May 3, 2011, 9:41:00 PM
+Author     : Marc MacLeod (marbemac@gmail.com)
+Description:
+Purpose of the stylesheet follows.
+*/
+
+.word {
+    &.t {
+        border-bottom: 1px dotted #BBB;
+
+        &:hover {
+            cursor: pointer;
+            border-color: #FF9900;
+            border-width: 2px;
+        }
+    }
+}
+
+.word-filters {
+    @include clearfix();
+    margin: 10px 0 15px 10px;
+    display: none;
+    
+    .head {
+        float: left;
+        margin: 3px 11px 0 0;
+        font-size: 12px;
+        color: #999;
+        cursor: default;
+    }
+    .word {
+        float: left;
+        position: relative;
+        margin-right: 10px;
+        border: none;
+        cursor: default;
+        padding: 0 20px 0 0;
+    }
+    span {
+        position: absolute;
+        top: 0px;
+        right: 3px;
+        cursor: pointer;
+        &:hover {
+            color: red;
+        }
+    }
+}

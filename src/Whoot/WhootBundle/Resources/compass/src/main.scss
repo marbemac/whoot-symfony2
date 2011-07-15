@@ -19,7 +19,7 @@ html, body {
     height: 100%;
     border: 0;
     position: relative; z-index: 0;
-    font-family: Tahoma, Arial, "times New Roman"; color: #000;
+    font-family: Tahoma, Verdana, Arial, sans-serif;
 }
 
 body.night {
@@ -58,6 +58,7 @@ input,textarea {
     font-size: 14px;
     border:  1px solid #BBB;
     width: 200px;
+    font-family: Tahoma, Verdana, Arial, sans-serif;
 }
 input.submit {
     @include orange-button(3px, 14px);
@@ -241,6 +242,7 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
 @import "partials/splash";
 @import "partials/user";
 @import "partials/post";
+@import "partials/word";
 @import "partials/comment";
 @import "partials/llist";
 @import "partials/library";

@@ -71,7 +71,12 @@ class PostController extends ContainerAware
     public function myPostAction($_format='html')
     {
         $request = $this->container->get('request');
-        $myPost = $this->container->get('whoot.post_manager')->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
+        $myPost = $this->container->get('whoot.post_manager')->findPostBy(
+                                                                null,
+                                                                $this->container->get('security.context')->getToken()->getUser(),
+                                                                date('Y-m-d 05:00:00', time()-(60*60*5)),
+                                                                'Active'
+                                                               );
 
         $response = new Response();
         $response->setCache(array(
@@ -83,23 +88,6 @@ class PostController extends ContainerAware
         }
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:myPost.'.$_format.'.twig', array('myPost' => $myPost), $response);
-    }
-
-    public function postBoxAction()
-    {
-        $request = $this->container->get('request');
-        $myPost = $this->container->get('whoot.post_manager')->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
-
-        $response = new Response();
-        $response->setCache(array(
-        ));
-
-        if ($response->isNotModified($request)) {
-            // return the 304 Response immediately
-            //return $response;
-        }
-
-        return $this->container->get('templating')->renderResponse('WhootBundle:Post:postBox.html.twig', array('myPost' => $myPost), $response);
     }
 
     /**
@@ -114,47 +102,63 @@ class PostController extends ContainerAware
             return $login;
         }
 
+        $templating = $this->container->get('templating');
         $request = $this->container->get('request');
-        $data['type'] = $request->request->get('type', 'working');
-        $data['note'] = $request->request->get('note', '');
         $securityContext = $this->container->get('security.context');
         $user = $securityContext->getToken()->getUser();
+        $form = $this->container->get('whoot.form.post');
+        $formHandler = $this->container->get('whoot.form.handler.post');
 
-        $postResult = $this->container->get('whoot.post_manager')->togglePost($data, $this->container->get('security.context')->getToken()->getUser());
+        if ($formHandler->process(null, $user) === true) {
+            $post = $form->getData();
 
-        if ($this->container->has('security.acl.provider') && $postResult['status'] == 'new') {
-            $provider = $this->container->get('security.acl.provider');
-            $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($postResult['post']));
-            $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
-            $provider->updateAcl($acl);
-        }
+            if ($this->container->has('security.acl.provider')) {
+                $provider = $this->container->get('security.acl.provider');
+                $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($post));
+                $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
+                $provider->updateAcl($acl);
+            }
 
-        if ($_format == 'json')
-        {
-            $result = array();
-            $result['result'] = 'success';
-            $response = new Response(json_encode($result));
-            $response->headers->set('Content-Type', 'application/json');
-            return $response;
+            if ($_format == 'json')
+            {
+                $result = array();
+                $result['result'] = 'success';
+                $response = new Response(json_encode($result));
+                $response->headers->set('Content-Type', 'application/json');
+                return $response;
+            }
+
+            if ($request->isXmlHttpRequest())
+            {
+                $result = array();
+                $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());
+                $result['feed'] = $feed->getContent();
+                $result['result'] = 'success';
+                $result['event'] = 'post_created';
+                $result['flash'] = array('type' => 'success', 'message' => 'Your post has been updated.');
+                $myPost = $this->container->get('http_kernel')->forward('WhootBundle:Post:myPost', array());
+                $result['myPost'] = $myPost->getContent();
+                $response = new Response(json_encode($result));
+                $response->headers->set('Content-Type', 'application/json');
+
+                return $response;
+            }
         }
 
         if ($request->isXmlHttpRequest())
         {
             $result = array();
-            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());
-            $result['feed'] = $feed->getContent();
-            $result['result'] = 'success';
-            $result['event'] = 'post_created';
-            $result['flash'] = array('type' => 'success', 'message' => 'Your status has been updated.');
-            $myPost = $this->container->get('http_kernel')->forward('WhootBundle:Post:myPost', array());
-            $result['myPost'] = $myPost->getContent();
+            $result['result'] = 'error';
+            $result['form'] = $templating->render('WhootBundle:Post:new.html.twig', array('form' => $form->createView()));
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
-
             return $response;
         }
 
-        return new RedirectResponse($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : $this->container->get('router')->generate('homepage'));
+        return $templating->renderResponse('WhootBundle:Post:new.html.twig', array(
+            'form' => $form->createView(),
+            '_format' => $_format
+        ));
     }
 
     public function teaserAction($postId, $_format='html')

@@ -75,12 +75,13 @@ Purpose of the stylesheet follows.
         text-decoration: underline;
     }
     .cancel {
-        margin-left: 30px;
+        margin: 11px 0 0 30px;
     }
 }
 
 #post-box {
     @include opacity(.95);
+    @include border-top-left-radius(10px);
 
     background: #000;
     height: 100%;
@@ -100,20 +101,24 @@ Purpose of the stylesheet follows.
 
         h2 {
             text-align: center;
-            margin: 15px 0 -10px 0;
+            margin: 15px 0 7px 0;
         }
 
         .label {
             font-size: 20px;
             color: #666;
-            margin: 10px 0 0 10px;
+            margin: 8px 10px 0 10px;
+            float: left;
         }
-
+        .status.error {
+            color: red;
+            font-weight: bold;
+        }
         .type {
             @include border-radius(5px);
             float: left;
             padding: 5px 15px;
-            margin: 5px 0 0 5px;
+            margin: 5px 0 0 10px;
             font-size: 16px;
             border: 2px solid #000;
             cursor: pointer;
@@ -158,6 +163,64 @@ Purpose of the stylesheet follows.
             margin: 5px 0 10px 5px;
             width: $options-w - 25;
         }
+        .errors {
+            font-weight: bold;
+            color: red;
+            margin: 0 0 0 86px;
+            font-size: 12px;
+        }
+        .words {
+            display: block;
+            padding: 7px;
+            font-size: 18px;
+            width: 415px;
+            margin: 15px 0 0 0;
+            position: relative;
+            left: 9px;
+            border-width: 2px;
+        }
+        .words-help {
+            font-size: 13px;
+            font-stype: italic;
+            color: #888;
+            margin: 0 0 0 86px;
+        }
+        .wordsC {
+            @include clearfix();
+            margin: 10px 0 10px 72px;
+            .word {
+                display: none;
+                float: left;
+                position: relative;
+                padding: 0 20px 0 0;
+                margin: 0 0 0 15px;
+                div {
+                    border-bottom: 1px dotted #999;
+                    line-height: 1.1;
+                    font-size: 20px;
+                    cursor: default;
+                }
+                span {
+                    position: absolute;
+                    right: 6px;
+                    top: 1px;
+                    font-size: 15px;
+                    cursor: pointer;
+                    &:hover {
+                        color: red;
+                    }
+                }
+                &.on {
+                    display: block;
+                }
+            }
+        }
+        .submit {
+            @include orange-button(3px, 20px);
+            padding: 4px 10px;
+        }
+
+
         .open-invite-toggle {
             float: left;
             color: $link-color;
@@ -202,7 +265,7 @@ Purpose of the stylesheet follows.
     }
 }
 
-$feed-filters-margin-top: 8px;
+$feed-filters-margin-top: 5px;
 #feed-filters {
     $feed-filter-border-radius: 5px;
     $feed-filter-border-color: #CCC;
@@ -213,7 +276,7 @@ $feed-filters-margin-top: 8px;
 
     background: #EBEBEB;
     width: $page_width - $sidebar_width;
-    padding: $feed-filters-margin-top 0 6px 0;
+    padding: $feed-filters-margin-top 0 5px 0;
     margin: 0 0 15px 0;
     border-top: 1px solid #FFF;
     border-bottom: 1px solid $sidebar_border_color;
@@ -224,7 +287,7 @@ $feed-filters-margin-top: 8px;
         
         .label {
             float: left;
-            margin: 5px 0 0 13px;
+            margin: 7px 0 0 13px;
             color: #999;
             font-size: 12px;
             cursor: default;
@@ -262,7 +325,7 @@ $feed-filters-margin-top: 8px;
             }
             a {
                 position: relative;
-                padding: 2px 10px 2px 25px;
+                padding: 4px 10px 4px 25px;
                 color: #BBB;
                 text-decoration: none;
                 display: block;
@@ -274,7 +337,7 @@ $feed-filters-margin-top: 8px;
         }
         .undecided {
             position: relative;
-            top: 3px;
+            top: 4px;
             left: 10px;
             cursor: pointer;
         }
@@ -284,7 +347,7 @@ $feed-filters-margin-top: 8px;
         width: 173px;
 
         .arrow-small {
-            position: absolute; top: 11px; right: 18px;
+            position: absolute; top: 13px; right: 18px;
             z-index: 10;
         }
         ul {
@@ -302,7 +365,7 @@ $feed-filters-margin-top: 8px;
             a {
                 color: #444;
                 text-decoration: none;
-                padding: 2px 10px;
+                padding: 4px 10px;
                 display: block;
             }
         }
@@ -386,14 +449,18 @@ $post-hover-color: #E7EDFF;
         overflow: hidden;
         padding: 17px 0 0 10px;
     }
-    .note {
+    .words {
+        @include clearfix();
         float: left;
-        overflow: hidden;
-        padding: 17px 0 0 20px;
+        padding: 17px 0 0 10px;
         font-style: italic;
         width: 370px;
         overflow: hidden;
         white-space: nowrap;
+    }
+    .word {
+        float: left;
+        margin: 0 15px 0 0;
     }
     &.working .what {
         color: $post-working-color;

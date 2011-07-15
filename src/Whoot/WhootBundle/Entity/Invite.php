@@ -10,10 +10,10 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="post")
+ * @ORM\Table(name="invite")
  * @ORM\HasLifecycleCallbacks
  */
-class Post
+class Invite
 {
     /**
      * @var integer $id
@@ -40,6 +40,42 @@ class Post
      * @ORM\Column(type="string")
      */
     protected $status;
+
+    /**
+     * @var string $note
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $note;
+
+    /**
+     * @var string $venue
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $venue;
+
+    /**
+     * @var string $time
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $time;    
+
+    /**
+     * @var string $address
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $address;
+
+    /**
+     * @var float $lat
+     * @ORM\Column(type="float", nullable=true)
+     */
+    protected $lat;
+
+    /**
+     * @var float $lon
+     * @ORM\Column(type="float", nullable=true)
+     */
+    protected $lon;
 
     /**
      * @var dateTime $updatedAt
@@ -82,23 +118,17 @@ class Post
     /**
      * @var Location
      *
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Location", inversedBy="posts")
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Location", inversedBy="invites")
      */
     protected $location;
 
-    /**
-     * @var Whoot\WhootBundle\Entity\Invite
-     *
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Invite", inversedBy="posts")
-     */
-    protected $invite;
 
     /**
-     * @var Whoot\WhootBundle\Entity\Word
+     * @var Limelight\LimelightBundle\Entity\User
      *
-     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\PostsWords", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\Post", mappedBy="invite", cascade={"persist"})
      */
-    protected $words;
+    protected $posts;
 
     /**
      * @var Limelight\LimelightBundle\Entity\User
@@ -108,8 +138,8 @@ class Post
     protected $comments;
 
     public function __construct() {
+        $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->words = new ArrayCollection();
         $this->status = 'Active';
     }
 
@@ -171,33 +201,117 @@ class Post
     }
 
     /**
-     * Set word
+     * Set venue
      *
-     * @param Word $word
+     * @param string $venue
      */
-    public function setWord($word)
+    public function setVenue($venue)
     {
-        $this->words[] = $word;
+        $this->venue = $venue;
     }
 
     /**
-     * Set words
+     * Get venue
      *
-     * @param array $words
+     * @return string $venue
      */
-    public function setWords($words)
+    public function getVenue()
     {
-        $this->words = $words;
+        return $this->venue;
     }
 
     /**
-     * Get words
+     * Set time
      *
-     * @return string $words
+     * @param string $time
      */
-    public function getWords()
+    public function setTime($time)
     {
-        return $this->words;
+        $this->time = $time;
+    }
+
+    /**
+     * Get time
+     *
+     * @return string $time
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string $address
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string $note
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param float $lat
+     * @return void
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * @param float $lon
+     * @return void
+     */
+    public function setLon($lon)
+    {
+        $this->lon = $lon;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLon()
+    {
+        return $this->lon;
     }
 
     /**
@@ -280,8 +394,8 @@ class Post
         return $this->deletedAt;
     }
 
-    /**
-     * Get a post's location.
+        /**
+     * Get a invites's location.
      *
      * @return Location $location
      */
@@ -300,19 +414,14 @@ class Post
         $this->location = $location;
     }
 
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
     public function getComments()
     {
         return $this->comments;
-    }
-
-    public function setInvite(Invite $invite)
-    {
-        $this->invite = $invite;
-    }
-
-    public function getInvite()
-    {
-        return $this->invite;
     }
 
     /**

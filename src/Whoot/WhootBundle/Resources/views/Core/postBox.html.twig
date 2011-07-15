@@ -1,0 +1,59 @@
+<div id="post-box" class="hide">
+    <div class="options">
+
+        {% if myPost is none %}
+            <h2>{{ app.user.firstName }}, first things first. Whatcha doin tonight?</h2>
+        {% else %}
+            <h2>You will change your current post.</h2>
+        {% endif %}
+
+        <div class="label status">Status</div>
+        <div class="type working" data-val="working">Working</div>
+        <div class="type low_in" data-val="low_in">Staying In</div>
+        <div class="type low_out" data-val="low_out">Relaxing Out</div>
+        <div class="type big_out" data-val="big_out">Raging</div>
+        <div class="clear"></div>
+
+        {#<div class="open-invite-toggle">+ Open Invite</div>#}
+        {#<div class="open-invite-help">Know exactly what you're doing tonight and want to invite your friends?</div>#}
+        <div class="clear"></div>
+
+        <div class="post">
+            {% render "WhootBundle:Post:create" %}
+        </div>
+
+        <div class="invite hide">
+            {#<div class="open-invite-C">#}
+                {#<div class="label2">Venue</div>#}
+                {#<input type="text" id="post-venue" class="invite-req" name="venue" value="" autocomplete="off" />#}
+                {#<div class="label2">Address</div>#}
+                {#<input type="text" id="post-address" name="address" data-lat="&#123;&#35;{{ app.session.get('location')|json_decode.lat }}&#35;&#125;" data-lon="&#123;&#35;{{ app.session.get('location')|json_decode.lon }}&#35;&#125;" />#}
+                {#<input type="hidden" id="post-address-name" name="address_name" value="" autocomplete="off" />#}
+                {#<input type="hidden" id="post-address-lat" name="address_lat" value="" autocomplete="off" />#}
+                {#<input type="hidden" id="post-address-lon" name="address_lon" value="" autocomplete="off" />#}
+                {#<div class="label2">Time</div>#}
+                {#<input type="text" id="post-time" class="invite-req" name="when" value="" autocomplete="off" />#}
+                {#<div class="clear"></div>#}
+                {#<div class="label">Optional Note</div>#}
+                {#<textarea id="post-invite-note" name="invite-note" class="note"></textarea>#}
+            {#</div>#}
+    {##}
+            {#<div class="post-C">#}
+                {#<input type="text" id="post-note" name="note" />#}
+            {#</div>#}
+    {##}
+            {#<div class="actions">#}
+                {#<div class="submit" data-url="{{ path('post_create') }}">Submit</div>#}
+                {#{% if myPost is not none %}#}
+                    {#<div class="cancel">Cancel</div>#}
+                {#{% endif %}#}
+            {#</div>#}
+        </div>
+
+        {% if myPost is not none %}
+            <div class="cancel">Cancel</div>
+        {% endif %}
+
+
+    </div>
+</div>

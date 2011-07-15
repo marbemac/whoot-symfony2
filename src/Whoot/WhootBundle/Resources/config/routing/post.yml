@@ -1,5 +1,5 @@
 post_create:
-    pattern:  /new
+    pattern:  /create
     defaults: { _controller: WhootBundle:Post:create }
     requirements:
         _method: POST

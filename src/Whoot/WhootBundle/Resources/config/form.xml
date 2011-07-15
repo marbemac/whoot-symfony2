@@ -7,6 +7,45 @@
     <services>
 
 
+        <!-- POST -->
+        <service id="whoot.form.post" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
+            <argument type="service" id="whoot.form.type.post" />
+            <argument type="collection">
+                <argument key="data_class">Whoot\WhootBundle\Entity\Post</argument>
+            </argument>
+        </service>
+
+        <service id="whoot.form.type.post" class="Whoot\WhootBundle\Form\Type\PostFormType">
+            <argument>whoot.form.post</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="whoot.form.handler.post" class="Whoot\WhootBundle\Form\Handler\PostFormHandler" scope="request">
+            <argument type="service" id="whoot.form.post" />
+            <argument type="service" id="request" />
+            <argument type="service" id="whoot.post_manager" />
+            <argument type="service" id="whoot.word_manager" />
+        </service>
+
+        <!-- WORD -->
+        <service id="whoot.form.word" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
+            <argument type="service" id="whoot.form.type.word" />
+            <argument type="collection">
+                <argument key="data_class">Whoot\WhootBundle\Entity\Word</argument>
+            </argument>
+        </service>
+
+        <service id="whoot.form.type.word" class="Whoot\WhootBundle\Form\Type\WordFormType">
+            <argument>whoot.form.word</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="whoot.form.handler.word" class="Whoot\WhootBundle\Form\Handler\WordFormHandler" scope="request">
+            <argument type="service" id="whoot.form.word" />
+            <argument type="service" id="request" />
+            <argument type="service" id="whoot.word_manager" />
+        </service>
+
         <!-- COMMENT -->
         <service id="whoot.form.comment" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
             <argument type="service" id="whoot.form.type.comment" />

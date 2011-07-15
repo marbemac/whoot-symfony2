@@ -9,7 +9,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Entity\User as BaseUser;
 
 use Whoot\WhootBundle\Entity\Post;
-use Whoot\WhootBundle\Entity\UsersPosts;
 
 /**
  * @ORM\Entity
@@ -81,11 +80,18 @@ class User extends BaseUser
     protected $location;
 
     /**
-     * @var UsersPosts
+     * @var $posts
      *
-     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\UsersPosts", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\Post", mappedBy="createdBy", cascade={"persist"})
      */
     protected $posts;
+
+    /**
+     * @var $invites
+     *
+     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\Invite", mappedBy="createdBy", cascade={"persist"})
+     */
+    protected $invites;
 
     /**
      * @var UserFollowing
@@ -110,6 +116,7 @@ class User extends BaseUser
 
     public function __construct() {
         $this->posts = new ArrayCollection();
+        $this->invites = new ArrayCollection();
         $this->following = new ArrayCollection();
         $this->followers = new ArrayCollection();
         $this->lists = new ArrayCollection();
@@ -277,9 +284,29 @@ class User extends BaseUser
      *
      * @return void
      */
-    public function setPost(Post $post)
+    public function setPost($post)
     {
         $this->posts[] = $post;
+    }
+
+    /**
+     * Get a user's invites.
+     *
+     * @return array[Invite] $invites
+     */
+    public function getInvites()
+    {
+        return $this->invites;
+    }
+
+    /**
+     * @param Post $invite
+     *
+     * @return void
+     */
+    public function setInvite($invite)
+    {
+        $this->invites[] = $invite;
     }
     
     /**

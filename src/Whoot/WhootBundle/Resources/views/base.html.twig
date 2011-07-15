@@ -85,7 +85,7 @@
                                 {% block page %}
                                     <div id="page_content">
                                         {% if app.request.attributes.get('_route') == 'homepage' %}
-                                            {% render "WhootBundle:Post:postBox" %}
+                                            {% render "WhootBundle:Core:postBox" %}
                                         {% endif %}
 
                                         {% block page_content %}{% endblock %}

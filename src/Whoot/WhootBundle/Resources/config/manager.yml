@@ -1,6 +1,8 @@
 parameters:
     whoot.core_manager.class:                  Whoot\WhootBundle\Entity\CoreManager
     whoot.post_manager.class:                  Whoot\WhootBundle\Entity\PostManager
+    whoot.invite_manager.class:                Whoot\WhootBundle\Entity\InviteManager
+    whoot.word_manager.class:                  Whoot\WhootBundle\Entity\WordManager
     whoot.ping_manager.class:                  Whoot\WhootBundle\Entity\PingManager
     whoot.comment_manager.class:               Whoot\WhootBundle\Entity\CommentManager
     whoot.list_manager.class:                  Whoot\WhootBundle\Entity\LListManager
@@ -14,6 +16,12 @@ services:
     whoot.post_manager:
         class:        %whoot.post_manager.class%
         arguments:    ["@whoot.user_manager", "@doctrine.orm.default_entity_manager"]
+    whoot.invite_manager:
+        class:        %whoot.invite_manager.class%
+        arguments:    ["@whoot.user_manager", "@doctrine.orm.default_entity_manager"]
+    whoot.word_manager:
+        class:        %whoot.word_manager.class%
+        arguments:    ["@doctrine.orm.default_entity_manager"]
     whoot.ping_manager:
         class:        %whoot.ping_manager.class%
         arguments:    ["@doctrine.orm.default_entity_manager"]

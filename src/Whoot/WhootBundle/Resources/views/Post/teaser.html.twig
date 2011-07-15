@@ -10,8 +10,12 @@
         {{ post.type|printPostTypeShort }}
     </div>
 
-    <div class="note">
-        {{ post.isOpenInvite ? 'Open Invite:' : ''}} {{ post.note }}
+    <div class="words">
+        {% for word in post.words %}
+            {% include "WhootBundle:Word:teaser.html.twig" with {'word': word} %}
+        {% else %}
+            Hmm... no words. How did you do this?!
+        {% endfor %}
     </div>
 
     <div class="clear"></div>

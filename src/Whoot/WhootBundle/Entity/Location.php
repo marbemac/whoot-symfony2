@@ -45,6 +45,20 @@ class Location
      */
     protected $users;
 
+    /**
+     * @var Whoot\WhootBundle\Entity\Post
+     *
+     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\Post", mappedBy="location")
+     */
+    protected $posts;
+
+    /**
+     * @var Whoot\WhootBundle\Entity\Invite
+     *
+     * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\Invite", mappedBy="location")
+     */
+    protected $invites;
+
     public function __construct() {
         $this->users = new ArrayCollection();
     }
@@ -118,5 +132,45 @@ class Location
     public function setUser($user)
     {
         $this->users[] = $user;
+    }
+
+    /**
+     * Get posts connected to this location.
+     *
+     * @return array[Post] $posts
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param Post $post
+     *
+     * @return void
+     */
+    public function setPost($post)
+    {
+        $this->posts[] = $post;
+    }
+
+    /**
+     * Get invites connected to this location.
+     *
+     * @return array[Invite] $invites
+     */
+    public function getInvites()
+    {
+        return $this->invites;
+    }
+
+    /**
+     * @param Invite $invite
+     *
+     * @return void
+     */
+    public function setInvite($invite)
+    {
+        $this->invites[] = $invite;
     }
 }

@@ -16,4 +16,4 @@
     {% set src = gravatar(user.profileImage, dimensions, 'r', 'mm') %}
 {% endif %}
 
-<img class="profileImage" {{ id is defined ? 'id="'~id~'"' : '' }} src="{{ src }}" />
+<img class="profileImage" width="{{ w }}" {{ id is defined ? 'id="'~id~'"' : '' }} src="{{ src }}" />

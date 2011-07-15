@@ -54,7 +54,12 @@ class CoreController extends ContainerAware
             //return $response;
         }
 
-        $myPost = $this->container->get('whoot.post_manager')->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
+        $myPost = $this->container->get('whoot.post_manager')->findPostBy(
+                                                                null,
+                                                                $this->container->get('security.context')->getToken()->getUser(),
+                                                                date('Y-m-d 05:00:00', time()-(60*60*5)),
+                                                                'Active'
+                                                               );
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Core:home.html.twig', array(
             'myPost' => $myPost        
@@ -74,11 +79,37 @@ class CoreController extends ContainerAware
             //return $response;
         }
 
-        $myPost = $this->container->get('whoot.post_manager')->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
-
+        $myPost = $this->container->get('whoot.post_manager')->findPostBy(
+                                                                null,
+                                                                $this->container->get('security.context')->getToken()->getUser(),
+                                                                date('Y-m-d 05:00:00', time()-(60*60*5)),
+                                                                'Active'
+                                                               );
+        
         return $this->container->get('templating')->renderResponse('WhootBundle:Core:deals.html.twig', array(
             'myPost' => $myPost
         ), $response);
+    }
+
+    public function postBoxAction()
+    {
+        $request = $this->container->get('request');
+        $myPost = $this->container->get('whoot.post_manager')->findPostBy(
+                                                                null,
+                                                                $this->container->get('security.context')->getToken()->getUser(),
+                                                                date('Y-m-d 05:00:00', time()-(60*60*5)),
+                                                                'Active'
+                                                               );
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($request)) {
+            // return the 304 Response immediately
+            //return $response;
+        }
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:Core:postBox.html.twig', array('myPost' => $myPost), $response);
     }
 
     /*

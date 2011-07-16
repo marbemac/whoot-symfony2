@@ -20,10 +20,15 @@ Purpose of the stylesheet follows.
         float: left;
         color: #777;
     }
-    .note {
-        font-size: 12px;
-        font-style: italic;
-        color: #666;
+    .words {
+        @include clearfix();
+        .word {
+            float: left;
+            border-bottom: none;
+            margin: 5px 10px 0 0;
+            font-style: italic;
+            font-size: 13px;
+        }
     }
 }
 
@@ -75,7 +80,7 @@ Purpose of the stylesheet follows.
         text-decoration: underline;
     }
     .cancel {
-        margin: 11px 0 0 30px;
+        margin: 24px 0 0 30px;
     }
 }
 
@@ -107,7 +112,8 @@ Purpose of the stylesheet follows.
         .label {
             font-size: 20px;
             color: #666;
-            margin: 8px 10px 0 10px;
+            margin: 8px 0 0 10px;
+            width: 85px;
             float: left;
         }
         .status.error {
@@ -118,7 +124,7 @@ Purpose of the stylesheet follows.
             @include border-radius(5px);
             float: left;
             padding: 5px 15px;
-            margin: 5px 0 0 10px;
+            margin: 5px 10px 0 0;
             font-size: 16px;
             border: 2px solid #000;
             cursor: pointer;
@@ -176,18 +182,17 @@ Purpose of the stylesheet follows.
             width: 415px;
             margin: 15px 0 0 0;
             position: relative;
-            left: 9px;
             border-width: 2px;
         }
         .words-help {
             font-size: 13px;
             font-stype: italic;
             color: #888;
-            margin: 0 0 0 86px;
+            margin: 0 0 0 100px;
         }
         .wordsC {
             @include clearfix();
-            margin: 10px 0 10px 72px;
+            margin: 10px 0 15px 85px;
             .word {
                 display: none;
                 float: left;
@@ -215,10 +220,22 @@ Purpose of the stylesheet follows.
                 }
             }
         }
+        #whoot_post_form_location {
+            @include border-radius(3px);
+            font-size: 18px;
+            border: 2px solid #CCC;
+            padding: 7px;
+            color: #666;
+        }
         .submit {
             @include orange-button(3px, 20px);
             padding: 4px 10px;
+            margin: 20px 10px 10px 10px;
         }
+
+
+
+
 
 
         .open-invite-toggle {
@@ -425,7 +442,8 @@ $post-hover-color: #E7EDFF;
 }
 
 .teaser.post {
-    font-size: 18px;
+    font-size: 16px;
+    position: relative;
     .profile-image {
         float: left;
         position: relative;
@@ -440,21 +458,21 @@ $post-hover-color: #E7EDFF;
         float: left;
         width: 150px;
         overflow: hidden;
-        padding: 17px 0 0 20px;
+        padding: 18px 0 0 20px;
         white-space: nowrap;
     }
     .what {
         float: left;
         width: 110px;
         overflow: hidden;
-        padding: 17px 0 0 10px;
+        padding: 18px 0 0 10px;
     }
     .words {
         @include clearfix();
         float: left;
-        padding: 17px 0 0 10px;
+        padding: 18px 0 0 10px;
         font-style: italic;
-        width: 370px;
+        width: 330px;
         overflow: hidden;
         white-space: nowrap;
     }
@@ -473,6 +491,11 @@ $post-hover-color: #E7EDFF;
     }
     &.big_out .what {
         color: $post-big_out-color;
+    }
+    .scoreC {
+        position: absolute;
+        right: 5px;
+        top: 14px;
     }
 }
 
@@ -697,5 +720,9 @@ $post-hover-color: #E7EDFF;
     }
     &.collapsed {
         width: 7px;
+    }
+    .none {
+        margin: 0 0 0 17px;
+        font-style: italic;
     }
 }

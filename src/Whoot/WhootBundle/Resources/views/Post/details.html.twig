@@ -1,5 +1,6 @@
 <div class="post-details normal">
     <div class="left">
+        <div class="location">{{ post.location.id ? post.location.cityName~', '~post.location.stateCode : '' }}</div>
         {#{% set activeUsers = post.users|rebuildArray('status', 'Active') %}#}
         {#<ul class="users">#}
             {#{% for user in activeUsers %}#}

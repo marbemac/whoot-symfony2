@@ -161,6 +161,8 @@ $(function() {
 
         var $payload = {};
         $payload[$('#whoot_post_form_type').attr('name')] = $('#whoot_post_form_type').val();
+        $payload[$('#whoot_post_form_location').attr('name')] = $('#whoot_post_form_location').val();
+        
         $wordCount = 0;
         $.each($('input.word'), function() {
             if ($.trim($(this).val()).length > 0)

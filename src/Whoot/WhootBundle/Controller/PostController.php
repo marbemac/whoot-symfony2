@@ -73,7 +73,7 @@ class PostController extends ContainerAware
         $request = $this->container->get('request');
         $myPost = $this->container->get('whoot.post_manager')->findPostBy(
                                                                 null,
-                                                                $this->container->get('security.context')->getToken()->getUser(),
+                                                                $this->container->get('security.context')->getToken()->getUser()->getId(),
                                                                 date('Y-m-d 05:00:00', time()-(60*60*5)),
                                                                 'Active'
                                                                );

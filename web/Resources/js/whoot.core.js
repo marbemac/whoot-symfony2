@@ -138,22 +138,22 @@
       $(document.body).qtip({
          // Any content config you want here really.... go wild!
          content: {
-            text: content,
-            title: {
-               text: title,
-               button: true
-            }
+            text: content
+//            title: {
+//               text: title,
+//               button: true
+//            }
          },
          position: {
-            my: 'top right', // Not really important...
-            at: (target.length ? 'bottom' : 'top') + ' right', // If target is window use 'top right' instead of 'bottom right'
+            my: 'bottom left', // Not really important...
+            at: 'bottom' + ' left', // If target is window use 'top right' instead of 'bottom right'
             target: target.length ? target : $(document.body), // Use our target declared above
-            adjust: { y: (target.length ? 15 : 15), x: (target.length ? 0 : -15) } // Add some vertical spacing
+            adjust: { y: (target.length ? -1*($('.qtip.jgrowl:visible').height()+15) : -30), x: (target.length ? 0 : 15) } // Add some vertical spacing
          },
          show: {
             event: false, // Don't show it on a regular event
             ready: true, // Show it when ready (rendered)
-            effect: function() { $(this).stop(0,1).fadeIn(400); }, // Matches the hide effect
+            effect: function() { $(this).fadeIn(400); }, // Matches the hide effect
 
             // Custom option for use with the .get()/.set() API, awesome!
             persistent: persistent
@@ -162,7 +162,7 @@
             event: false, // Don't hide it on a regular event
             effect: function(api) {
                // Do a regular fadeOut, but add some spice!
-               $(this).stop(0,1).fadeOut(400).queue(function() {
+               $(this).fadeOut(400).queue(function() {
                   // Destroy this tooltip after fading out
                   api.destroy();
 

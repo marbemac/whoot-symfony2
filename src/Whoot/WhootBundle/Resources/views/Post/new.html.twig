@@ -27,6 +27,10 @@
     <input id="word4" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][3][content]" />
     <input id="word5" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][4][content]" />
 
+    <div class="label">Location</div>
+    {{ form_widget(form.location) }}
+    <div class="clear"></div>
+
     {{ form_rest(form) }}
 
     <div class="submit">Submit Post</div>

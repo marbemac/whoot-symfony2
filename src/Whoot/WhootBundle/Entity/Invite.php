@@ -42,6 +42,12 @@ class Invite
     protected $status;
 
     /**
+     * @var integer $score
+     * @ORM\Column(type="integer")
+     */
+    protected $score = 0;
+
+    /**
      * @var string $note
      * @ORM\Column(type="string", nullable=true)
      */
@@ -312,6 +318,26 @@ class Invite
     public function getLon()
     {
         return $this->lon;
+    }
+
+    /**
+     * Set score
+     *
+     * @param integer $score
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+    }
+
+    /**
+     * Get score
+     *
+     * @return integer $score
+     */
+    public function getScore()
+    {
+        return $this->score;
     }
 
     /**

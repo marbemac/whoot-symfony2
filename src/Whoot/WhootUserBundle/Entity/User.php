@@ -73,6 +73,12 @@ class User extends BaseUser
     protected $facebookId;
 
     /**
+     * @var integer $score
+     * @ORM\Column(type="integer")
+     */
+    protected $score = 0;
+
+    /**
      * @var Location
      *
      * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Location", inversedBy="users")
@@ -248,7 +254,27 @@ class User extends BaseUser
     {
         return $this->gender;
     }
-    
+
+    /**
+     * Set score
+     *
+     * @param integer $score
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+    }
+
+    /**
+     * Get score
+     *
+     * @return integer $score
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
     /**
      * Get a user's location.
      *

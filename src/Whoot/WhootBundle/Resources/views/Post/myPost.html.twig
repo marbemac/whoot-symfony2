@@ -30,7 +30,13 @@
 
         <div class="clear"></div>
 
-        <div class="note">"  "</div>
+        <div class="words">
+            {% for word in myPost.words %}
+                {% include "WhootBundle:Word:teaser.html.twig" with {'word': word} %}
+            {% else %}
+                Hmm... no words. How did you do this?!
+            {% endfor %}
+        </div>
     </div>
 {% else %}
     <div id="my-post">

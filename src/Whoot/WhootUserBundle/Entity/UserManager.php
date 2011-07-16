@@ -330,4 +330,21 @@ class UserManager extends BaseUserManager
 
         return $response;
     }
+
+    public function getUserLocation($userId=null)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select(array('l'))
+           ->from('Whoot\WhootBundle\Entity\Location', 'l')
+           ->innerJoin('l.users', 'u', 'WITH', 'u.id = :userId')
+           ->setParameters(array(
+               'userId' => $userId
+           ));
+
+        $query = $qb->getQuery();
+        $query->useResultCache(true, 300, 'user_location_'.$userId);
+        $results = $query->getArrayResult();
+
+        return isset($results[0]) ? $results[0] : null;
+    }
 }

@@ -1,0 +1,2 @@
+imports:
+    - { resource: "@WhootVoteBundle/Resources/config/manager.yml" }

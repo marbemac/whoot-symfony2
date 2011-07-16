@@ -1,0 +1,40 @@
+/*
+    Document   : _vote
+    Created on : July 16, 2011
+    Author     : Marc MacLeod (marbemac@gmail.com
+    Description:
+        Vote definitions.
+*/
+
+.scoreC {
+    font-size: 20px;
+    position: relative;
+    padding: 0 25px 0 0;
+    text-align: right;
+
+    .v {
+        @include border-radius(4px);
+        position: absolute;
+        right: 0;
+        top: 4px;
+        font-weight: bold;
+        border: 1px solid #CCC;
+        color: #666;
+        font-size: 14px;
+        line-height: .5;
+        padding: 3px 2px 7px 3px;
+        background: #FFF;
+
+        &.on {
+            border-color: adjust-lightness(#FF9900, -2);
+            background: adjust-lightness(#FF9900, -2);
+            color: #FFF;
+        }
+        &:hover {
+            cursor: pointer;
+            text-decoration: none;
+            background: adjust-lightness(#FF9900, 15);
+            color: #FFF;
+        }
+    }
+}

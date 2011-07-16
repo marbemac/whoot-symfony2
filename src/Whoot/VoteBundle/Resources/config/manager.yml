@@ -1,0 +1,7 @@
+parameters:
+    whoot.manager.vote.class:     Whoot\VoteBundle\Entity\VoteManager
+    
+services:
+    whoot.manager.vote:
+        class:        %whoot.manager.vote.class%
+        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context", "@whoot.user_manager", "@whoot.post_manager"]

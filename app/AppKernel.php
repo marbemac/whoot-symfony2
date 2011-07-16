@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new FOS\FacebookBundle\FOSFacebookBundle(),
             new Bundle\GravatarBundle\GravatarBundle(),
             new Whoot\WhootUserBundle\WhootUserBundle(),
+            new Whoot\VoteBundle\WhootVoteBundle(),
             new Whoot\WhootBundle\WhootBundle(),
         );
 

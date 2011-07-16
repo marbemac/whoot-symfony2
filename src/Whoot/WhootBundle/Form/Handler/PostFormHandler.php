@@ -55,7 +55,7 @@ class PostFormHandler
             if ($wordCount > 5)
             {
                 $wordError = true;
-                $error = new FormError('Can only use 5 words total!');
+                $error = new FormError('You can only use 5 words total!');
                 $this->form->addError($error);
             }
 
@@ -90,6 +90,7 @@ class PostFormHandler
 
                     $post->setWords(null);
                     $post->setCreatedBy($createdBy);
+                    $this->postManager->disableDailyPosts($createdBy);
                     $this->postManager->updatePost($post);
 
                     return true;

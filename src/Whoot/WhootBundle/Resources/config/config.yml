@@ -1,5 +1,6 @@
 imports:
     - { resource: "@WhootUserBundle/Resources/config/config.yml" }
+    - { resource: "@WhootVoteBundle/Resources/config/config.yml" }
 
     - { resource: "@WhootBundle/Resources/config/manager.yml" }
     - { resource: "@WhootBundle/Resources/config/form.xml" }

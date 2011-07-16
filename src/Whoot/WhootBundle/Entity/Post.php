@@ -42,6 +42,12 @@ class Post
     protected $status;
 
     /**
+     * @var integer $score
+     * @ORM\Column(type="integer")
+     */
+    protected $score = 0;
+    
+    /**
      * @var dateTime $updatedAt
      * @ORM\Column(type="datetime", name="updated_at", nullable=true)
      */
@@ -168,6 +174,26 @@ class Post
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set score
+     *
+     * @param integer $score
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+    }
+
+    /**
+     * Get score
+     *
+     * @return integer $score
+     */
+    public function getScore()
+    {
+        return $this->score;
     }
 
     /**

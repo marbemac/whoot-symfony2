@@ -9,7 +9,7 @@
 *   http://en.wikipedia.org/wiki/MIT_License
 *   http://en.wikipedia.org/wiki/GNU_General_Public_License
 *
-* Date: Fri Jul  8 03:46:50 PDT 2011
+* Date: Wed Jul 13 11:48:29 PDT 2011
 */
 
 /*jslint browser: true, onevar: true, undef: true, nomen: true, bitwise: true, regexp: true, newcap: true, immed: true, strict: true */
@@ -45,9 +45,19 @@
 	function log() {
 		log.history = log.history || [];
 		log.history.push(arguments);
+		
+		// Make sure console is present
 		if('object' === typeof console) {
+
+			// Setup console and arguments
 			var c = console[ console.warn ? 'warn' : 'log' ],
-			a = c.apply ? c.apply(console, arguments) : c(Array.prototype.slice.call(arguments));
+			args = Array.prototype.slice.call(arguments), a;
+
+			// Add qTip2 marker to first argument if it's a string
+			if(typeof arguments[0] === 'string') { args[0] = 'qTip2: ' + args[0]; }
+
+			// Apply console.warn or .log if not supported
+			a = c.apply ? c.apply(console, args) : c(args);
 		}
 	}
 
@@ -300,19 +310,19 @@ function QTip(target, options, id, attr)
 	{
 		var elem = elements.title;
 
-		// Remove title if content is FALSE
-		if(elem && content === FALSE) { removeTitle(); }
-		
 		// Make sure tooltip is rendered and if not, return
-		else if(!self.rendered || !content) { return FALSE; }
+		if(!self.rendered || !content) { return FALSE; }
 
 		// Use function to parse content
 		if($.isFunction(content)) {
 			content = content.call(target, cache.event, self) || '';
 		}
 
+		// Remove title if content is FALSE
+		if(elem && content === FALSE) { removeTitle(); }
+
 		// Append new content if its a DOM array and show it if hidden
-		if(content.jquery && content.length > 0) {
+		else if(content.jquery && content.length > 0) {
 			elem.empty().append(content.css({ display: 'block' }));
 		}
 
@@ -498,13 +508,10 @@ function QTip(target, options, id, attr)
 		// If using mouseout/mouseleave as a hide event...
 		if(/mouse(out|leave)/i.test(options.hide.event)) {
 			// Hide tooltips when leaving current window/frame (but not select/option elements)
-			if(options.hide.leave) {
-				targets.window.bind(
-					'mouse' + (options.hide.leave.indexOf('frame') > -1 ? 'out' : 'leave') + namespace,
-					function(event) {
-						if(/select|option/.test(event.target) && !event.relatedTarget) { self.hide(event); }
-					}
-				);
+			if(options.hide.leave === 'window') {
+				targets.window.bind('mouseout' + namespace, function(event) {
+					if(/select|option/.test(event.target) && !event.relatedTarget) { self.hide(event); }
+				});
 			}
 		}
 
@@ -685,7 +692,7 @@ function QTip(target, options, id, attr)
 
 		// Style checks
 		'^style.classes$': function(obj, o, v) { 
-			$.attr(tooltip[0], 'class', uitooltip + ' qtip ui-helper-reset ' + v);
+			tooltip.attr('class', uitooltip + ' qtip ui-helper-reset ' + v);
 		},
 		'^style.widget|content.title': setWidget,
 
@@ -1127,7 +1134,7 @@ function QTip(target, options, id, attr)
 
 						// Optional 'shift' style repositioning
 						if(isShift) {
-							tipAdjust = tip && tip.corner.precedance === 'y' ? tipWidth : 0;
+							tipAdjust = tip && tip.corner && tip.corner.precedance === 'y' ? tipWidth : 0;
 							offset = (my.x === 'left' ? 1 : -1) * myWidth - tipAdjust;
 
 							// Adjust position but keep it within viewport dimensions
@@ -1172,7 +1179,7 @@ function QTip(target, options, id, attr)
 							
 						// Optional 'shift' style repositioning
 						if(isShift) {
-							tipAdjust = tip && tip.corner.precedance === 'x' ? tipHeight : 0;
+							tipAdjust = tip && tip.corner && tip.corner.precedance === 'x' ? tipHeight : 0;
 							offset = (my.y === 'top' ? 1 : -1) * myHeight - tipAdjust;
 
 							// Adjust position but keep it within viewport dimensions
@@ -1714,7 +1721,7 @@ PLUGINS = QTIP.plugins = {
 			while(parent = parent.offsetParent());
 
 			// Compensate for containers scroll if it also has an offsetParent
-			if(container[0] !== docBody || deep > 1) { scroll( container, 1 ); }
+			if(container[0] !== docBody && deep > 1) { scroll( container, 1 ); }
 
 			// Adjust for position.fixed tooltips (and also iOS scroll bug in v3.2 - v4.0)
 			if((PLUGINS.iOS < 4.1 && PLUGINS.iOS > 3.1) || (!PLUGINS.iOS && fixed)) { scroll( $(window), -1 ); }

@@ -1,6 +1,5 @@
 {% if posts|length > 0 %}
 
-    {% set oldestPost = posts[0][0].createdAt|date('U') %}
     <h3>{{ "now-5 hours"|date('l, F j') }}</h3>
     {#<div id="feed-stats">#}
         {#{% set workingCount = posts|countStatus('working') %}#}
@@ -24,7 +23,7 @@
 
         {% for post in posts %}
             <li class="{{ loop.first ? 'first' : '' }}">
-                {% render 'WhootBundle:Post:teaser' with {'postId': post[0].id} %}
+                {% render 'WhootBundle:Post:teaser' with {'postId': post.id} %}
             </li>
         {% else %}
             <li class="none">

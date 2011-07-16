@@ -18,5 +18,7 @@
         {% endfor %}
     </div>
 
+    {% render "WhootVoteBundle:Vote:show" with {'objectId': post.id, 'objectType': 'Post', 'score': post.score} %}
+
     <div class="clear"></div>
 </div>

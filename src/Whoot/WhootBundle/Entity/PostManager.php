@@ -36,11 +36,16 @@ class PostManager
     /**
      * {@inheritDoc}
      */
-    public function deletePost(Post $post)
+    public function deletePost(Post $post, $andFlush=true)
     {
         $post->setStatus('Deleted');
         $this->em->persist($post);
-        $this->em->flush();
+
+        if ($andFlush)
+        {
+            $this->em->flush();
+        }
+        
         return array('result' => 'success');
     }
 
@@ -57,11 +62,12 @@ class PostManager
     public function findPostBy($postId, $createdBy=null, $createdAt=null, $postStatus=null, $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p', 'cb', 'pw', 'w'))
+        $qb->select(array('p', 'cb', 'pw', 'w', 'l'))
            ->from('Whoot\WhootBundle\Entity\Post', 'p')
            ->innerJoin('p.createdBy', 'cb')
            ->leftJoin('p.words', 'pw')
-           ->leftJoin('pw.word', 'w');
+           ->leftJoin('pw.word', 'w')
+           ->leftJoin('p.location', 'l');
 
         if ($postId)
         {
@@ -83,7 +89,7 @@ class PostManager
 
         if ($createdBy)
         {
-            $qb->andWhere('p.createdBy >= :createdBy')
+            $qb->andWhere('p.createdBy = :createdBy')
                ->setParameter('createdBy', $createdBy);
         }
 
@@ -104,13 +110,14 @@ class PostManager
      * @param integer $listId Are we pulling from list users?
      * @param integer $offset
      * @param integer $limit
+     * @param bool $returnObject
      *
      * @return array $posts
      */
-    public function findPostsBy($user, $postTypes, $sortBy, $createdAt, $listId, $offset, $limit)
+    public function findPostsBy($user, $postTypes, $sortBy, $createdAt, $listId, $offset, $limit, $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p', 'cb', '1 AS popularity'))
+        $qb->select(array('p', 'cb'))
            ->from('Whoot\WhootBundle\Entity\Post', 'p')
            ->innerJoin('p.createdBy', 'cb')
 //           ->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status')
@@ -173,7 +180,7 @@ class PostManager
         switch ($sortBy)
         {
             case 'popularity':
-                $qb->orderBy('popularity', 'DESC');
+                $qb->orderBy('p.score', 'DESC');
                 $qb->addOrderBy('p.createdAt', 'DESC');
                 break;
             default:
@@ -202,7 +209,7 @@ class PostManager
         }
 
         $query = $qb->getQuery();
-        $objects = $query->getArrayResult();
+        $objects = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
 
         return $objects;
     }
@@ -312,5 +319,18 @@ class PostManager
 
         ksort($activity);
         return $activity;
+    }
+
+    /*
+     * Disables all posts for the given user for today.
+     */
+    public function disableDailyPosts($user)
+    {
+        $post = $this->findPostBy(null, $user, date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active', true);
+
+        if ($post)
+        {
+            $this->deletePost($post);
+        }
     }
 }

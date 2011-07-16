@@ -17,6 +17,8 @@
 
         <service id="whoot.form.type.post" class="Whoot\WhootBundle\Form\Type\PostFormType">
             <argument>whoot.form.post</argument>
+            <argument type="service" id="whoot.user_manager" />
+            <argument type="service" id="security.context" />
             <tag name="form.type" />
         </service>
 

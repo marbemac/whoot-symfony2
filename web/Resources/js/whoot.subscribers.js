@@ -77,6 +77,18 @@ $(function(){
     });
 
     /*
+     * VOTING
+     */
+    // Listens to votes being registered.
+    amplify.subscribe("vote_toggle", function( data ) {
+        // Turn the scorebox voted button on/off
+        $('.sb-'+data.objectId+' .v').toggleClass('on');
+
+        // Update the objects scores
+        $('.s-'+data.objectId).text(data.objectNewScore);
+    });
+
+    /*
      * COMMENTS
      */
     amplify.subscribe("comment_created", function( data ) {

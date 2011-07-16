@@ -63,6 +63,11 @@ class Location
         $this->users = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->cityName.', '.$this->getStateCode();
+    }
+
     /**
      * @param string $cityName
      * @return void

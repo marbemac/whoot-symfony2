@@ -1,6 +1,10 @@
 user:
     resource: "@WhootUserBundle/Resources/config/routing/routing.yml"
 
+vote:
+    resource: "@WhootVoteBundle/Resources/config/routing/routing.yml"
+    prefix:   /v
+    
 post:
     resource: "@WhootBundle/Resources/config/routing/post.yml"
     prefix:   /p

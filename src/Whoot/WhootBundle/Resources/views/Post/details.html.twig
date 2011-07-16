@@ -9,6 +9,8 @@
                     </a>
                     {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': vote.voter} %}
                 </li>
+            {% else %}
+                <li class="none">No +1's yet</li>
             {% endfor %}
         </ul>
     </div>

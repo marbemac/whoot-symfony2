@@ -59,10 +59,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="details.html.twig" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="details.html.twig" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/details.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="39" selection-start="747" selection-end="747" vertical-scroll-proportion="0.22495607">
+            <state line="22" column="6" selection-start="1056" selection-end="1056" vertical-scroll-proportion="-14.08">
               <folding />
             </state>
           </provider>
@@ -104,10 +104,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_post.scss" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="_post.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="540" column="5" selection-start="12127" selection-end="12127" vertical-scroll-proportion="0.0">
+            <state line="497" column="16" selection-start="11416" selection-end="11416" vertical-scroll-proportion="0.67411864">
               <folding />
             </state>
           </provider>
@@ -141,8 +141,8 @@
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/Post.php" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/Invite.php" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/PostManager.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/details.html.twig" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss" />
       </list>
     </option>
   </component>
@@ -1200,16 +1200,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/details.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="540" column="5" selection-start="12127" selection-end="12127" vertical-scroll-proportion="0.0">
+        <state line="22" column="6" selection-start="1056" selection-end="1056" vertical-scroll-proportion="-14.08">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/details.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="39" selection-start="747" selection-end="747" vertical-scroll-proportion="0.22495607">
+        <state line="497" column="16" selection-start="11416" selection-end="11416" vertical-scroll-proportion="0.67411864">
           <folding />
         </state>
       </provider>

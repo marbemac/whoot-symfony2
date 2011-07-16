@@ -444,6 +444,7 @@ $post-hover-color: #E7EDFF;
 .teaser.post {
     font-size: 16px;
     position: relative;
+    padding: 1px 0 3px 0;
     .profile-image {
         float: left;
         position: relative;
@@ -495,7 +496,7 @@ $post-hover-color: #E7EDFF;
     .scoreC {
         position: absolute;
         right: 5px;
-        top: 14px;
+        top: 16px;
     }
 }
 
@@ -533,6 +534,7 @@ $post-hover-color: #E7EDFF;
 
     .left {
         float: left;
+        min-height: 75px;
         width: $left-column-width;
 
         .head {
@@ -553,6 +555,10 @@ $post-hover-color: #E7EDFF;
         li {
             margin: 5px 0 0 0;
             border: none;
+        }
+        .none {
+            font-style: italic;
+            font-size: 12px;
         }
         .profile-image {
             margin: 0;

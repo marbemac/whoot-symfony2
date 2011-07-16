@@ -37,10 +37,22 @@ class Word
     protected $slug;
 
     /**
+     * @var integer $score
+     * @ORM\Column(type="integer")
+     */
+    protected $score = 0;
+    
+    /**
      * @var bool $trendable
      * @ORM\Column(type="boolean")
      */
-    protected $trendable = true;
+    protected $trendable = false;
+
+    /**
+     * @var bool $trendable
+     * @ORM\Column(type="boolean")
+     */
+    protected $isStopWord = false;
 
     /**
      * @var dateTime $createdAt
@@ -110,6 +122,26 @@ class Word
         return $this->slug;
     }
 
+    /**
+     * Set score
+     *
+     * @param integer $score
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+    }
+
+    /**
+     * Get score
+     *
+     * @return integer $score
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
     public function getTrendable()
     {
         return $this->trendable;
@@ -118,6 +150,16 @@ class Word
     public function setTrendable($trendable)
     {
         $this->trendable = $trendable;
+    }
+
+    public function getIsStopWord()
+    {
+        return $this->isStopWord;
+    }
+
+    public function setIsStopWord($isStopWord)
+    {
+        $this->isStopWord = $isStopWord;
     }
 
     /**

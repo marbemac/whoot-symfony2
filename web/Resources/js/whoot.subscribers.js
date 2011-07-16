@@ -103,6 +103,16 @@ $(function(){
     });
 
     /*
+     * WORDS
+     */
+    amplify.subscribe("make_word_trendable", function( data ) {
+        $('.w-'+data.wordId).prependTo($('#admin-trendable'));
+    });
+    amplify.subscribe("make_word_stopword", function( data ) {
+        $('.w-'+data.wordId).prependTo($('#admin-stopword'));
+    });
+
+    /*
      * LISTS
      */
 

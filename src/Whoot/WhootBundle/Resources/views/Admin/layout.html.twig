@@ -1,0 +1,14 @@
+{% extends 'WhootBundle::base.html.twig' %}
+
+{% block title %}
+    Admin
+{% endblock %}
+
+{% block feed_filters %}
+    <h1 class="admin-head">The Whoot Administration</h1>
+
+    <div class="admin-nav">
+        <a href="{{ path('admin_home') }}" class="{{ page == 'home' ? 'on' : ''}}">Admin Home</a>
+        <a href="{{ path('admin_manage_trending') }}" class="{{ page == 'trending' ? 'on' : ''}}">Manage Trending Words</a>
+    </div>
+{% endblock %}

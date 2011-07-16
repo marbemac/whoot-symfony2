@@ -1,0 +1,14 @@
+<div class="trendingWords">
+    <h4 class="head">Trending in {{ location.getCityName()~', '~location.getStateCode() }} on this fine {{ "now-5 hours"|date('l') }} night</h4>
+    <div class="words">
+        {% if ("now"|date('G') >= 20 and "now"|date('G') <= 5) or is_granted('ROLE_ADMIN') %}
+            {% for word in trendingWords %}
+                {% include "WhootBundle:Word:teaser.html.twig" with {'word': word[0]} %}
+            {% else %}
+               <div class="none">Hmm... nothing is trending. People, start posting!</div>
+            {% endfor %}
+        {% else %}
+            <div class="none">Check back at 8PM to see what's trending in {{ location.getCityName() }} tonight</div>
+        {% endif %}
+    </div>
+</div>

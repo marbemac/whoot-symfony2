@@ -45,6 +45,10 @@ user_api:
     resource: "@WhootUserBundle/Resources/config/routing/api.yml"
     prefix:   /api/user
 
+admin:
+    resource: "@WhootBundle/Resources/config/routing/admin.yml"
+    prefix:   /admin
+
 feed_filter_toggle:
     pattern:  /ac/tf/{postType}
     defaults: { _controller: WhootBundle:Core:toggleFeedFilter }

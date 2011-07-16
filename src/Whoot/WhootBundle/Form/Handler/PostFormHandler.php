@@ -77,7 +77,7 @@ class PostFormHandler
                     {
                         if (strlen(trim($word['content'])) > 0)
                         {
-                            $found = $this->wordManager->findWordBy($word['content'], true);
+                            $found = $this->wordManager->findWordBy($word['content'], array(), true);
                             if (!$found)
                             {
                                 $found = $this->wordManager->createWord();

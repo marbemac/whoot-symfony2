@@ -32,7 +32,7 @@
 
         <div class="words">
             {% for word in myPost.words %}
-                {% include "WhootBundle:Word:teaser.html.twig" with {'word': word} %}
+                {% include "WhootBundle:Word:teaser.html.twig" with {'word': word.word} %}
             {% else %}
                 Hmm... no words. How did you do this?!
             {% endfor %}

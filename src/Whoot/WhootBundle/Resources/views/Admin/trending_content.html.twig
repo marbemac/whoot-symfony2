@@ -1,0 +1,45 @@
+<div class="manage-trending">
+
+    <h4>Uncategorized Words</h4>
+    <ul>
+        {% for word in uncategorizedWords %}
+            {% if word[0].content %}
+                <li class="w-{{ word[0].id }}">
+                    <div class="word"><div>{{ word[0].content }}</div> ({{ word[0].score }} popularity)</div>
+                    <a class="ac" href="{{ path('admin_make_trendable', {'wordId': word[0].id}) }}">Make Trendable</a>
+                    <a class="ac" href="{{ path('admin_make_stopword', {'wordId': word[0].id}) }}">Make Stop Word</a>
+                </li>
+            {% endif %}
+        {% else %}
+            <li class="none">No uncategorized words. Yahoo.</li>
+        {% endfor %}
+    </ul>
+
+    <h4>Trendable Words</h4>
+    <ul id="admin-trendable">
+        {% for word in trendableWords %}
+            {% if word[0].content %}
+                <li class="w-{{ word[0].id }}">
+                    <div class="word"><div>{{ word[0].content }}</div> ({{ word[0].score }} popularity)</div>
+                    <a class="ac" href="{{ path('admin_make_stopword', {'wordId': word[0].id}) }}">Make Stop Word</a>
+                </li>
+            {% endif %}
+        {% else %}
+            <li class="none">No trendable words...</li>
+        {% endfor %}
+    </ul>
+
+    <h4>Stop Words</h4>
+    <ul id="admin-stopwords">
+        {% for word in stopWords %}
+            {% if word[0].content %}
+                <li class="w-{{ word[0].id }}">
+                    <div class="word"><div>{{ word[0].content }}</div> ({{ word[0].score }} popularity)</div>
+                    <a class="ac" href="{{ path('admin_make_trendable', {'wordId': word[0].id}) }}">Make Trendable</a>
+                </li>
+            {% endif %}
+        {% else %}
+            <li class="none">No stop words...</li>
+        {% endfor %}
+    </ul>
+</div>

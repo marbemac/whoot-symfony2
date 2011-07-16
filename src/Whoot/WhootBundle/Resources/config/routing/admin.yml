@@ -1,0 +1,26 @@
+admin_manage_trending:
+    pattern:  /trending
+    defaults:
+        _controller: WhootBundle:Admin:trending
+    requirements:
+        _method: GET
+
+admin_make_trendable:
+    pattern:  /trending/add/{wordId}
+    defaults:
+        _controller: WhootBundle:Word:makeTrendable
+    requirements:
+        _method: POST
+
+admin_make_stopword:
+    pattern:  /stopword/add/{wordId}
+    defaults:
+        _controller: WhootBundle:Word:makeStopword
+    requirements:
+        _method: POST
+
+admin_home:
+    pattern:  /
+    defaults: { _controller: WhootBundle:Admin:home }
+    requirements:
+        _method: GET

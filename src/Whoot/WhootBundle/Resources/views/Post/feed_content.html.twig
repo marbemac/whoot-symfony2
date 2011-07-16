@@ -1,8 +1,6 @@
-{#{% render "WhootBundle:Word:trending" %}#}
+{% render "WhootBundle:Word:trending" %}
 
 {% if posts|length > 0 %}
-
-    <h3>{{ "now-5 hours"|date('l, F j') }}</h3>
     {#<div id="feed-stats">#}
         {#{% set workingCount = posts|countStatus('working') %}#}
         {#{% set lowInCount = posts|countStatus('low_in') %}#}

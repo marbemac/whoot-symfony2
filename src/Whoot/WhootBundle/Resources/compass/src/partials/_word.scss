@@ -20,7 +20,7 @@ Purpose of the stylesheet follows.
 
 .word-filters {
     @include clearfix();
-    margin: 10px 0 15px 10px;
+    margin: 10px 0 15px 15px;
     display: none;
     
     .head {
@@ -46,5 +46,27 @@ Purpose of the stylesheet follows.
         &:hover {
             color: red;
         }
+    }
+}
+
+.trendingWords {
+
+    .head {
+        margin: 0 0 2px 18px;
+    }
+    .words {
+        @include border-radius(5px);
+        @include clearfix();
+        background: #f9f9f9;
+        padding: 5px 10px;
+        margin: 0 10px 10px 10px;
+    }
+    .word {
+        float: left;
+        margin: 0 10px 0 0;
+    }
+    .none {
+        font-style: italic;
+        font-size: 12px;
     }
 }

@@ -16,7 +16,7 @@
     </div>
 
     <div class="right">
-        <h4 class="location">Posted in {{ post.location.id is defined and post.location.id ? post.location.cityName~', '~post.location.stateCode : '' }}</h4>
+        <h4 class="location">Posted in {{ post.location.id is defined and post.location.id ? post.location.cityName~', '~post.location.stateCode : 'Outer Space' }}</h4>
         {% include "WhootBundle:Post:activity.html.twig" with {'post': post, 'activity': activity} %}
     </div>
     <div class="clear"></div>

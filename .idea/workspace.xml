@@ -95,19 +95,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="details.html.twig" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="details.html.twig" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/details.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="744" selection-end="744" vertical-scroll-proportion="-8.96">
+            <state line="18" column="159" selection-start="940" selection-end="940" vertical-scroll-proportion="0.25307557">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="whoot.preload.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="whoot.preload.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.preload.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="44" selection-start="681" selection-end="681" vertical-scroll-proportion="0.27515048">
+            <state line="28" column="28" selection-start="862" selection-end="862" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -141,8 +141,8 @@
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Form/Handler/PostFormHandler.php" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/WordManager.php" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Word/trending.html.twig" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/details.html.twig" />
         <option value="$PROJECT_DIR$/web/Resources/js/whoot.preload.js" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/details.html.twig" />
       </list>
     </option>
   </component>
@@ -1720,16 +1720,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/details.html.twig">
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.preload.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="744" selection-end="744" vertical-scroll-proportion="-8.96">
+        <state line="28" column="28" selection-start="862" selection-end="862" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.preload.js">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/details.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="44" selection-start="681" selection-end="681" vertical-scroll-proportion="0.27515048">
+        <state line="18" column="159" selection-start="940" selection-end="940" vertical-scroll-proportion="0.25307557">
           <folding />
         </state>
       </provider>

@@ -534,6 +534,10 @@ $post-hover-color: #E7EDFF;
     .left {
         float: left;
         width: $left-column-width;
+
+        .head {
+            font-weight: bold;
+        }
     }
     .post-map {
         @include border-radius(5px);
@@ -545,7 +549,7 @@ $post-hover-color: #E7EDFF;
     .num-people {
         margin: 5px 0 10px 5px;
     }
-    .users {
+    .voters {
         li {
             margin: 5px 0 0 0;
             border: none;
@@ -557,15 +561,14 @@ $post-hover-color: #E7EDFF;
                 @include border-radius(5px);
             }
         }
-        .user {
+        .user-link {
             margin: 0;
-            padding: 0 0 0 10px;
+            padding: 0 0 0 5px;
             position: relative; bottom: 7px;
         }
     }
 
     h4 {
-        margin: 6px 0 0 0;
     }
     h5 {
         color: #666;
@@ -575,8 +578,6 @@ $post-hover-color: #E7EDFF;
         margin: 0 0 0 3px;
     }
     .activity-list {
-        border-top: 1px solid #DDD;
-        padding-top: 10px;
     }
 
     &.normal {

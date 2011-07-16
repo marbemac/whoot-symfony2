@@ -62,12 +62,14 @@ class PostManager
     public function findPostBy($postId, $createdBy=null, $createdAt=null, $postStatus=null, $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p', 'cb', 'pw', 'w', 'l'))
+        $qb->select(array('p', 'cb', 'pw', 'w', 'l', 'v', 'vcb'))
            ->from('Whoot\WhootBundle\Entity\Post', 'p')
            ->innerJoin('p.createdBy', 'cb')
            ->leftJoin('p.words', 'pw')
            ->leftJoin('pw.word', 'w')
-           ->leftJoin('p.location', 'l');
+           ->leftJoin('p.location', 'l')
+           ->leftJoin('p.votes', 'v')
+           ->leftJoin('v.voter', 'vcb');
 
         if ($postId)
         {

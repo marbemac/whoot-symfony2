@@ -130,22 +130,31 @@ class Invite
 
 
     /**
-     * @var Limelight\LimelightBundle\Entity\User
+     * @var Whoot\WhootBundle\Entity\Post
      *
      * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\Post", mappedBy="invite", cascade={"persist"})
      */
     protected $posts;
 
     /**
-     * @var Limelight\LimelightBundle\Entity\User
+     * @var Whoot\WhootBundle\Entity\Comment
      *
      * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\Comment", mappedBy="post", cascade={"persist"})
      */
     protected $comments;
 
+
+    /**
+     * @var Whoot\VoteBundle\Entity\Vote
+     *
+     * @ORM\OneToMany(targetEntity="Whoot\VoteBundle\Entity\Vote", mappedBy="invite")
+     */
+    protected $votes;
+
     public function __construct() {
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->votes = new ArrayCollection();
         $this->status = 'Active';
     }
 
@@ -448,6 +457,26 @@ class Invite
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set a vote
+     *
+     * @param Whoot\VoteBundle\Entity\Vote $vote
+     */
+    public function setVote($vote)
+    {
+        $this->votes[] = $vote;
+    }
+
+    /**
+     * Get votes
+     *
+     * @return Whoot\VoteBundle\Entity\Vote $votes
+     */
+    public function getVotes()
+    {
+        return $this->votes;
     }
 
     /**

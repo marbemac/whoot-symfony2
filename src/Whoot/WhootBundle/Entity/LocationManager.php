@@ -79,15 +79,16 @@ class LocationManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('l'))
-           ->from('Whoot\WhootBundle\Entity\Location', 'l')
-           ->where('l.user = :toUser AND l.status = :status');
+           ->from('Whoot\WhootBundle\Entity\Location', 'l');
 
         foreach ($criteria as $key => $val)
         {
-            $qb->andWhere('l.'.$key.' = :'.$key);
-        }
-        $qb->setParameters($criteria);
+            $qb->andWhere('l.'.$key.' = :'.$key)
+               ->setParameter($key, $val);
 
+        }
+        $qb->orderBy('l.cityName', 'ASC');
+        
         $query = $qb->getQuery();
         return $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
     }

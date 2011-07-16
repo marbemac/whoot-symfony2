@@ -91,7 +91,9 @@ Purpose of the stylesheet follows.
     background: #000;
     height: 100%;
     position: absolute;
-    top: 0px; left: 0px;
+    top: 0px;
+    left: 0px;
+    z-index: 95;
 
     $options-w: 600px;
     .options {

@@ -47,6 +47,12 @@ $(function(){
         }
     });
 
+    amplify.subscribe("location_updated", function( data ) {
+        $('#collect-info-box').fadeOut(200, function() {
+            $(this).remove();
+        })
+    });
+
     /*
      * POSTS
      */

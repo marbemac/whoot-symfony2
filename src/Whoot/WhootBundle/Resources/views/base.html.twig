@@ -84,6 +84,7 @@
                                 {% block user_sidebar %}{% endblock %}
                                 {% block page %}
                                     <div id="page_content">
+                                        {% render "WhootUserBundle:Profile:collectInfo" %}
                                         {% if app.request.attributes.get('_route') == 'homepage' %}
                                             {% render "WhootBundle:Core:postBox" %}
                                         {% endif %}

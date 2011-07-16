@@ -16,6 +16,12 @@ fos_user_security:
 ###
 
 ### PROFILE
+user_update_location:
+    pattern:  /update-location
+    defaults: { _controller: WhootUserBundle:Profile:updateLocation }
+    requirements:
+        _method: POST
+
 user_upload_picture:
     pattern:  /upload-picture
     defaults: { _controller: WhootUserBundle:Profile:uploadPicture }

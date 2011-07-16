@@ -306,6 +306,66 @@ class ProfileController extends ContainerAware
         ), $response);
     }
 
+    /*
+     * Check to see if th user has filled in all required account info.
+     * Show a collection screen if not.
+     */
+    public function collectInfoAction()
+    {
+        $response = new Response();
+        $response->setCache(array(
+        ));
+
+        // Check that the Response is not modified for the given Request
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+//            return $response;
+        }
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $collect = array();
+        if (!$user->getLocation())
+        {
+            $locations = $this->container->get('whoot.location_manager')->findLocationsBy(array());
+            $collect['location'] = $locations;
+        }
+
+        return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:collect_info.html.twig', array(
+            'collect' => $collect
+        ), $response);
+    }
+
+    public function updateLocationAction()
+    {
+        $coreManager = $this->container->get('whoot.core_manager');
+        $login = $coreManager->mustLogin();
+        if ($login)
+        {
+            return $login;
+        }
+
+        $request = $this->container->get('request');
+        $location = $request->request->get('location', null);
+        $location = $this->container->get('whoot.location_manager')->findLocationBy(array('id' => $location), true);
+        if (!$location)
+            return null;
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $user->setLocation($location);
+        $this->container->get('whoot.user_manager')->updateUser($user);
+
+        $result = array();
+        $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());
+        $result['feed'] = $feed->getContent();
+        $result['result'] = 'success';
+        $result['event'] = 'location_updated';
+        $result['flash'] = array('type' => 'success', 'message' => 'Your location has been updated.');
+        $response = new Response(json_encode($result));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
     public function searchAction()
     {
         return new Response();

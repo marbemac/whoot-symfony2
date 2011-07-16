@@ -18,7 +18,7 @@ var resizeLayout = function()
                                 parseInt($('#feed-filters').css('margin-bottom').replace("px", "")) +
                                 parseInt($('#feed-filters').css('padding-bottom').replace("px", ""))*2;
         }
-        $('#page_content').css('height', h-$feedFiltersAdjust-parseInt($('#page_content').css('margin-bottom').replace('px', '')));
+        $('#page_content').css('height', h+7-$feedFiltersAdjust-parseInt($('#page_content').css('margin-bottom').replace('px', '')));
     }
 }
 

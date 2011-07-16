@@ -1,5 +1,5 @@
 <div class="trendingWords">
-    <h4 class="head">Trending in {{ location.getCityName()~', '~location.getStateCode() }} on this fine {{ "now-5 hours"|date('l') }} night</h4>
+    <h4 class="head">Trending in {{ location is defined ? location.getCityName()~', '~location.getStateCode() : 'Outer Space' }} on this fine {{ "now-5 hours"|date('l') }} night</h4>
     <div class="words">
         {% if ("now"|date('G') >= 20 and "now"|date('G') <= 5) or is_granted('ROLE_ADMIN') %}
             {% for word in trendingWords %}
@@ -8,7 +8,7 @@
                <div class="none">Hmm... nothing is trending. People, start posting!</div>
             {% endfor %}
         {% else %}
-            <div class="none">Check back at 8PM to see what's trending in {{ location.getCityName() }} tonight</div>
+            <div class="none">Check back at 8PM to see what's trending in {{ location is defined ? location.getCityName() : 'Outer Space' }} tonight</div>
         {% endif %}
     </div>
 </div>

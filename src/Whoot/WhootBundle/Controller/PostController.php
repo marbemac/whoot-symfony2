@@ -179,7 +179,7 @@ class PostController extends ContainerAware
         ), $response);
     }
 
-    public function postDetailsAction($postId, $_format='html')
+    public function detailsAction($postId, $_format='html')
     {
         $response = new Response();
         $response->setCache(array(
@@ -191,13 +191,13 @@ class PostController extends ContainerAware
         }
 
         $post = $this->container->get('whoot.post_manager')->findPostBy($postId, null, null, 'Active', false);
-        $activity = $this->container->get('whoot.post_manager')->buildActivity($post);
+        $comments = $this->container->get('whoot.comment_manager')->findCommentsBy($postId, null);
 
         if ($_format == 'json')
         {
             return $this->container->get('templating')->renderResponse('WhootBundle:Post:details.json.twig', array(
                 'post' => $post,
-                'activity' => $activity
+                'comments' => $comments
             ), $response);
         }
 
@@ -207,7 +207,7 @@ class PostController extends ContainerAware
             $result['status'] = 'success';
             $result['details'] = $this->container->get('templating')->render('WhootBundle:Post:details.html.twig', array(
                                     'post' => $post,
-                                    'activity' => $activity
+                                    'comments' => $comments
                                  ));
 
             $response = new Response(json_encode($result));
@@ -218,7 +218,7 @@ class PostController extends ContainerAware
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:details.html.twig', array(
             'post' => $post,
-            'activity' => $activity
+            'comments' => $comments
         ), $response);
     }
 }

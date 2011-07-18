@@ -60,13 +60,9 @@ class WordManager
 
         $query = $qb->getQuery();
         $query->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true);
-        try {
-            $word = $query->getSingleResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
-        } catch (\Doctrine\Orm\NoResultException $e) {
-            $word = null;
-        }
+        $word = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
 
-        return $word;
+        return isset($word[0]) ? $word[0] : null;
     }
 
     public function findWordsBy($content, $returnObject=false)
@@ -80,13 +76,9 @@ class WordManager
 
         $query = $qb->getQuery();
         $query->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true);
-        try {
-            $word = $query->getSingleResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
-        } catch (\Doctrine\Orm\NoResultException $e) {
-            $word = null;
-        }
+        $words = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
 
-        return $word;
+        return $words;
     }
 
     public function linkPostWord(Post $post, Word $word)

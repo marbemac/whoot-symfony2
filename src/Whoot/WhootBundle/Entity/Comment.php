@@ -76,6 +76,12 @@ class Comment
      */
     protected $post;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Invite", inversedBy="comments")
+     * @ORM\JoinColumn(name="invite_id", referencedColumnName="id")
+     */
+    protected $invite;
+
     public function __construct() {
         $this->status = 'Active';
     }
@@ -228,6 +234,22 @@ class Comment
     public function setPost($post)
     {
         $this->post = $post;
+    }
+
+    /**
+     * @return invite $invite
+     */
+    public function getInvite()
+    {
+        return $this->invite;
+    }
+
+    /**
+     * @param invite $invite
+     */
+    public function setInvite($invite)
+    {
+        $this->invite = $invite;
     }
 
     /**

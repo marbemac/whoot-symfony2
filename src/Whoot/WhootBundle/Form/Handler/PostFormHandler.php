@@ -73,15 +73,17 @@ class PostFormHandler
                 if ($this->form->isValid())
                 {
                     // Create the words and links if necessary
+                    $usedWords = array();
                     foreach ($params['whoot_post_form']['words'] as $word)
                     {
                         if (strlen(trim($word['content'])) > 0)
                         {
                             $found = $this->wordManager->findWordBy($word['content'], array(), true);
-                            if (!$found)
+                            if (!$found && !in_array(trim($word['content']), $usedWords))
                             {
                                 $found = $this->wordManager->createWord();
                                 $found->setContent($word['content']);
+                                $usedWords[] = trim($word['content']);
                             }
 
                             $this->wordManager->linkPostWord($post, $found);

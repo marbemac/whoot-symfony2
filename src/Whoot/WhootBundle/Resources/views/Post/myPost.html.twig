@@ -1,28 +1,28 @@
 {% if myPost is not none %}
-    <div id="my-post" data-target="#post-{{ myPost.id }}">
+    <div id="my-post" class="{{ myPost.invite.id is defined ? 'invite' : '' }}" data-target="#post-{{ myPost.id }}">
         <h3>
             {{ myPost.type|printPostTypeShort() }}
         </h3>
-        {% if false %}
+        {% if myPost.invite.id is defined and app.user.id == myPost.invite.createdBy.id %}
             <div id="cancel-post">Cancel</div>
             <div class="hide">
-                {#<div id="invite-cancel-confirm">#}
-                    {#<div class="num">#}
-                        {#{% if myPost.users|conditionalLength('status', 'Active') > 1 %}#}
-                            {#{{ myPost.users|conditionalLength('status', 'Active')-1 }}#}
-                            {#people have jived your post. The invite will be cancelled for them as well!#}
-                        {#{% else %}#}
-                            {#Looks like your invite wasn't very popular huh? Go ahead, cancel away...#}
-                        {#{% endif %}#}
-                    {#</div>#}
-                    {#<div class="noundo">#}
-                        {#You cannot undo this action!#}
-                    {#</div>#}
-                    {#<div class="actions">#}
-                        {#<a class="submit ac" href="{{ path('post_cancel') }}">Confirm Cancellation</a>#}
-                        {#<div class="cancel">Nevermind</div>#}
-                    {#</div>#}
-                {#</div>#}
+                <div id="invite-cancel-confirm">
+                    <div class="num">
+                        {% if myPost.invite.attending > 1 %}
+                            {{ myPost.invite.attending-1 }}
+                            people have indicated they are attending your open invite. The invite will be cancelled for them as well!
+                        {% else %}
+                            Looks like your invite wasn't very popular huh? Go ahead, cancel away...
+                        {% endif %}
+                    </div>
+                    <div class="noundo">
+                        You cannot undo this action!
+                    </div>
+                    <div class="actions">
+                        <a class="submit ac" href="{{ path('invite_cancel') }}">Confirm Cancellation</a>
+                        <div class="cancel">Nevermind</div>
+                    </div>
+                </div>
             </div>
         {% else %}
             <div id="change-post">Change</div>
@@ -30,13 +30,27 @@
 
         <div class="clear"></div>
 
-        <div class="words">
-            {% for word in myPost.words %}
-                {% include "WhootBundle:Word:teaser.html.twig" with {'word': word.word} %}
+        {% if myPost.invite.id is defined %}
+            {% if myPost.invite.createdBy.id == app.user.id %}
+                <a href="{{ path('invite_show', {'inviteId': myPost.invite.id}) }}">
+                    You're inviting people out to {{ myPost.invite.venue }}.
+                    {{ myPost.invite.attending-1 }} people are attending.
+                </a>
             {% else %}
-                Hmm... no words. How did you do this?!
-            {% endfor %}
-        </div>
+                <a href="{{ path('invite_show', {'inviteId': myPost.invite.id}) }}">
+                    You're attending {{ myPost.invite.createdBy.firstName ~ ' ' ~ myPost.invite.createdBy.lastName }}'s
+                    open invite at {{ myPost.invite.venue }}.
+                </a>
+            {% endif %}
+        {% else %}
+            <div class="words">
+                {% for word in myPost.words %}
+                    {% include "WhootBundle:Word:teaser.html.twig" with {'word': word.word} %}
+                {% else %}
+                    Hmm... no words. How did you do this?!
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 {% else %}
     <div id="my-post">

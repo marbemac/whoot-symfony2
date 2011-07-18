@@ -129,11 +129,11 @@ $(function() {
     // Toggle new post options
     $('#post-box .type').live('click', function() {
         $(this).addClass('on').siblings('.type').removeClass('on');
-        $('#whoot_post_form_type').val($(this).data('val'));
+        $('#whoot_post_form_type,#whoot_invite_form_type').val($(this).data('val'));
     })
 
     // Scroll to my post
-    $('#my-post').live('click', function(ev) {
+    $('#my-post:not(.invite)').live('click', function(ev) {
         if ($(ev.target).attr('id') == 'change-post' || $(ev.target).attr('id') == 'cancel-post')
             return;
 
@@ -183,22 +183,6 @@ $(function() {
             $('.post_create .errors').text('You must input 1 - 5 words! Be sure to press enter after inputting them.');
         }
 
-//        if ($('#post-box .open-invite-toggle').hasClass('on')) {
-//            $payload['venue'] = $('#post-venue').val();
-//            $payload['address'] = $('#post-address').val();
-//            $payload['address_lat'] = $('#post-address-lat').val();
-//            $payload['address_lon'] = $('#post-address-lon').val();
-//            $payload['time'] = $('#post-time').val();
-//
-//            $('.invite-req, #post-address').each(function(index) {
-//                $(this).prev().css('color', '#000');
-//                if (!$(this).val() || $(this).val() == 'Enter a location') {
-//                    $error_flag = true;
-//                    $(this).prev().css('color', 'red');
-//                }
-//            })
-//        }
-
         if ($error_flag) {
             $self.text('Submit Post');
             postSubmit = false;
@@ -243,38 +227,35 @@ $(function() {
                 }, 'json')
     })
 
-    // Toggle the + Open Invite in the post box
-    $('.open-invite-toggle').live('click', function() {
+    // Switch between normal post and open invite submission in the post box
+    $('#post-box .nav div').live('click', function() {
         var $self = $(this);
-        if ($self.hasClass('on')) {
-            $self.removeClass('on').text('+ Open Invite').siblings('textarea').prev().text('Optional Note');
-        }
-        else {
-            $self.addClass('on').text('- Open Invite').siblings('textarea').prev().text('Invite Description');
-        }
-
-        $('.open-invite-C').toggle();
+        $('#post-box .post, #post-box .invite').hide();
+        $self.addClass('on').siblings().removeClass('on');
+        $($self.data('target')).show();
     })
 
     // Show the post-where places autocomplete
-    $('#post-address').livequery(function() {
+    $('#whoot_invite_form_address').livequery(function() {
         var $self = $(this);
-        var bounds = new google.maps.LatLngBounds(
-                new google.maps.LatLng($self.data('lat'), $self.data('lon')),
-                new google.maps.LatLng($self.data('lat'), $self.data('lon')));
-        var $auto = new google.maps.places.Autocomplete(document.getElementById('post-address'), {bounds: bounds});
+//        var bounds = new google.maps.LatLngBounds(
+//                new google.maps.LatLng($self.data('lat'), $self.data('lon')),
+//                new google.maps.LatLng($self.data('lat'), $self.data('lon')));
+//        var $auto = new google.maps.places.Autocomplete(document.getElementById('post-address'), {bounds: bounds});
+        var $auto = new google.maps.places.Autocomplete(document.getElementById('whoot_invite_form_address'));
 
         // Handle a place choice
         google.maps.event.addListener($auto, 'place_changed', function() {
             var place = $auto.getPlace();
-            $('#post-address-name').val(place.formatted_address);
-            $('#post-address-lat').val(place.geometry.location.Ha);
-            $('#post-address-lon').val(place.geometry.location.Ia);
+            console.log(place);
+            $('#whoot_invite_form_address').val(place.formatted_address);
+            $('#whoot_invite_form_lat').val(place.geometry.location.Ka);
+            $('#whoot_invite_form_lon').val(place.geometry.location.La);
         })
     })
 
     // Draw on post maps
-    $('.post-map').livequery(function() {
+    $('.invite-map').livequery(function() {
         var $self = $(this);
 
         var latlng = new google.maps.LatLng($self.data('lat'), $self.data('lon'));

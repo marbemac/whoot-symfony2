@@ -20,7 +20,7 @@ class CommentController extends ContainerAware
     /**
      * Show the new form
      */
-    public function newAction($postId=null)
+    public function newAction($rootId=null, $type=null)
     {
         $coreManager = $this->container->get('whoot.core_manager');
         $login = $coreManager->mustLogin();
@@ -61,7 +61,7 @@ class CommentController extends ContainerAware
                 $result = array();
                 $result['event'] = 'comment_created';
                 $result['flash'] = array('type' => 'notice', 'message' => $flashMessage);
-                $result['postId'] = $comment->getPost()->getId();
+                $result['rootId'] = $comment->getPost() ? $comment->getPost()->getId() : $comment->getInvite()->getId();
                 $result['comment'] = $templating->render('WhootBundle:Comment:teaser.html.twig', array('comment' => $comment));
                 $response = new Response(json_encode($result));
                 $response->headers->set('Content-Type', 'application/json');
@@ -85,7 +85,8 @@ class CommentController extends ContainerAware
 
         return $templating->renderResponse('WhootBundle:Comment:new.html.twig', array(
             'form' => $form->createView(),
-            'postId' => $postId
+            'rootId' => $rootId,
+            'type' => $type
         ));
     }
 

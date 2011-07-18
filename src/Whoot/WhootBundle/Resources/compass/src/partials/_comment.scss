@@ -8,7 +8,7 @@ Purpose of the stylesheet follows.
 
 .comment_new {
     @include clearfix();
-    margin: 0 0 10px 88px;
+    margin: 0 0 10px 10px;
 
     img {
         @include border-radius(3px);

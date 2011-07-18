@@ -5,10 +5,14 @@ vote:
     resource: "@WhootVoteBundle/Resources/config/routing/routing.yml"
     prefix:   /v
     
+invite:
+    resource: "@WhootBundle/Resources/config/routing/invite.yml"
+    prefix:   /i
+    
 post:
     resource: "@WhootBundle/Resources/config/routing/post.yml"
     prefix:   /p
-    
+
 post_api:
     resource: "@WhootBundle/Resources/config/routing/post_api.yml"
     prefix:   /api/post

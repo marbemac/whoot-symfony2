@@ -63,12 +63,6 @@ $(function(){
         $('#my-post').replaceWith(data.myPost);
     });
 
-    amplify.subscribe("post_cancelled", function( data ) {
-        $('#cancel-post').colorbox.remove();
-
-        $('#my-post').replaceWith(data.myPost);
-    });
-
     amplify.subscribe("jive_toggle", function( data ) {
         $('#my-post').replaceWith(data.myPost);
 
@@ -99,7 +93,7 @@ $(function(){
      */
     amplify.subscribe("comment_created", function( data ) {
         $('.comment_new .content').val($('.comment_new .content').data('default'));
-        $('#post-'+data.postId).next().find('.activity-list').append(data.comment);
+        $('.cf-'+data.rootId).append(data.comment);
     });
 
     /*
@@ -111,6 +105,26 @@ $(function(){
     amplify.subscribe("make_word_stopword", function( data ) {
         $('.w-'+data.wordId).prependTo($('#admin-stopword'));
     });
+
+    /*
+     * INVITES
+     */
+    amplify.subscribe("invite_cancelled", function( data ) {
+        $('#cancel-post').colorbox.remove();
+
+        $('#my-post').replaceWith(data.myPost);
+    });
+    
+    amplify.subscribe("invite_created", function( data ) {
+        $('#post-box').fadeOut(300);
+
+        $('#my-post').replaceWith(data.myPost);
+    });
+
+    amplify.subscribe('attend_toggle', function ( data ) {
+        actionCommon($('.attending_'+data.inviteId), data);
+        $('#my-post').replaceWith(data.myPost);
+    })
 
     /*
      * LISTS

@@ -7,6 +7,28 @@
     <services>
 
 
+        <!-- INVITE -->
+        <service id="whoot.form.invite" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
+            <argument type="service" id="whoot.form.type.invite" />
+            <argument type="collection">
+                <argument key="data_class">Whoot\WhootBundle\Entity\Invite</argument>
+            </argument>
+        </service>
+
+        <service id="whoot.form.type.invite" class="Whoot\WhootBundle\Form\Type\InviteFormType">
+            <argument>whoot.form.invite</argument>
+            <argument type="service" id="whoot.user_manager" />
+            <argument type="service" id="security.context" />
+            <tag name="form.type" />
+        </service>
+
+        <service id="whoot.form.handler.invite" class="Whoot\WhootBundle\Form\Handler\InviteFormHandler" scope="request">
+            <argument type="service" id="whoot.form.invite" />
+            <argument type="service" id="request" />
+            <argument type="service" id="whoot.invite_manager" />
+            <argument type="service" id="whoot.post_manager" />
+        </service>
+
         <!-- POST -->
         <service id="whoot.form.post" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
             <argument type="service" id="whoot.form.type.post" />
@@ -66,6 +88,7 @@
             <argument type="service" id="request" />
             <argument type="service" id="whoot.comment_manager" />
             <argument type="service" id="whoot.post_manager" />
+            <argument type="service" id="whoot.invite_manager" />
         </service>
 
         <!-- LLIST -->

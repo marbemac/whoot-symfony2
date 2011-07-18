@@ -24,22 +24,19 @@ class InviteManager
         $this->em = $em;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function createPost()
+    public function createInvite()
     {
-        $post = new Post();
-        return $post;
+        $invite = new Invite();
+        return $invite;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function deletePost(Post $post)
+    public function deleteInvite(Invite $invite)
     {
-        $post->setStatus('Deleted');
-        $this->em->persist($post);
+        $invite->setStatus('Deleted');
+        $this->em->persist($invite);
         $this->em->flush();
         return array('result' => 'success');
     }
@@ -47,9 +44,9 @@ class InviteManager
     /**
      * {@inheritDoc}
      */
-    public function updatePost(Post $post, $andFlush = true)
+    public function updateInvite(Invite $invite, $andFlush = true)
     {
-        $this->em->persist($post);
+        $this->em->persist($invite);
 
         if ($andFlush)
         {
@@ -60,107 +57,72 @@ class InviteManager
     /**
      * {@inheritDoc}
      */
-    public function findPostBy($postId, $createdBy=null, $createdAt=null, $postStatus=null, $returnObject=false)
+    public function findInviteBy($inviteId, $createdBy=null, $createdAt=null, $status=null, $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p', 'cb', 'pu', 'u'))
-           ->from('Whoot\WhootBundle\Entity\Post', 'p')
-           ->innerJoin('p.createdBy', 'cb');
+        $qb->select(array('i', 'cb', 'ip', 'u'))
+           ->from('Whoot\WhootBundle\Entity\Invite', 'i')
+           ->innerJoin('i.createdBy', 'cb')
+           ->innerJoin('i.posts', 'ip', 'WITH', 'ip.status = :status')
+           ->innerJoin('ip.createdBy', 'u')
+           ->setParameter('status', 'Active');
 
-        if ($postId)
+        if ($inviteId)
         {
-            $qb->andWhere('p.id = :postId');
-            $qb->setParameter('postId', $postId);
+            $qb->andWhere('i.id = :inviteId');
+            $qb->setParameter('inviteId', $inviteId);
         }
 
-        if ($postStatus)
+        if ($status)
         {
-            $qb->andWhere('p.status = :postStatus');
-            $qb->setParameter('postStatus', $postStatus);
+            $qb->andWhere('i.status = :status');
+            $qb->setParameter('status', $status);
         }
 
         if ($createdAt)
         {
-            $qb->andWhere('p.createdAt >= :createdAt');
+            $qb->andWhere('i.createdAt >= :createdAt');
             $qb->setParameter('createdAt', $createdAt);
         }
 
         if ($createdBy)
         {
-            $qb->innerJoin('p.users', 'pu', 'WITH', 'pu.user = :userId');
-            $qb->setParameter('userId', $createdBy);
+            $qb->andWhere('i.createdBy = :createdBy')
+               ->setParameter('createdBy', $createdBy);
         }
-        else
-        {
-            $qb->innerJoin('p.users', 'pu');
-        }
-
-//        $qb->setParameter('status', 'Active');
-        $qb->innerJoin('pu.user', 'u');
 
         $query = $qb->getQuery();
         $query->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true);
         $hydrateMode = $returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY;
-        $post = $query->getSingleResult($hydrateMode);
+        $invite = $query->getSingleResult($hydrateMode);
 
-        return $post;
+        return $invite;
     }
 
     /*
-     * The main way to get feeds. Returns an array of posts based on specified conditions.
+     * The main way to get feeds. Returns an array of invites based on specified conditions.
      *
      * @param array $user Get objects of users this user is following.
      * @param array $postTypes Array of strings of posts types to include. Topic|Talk|News|Question|Procon|List|Video|Picture.
      * @param string $sortBy How do we want to sort the list? Popular|Newest|Controversial|Upcoming
      * @param date $createdAt
-     * @param integer $listId Are we pulling from list users?
      * @param integer $offset
      * @param integer $limit
      *
      * @return array $posts
      */
-    public function findPostsBy($user, $postTypes, $sortBy, $createdAt, $listId, $offset, $limit)
+    public function findInvitesBy($user, $postTypes, $sortBy, $createdAt, $offset, $limit)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p', 'cb', '1 AS popularity'))
-           ->from('Whoot\WhootBundle\Entity\Post', 'p')
-           ->innerJoin('p.createdBy', 'cb')
-//           ->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status')
-           ->where('p.status = :status')
-           ->groupBy('p.id')
+        $qb->select(array('i', 'cb'))
+           ->from('Whoot\WhootBundle\Entity\Invite', 'i')
+           ->innerJoin('i.createdBy', 'cb')
+           ->where('i.status = :status')
            ->setParameters(array(
                'status' => 'Active'
            ));
 
-        if ($listId)
-        {
-            // get the users in the list
-            $qb2 = $this->em->createQueryBuilder();
-            $qb2->select(array('ul', 'u'))
-               ->from('Whoot\WhootBundle\Entity\UserLList', 'ul')
-               ->innerJoin('ul.user', 'u', 'WITH', 'u.status = :status')
-               ->where('ul.list = :listId')
-               ->setParameters(array(
-                   'status' => 'Active',
-                   'listId' => $listId
-               ));
-            $query2 = $qb2->getQuery();
-            $listUsers = $query2->getArrayResult();
-            $users = array();
-
-            foreach ($listUsers as $listUser)
-            {
-                $users[] = $listUser['user']['id'];
-            }
-
-            if (count($users) == 0)
-            {
-                return array();
-            }
-
-            $qb->andwhere($qb->expr()->in('cb.id', $users));
-        }
-        else if ($user)
+        if ($user)
         {
             // get the users this user is following
             $qb2 = $this->em->createQueryBuilder();
@@ -185,22 +147,22 @@ class InviteManager
         switch ($sortBy)
         {
             case 'popularity':
-                $qb->orderBy('popularity', 'DESC');
-                $qb->addOrderBy('p.createdAt', 'DESC');
+                $qb->orderBy('i.attending', 'DESC');
+                $qb->addOrderBy('i.createdAt', 'DESC');
                 break;
             default:
-                $qb->orderBy('p.createdAt', 'DESC');
+                $qb->orderBy('i.createdAt', 'DESC');
         }
 
         if ($createdAt)
         {
-            $qb->andWhere('p.createdAt >= :createdAt');
+            $qb->andWhere('i.createdAt >= :createdAt');
             $qb->setParameter('createdAt', $createdAt);
         }
 
         if ($postTypes)
         {
-            $qb->andwhere($qb->expr()->in('p.type', $postTypes));
+            $qb->andwhere($qb->expr()->in('i.type', $postTypes));
         }
 
         if ($offset)
@@ -220,376 +182,101 @@ class InviteManager
     }
 
     /*
-     * The main way to get feeds. Returns an array of posts based on specified conditions.
+     * Cancel an invite.
+     * Set all users connected to this invite to their previous posts.
      *
-     * @param array $user Get objects of users this user is following.
-     * @param array $postTypes Array of strings of posts types to include. Topic|Talk|News|Question|Procon|List|Video|Picture.
-     * @param string $sortBy How do we want to sort the list? Popular|Newest|Controversial|Upcoming
-     * @param date $createdAt
-     * @param integer $listId Are we pulling from list users?
-     * @param integer $offset
-     * @param integer $limit
-     *
-     * @return array $posts
+     * @param integer $inviteId
      */
-    public function findInvitesBy($user, $postTypes, $sortBy, $createdAt, $listId, $offset, $limit)
+    public function cancelInvite($inviteId)
     {
-        $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p, count(pu.id) AS popularity', 'pu'))
-           ->from('Whoot\WhootBundle\Entity\Post', 'p')
-           ->innerJoin('p.users', 'pu', 'WITH', 'pu.status = :status')
-           ->where('p.status = :status')
-           ->groupBy('p.id')
-           ->setParameters(array(
-               'status' => 'Active',
-           ));
-
-        if ($listId)
-        {
-            // get the users in the list
-            $qb2 = $this->em->createQueryBuilder();
-            $qb2->select(array('ul', 'u'))
-               ->from('Whoot\WhootBundle\Entity\UserLList', 'ul')
-               ->innerJoin('ul.user', 'u', 'WITH', 'u.status = :status')
-               ->where('ul.list = :listId')
-               ->setParameters(array(
-                   'status' => 'Active',
-                   'listId' => $listId
-               ));
-            $query2 = $qb2->getQuery();
-            $listUsers = $query2->getArrayResult();
-            $users = array();
-
-            foreach ($listUsers as $listUser)
-            {
-                $users[] = $listUser['user']['id'];
-            }
-
-            if (count($users) == 0)
-            {
-                return array();
-            }
-
-            $qb->andwhere($qb->expr()->in('pu.user', $users));
-        }
-        else if ($user)
-        {
-            // get the users this user is following
-            $qb2 = $this->em->createQueryBuilder();
-            $qb2->select(array('u.id'))
-               ->from('Whoot\WhootUserBundle\Entity\User', 'u')
-               ->innerJoin('u.followers', 'f', 'WITH', 'f.user = :user AND f.status = :status')
-               ->setParameters(array(
-                   'user' => $user,
-                   'status' => 'Active'
-               ));
-            $query2 = $qb2->getQuery();
-            $followingUsers = $query2->getArrayResult();
-            $following = array($user->getId());
-            foreach ($followingUsers as $followingUser)
-            {
-                $following[] = $followingUser['id'];
-            }
-
-            $qb->andwhere($qb->expr()->in('pu.user', $following));
-        }
-
-        switch ($sortBy)
-        {
-            case 'popularity':
-                $qb->orderBy('popularity', 'DESC');
-                $qb->addOrderBy('p.createdAt', 'DESC');
-                break;
-            default:
-                $qb->orderBy('p.createdAt', 'DESC');
-        }
-
-        if ($createdAt)
-        {
-            $qb->andWhere('p.createdAt >= :createdAt');
-            $qb->setParameter('createdAt', $createdAt);
-        }
-
-        if ($postTypes)
-        {
-            $qb->andwhere($qb->expr()->in('p.type', $postTypes));
-        }
-
-        if ($offset)
-        {
-            $qb->setFirstResult($offset);
-        }
-
-        if ($limit)
-        {
-            $qb->setMaxResults($limit);
-        }
-
-        $query = $qb->getQuery();
-        $objects = $query->getArrayResult();
-
-        return $objects;
-    }
-    
-    public function findMyPost($user, $status = 'Active', $returnObject=false)
-    {
-        $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p', 'cb'))
-           ->from('Whoot\WhootBundle\Entity\Post', 'p')
-           ->innerJoin('p.createdBy', 'cb')
-           ->where('p.status = :status AND p.createdAt >= :createdAt AND p.user = :createdBy')
-           ->setParameters(array(
-               'createdBy'    => $user,
-               'createdAt'    => date('Y-m-d 05:00:00', time()-(60*60*5)),
-               'status'       => $status
-           ));
-
-        $query = $qb->getQuery();
-        $post = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
-
-        return isset($post[0]) ? $post[0] : null;
-    }
-    
-    /*
-     * Creates a post for a user if the post does not yet exist today.
-     * Updates the post if the user already has a post for the day.
-     * 
-     * @param array $data
-     * @param User $user
-     * 
-     * @return array $result
-     */
-    public function togglePost($data, $user)
-    {
-        $result = array('status' => 'existing');
-        $post = $this->findMyPost($user, 'Active', true);
-        if ($post)
-        {
-            $post->setStatus('Disabled');
-            $this->em->persist($post);
-        }
-
-        $post = $this->createPost();
-        $post->setType($data['type']);
-        $post->setNote($data['note']);
-        if (isset($data['address']) && $data['address'])
-        {
-            $post->setVenue($data['venue']);
-            $post->setAddress($data['address']);
-            $post->setLat($data['address_lat']);
-            $post->setLon($data['address_lon']);
-            $post->setTime($data['time']);
-            $post->setIsOpenInvite(true);
-        }
-        $post->setCreatedBy($user);
-        $this->updatePost($post, false);
-
-        $newUserPost = new UsersPosts();
-        $newUserPost->setPost($post);
-        $newUserPost->setUser($user);
-        $this->em->persist($newUserPost);
-
-        $this->em->flush();
-
-        $result['status'] = 'new';
-        $result['post'] = $newUserPost;
-
-        return $result;
-    }
-
-    /*
-     * Cancel a post.
-     * Set all users connected to this post to their previous posts.
-     *
-     * @param integer $postId
-     */
-    public function cancelPost($postId)
-    {
-        $post = $this->findPostBy($postId, null, null, null, true);
-        if (!$post)
+        $invite = $this->findInviteBy($inviteId, null, null, null, true);
+        if (!$invite)
         {
             return false;
         }
 
         // Loop through and re-assign posts to a users most recent post before this one
-        foreach ($post->getUsers() as $userPost)
+        foreach ($invite->getPosts() as $userPost)
         {
-            $qb = $this->em->createQueryBuilder();
-            $qb->select(array('up'))
-               ->from('Whoot\WhootBundle\Entity\UsersPosts', 'up')
-               ->innerJoin('up.post', 'p')
-               ->where('up.status != :status AND up.user = :user AND p.isOpenInvite = 0')
-               ->orderBy('up.createdAt', 'DESC')
-               ->setMaxResults(1)
-               ->setParameters(array(
-                   'user'    => $userPost->getUser()->getId(),
-                   'status'       => 'Active',
-               ));
-
-            $query = $qb->getQuery();
-
-            $prevPost = $query->getResult(Query::HYDRATE_OBJECT);
-            $prevPost = $prevPost[0];
-            $prevPost->setStatus('Active');
-            $prevPost->getPost()->setStatus('Active');
-            $this->em->persist($prevPost);
+            $this->activateMostRecentPost($userPost->getCreatedBy()->getId(), false);
 
             $userPost->setStatus('Disabled');
             $this->em->persist($userPost);
         }
 
-        $post->setStatus('Cancelled');
-        $this->em->persist($post);
+        $invite->setStatus('Cancelled');
+        $this->em->persist($invite);
 
         $this->em->flush();
 
         return true;
     }
 
-    /*
-     * Check for jives. Return if found.
-     *
-     * @param integer $fromUser
-     * @param integer $postId
-     * @param bool $status
-     * @param date $fromDate
-     * @param bool $singleResult
-     * @param bool $returnObject
-     */
-    public function findJives($user, $postId, $status = false, $fromDate = null, $singleResult = false, $returnObject = false)
+    public function activateMostRecentPost($userId, $andFlush=true)
     {
-        $qb = $this->em->createQueryBuilder();
-        $qb->select(array('up', 'p', 'u'))
-           ->from('Whoot\WhootBundle\Entity\UsersPosts', 'up')
-           ->innerJoin('up.post', 'p')
-           ->innerJoin('p.users', 'u', 'WITH', 'u.status = :userPostStatus')
-           ->where('up.user = :user')
-           ->setParameters(array(
-               'user' => $user,
-               'userPostStatus' => 'Active'
-           ));
+            $qb = $this->em->createQueryBuilder();
+            $qb->select(array('p'))
+               ->from('Whoot\WhootBundle\Entity\Post', 'p')
+               ->where('p.status != :status AND p.createdBy = :user AND p.invite IS NULL')
+               ->orderBy('p.createdAt', 'DESC')
+               ->setMaxResults(1)
+               ->setParameters(array(
+                   'user'    => $userId,
+                   'status'       => 'Active',
+               ));
 
-        if ($postId)
-        {
-            $qb->andwhere('up.post = :post')
-               ->setParameter('post', $postId);
-        }
+            $query = $qb->getQuery();
 
-        if ($status)
-        {
-            $qb->andwhere('up.status = :status')
-               ->setParameter('status', $status);
-        }
+            $prevPost = $query->getResult(Query::HYDRATE_OBJECT);
+            if (isset($prevPost[0]))
+            {
+                $prevPost = $prevPost[0];
+                $prevPost->setStatus('Active');
+                $this->em->persist($prevPost);
 
-        if ($fromDate)
-        {
-            $qb->andwhere('up.createdAt >= :fromDate')
-               ->setParameter('fromDate', $fromDate);
-        }
-
-        $query = $qb->getQuery();
-        $connections = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
-
-        if ($singleResult)
-        {
-            return isset($connections[0]) ? $connections[0] : null;
-        }
-
-        return $connections;
+                if ($andFlush)
+                {
+                    $this->em->flush();
+                }
+            }
     }
 
-    public function toggleJive($user, $postId, $go)
+    public function toggleAttending($userId, $myPost, $inviteId)
     {
-        $response = array();
+        $result = array('status' => 'success');
+        $myPost->setStatus('Disabled');
 
-        // Check to see if this user has already jived today.
-        $jive = $this->findJives($user, null, 'Active', date('Y-m-d 05:00:00', time()-(60*60*5)), true, true);
-
-        if ($jive && $jive->getId() != $postId)
+        // Decrement the attending on the old invite
+        if ($myPost->getInvite())
         {
-            if (!$go)
-            {
-                $response['status'] = 'Check';
-
-                return $response;
-            }
-
-            $jive->setStatus('Disabled');
-
-            // If we have a previous post, and we are the only one connected to it, disable it.
-            if (count($jive->getPost()->getUsers()) == 1)
-            {
-                $response['oldPostId'] = $jive->getPost()->getId();
-                $jive->getPost()->setStatus('Disabled');
-                $this->updatePost($jive->getPost(), false);
-            }
+            $oldInvite = $this->findInviteBy($myPost->getInvite()->getId(), null, null, null, true);
+            $oldInvite->incrementAttending(-1);
+            $this->updateInvite($oldInvite, false);
         }
 
-        $post = $this->findPostBy($postId, null, null, null, true);
-        $response['status'] = 'new';
-
-        $connection = new UsersPosts();
-        $connection->setUser($user);
-        $connection->setPost($post);
-
-        $this->em->persist($jive);
-        $this->em->persist($connection);
-        $this->em->flush();
-
-        $response['flash'] = array('type' => 'success', 'message' => 'Woot. Jive Successful!');
-
-        return $response;
-    }
-
-    /**
-     * Given a post data structure, extract and sort it's activity.
-     *
-     * @param Post $post Must include the post.createdBy, post.users, and post.users.user
-     *
-     * @return array $activity
-     */
-    public function buildActivity($post)
-    {
-        $qb = $this->em->createQueryBuilder();
-        $qb->select(array('c', 'cb'))
-           ->from('Whoot\WhootBundle\Entity\Comment', 'c')
-           ->innerJoin('c.createdBy', 'cb')
-           ->where('c.post = :post AND c.status = :status')
-           ->setParameters(array(
-               'post'    => $post['id'],
-               'status'       => 'Active'
-           ));
-
-        $query = $qb->getQuery();
-        $comments = $query->getResult(Query::HYDRATE_ARRAY);
-
-        $activity = array();
-        foreach ($post['users'] as $userPost)
+        // We are un-attending this invite
+        if ($myPost->getInvite() && $myPost->getInvite()->getId() == $inviteId)
         {
-            $activity[$userPost['createdAt']->getTimestamp()] = array('type' => 'activity', 'time' => $userPost['createdAt'], 'userPost' => $userPost, 'user' => $userPost['user']);
+            $this->activateMostRecentPost($userId);
 
-            if ($post['createdBy']['id'] == $userPost['user']['id'])
-            {
-                $activity[$userPost['createdAt']->getTimestamp()]['message'] = 'created this post.';
-                $activity[$userPost['createdAt']->getTimestamp()]['class'] = 'create';
-            }
-            else
-            {
-                $activity[$userPost['createdAt']->getTimestamp()]['message'] = 'jived with this post.';
-                $activity[$userPost['createdAt']->getTimestamp()]['class'] = 'jive';
-            }
-
-            if ($userPost['createdAt']->getTimestamp() != $userPost['updatedAt']->getTimestamp())
-            {
-                $activity[$userPost['updatedAt']->getTimestamp()] = array('type' => 'activity', 'time' => $userPost['updatedAt'], 'userPost' => $userPost, 'user' => $userPost['user'], 'message' => 'left.', 'class' => 'leave');
-            }
+            $result['newText'] = '+ I\'m Attending';
         }
-        foreach ($comments as $comment)
+        else
         {
-            $activity[$comment['createdAt']->getTimestamp()] = array('type' => 'comment', 'comment' => $comment);
+            $invite = $this->findInviteBy($inviteId, null, null, null, true);
+
+            $post = new Post();
+            $post->setType($invite->getType());
+            $post->setCreatedBy($myPost->getCreatedBy());
+            $post->setInvite($invite);
+            $this->em->persist($post);
+
+            $invite->incrementAttending(1);
+            $this->updateInvite($invite);
+
+            $result['newText'] = '- Cancel Attending';
         }
 
-        ksort($activity);
-        return $activity;
+        return $result;
     }
 }

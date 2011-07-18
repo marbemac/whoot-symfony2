@@ -1,0 +1,15 @@
+{% extends 'WhootBundle::base.html.twig' %}
+
+{% block title %}
+    Open Invites
+{% endblock %}
+
+{% block feed_filters %}
+    {% render "WhootBundle:Core:feedFilters" %}
+{% endblock %}
+
+{% block page_content %}
+    <div id="invite-feed">
+        {% include "WhootBundle:Invite:feed_content.html.twig" %}
+    </div>
+{% endblock %}

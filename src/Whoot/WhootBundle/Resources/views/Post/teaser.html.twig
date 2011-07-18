@@ -11,14 +11,22 @@
     </div>
 
     <div class="words">
-        {% for word in post.words %}
-            {% include "WhootBundle:Word:teaser.html.twig" with {'word': word.word} %}
+        {% if post.invite.id is defined %}
+            <a href="{{ path('invite_show', {'inviteId': post.invite.id}) }}">
+                @{{ post.invite.venue }} with {{ post.invite.attending }} others
+            </a>
         {% else %}
-            Hmm... no words. How did you do this?!
-        {% endfor %}
+            {% for word in post.words %}
+                {% include "WhootBundle:Word:teaser.html.twig" with {'word': word.word} %}
+            {% else %}
+                Hmm... no words. How did you do this?!
+            {% endfor %}
+        {% endif %}
     </div>
 
-    {% render "WhootVoteBundle:Vote:show" with {'objectId': post.id, 'objectType': 'Post', 'score': post.score} %}
-
+    {% if post.invite.id is not defined %}
+        {% render "WhootVoteBundle:Vote:show" with {'objectId': post.id, 'objectType': 'Post', 'score': post.score} %}
+    {% endif %}
+    
     <div class="clear"></div>
 </div>

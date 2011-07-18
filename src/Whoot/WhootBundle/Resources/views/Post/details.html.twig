@@ -17,7 +17,7 @@
 
     <div class="right">
         <h4 class="location">Posted in {{ post.location.id is defined and post.location.id ? post.location.cityName~', '~post.location.stateCode : 'Outer Space' }}</h4>
-        {% include "WhootBundle:Post:activity.html.twig" with {'post': post, 'activity': activity} %}
+        {% include "WhootBundle:Comment:feed.html.twig" with {'rootId': post.id, 'type': 'post', 'comments': comments} %}
     </div>
     <div class="clear"></div>
 </div>

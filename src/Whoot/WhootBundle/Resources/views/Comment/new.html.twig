@@ -11,8 +11,12 @@
         {{ form_errors(form.content) }}
     </div>
 
-    {% if postId is defined %}
-       {{ form_widget(form.post, { 'value': postId }) }}
+    {% if rootId is defined and type == 'post' %}
+       {{ form_widget(form.post, { 'value': rootId }) }}
+    {% endif %}
+
+    {% if rootId is defined and type == 'invite' %}
+       {{ form_widget(form.invite, { 'value': rootId }) }}
     {% endif %}
 
     {{ form_rest(form) }}

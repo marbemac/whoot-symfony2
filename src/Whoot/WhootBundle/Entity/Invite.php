@@ -42,16 +42,16 @@ class Invite
     protected $status;
 
     /**
-     * @var integer $score
+     * @var integer $attending
      * @ORM\Column(type="integer")
      */
-    protected $score = 0;
+    protected $attending = 1;
 
     /**
-     * @var string $note
+     * @var string $description
      * @ORM\Column(type="string", nullable=true)
      */
-    protected $note;
+    protected $description;
 
     /**
      * @var string $venue
@@ -82,6 +82,22 @@ class Invite
      * @ORM\Column(type="float", nullable=true)
      */
     protected $lon;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $file;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $subdirectory = '';
+
+    /**
+     * @var string $path
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $path;
 
     /**
      * @var dateTime $updatedAt
@@ -276,23 +292,19 @@ class Invite
     }
 
     /**
-     * Set note
-     *
-     * @param string $note
+     * @param string $description
      */
-    public function setNote($note)
+    public function setDescription($description)
     {
-        $this->note = $note;
+        $this->description = $description;
     }
 
     /**
-     * Get note
-     *
-     * @return string $note
+     * @return string $description
      */
-    public function getNote()
+    public function getDescription()
     {
-        return $this->note;
+        return $this->description;
     }
 
     /**
@@ -330,13 +342,11 @@ class Invite
     }
 
     /**
-     * Set score
-     *
-     * @param integer $score
+     * @param integer $attending
      */
-    public function setScore($score)
+    public function setAttending($attending)
     {
-        $this->score = $score;
+        $this->attending = $attending;
     }
 
     /**
@@ -344,9 +354,17 @@ class Invite
      *
      * @return integer $score
      */
-    public function getScore()
+    public function getAttending()
     {
-        return $this->score;
+        return $this->attending;
+    }
+
+    /**
+     * @param integer $increment
+     */
+    public function incrementAttending($increment)
+    {
+        $this->attending += $increment;
     }
 
     /**
@@ -479,12 +497,52 @@ class Invite
         return $this->votes;
     }
 
+    public function setSubdirectory($subdirectory)
+    {
+        $this->subdirectory = $subdirectory;
+    }
+
+    public function getSubdirectory()
+    {
+        return $this->subdirectory ? '/'.$this->subdirectory : '';
+    }
+
+    /**
+     * @param string $path
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    }
+
+    /**
+     * @return string $path
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    public function getFullPath()
+    {
+        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        return $_SERVER['DOCUMENT_ROOT'].'/uploads'.$this->getSubdirectory();
+    }
+
     /**
      * @ORM\prePersist
      */
     public function touchCreated()
     {
         $this->createdAt = $this->updatedAt = new \DateTime();
+        if ($this->file) {
+            // do whatever you want to generate a unique name
+            $this->setPath(uniqid('i').'.'.$this->file->guessExtension());
+        }
     }
 
     /**
@@ -493,5 +551,32 @@ class Invite
     public function touchUpdated()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\postPersist
+     */
+    public function upload()
+    {
+        if (!isset($this->file)) {
+            return;
+        }
+
+        // you must throw an exception here if the file cannot be moved
+        // so that the entity is not persisted to the database
+        // which the UploadedFile move() method does automatically
+        $this->file->move($this->getUploadRootDir(), $this->path);
+
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\postRemove
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getFullPath()) {
+            unlink($file);
+        }
     }
 }

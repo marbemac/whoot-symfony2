@@ -20,7 +20,7 @@ class InviteController extends ContainerAware
     /**
      * 
      */
-    public function feedAction($postTypes=null, $feedSort=null, $listId=null, $offset=0, $limit=null, $_format='html', $type=null)
+    public function feedAction($postTypes=null, $feedSort=null, $offset=0, $limit=null, $_format='html')
     {
         $response = new Response();
         $feedFilters = $this->container->get('session')->get('feedFilters');
@@ -33,11 +33,11 @@ class InviteController extends ContainerAware
         // Don't even bother getting objects if we aren't including ANY node types
         if (empty($postTypes))
         {
-            $posts = array();
+            $invites = array();
         }
         else
         {
-            $posts = $this->container->get('whoot.post_manager')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), $listId, $offset, $limit);
+            $invites = $this->container->get('whoot.invite_manager')->findInvitesBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), $offset, $limit);
         }
 
         $response->setCache(array(
@@ -48,30 +48,22 @@ class InviteController extends ContainerAware
             // return $response;
         }
 
-        // Used by the API (feed/undecided)
-        if ($type)
-        {
-            return $this->container->get('templating')->renderResponse('WhootBundle:Post:'.$type.'.'.$_format.'.twig', array(
-                'posts' => $posts
-            ), $response);
-        }
-
         if ($this->container->get('request')->isXmlHttpRequest())
         {
-            return $this->container->get('templating')->renderResponse('WhootBundle:Post:feed_content.html.twig', array(
-                'posts' => $posts
+            return $this->container->get('templating')->renderResponse('WhootBundle:Invite:feed_content.html.twig', array(
+                'invites' => $invites
             ), $response);
         }
 
-        return $this->container->get('templating')->renderResponse('WhootBundle:Post:feed.html.twig', array(
-            'posts' => $posts
+        return $this->container->get('templating')->renderResponse('WhootBundle:Invite:feed.html.twig', array(
+            'invites' => $invites
         ), $response);
     }
 
     /**
-     * Creates a new post for the day. Toggles if the user already has a post for today.
+     * Creates a new invite for the day.
      */
-    public function createAction($_format='html')
+    public function createAction($_format='html', $chromeless=false)
     {
         $coreManager = $this->container->get('whoot.core_manager');
         $login = $coreManager->mustLogin();
@@ -80,52 +72,50 @@ class InviteController extends ContainerAware
             return $login;
         }
 
+        $templating = $this->container->get('templating');
         $request = $this->container->get('request');
-        $data['type'] = $request->request->get('type', 'working');
-        $data['note'] = $request->request->get('note', '');
-        $data['venue'] = $request->request->get('venue', '');
-        $data['address'] = $request->request->get('address', '');
-        $data['address_lat'] = $request->request->get('address_lat', '');
-        $data['address_lon'] = $request->request->get('address_lon', '');
-        $data['time'] = $request->request->get('time', '');
         $securityContext = $this->container->get('security.context');
         $user = $securityContext->getToken()->getUser();
+        $form = $this->container->get('whoot.form.invite');
+        $formHandler = $this->container->get('whoot.form.handler.invite');
 
-        $postResult = $this->container->get('whoot.post_manager')->togglePost($data, $this->container->get('security.context')->getToken()->getUser());
+        if ($formHandler->process(null, $user) === true) {
+            $invite = $form->getData();
 
-        if ($this->container->has('security.acl.provider') && $postResult['status'] == 'new') {
-            $provider = $this->container->get('security.acl.provider');
-            $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($postResult['post']));
-            $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
-            $provider->updateAcl($acl);
+            if ($this->container->has('security.acl.provider')) {
+                $provider = $this->container->get('security.acl.provider');
+                $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($invite));
+                $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
+                $provider->updateAcl($acl);
+            }
+
+            if ($_format == 'json')
+            {
+                $result = array();
+                $result['result'] = 'success';
+                $response = new Response(json_encode($result));
+                $response->headers->set('Content-Type', 'application/json');
+                return $response;
+            }
+
+            return $templating->renderResponse('WhootBundle:Invite:show.html.twig', array(
+                'inviteId' => $invite->getId(),
+                '_format' => $_format
+            ));
         }
 
-        if ($_format == 'json')
+        if ($chromeless)
         {
-            $result = array();
-            $result['result'] = 'success';
-            $response = new Response(json_encode($result));
-            $response->headers->set('Content-Type', 'application/json');
-            return $response;
+            return $templating->renderResponse('WhootBundle:Invite:new_content.html.twig', array(
+                'form' => $form->createView(),
+                '_format' => $_format
+            ));
         }
 
-        if ($request->isXmlHttpRequest())
-        {
-            $result = array();
-            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());
-            $result['feed'] = $feed->getContent();
-            $result['result'] = 'success';
-            $result['event'] = 'post_created';
-            $result['flash'] = array('type' => 'success', 'message' => 'Your status has been updated.');
-            $myPost = $this->container->get('http_kernel')->forward('WhootBundle:Post:myPost', array());
-            $result['myPost'] = $myPost->getContent();
-            $response = new Response(json_encode($result));
-            $response->headers->set('Content-Type', 'application/json');
-
-            return $response;
-        }
-
-        return new RedirectResponse($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : $this->container->get('router')->generate('homepage'));
+        return $templating->renderResponse('WhootBundle:Invite:new.html.twig', array(
+            'form' => $form->createView(),
+            '_format' => $_format
+        ));
     }
 
     /**
@@ -141,8 +131,8 @@ class InviteController extends ContainerAware
         }
 
         $request = $this->container->get('request');
-        $myPost = $this->container->get('whoot.post_manager')->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
-        if ($myPost['post']['createdBy']['id'] != $this->container->get('security.context')->getToken()->getUser()->getId() || !$myPost['post']['isOpenInvite'])
+        $myPost = $this->container->get('whoot.post_manager')->findPostBy(null, $this->container->get('security.context')->getToken()->getUser(), date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active');
+        if (!isset($myPost['invite']['id']) || $myPost['invite']['createdBy']['id'] != $this->container->get('security.context')->getToken()->getUser()->getId())
         {
             if ($request->isXmlHttpRequest())
             {
@@ -156,7 +146,7 @@ class InviteController extends ContainerAware
             }
         }
 
-        $this->container->get('whoot.post_manager')->cancelPost($myPost['post']['id']);
+        $this->container->get('whoot.invite_manager')->cancelInvite($myPost['invite']['id']);
 
         if ($request->isXmlHttpRequest())
         {
@@ -164,7 +154,7 @@ class InviteController extends ContainerAware
             $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());
             $result['feed'] = $feed->getContent();
             $result['result'] = 'success';
-            $result['event'] = 'post_cancelled';
+            $result['event'] = 'invite_cancelled';
             $result['flash'] = array('type' => 'success', 'message' => 'Your invite has been cancelled.');
             $myPost = $this->container->get('http_kernel')->forward('WhootBundle:Post:myPost', array());
             $result['myPost'] = $myPost->getContent();
@@ -180,9 +170,8 @@ class InviteController extends ContainerAware
     /**
      * {@inheritDoc}
      */
-    public function showAction($id, $_format)
+    public function showAction($inviteId, $_format='html')
     {
-        $request = $this->container->get('request');
         $response = new Response();
         $response->setCache(array(
         ));
@@ -192,15 +181,17 @@ class InviteController extends ContainerAware
             // return $response;
         }
 
-        $object = $this->container->get('limelight.talk_manager')->findObjectBy(array('id' => $id));
+        $invite = $this->container->get('whoot.invite_manager')->findInviteBy($inviteId);
+        $comments = $this->container->get('whoot.comment_manager')->findCommentsBy(null, $inviteId);
 
-        return $this->container->get('templating')->renderResponse('LimelightBundle:Talk:show.html.twig', array(
-            'object' => $object,
+        return $this->container->get('templating')->renderResponse('WhootBundle:Invite:show.html.twig', array(
+            'invite' => $invite,
+            'comments' => $comments,
             '_format' => $_format
         ), $response);
     }
 
-    public function teaserAction($postId, $_format='html')
+    public function teaserAction($inviteId, $_format='html')
     {
         $response = new Response();
         $response->setCache(array(
@@ -211,90 +202,47 @@ class InviteController extends ContainerAware
             // return $response;
         }
 
-        $post = $this->container->get('whoot.post_manager')->findPostBy($postId, null, null, 'Active', false);
+        $invite = $this->container->get('whoot.invite_manager')->findInviteBy($inviteId, null, null, 'Active', false);
 
-        return $this->container->get('templating')->renderResponse('WhootBundle:Post:teaser.'.$_format.'.twig', array(
-            'post' => $post
+        return $this->container->get('templating')->renderResponse('WhootBundle:Invite:teaser.'.$_format.'.twig', array(
+            'invite' => $invite
         ), $response);
     }
 
-    public function postDetailsAction($postId, $_format='html')
-    {
-        $response = new Response();
-        $response->setCache(array(
-        ));
-
-        if ($response->isNotModified($this->container->get('request'))) {
-            // return the 304 Response immediately
-            // return $response;
-        }
-
-        $post = $this->container->get('whoot.post_manager')->findPostBy($postId, null, null, 'Active', false);
-        $type = $post['isOpenInvite'] ? 'openInvite': 'normal';
-        $activity = $this->container->get('whoot.post_manager')->buildActivity($post);
-
-        if ($_format == 'json')
-        {
-            return $this->container->get('templating')->renderResponse('WhootBundle:Post:'.$type.'Details.json.twig', array(
-                'post' => $post,
-                'activity' => $activity
-            ), $response);
-        }
-
-        if ($this->container->get('request')->isXmlHttpRequest())
-        {
-            $result = array();
-            $result['status'] = 'success';
-            $result['details'] = $this->container->get('templating')->render('WhootBundle:Post:'.$type.'Details.html.twig', array(
-                                    'post' => $post,
-                                    'activity' => $activity
-                                 ));
-
-            $response = new Response(json_encode($result));
-            $response->headers->set('Content-Type', 'application/json');
-
-            return $response;
-        }
-
-        return $this->container->get('templating')->renderResponse('WhootBundle:Post:'.$type.'Details.html.twig', array(
-            'post' => $post,
-            'activity' => $activity
-        ), $response);
-    }
 
     /**
-     * Display a jive tag for the current user.
+     * Display a attending button for the current user.
      *
-     * @param integer $postId
+     * @param integer $inviteId
      */
-    public function jiveTagAction($postId, $_format='html')
+    public function attendingButtonAction($inviteId, $_format='html')
     {
         $securityContext = $this->container->get('security.context');
 
         if ($securityContext->isGranted('ROLE_USER'))
         {
             $fromUser = $securityContext->getToken()->getUser();
-            $connection = $this->container->get('whoot.post_manager')->findJives($fromUser, $postId, 'Active', null, true);
+            $post = $this->container->get('whoot.post_manager')->findPostBy(null, $fromUser, date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active');
         }
         else
         {
             $fromUser = null;
-            $connection = null;
+            $post = null;
         }
 
-        return $this->container->get('templating')->renderResponse('WhootBundle:Post:jiveTag.'.$_format.'.twig', array(
+        return $this->container->get('templating')->renderResponse('WhootBundle:Invite:attendingButton.'.$_format.'.twig', array(
             'fromUser' => $fromUser,
-            'postId' => $postId,
-            'connection' => $connection
+            'inviteId' => $inviteId,
+            'post' => $post,
         ));
     }
 
     /*
-     * Toggles on/off a post invite request for the current user.
+     * Toggles on/off a invite attend for the current user.
      *
      * @param integer $postId
      */
-    public function jiveToggleAction($postId, $_format='html')
+    public function attendAction($inviteId, $_format='html')
     {
         $coreManager = $this->container->get('whoot.core_manager');
         $login = $coreManager->mustLogin();
@@ -304,11 +252,12 @@ class InviteController extends ContainerAware
         }
 
         $request = $this->container->get('request');
+        $user = $this->container->get('security.context')->getToken()->getUser();
         $postManager = $this->container->get('whoot.post_manager');
 
         // Check to see if this user is the creator of a currently active open invite
-        $myPost = $postManager->findMyPost($this->container->get('security.context')->getToken()->getUser(), 'Active');
-        if ($myPost['post']['createdBy']['id'] == $this->container->get('security.context')->getToken()->getUser()->getId() && $myPost['post']['isOpenInvite'])
+        $myPost = $postManager->findPostBy(null, $user, date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active', true);
+        if ($myPost->getInvite() && $myPost->getInvite()->getCreatedBy()->getId() == $user->getId())
         {
             $result = array();
             $result['result'] = 'error';
@@ -319,7 +268,7 @@ class InviteController extends ContainerAware
             return $response;
         }
 
-        $result = $postManager->toggleJive($this->container->get('security.context')->getToken()->getUser(), $postId, true);
+        $result = $this->container->get('whoot.invite_manager')->toggleAttending($user->getId(), $myPost, $inviteId);
 
         if ($_format == 'json')
         {
@@ -332,12 +281,10 @@ class InviteController extends ContainerAware
 
         if ($request->isXmlHttpRequest())
         {
-            $post = $this->container->get('http_kernel')->forward('WhootBundle:Post:teaser', array('postId' => $postId));
-            $result['post'] = $post->getContent();
             $myPost = $this->container->get('http_kernel')->forward('WhootBundle:Post:myPost', array());
             $result['myPost'] = $myPost->getContent();
-            $result['postId'] = $postId;
-            $result['event'] = 'jive_toggle';
+            $result['inviteId'] = $inviteId;
+            $result['event'] = 'attend_toggle';
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 

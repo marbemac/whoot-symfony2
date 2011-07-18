@@ -68,7 +68,6 @@
 [FacebookSDK]
     git=git://github.com/facebook/php-sdk.git
     target=/facebook
-    version=v2.1.2
 
 [EvarioJanrainBundle]
     git=git://github.com/evario/JanrainBundle.git

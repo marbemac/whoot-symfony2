@@ -7,7 +7,7 @@ security:
     # strategy can be: none, migrate, invalidate
     #session_fixation_strategy: migrate
     providers:
-        fos_userbundle:
+        whoot_user:
             id: whoot.user_manager
         whoot_facebook:
             id: whoot.facebook.user
@@ -24,7 +24,7 @@ security:
         main:
             pattern:   .*
             form_login:
-                provider:       fos_userbundle
+                provider:       whoot_user
                 login_path:     /login
                 use_forward:    false
                 check_path:     /login_check

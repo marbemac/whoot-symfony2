@@ -1,5 +1,0 @@
-{% if not fromUser %}
-    <a class="jive-B jive_{{ postId }} auth" href="{{ path('jive_toggle', {'postId': postId}) }}">Jive</a>
-{% elseif not connection %}
-    <a class="jive-B ac jive_{{ postId }}" href="{{ path('jive_toggle', {'postId': postId}) }}">Jive</a>
-{% endif %}

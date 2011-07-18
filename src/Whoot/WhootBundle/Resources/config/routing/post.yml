@@ -4,23 +4,9 @@ post_create:
     requirements:
         _method: POST
 
-post_cancel:
-    pattern:  /cancel
-    defaults: { _controller: WhootBundle:Post:cancel }
-    requirements:
-        _method: POST
-
-jive_toggle:
-    pattern:  /jive/toggle/{postId}/{go}
-    defaults: { _controller: WhootBundle:Post:jiveToggle, go: false }
-    requirements:
-        _method: GET|POST
-        postId: \d+
-
 post_details:
-    pattern:  /{type}/{postId}
-    defaults: { _controller: WhootBundle:Post:postDetails }
+    pattern:  /{postId}
+    defaults: { _controller: WhootBundle:Post:details }
     requirements:
         _method: GET
         postId: \d+
-        type: normal|openInvite

@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Whoot\WhootBundle\Entity\Post;
 use Whoot\WhootBundle\Entity\CommentManager;
 use Whoot\WhootBundle\Entity\PostManager;
+use Whoot\WhootBundle\Entity\InviteManager;
 
 class CommentFormHandler
 {
@@ -18,13 +19,15 @@ class CommentFormHandler
     protected $request;
     protected $commentManager;
     protected $postManager;
+    protected $inviteManager;
 
-    public function __construct(Form $form, Request $request, CommentManager $commentManager, PostManager $postManager)
+    public function __construct(Form $form, Request $request, CommentManager $commentManager, PostManager $postManager, InviteManager $inviteManager)
     {
         $this->form = $form;
         $this->request = $request;
         $this->commentManager = $commentManager;
         $this->postManager = $postManager;
+        $this->inviteManager = $inviteManager;
     }
 
     public function process(Comment $comment = null)
@@ -41,9 +44,17 @@ class CommentFormHandler
             if ($this->form->isValid()) {
 
                 $params = $this->request->request->all();
-                $post = $this->postManager->findPostBy($params['whoot_comment_form']['post'], null, null, null, true);
+                if ($params['whoot_comment_form']['post'])
+                {
+                    $post = $this->postManager->findPostBy($params['whoot_comment_form']['post'], null, null, null, true);
+                    $comment->setPost($post);
+                }
+                else if ($params['whoot_comment_form']['invite'])
+                {
+                    $invite = $this->inviteManager->findInviteBy($params['whoot_comment_form']['invite'], null, null, null, true);
+                    $comment->setInvite($invite);
+                }
 
-                $comment->setPost($post);
                 $this->commentManager->updateComment($comment);
 
                 return true;

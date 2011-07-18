@@ -11,7 +11,8 @@ class CommentFormType extends AbstractType
     {
         $builder
             ->add('content', 'textarea')
-            ->add('post', 'hidden');
+            ->add('post', 'hidden')
+            ->add('invite', 'hidden');
     }
 
     public function getName()

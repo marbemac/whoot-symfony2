@@ -1,0 +1,24 @@
+invite_create:
+    pattern:  /create
+    defaults: { _controller: WhootBundle:Invite:create }
+
+invite_cancel:
+    pattern:  /cancel
+    defaults: { _controller: WhootBundle:Invite:cancel }
+    requirements:
+        _method: POST
+
+invite_feed:
+    pattern:  /feed
+    defaults: { _controller: WhootBundle:Invite:feed }
+
+invite_attend:
+    pattern:  /attend/{inviteId}
+    defaults: { _controller: WhootBundle:Invite:attend }
+
+invite_show:
+    pattern:  /{inviteId}
+    defaults: { _controller: WhootBundle:Invite:show }
+    requirements:
+        _method: GET
+        inviteId: \d+

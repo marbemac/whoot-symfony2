@@ -1,0 +1,20 @@
+{% if invites|length > 0 %}
+    <ul>
+
+        {% for invite in invites %}
+            <li class="{{ loop.first ? 'first' : '' }}">
+                {% render 'WhootBundle:Invite:teaser' with {'inviteId': invite.id} %}
+            </li>
+        {% else %}
+            <li class="none">
+                No invite for tonight... yet.
+            </li>
+        {% endfor %}
+
+    </ul>
+
+{% else %}
+
+    <div class="no-post">No Invites...</div>
+
+{% endif %}

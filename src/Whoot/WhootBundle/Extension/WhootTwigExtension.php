@@ -24,10 +24,10 @@ class WhootTwigExtension extends \Twig_Extension {
     );
 
     private $postTypesNoun = array(
-        'working' => '<span>work</span>',
-        'low_in' => '<span>stay in</span>',
-        'low_out' => '<span>relax</span>',
-        'big_out' => '<span>rage</span>'
+        'working' => 'work',
+        'low_in' => 'stay in',
+        'low_out' => 'relax',
+        'big_out' => 'rage'
     );
 
     public function getFilters() {

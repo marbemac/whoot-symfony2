@@ -50,39 +50,33 @@ class CommentManager
     /**
      * {@inheritDoc}
      */
-    public function findObjectBy(array $criteria, $returnObject=false)
+    public function findCommentsBy($postId, $inviteId, $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('o', 't', 'cb', 'cf', 'ct'))
-           ->from('Limelight\LimelightBundle\Entity\Object', 'o')
-           ->innerJoin('o.Talk', 't')
-           ->innerJoin('o.createdBy', 'cb')
-           ->leftJoin('o.connectedFrom', 'cf', 'WITH', $qb->expr()->eq('cf.type', ':connectionType'))
-           ->leftJoin('cf.connectedFrom', 'ct', 'WITH', $qb->expr()->eq('ct.status', ':objectStatus'))
+        $qb->select(array('c', 'cb'))
+           ->from('Whoot\WhootBundle\Entity\Comment', 'c')
+           ->innerJoin('c.createdBy', 'cb')
+           ->where('c.status = :status')
            ->setParameters(array(
-               'connectionType' => 'Node',
-               'objectStatus' => 'Active'
+               'status' => 'Active'
            ));
 
-        foreach ($criteria as $key => $val)
+        if ($postId)
         {
-            $qb->where('o.'.$key.' = :'.$key)
-               ->setParameter($key, $val);
+            $qb->addSelect('p')
+               ->innerJoin('c.post', 'p');
+        }
+
+        if ($inviteId)
+        {
+            $qb->addSelect('i')
+               ->innerJoin('c.invite', 'i');
         }
 
         $query = $qb->getQuery();
         $query->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true);
-        $hydrateMode = $returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY;
-        $talk = $query->getSingleResult($hydrateMode);
+        $comments = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
 
-        return $talk;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function findObjectsBy(array $criteria)
-    {
-        return $this->objectManager->findObjectsBy($criteria);
+        return $comments;
     }
 }

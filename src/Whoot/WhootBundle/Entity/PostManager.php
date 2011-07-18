@@ -62,14 +62,16 @@ class PostManager
     public function findPostBy($postId, $createdBy=null, $createdAt=null, $postStatus=null, $returnObject=false)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('p', 'cb', 'pw', 'w', 'l', 'v', 'vcb'))
+        $qb->select(array('p', 'cb', 'pw', 'w', 'l', 'v', 'vcb', 'i', 'icb'))
            ->from('Whoot\WhootBundle\Entity\Post', 'p')
            ->innerJoin('p.createdBy', 'cb')
            ->leftJoin('p.words', 'pw')
            ->leftJoin('pw.word', 'w')
            ->leftJoin('p.location', 'l')
            ->leftJoin('p.votes', 'v')
-           ->leftJoin('v.voter', 'vcb');
+           ->leftJoin('v.voter', 'vcb')
+           ->leftJoin('p.invite', 'i')
+           ->leftJoin('i.createdBy', 'icb');
 
         if ($postId)
         {
@@ -214,113 +216,6 @@ class PostManager
         $objects = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
 
         return $objects;
-    }
-
-    /*
-     * Creates a post for a user if the post does not yet exist today.
-     * Updates the post if the user already has a post for the day.
-     * 
-     * @param array $data
-     * @param User $user
-     * 
-     * @return array $result
-     */
-//    public function togglePost($data, $user)
-//    {
-//        $result = array('status' => 'existing');
-//        $userPost = $this->findMyPost($user, 'Active', true);
-//        if ($userPost)
-//        {
-//            $userPost->setStatus('Disabled');
-//
-//            // If we have a previous post, and we are the only one connected to it, disable it.
-//            if (count($userPost->getPost()->getUsers()) == 1)
-//            {
-//                $userPost->getPost()->setStatus('Disabled');
-//                $this->updatePost($userPost->getPost(), false);
-//            }
-//
-//            $this->em->persist($userPost);
-//        }
-//
-//        $post = $this->createPost();
-//        $post->setType($data['type']);
-//        $post->setNote($data['note']);
-//        if (isset($data['address']) && $data['address'])
-//        {
-//            $post->setVenue($data['venue']);
-//            $post->setAddress($data['address']);
-//            $post->setLat($data['address_lat']);
-//            $post->setLon($data['address_lon']);
-//            $post->setTime($data['time']);
-//            $post->setIsOpenInvite(true);
-//        }
-//        $post->setCreatedBy($user);
-//        $this->updatePost($post, false);
-//
-//        $newUserPost = new UsersPosts();
-//        $newUserPost->setPost($post);
-//        $newUserPost->setUser($user);
-//        $this->em->persist($newUserPost);
-//
-//        $this->em->flush();
-//
-//        $result['status'] = 'new';
-//        $result['post'] = $newUserPost;
-//
-//        return $result;
-//    }
-
-    /**
-     * Given a post data structure, extract and sort it's activity.
-     *
-     * @param Post $post Must include the post.createdBy, post.users, and post.users.user
-     *
-     * @return array $activity
-     */
-    public function buildActivity($post)
-    {
-        $qb = $this->em->createQueryBuilder();
-        $qb->select(array('c', 'cb'))
-           ->from('Whoot\WhootBundle\Entity\Comment', 'c')
-           ->innerJoin('c.createdBy', 'cb')
-           ->where('c.post = :post AND c.status = :status')
-           ->setParameters(array(
-               'post'    => $post['id'],
-               'status'       => 'Active'
-           ));
-
-        $query = $qb->getQuery();
-        $comments = $query->getResult(Query::HYDRATE_ARRAY);
-
-        $activity = array();
-//        foreach ($post['users'] as $userPost)
-//        {
-//            $activity[$userPost['createdAt']->getTimestamp()] = array('type' => 'activity', 'time' => $userPost['createdAt'], 'userPost' => $userPost, 'user' => $userPost['user']);
-//
-//            if ($post['createdBy']['id'] == $userPost['user']['id'])
-//            {
-//                $activity[$userPost['createdAt']->getTimestamp()]['message'] = 'created this post.';
-//                $activity[$userPost['createdAt']->getTimestamp()]['class'] = 'create';
-//            }
-//            else
-//            {
-//                $activity[$userPost['createdAt']->getTimestamp()]['message'] = 'jived with this post.';
-//                $activity[$userPost['createdAt']->getTimestamp()]['class'] = 'jive';
-//            }
-//
-//            if ($userPost['createdAt']->getTimestamp() != $userPost['updatedAt']->getTimestamp())
-//            {
-//                $activity[$userPost['updatedAt']->getTimestamp()] = array('type' => 'activity', 'time' => $userPost['updatedAt'], 'userPost' => $userPost, 'user' => $userPost['user'], 'message' => 'left.', 'class' => 'leave');
-//            }
-//        }
-        foreach ($comments as $comment)
-        {
-            $activity[$comment['createdAt']->getTimestamp()] = array('type' => 'comment', 'comment' => $comment);
-        }
-
-        ksort($activity);
-        return $activity;
     }
 
     /*

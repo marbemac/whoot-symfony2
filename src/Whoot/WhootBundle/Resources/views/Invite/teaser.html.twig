@@ -1,0 +1,40 @@
+<a name="invite-{{ invite.id }}"></a>
+<div class="teaser invite {{ invite.type }}" id="invite-{{ invite.id }}">
+    {% if invite.path %}
+        <img class="inviteImage" src="/slir/w120-h120-c1:1/uploads/{{ invite.subdirectory }}/{{ invite.path }}" />
+    {% else %}
+        <img class="inviteImage" src="/slir/w120-h120-c1:1/bundles/whoot/images/inviteDefault.png" />
+    {% endif %}
+
+    <h2 class="head">
+        <a href="{{ path('invite_show', {'inviteId': invite.id}) }}">
+            <span class="type">{{ invite.type|printPostTypeNoun|capitalize }}</span> at {{ invite.venue }}
+        </a>
+    </h2>
+
+    <div class="item">
+        <div class="desc">who</div>
+        {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': invite.createdBy, 'nameLimit': 15} %}
+    </div>
+
+    <div class="item">
+        <div class="desc">where</div>
+        {{ invite.venue }}: {{ invite.address }}
+    </div>
+
+    <div class="item">
+        <div class="desc">when</div>
+        {{ invite.time }}
+    </div>
+
+    <div class="attending">
+        <div class="container">
+            {% for post in invite.posts %}
+                <a href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}" title="{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}">
+                    {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 30} %}
+                </a>
+            {% endfor %}
+        </div>
+        <h5>{{ invite.posts|length }} attending</h5>
+    </div>
+</div>

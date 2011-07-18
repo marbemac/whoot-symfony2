@@ -85,9 +85,7 @@
                                 {% block page %}
                                     <div id="page_content">
                                         {% render "WhootUserBundle:Profile:collectInfo" %}
-                                        {% if app.request.attributes.get('_route') == 'homepage' %}
-                                            {% render "WhootBundle:Core:postBox" %}
-                                        {% endif %}
+                                        {% render "WhootBundle:Core:postBox" %}
 
                                         {% block page_content %}{% endblock %}
                                     </div>
@@ -99,7 +97,7 @@
                     <footer id="footer">
                         Home &#149;	Blog &#149;	About &#149; Contact Us &#149; Privacy &#149; Terms
                         {% if is_granted('ROLE_ADMIN') %}
-                        &#149; <a href="{{ path('admin_home') }}">Admin Area</a>
+                            &#149; <a href="{{ path('admin_home') }}">Admin Area</a>
                         {% endif %}
                         <fb:like href="http://www.facebook.com/pages/Whoot/192579647454740" send="true" layout="button_count" width="80" show_faces="false" font=""></fb:like>
                     </footer>

@@ -1,0 +1,6 @@
+<div class="comment-feed cf-{{ rootId }}">
+    {% render "WhootBundle:Comment:new" with {'rootId': rootId, 'type': type} %}
+    {% for comment in comments %}
+        {% include "WhootBundle:Comment:teaser.html.twig" with {'comment': comment} %}
+    {% endfor %}
+</div>

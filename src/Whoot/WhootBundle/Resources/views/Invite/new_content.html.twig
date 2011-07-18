@@ -1,0 +1,36 @@
+<form action="{{ path('invite_create') }}" {{ form_enctype(form) }} method="POST" class="invite_create noajax">
+    {{ form_errors(form) }}
+
+    {{ form_widget(form.type, { 'attr': {'autocomplete': 'off'} })}}
+
+    <div class="label">Venue</div>
+    {{ form_widget(form.venue, { 'attr': {'autocomplete': 'off'} }) }}
+    <div class="clear"></div>
+
+    <div class="label">Address</div>
+    {{ form_widget(form.address, { 'attr': {'autocomplete': 'off'} }) }}
+    {{ form_widget(form.lat, { 'attr': {'autocomplete': 'off'} }) }}
+    {{ form_widget(form.lon, { 'attr': {'autocomplete': 'off'} }) }}
+    <div class="clear"></div>
+
+    <div class="label">Time</div>
+    {{ form_widget(form.time, { 'attr': {'autocomplete': 'off'} }) }}
+    <div class="clear"></div>
+
+    <div class="label">Picture</div>
+    {{ form_widget(form.file) }}
+    <div class="clear"></div>
+
+    <div class="label">Description</div>
+    {{ form_widget(form.description, { 'attr': {'autocomplete': 'off'} }) }}
+    <div class="clear"></div>
+
+    <div class="label">Location</div>
+    {{ form_widget(form.location) }}
+    <div class="clear"></div>
+    <div class="clear"></div>
+
+    {{ form_rest(form) }}
+
+    <input type="submit" class="submit" value="Create Invite" />
+</form>

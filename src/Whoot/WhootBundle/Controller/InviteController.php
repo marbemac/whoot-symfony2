@@ -98,10 +98,7 @@ class InviteController extends ContainerAware
                 return $response;
             }
 
-            return $templating->renderResponse('WhootBundle:Invite:show.html.twig', array(
-                'inviteId' => $invite->getId(),
-                '_format' => $_format
-            ));
+            return new RedirectResponse($this->container->get('router')->generate('invite_show', array('inviteId' => $invite->getId())));
         }
 
         if ($chromeless)

@@ -23,28 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="whoot.subscribers.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="0" selection-start="2919" selection-end="2919" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="myPost.html.twig" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/myPost.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state line="34" column="84" selection-start="1576" selection-end="1644" vertical-scroll-proportion="-21.76">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="whoot.main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="10" selection-start="3629" selection-end="3629" vertical-scroll-proportion="-10.192307">
               <folding />
             </state>
           </provider>
@@ -59,10 +41,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FacebookProvider.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="FacebookProvider.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Security/User/Provider/FacebookProvider.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="80" selection-start="660" selection-end="660" vertical-scroll-proportion="0.42693773">
+            <state line="21" column="80" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deps" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/deps">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="74" column="4" selection-start="1899" selection-end="1899" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deps.lock" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/deps.lock">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="0" selection-start="1059" selection-end="1059" vertical-scroll-proportion="0.37670383">
               <folding />
             </state>
           </provider>
@@ -127,8 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PostController.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/details.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Invite/show.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/invite.yml" />
@@ -143,6 +141,8 @@
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/teaser.html.twig" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Security/User/Provider/FacebookProvider.php" />
+        <option value="$PROJECT_DIR$/deps" />
+        <option value="$PROJECT_DIR$/deps.lock" />
       </list>
     </option>
   </component>
@@ -1190,20 +1190,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/Invite.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="362" column="32" selection-start="6830" selection-end="6830" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/PostManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="218" column="5" selection-start="6343" selection-end="6343" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PostController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="140" column="0" selection-start="5550" selection-end="5718" vertical-scroll-proportion="-10.807693">
@@ -1297,7 +1283,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Security/User/Provider/FacebookProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="80" selection-start="660" selection-end="660" vertical-scroll-proportion="0.42693773">
+        <state line="21" column="80" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deps">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="4" selection-start="1899" selection-end="1899" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deps.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="1059" selection-end="1059" vertical-scroll-proportion="0.37670383">
           <folding />
         </state>
       </provider>

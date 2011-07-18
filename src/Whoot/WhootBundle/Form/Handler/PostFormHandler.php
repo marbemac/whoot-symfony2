@@ -38,6 +38,11 @@ class PostFormHandler
         if ('POST' == $this->request->getMethod()) {
             $params = $this->request->request->all();
 
+            if (!isset($params['whoot_post_form']))
+            {
+                return false;
+            }
+
             // Validate the words
             $wordCount = 0;
             $characterCount = 0;

@@ -13,7 +13,7 @@
     <div class="words">
         {% if post.invite.id is defined %}
             <a href="{{ path('invite_show', {'inviteId': post.invite.id}) }}">
-                @{{ post.invite.venue }} with {{ post.invite.attending }} others
+                @{{ post.invite.venue }} with {{ post.invite.attending > 1 ? post.invite.attending-1~' others' : 'nobody.. loser' }}
             </a>
         {% else %}
             {% for word in post.words %}

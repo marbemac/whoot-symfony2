@@ -64,13 +64,15 @@ class CommentManager
         if ($postId)
         {
             $qb->addSelect('p')
-               ->innerJoin('c.post', 'p');
+               ->innerJoin('c.post', 'p', 'WITH', 'p.id = :postId')
+               ->setParameter('postId', $postId);
         }
 
         if ($inviteId)
         {
             $qb->addSelect('i')
-               ->innerJoin('c.invite', 'i');
+               ->innerJoin('c.invite', 'i', 'WITH', 'i.id = :inviteId')
+               ->setParameter('inviteId', $inviteId);
         }
 
         $query = $qb->getQuery();

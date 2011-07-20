@@ -6,7 +6,7 @@
 
     <services>
 
-        <service id="whoot.form.registration.type" class="Whoot\WhootUserBundle\Form\Type\RegistrationFormType">
+        <service id="whoot.form.registration.type" class="Whoot\UserBundle\Form\Type\RegistrationFormType">
             <tag name="form.type" alias="whoot_user_registration" />
         </service>
 

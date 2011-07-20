@@ -17,15 +17,13 @@ class FacebookProvider implements UserProviderInterface
     protected $facebook;
     protected $userManager;
     protected $locationManager;
-    protected $validator;
 
-    public function __construct(BaseFacebook $facebook, $userManager, $locationManager, $validator, $serviceContainer)
+    public function __construct(BaseFacebook $facebook, $userManager, $locationManager)
     {
         $facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYPEER] = false;
         $this->facebook = $facebook;
         $this->userManager = $userManager;
         $this->locationManager = $locationManager;
-        $this->validator = $validator;
     }
 
     public function supportsClass($class)
@@ -40,6 +38,8 @@ class FacebookProvider implements UserProviderInterface
 
     public function loadUserByUsername($username)
     {
+        echo 'test';
+        exit();
         $user = $this->findUserByFbId($username);
 
         // Try just getting by username
@@ -90,6 +90,8 @@ class FacebookProvider implements UserProviderInterface
 
     public function refreshUser(UserInterface $user)
     {
+        echo 'test2';
+        exit();
         if (!$this->supportsClass(get_class($user)) || !$user->getUsername()) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
         }

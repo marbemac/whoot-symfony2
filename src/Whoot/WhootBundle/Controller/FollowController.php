@@ -22,7 +22,7 @@ class FollowController extends ContainerAware
      */
     public function toggleAction($userId, $_format='html')
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
@@ -37,8 +37,8 @@ class FollowController extends ContainerAware
 
         if ($_format == 'json')
         {
-            $result = array('status' => 'success');
             $result['newText'] = $result['status'] == 'existing' ? 'Follow' : 'Unfollow';
+            $result['status'] = 'success';
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 

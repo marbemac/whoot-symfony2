@@ -37,7 +37,7 @@ class InviteController extends ContainerAware
         }
         else
         {
-            $invites = $this->container->get('whoot.invite_manager')->findInvitesBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), $offset, $limit);
+            $invites = $this->container->get('whoot.manager.invite')->findInvitesBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), $offset, $limit);
         }
 
         $response->setCache(array(
@@ -65,7 +65,7 @@ class InviteController extends ContainerAware
      */
     public function createAction($_format='html', $chromeless=false)
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
@@ -120,7 +120,7 @@ class InviteController extends ContainerAware
      */
     public function cancelAction()
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
@@ -128,7 +128,7 @@ class InviteController extends ContainerAware
         }
 
         $request = $this->container->get('request');
-        $myPost = $this->container->get('whoot.post_manager')->findPostBy(null, $this->container->get('security.context')->getToken()->getUser(), date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active');
+        $myPost = $this->container->get('whoot.manager.post')->findPostBy(null, $this->container->get('security.context')->getToken()->getUser(), date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active');
         if (!isset($myPost['invite']['id']) || $myPost['invite']['createdBy']['id'] != $this->container->get('security.context')->getToken()->getUser()->getId())
         {
             if ($request->isXmlHttpRequest())
@@ -143,7 +143,7 @@ class InviteController extends ContainerAware
             }
         }
 
-        $this->container->get('whoot.invite_manager')->cancelInvite($myPost['invite']['id']);
+        $this->container->get('whoot.manager.invite')->cancelInvite($myPost['invite']['id']);
 
         if ($request->isXmlHttpRequest())
         {
@@ -178,8 +178,8 @@ class InviteController extends ContainerAware
             // return $response;
         }
 
-        $invite = $this->container->get('whoot.invite_manager')->findInviteBy($inviteId);
-        $comments = $this->container->get('whoot.comment_manager')->findCommentsBy(null, $inviteId);
+        $invite = $this->container->get('whoot.manager.invite')->findInviteBy($inviteId);
+        $comments = $this->container->get('whoot.manager.comment')->findCommentsBy(null, $inviteId);
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Invite:show.html.twig', array(
             'invite' => $invite,
@@ -199,7 +199,7 @@ class InviteController extends ContainerAware
             // return $response;
         }
 
-        $invite = $this->container->get('whoot.invite_manager')->findInviteBy($inviteId, null, null, 'Active', false);
+        $invite = $this->container->get('whoot.manager.invite')->findInviteBy($inviteId, null, null, 'Active', false);
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Invite:teaser.'.$_format.'.twig', array(
             'invite' => $invite
@@ -219,7 +219,7 @@ class InviteController extends ContainerAware
         if ($securityContext->isGranted('ROLE_USER'))
         {
             $fromUser = $securityContext->getToken()->getUser();
-            $post = $this->container->get('whoot.post_manager')->findPostBy(null, $fromUser, date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active');
+            $post = $this->container->get('whoot.manager.post')->findPostBy(null, $fromUser, date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active');
         }
         else
         {
@@ -241,7 +241,7 @@ class InviteController extends ContainerAware
      */
     public function attendAction($inviteId, $_format='html')
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
@@ -250,7 +250,7 @@ class InviteController extends ContainerAware
 
         $request = $this->container->get('request');
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $postManager = $this->container->get('whoot.post_manager');
+        $postManager = $this->container->get('whoot.manager.post');
 
         // Check to see if this user is the creator of a currently active open invite
         $myPost = $postManager->findPostBy(null, $user, date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active', true);
@@ -265,7 +265,7 @@ class InviteController extends ContainerAware
             return $response;
         }
 
-        $result = $this->container->get('whoot.invite_manager')->toggleAttending($user->getId(), $myPost, $inviteId);
+        $result = $this->container->get('whoot.manager.invite')->toggleAttending($user->getId(), $myPost, $inviteId);
 
         if ($_format == 'json')
         {

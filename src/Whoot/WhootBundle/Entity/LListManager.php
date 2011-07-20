@@ -2,7 +2,6 @@
 
 namespace Whoot\WhootBundle\Entity;
 
-use Whoot\WhootUserBundle\Entity\UserManager;
 use Whoot\WhootBundle\Util\SlugNormalizer;
 
 use Doctrine\ORM\EntityManager;
@@ -10,22 +9,24 @@ use Doctrine\ORM\Query;
 
 use Symfony\Component\Security\Core\SecurityContext;
 
+use Whoot\UserBundle\Entity\UserManager;
+
 class LListManager
 {
-    protected $userManager;
     protected $em;
     protected $securityContext;
-    
+    protected $userManager;
+
     /**
      * Constructor.
      *
      * @param EntityManager $em
      */
-    public function __construct($userManager, EntityManager $em, SecurityContext $securityContext)
+    public function __construct(EntityManager $em, SecurityContext $securityContext, UserManager $userManager)
     {
         $this->em = $em;
-        $this->userManager = $userManager;
         $this->securityContext = $securityContext;
+        $this->userManager = $userManager;
     }
 
     /**

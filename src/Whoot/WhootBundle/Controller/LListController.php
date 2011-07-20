@@ -25,7 +25,7 @@ class LListController extends ContainerAware
      */
     public function listAction($userId)
     {
-        $lists = $this->container->get('whoot.list_manager')->findListsBy(array('createdBy' => $userId, 'status' => 'Active'));
+        $lists = $this->container->get('whoot.manager.list')->findListsBy(array('createdBy' => $userId, 'status' => 'Active'));
 
         $response = new Response();
         $response->setCache(array(
@@ -44,7 +44,7 @@ class LListController extends ContainerAware
      */
     public function newAction($chromeless=null)
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
@@ -112,14 +112,14 @@ class LListController extends ContainerAware
      */
     public function editAction($id, $_format)
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin('xml');
         if ($login)
         {
             return $login;
         }
 
-        $object = $this->container->get('whoot.list_manager')->findObjectBy(array('id' => $id), true);
+        $object = $this->container->get('whoot.manager.list')->findObjectBy(array('id' => $id), true);
         $denied = $coreManager->accessDenied('EDIT', $object, 'error', 'You do not have permission to edit this list!');
         if ($denied)
         {
@@ -141,14 +141,14 @@ class LListController extends ContainerAware
      */
     public function updateAction($id)
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
             return $login;
         }
 
-        $object = $this->container->get('whoot.list_manager')->findObjectBy(array('id' => $id), true);
+        $object = $this->container->get('whoot.manager.list')->findObjectBy(array('id' => $id), true);
         $form = $this->container->get('whoot.form.list');
 
         $process = $form->process($object);
@@ -185,14 +185,14 @@ class LListController extends ContainerAware
      */
     public function deleteAction($id)
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
             return $login;
         }
 
-        $listManager = $this->container->get('whoot.list_manager');
+        $listManager = $this->container->get('whoot.manager.list');
         $list = $listManager->findListBy(array('id' => $id), true);
         $denied = $coreManager->accessDenied('EDIT', $list, 'error', 'You do not have permission to delete this list!');
         if ($denied)
@@ -232,7 +232,7 @@ class LListController extends ContainerAware
             // return $response;
         }
 
-        $list = $this->container->get('whoot.list_manager')->findListUsers($id);
+        $list = $this->container->get('whoot.manager.list')->findListUsers($id);
 
         return $this->container->get('templating')->renderResponse('WhootBundle:LList:show.html.twig', array(
             'list' => $list
@@ -253,7 +253,7 @@ class LListController extends ContainerAware
             // return $response;
         }
 
-        $object = $this->container->get('whoot.list_manager')->findObjectBy(array('id' => $id));
+        $object = $this->container->get('whoot.manager.list')->findObjectBy(array('id' => $id));
 
         return $this->container->get('templating')->renderResponse('WhootBundle:LList:teaser.html.twig', array(
             'object' => $object
@@ -267,7 +267,7 @@ class LListController extends ContainerAware
      */
     public function userAddAction($listId)
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
@@ -289,7 +289,7 @@ class LListController extends ContainerAware
             return $response;
         }
 
-        $userList = $this->container->get('whoot.list_manager')->findUserList(array('list' => $listId, 'user' => $userId), true);
+        $userList = $this->container->get('whoot.manager.list')->findUserList(array('list' => $listId, 'user' => $userId), true);
         if ($userList && $userList->getStatus() == 'Active')
         {
             $result = array();
@@ -301,14 +301,14 @@ class LListController extends ContainerAware
             return $response;
         }
 
-        $list = $this->container->get('whoot.list_manager')->findListBy(array('id' => $listId), true);
+        $list = $this->container->get('whoot.manager.list')->findListBy(array('id' => $listId), true);
 //        $denied = $coreManager->accessDenied('EDIT', $list, 'error', 'You do not have permission to edit this list!');
 //        if ($denied)
 //        {
 //            return $denied;
 //        }
 
-        $user = $this->container->get('whoot.list_manager')->addUser($userList, $list, $userId);
+        $user = $this->container->get('whoot.manager.list')->addUser($userList, $list, $userId);
 
         if ($user && $request->isXmlHttpRequest())
         {
@@ -337,7 +337,7 @@ class LListController extends ContainerAware
      */
     public function userDeleteAction()
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
@@ -359,7 +359,7 @@ class LListController extends ContainerAware
             return $response;
         }
 
-        $userList = $this->container->get('whoot.list_manager')->findUserList(array('id' => $userListId), true);
+        $userList = $this->container->get('whoot.manager.list')->findUserList(array('id' => $userListId), true);
         if (!$userList)
         {
             $result = array();
@@ -371,14 +371,14 @@ class LListController extends ContainerAware
             return $response;
         }
 
-//        $list = $this->container->get('whoot.list_manager')->findListBy(array('id' => $listId), true);
+//        $list = $this->container->get('whoot.manager.list')->findListBy(array('id' => $listId), true);
 //        $denied = $coreManager->accessDenied('EDIT', $list, 'error', 'You do not have permission to edit this list!');
 //        if ($denied)
 //        {
 //            return $denied;
 //        }
 
-        $user = $this->container->get('whoot.list_manager')->deleteUserList($userList);
+        $user = $this->container->get('whoot.manager.list')->deleteUserList($userList);
 
         if ($user && $request->isXmlHttpRequest())
         {

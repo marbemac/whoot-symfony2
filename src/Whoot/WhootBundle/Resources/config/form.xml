@@ -25,8 +25,8 @@
         <service id="whoot.form.handler.invite" class="Whoot\WhootBundle\Form\Handler\InviteFormHandler" scope="request">
             <argument type="service" id="whoot.form.invite" />
             <argument type="service" id="request" />
-            <argument type="service" id="whoot.invite_manager" />
-            <argument type="service" id="whoot.post_manager" />
+            <argument type="service" id="whoot.manager.invite" />
+            <argument type="service" id="whoot.manager.post" />
         </service>
 
         <!-- POST -->
@@ -47,8 +47,8 @@
         <service id="whoot.form.handler.post" class="Whoot\WhootBundle\Form\Handler\PostFormHandler" scope="request">
             <argument type="service" id="whoot.form.post" />
             <argument type="service" id="request" />
-            <argument type="service" id="whoot.post_manager" />
-            <argument type="service" id="whoot.word_manager" />
+            <argument type="service" id="whoot.manager.post" />
+            <argument type="service" id="whoot.manager.word" />
         </service>
 
         <!-- WORD -->
@@ -67,7 +67,7 @@
         <service id="whoot.form.handler.word" class="Whoot\WhootBundle\Form\Handler\WordFormHandler" scope="request">
             <argument type="service" id="whoot.form.word" />
             <argument type="service" id="request" />
-            <argument type="service" id="whoot.word_manager" />
+            <argument type="service" id="whoot.manager.word" />
         </service>
 
         <!-- COMMENT -->
@@ -86,9 +86,9 @@
         <service id="whoot.form.handler.comment" class="Whoot\WhootBundle\Form\Handler\CommentFormHandler" scope="request">
             <argument type="service" id="whoot.form.comment" />
             <argument type="service" id="request" />
-            <argument type="service" id="whoot.comment_manager" />
-            <argument type="service" id="whoot.post_manager" />
-            <argument type="service" id="whoot.invite_manager" />
+            <argument type="service" id="whoot.manager.comment" />
+            <argument type="service" id="whoot.manager.post" />
+            <argument type="service" id="whoot.manager.invite" />
         </service>
 
         <!-- LLIST -->
@@ -107,7 +107,7 @@
         <service id="whoot.form.handler.list" class="Whoot\WhootBundle\Form\Handler\ListFormHandler" scope="request">
             <argument type="service" id="whoot.form.list" />
             <argument type="service" id="request" />
-            <argument type="service" id="whoot.list_manager" />
+            <argument type="service" id="whoot.manager.list" />
         </service>
 
     </services>

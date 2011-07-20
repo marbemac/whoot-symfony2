@@ -54,7 +54,7 @@ class CoreController extends ContainerAware
             //return $response;
         }
 
-        $myPost = $this->container->get('whoot.post_manager')->findPostBy(
+        $myPost = $this->container->get('whoot.manager.post')->findPostBy(
                                                                 null,
                                                                 $this->container->get('security.context')->getToken()->getUser(),
                                                                 date('Y-m-d 05:00:00', time()-(60*60*5)),
@@ -79,7 +79,7 @@ class CoreController extends ContainerAware
             //return $response;
         }
 
-        $myPost = $this->container->get('whoot.post_manager')->findPostBy(
+        $myPost = $this->container->get('whoot.manager.post')->findPostBy(
                                                                 null,
                                                                 $this->container->get('security.context')->getToken()->getUser(),
                                                                 date('Y-m-d 05:00:00', time()-(60*60*5)),
@@ -94,7 +94,7 @@ class CoreController extends ContainerAware
     public function postBoxAction()
     {
         $request = $this->container->get('request');
-        $myPost = $this->container->get('whoot.post_manager')->findPostBy(
+        $myPost = $this->container->get('whoot.manager.post')->findPostBy(
                                                                 null,
                                                                 $this->container->get('security.context')->getToken()->getUser(),
                                                                 date('Y-m-d 05:00:00', time()-(60*60*5)),
@@ -234,8 +234,8 @@ class CoreController extends ContainerAware
     public function sidebarAction()
     {
         $user = $this->container->get('security.context')->getToken()->getUser()->getId();
-        $pingCount = $this->container->get('whoot.ping_manager')->findPingsBy($user, date('Y-m-d 05:00:00', time()-(60*60*5)));
-        $followingStats = $this->container->get('whoot.user_manager')->getFollowingStats($user);
+        $pingCount = $this->container->get('whoot.manager.ping')->findPingsBy($user, date('Y-m-d 05:00:00', time()-(60*60*5)));
+        $followingStats = $this->container->get('whoot.user_manager')->getFollowingStats($user, null, null);
         $undecidedUsers = $this->container->get('whoot.user_manager')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), null, 0, 0);
 
         $response = new Response();

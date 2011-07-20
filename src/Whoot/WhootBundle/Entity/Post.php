@@ -67,14 +67,14 @@ class Post
 
     /**
      * @var User $createdBy
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
     protected $createdBy;
 
     /**
      * @var User $deletedBy
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
      */
     protected $deletedBy;
@@ -107,7 +107,7 @@ class Post
     protected $words;
 
     /**
-     * @var Whoot\WhootUserBundle\Entity\User
+     * @var Whoot\UserBundle\Entity\User
      *
      * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\Comment", mappedBy="post", cascade={"persist"})
      */

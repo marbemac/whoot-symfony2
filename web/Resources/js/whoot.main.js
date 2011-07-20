@@ -19,13 +19,13 @@ $(function() {
      */
 
     // show the hidden login form on ctrl+L
-    $(window).keypress(function(e) {
+    $(document).keypress(function(e) {
         var $code = e.which ? e.which : e.keyCode;
-        if (e.ctrlKey && $code == 108)
+        if (e.ctrlKey && ($code == 108 || $code == 12))
         {
             $('#auth-login').fadeToggle(300);
+            return false;
         }
-
     })
 
     /**

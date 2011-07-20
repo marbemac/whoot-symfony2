@@ -42,19 +42,19 @@ class UserFollowing
 
     /**
      * @var User $deletedBy
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
      */
     protected $deletedBy;    
 
     /**
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User", inversedBy="following", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User", inversedBy="following", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User", inversedBy="followers", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User", inversedBy="followers", cascade={"persist"})
      * @ORM\JoinColumn(name="following_id", referencedColumnName="id")
      */
     protected $following;

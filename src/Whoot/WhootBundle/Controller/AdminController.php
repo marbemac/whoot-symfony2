@@ -29,9 +29,9 @@ class AdminController extends ContainerAware
     {
         $response = new Response();
 
-        $stopWords = $this->container->get('whoot.word_manager')->getTrending(null, null, null, array('isStopWord' => true));
-        $trendableWords = $this->container->get('whoot.word_manager')->getTrending(null, null, null, array('trendable' => true));
-        $uncategorizedWords = $this->container->get('whoot.word_manager')->getTrending(null, null, null, array('trendable' => false, 'isStopWord' => false));
+        $stopWords = $this->container->get('whoot.manager.word')->getTrending(null, null, null, array('isStopWord' => true));
+        $trendableWords = $this->container->get('whoot.manager.word')->getTrending(null, null, null, array('trendable' => true));
+        $uncategorizedWords = $this->container->get('whoot.manager.word')->getTrending(null, null, null, array('trendable' => false, 'isStopWord' => false));
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Admin:trending.html.twig', array(
             'page' => 'trending',

@@ -5,8 +5,7 @@ namespace Whoot\WhootBundle\Entity;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 
-use Whoot\WhootUserBundle\Entity\UserManager;
-
+use Whoot\UserBundle\Entity\UserManager;
 
 class PostManager
 {
@@ -18,10 +17,10 @@ class PostManager
      *
      * @param EntityManager $em
      */
-    public function __construct($userManager, EntityManager $em)
+    public function __construct(EntityManager $em, UserManager $userManager)
     {
-        $this->userManager = $userManager;
         $this->em = $em;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -164,7 +163,7 @@ class PostManager
             // get the users this user is following
             $qb2 = $this->em->createQueryBuilder();
             $qb2->select(array('u.id'))
-               ->from('Whoot\WhootUserBundle\Entity\User', 'u')
+               ->from('Whoot\UserBundle\Entity\User', 'u')
                ->innerJoin('u.followers', 'f', 'WITH', 'f.user = :user AND f.status = :status')
                ->setParameters(array(
                    'user' => $user,
@@ -202,14 +201,10 @@ class PostManager
             $qb->andwhere($qb->expr()->in('p.type', $postTypes));
         }
 
-        if ($offset)
+        if ($offset != null && $limit)
         {
-            $qb->setFirstResult($offset);
-        }
-        
-        if ($limit)
-        {
-            $qb->setMaxResults($limit);
+            $qb->setFirstResult($offset)
+               ->setMaxResults($limit);
         }
 
         $query = $qb->getQuery();

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Whoot\WhootUserBundle\Controller;
+namespace Whoot\UserBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -121,7 +121,7 @@ class ProfileController extends ContainerAware
         ));
     }
 
-    public function followersAction($username=null, $_format='html')
+    public function followersAction($username=null, $offset=null, $limit=null, $_format='html')
     {
         if ($username)
         {
@@ -132,7 +132,7 @@ class ProfileController extends ContainerAware
             $user = $this->container->get('security.context')->getToken()->getUser();
         }
         
-        $followers = $this->container->get('whoot.user_manager')->getFollowers($user);
+        $followers = $this->container->get('whoot.user_manager')->getFollowers($user, $offset, $limit);
 
         $response = new Response();
         $response->setCache(array(
@@ -150,7 +150,7 @@ class ProfileController extends ContainerAware
         ), $response);
     }
 
-    public function followingAction($username=null, $_format='html')
+    public function followingAction($username=null, $offset=null, $limit=null, $_format='html')
     {
         if ($username)
         {
@@ -161,7 +161,7 @@ class ProfileController extends ContainerAware
             $user = $this->container->get('security.context')->getToken()->getUser();
         }
         
-        $following = $this->container->get('whoot.user_manager')->getFollowing($user);
+        $following = $this->container->get('whoot.user_manager')->getFollowing($user, $offset, $limit);
 
         $response = new Response();
         $response->setCache(array(
@@ -326,7 +326,7 @@ class ProfileController extends ContainerAware
         $collect = array();
         if (!$user->getLocation())
         {
-            $locations = $this->container->get('whoot.location_manager')->findLocationsBy(array());
+            $locations = $this->container->get('whoot.manager.location')->findLocationsBy(array());
             $collect['location'] = $locations;
         }
 
@@ -337,7 +337,7 @@ class ProfileController extends ContainerAware
 
     public function updateLocationAction()
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
@@ -346,7 +346,7 @@ class ProfileController extends ContainerAware
 
         $request = $this->container->get('request');
         $location = $request->request->get('location', null);
-        $location = $this->container->get('whoot.location_manager')->findLocationBy(array('id' => $location), true);
+        $location = $this->container->get('whoot.manager.location')->findLocationBy(array('id' => $location), true);
         if (!$location)
             return null;
 

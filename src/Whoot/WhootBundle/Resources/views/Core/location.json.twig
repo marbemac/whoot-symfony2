@@ -1,0 +1,10 @@
+{% if location %}
+{
+    "id":{{ location.id }},
+    "cityName":"{{ location.cityName }}",
+    "stateCode":"{{ location.stateCode }}",
+    "stateName":"{{ location.stateName }}"
+}
+{% else %}
+"NULL"
+{% endif %}

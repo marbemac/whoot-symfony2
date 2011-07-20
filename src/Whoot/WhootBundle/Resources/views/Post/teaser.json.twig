@@ -1,21 +1,35 @@
 {
     "id":{{ post.id }},
     "createdAt":"{{ post.createdAt.date }}",
-    "postType":"{{ post.type }}",
-    "note":"{{ post.note }}",
-    "venue":"{{ post.venue }}",
-    "time":"{{ post.time }}",
-    "address":"{{ post.address }}",
-    "lat":"{{ post.lat }}",
-    "lon":"{{ post.lon }}",
-    "isOpenInvite":"{{ post.isOpenInvite }}",
-    "jived":"{% render "WhootBundle:Post:jiveTag" with {'postId': post.id, '_format': 'json'} %}",
-    "users":
+    "type":"{{ post.type }}",
+    "score":{{ post.score }},
+    "createdBy":{% include "WhootUserBundle:Profile:teaser.json.twig" with {'user': post.createdBy} %},
+    "voted":{% render "WhootVoteBundle:Vote:show" with {'objectId': post.id, 'objectType': 'Post', '_format': 'json'} %},
+    "words":
     [
-        {% set activeUsers = post.users|rebuildArray('status', 'Active') %}
-        {% for user in activeUsers %}
-               {% include "WhootUserBundle:Profile:teaser.json.twig" with {'user': user.user} %}
+        {% for word in post.words %}
+               {% include "WhootBundle:Word:teaser.json.twig" with {'word': word.word } %}
+               {{ loop.last ? '' : ',' }}
+        {% endfor %}
+    ],
+    "location":{% include "WhootBundle:Core:location.json.twig" with {'location': post.location } %},
+    "invite":{% include "WhootBundle:Invite:teaser.json.twig" with {'invite': post.invite } %}{{ detailed is defined ? ',' : '' }}
+
+    {% if detailed is defined %}
+    "votes":
+    [
+        {% for vote in post.votes %}
+               {% include "WhootVoteBundle:Vote:teaser.json.twig" with {'vote': vote} %}
+               {{ loop.last ? '' : ',' }}
+        {% endfor %}
+    ],
+    "comments":
+    [
+        {% for comment in comments %}
+               {% include "WhootBundle:Comment:teaser.json.twig" with {'comment': comment} %}
                {{ loop.last ? '' : ',' }}
         {% endfor %}
     ]
+    {% endif %}
+
 }

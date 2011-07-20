@@ -1,5 +1,5 @@
 parameters:
-    whoot.user_manager.class:                  Whoot\WhootUserBundle\Entity\UserManager
+    whoot.user_manager.class:                  Whoot\UserBundle\Entity\UserManager
 
 services:
     whoot.user_manager:

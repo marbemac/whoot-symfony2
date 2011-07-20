@@ -47,14 +47,14 @@ class Vote
 
     /**
      * @var integer $voter
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="voter_id", referencedColumnName="id")
      */
     protected $voter;
 
     /**
      * @var integer $affectedUser
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="affected_user_id", referencedColumnName="id")
      */
     protected $affectedUser;
@@ -157,7 +157,7 @@ class Vote
     /**
      * Set voter
      *
-     * @param Whoot\WhootUserBundle\Entity\User $voter
+     * @param Whoot\UserBundle\Entity\User $voter
      */
     public function setVoter($voter)
     {
@@ -167,7 +167,7 @@ class Vote
     /**
      * Get voter
      *
-     * @return Whoot\WhootUserBundle\Entity\User $voter
+     * @return Whoot\UserBundle\Entity\User $voter
      */
     public function getVoter()
     {
@@ -177,7 +177,7 @@ class Vote
     /**
      * Set affectedUser
      *
-     * @param Whoot\WhootUserBundle\Entity\User $affectedUser
+     * @param Whoot\UserBundle\Entity\User $affectedUser
      */
     public function setAffectedUser($affectedUser)
     {
@@ -187,7 +187,7 @@ class Vote
     /**
      * Get affectedUser
      *
-     * @return Whoot\WhootUserBundle\Entity\User $affectedUser
+     * @return Whoot\UserBundle\Entity\User $affectedUser
      */
     public function getAffectedUser()
     {

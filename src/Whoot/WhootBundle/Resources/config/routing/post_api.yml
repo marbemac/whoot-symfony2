@@ -12,7 +12,6 @@ api_post_feed:
         _format: json
         offset: 0
         limit: 0
-        type: feed
     requirements:
         _method: GET
         _format: json
@@ -20,11 +19,10 @@ api_post_feed:
 api_post_undecided:
     pattern:  /undecided/{offset}.{limit}
     defaults:
-        _controller: WhootBundle:Post:feed
+        _controller: WhootBundle:Post:undecided
         _format: json
         offset: 0
         limit: 0
-        type: undecided
     requirements:
         _method: GET
         _format: json
@@ -38,19 +36,10 @@ api_post_toggle:
         _method: POST
         _format: json
 
-api_jive_toggle:
-    pattern:  /jive/{postId}
-    defaults:
-        _controller: WhootBundle:Post:jiveToggle
-        _format: json
-    requirements:
-        _method: POST|GET
-        _format: json
-
 api_post_details:
     pattern:  /{postId}
     defaults:
-        _controller: WhootBundle:Post:postDetails
+        _controller: WhootBundle:Post:details
         _format: json
     requirements:
         _method: GET

@@ -1,6 +1,6 @@
 <?php
 
-namespace Whoot\WhootUserBundle\Controller;
+namespace Whoot\UserBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\SecurityContext;
@@ -13,7 +13,7 @@ class SecurityController extends ContainerAware
      * @param string $_format
      * @param bool $chromeless
      */
-    public function loginAction($_format, $chromeless=false)
+    public function loginAction($_format='html', $chromeless=false)
     {
         // get the error if any (works with forward and redirect -- see below)
         if ($this->container->get('request')->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {

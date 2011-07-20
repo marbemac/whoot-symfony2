@@ -18,7 +18,7 @@ framework:
         default_locale: %locale%
         auto_start:     true
         lifetime:       3600
-        storage_id:     session.storage.pdo
+#        storage_id:     session.storage.pdo
     annotations:
         cache: file
         debug: %kernel.debug%
@@ -47,9 +47,7 @@ services:
         arguments:
             facebook:    "@fos_facebook.api"
             userManager: "@whoot.user_manager"
-            locationManager: "@whoot.location_manager"
-            validator:   "@validator"
-            container:   "@service_container"
+            locationManager: "@whoot.manager.location"
 
 # Doctrine Configuration
 doctrine:
@@ -64,7 +62,7 @@ doctrine:
 
     orm:
         auto_mapping: true
-        auto_generate_proxy_classes: true
+        auto_generate_proxy_classes: %kernel.debug%
         proxy_namespace: Proxies
         proxy_dir: %kernel.cache_dir%/doctrine/orm/Proxies
         default_entity_manager: default
@@ -102,6 +100,10 @@ jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
 
+evario_notification:
+    notification_class:   Whoot\WhootBundle\Entity\Notification
+    notification_manager: Whoot\WhootBundle\Entity\NotificationManager
+
 gravatar: ~
 
 # FOS Facebook config
@@ -115,7 +117,7 @@ fos_facebook:
 fos_user:
     db_driver:     orm
     firewall_name: main
-    user_class:    Whoot\WhootUserBundle\Entity\User
+    user_class:    Whoot\UserBundle\Entity\User
     use_listener:  true
     from_email:
         address: marc@thewhoot.com

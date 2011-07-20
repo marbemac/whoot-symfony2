@@ -67,14 +67,14 @@ class LList
 
     /**
      * @var User $createdBy
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
     protected $createdBy;
 
     /**
      * @var User $deletedBy
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
      */
     protected $deletedBy;

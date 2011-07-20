@@ -1,15 +1,19 @@
 api_user_following:
-    pattern: /following
+    pattern: /following/{offset}.{limit}
     defaults:
         _controller: WhootUserBundle:Profile:following
         _format: json
+        offset: 0
+        limit: 0
     requirements:
         _method: GET
 
 api_user_followers:
-    pattern: /followers
+    pattern: /followers/{offset}.{limit}
     defaults:
         _controller: WhootUserBundle:Profile:followers
         _format: json
+        offset: 0
+        limit: 0
     requirements:
         _method: GET

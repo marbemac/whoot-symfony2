@@ -22,7 +22,7 @@ class CommentController extends ContainerAware
      */
     public function newAction($rootId=null, $type=null)
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {

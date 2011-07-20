@@ -1,0 +1,27 @@
+{% if invite %}
+{
+    "id":{{ invite.id }},
+    "createdAt":"{{ invite.createdAt.date }}",
+    "createdBy":{% include "WhootUserBundle:Profile:teaser.json.twig" with {'user': invite.createdBy} %},
+    "type":"{{ invite.type }}",
+    "description":"{{ invite.description }}",
+    "venue":"{{ invite.venue }}",
+    "time":"{{ invite.time }}",
+    "address":"{{ invite.address }}",
+    "lat":"{{ invite.lat }}",
+    "lon":"{{ invite.lon }}",
+    "inviteImage":"{{ invite.path ? '/uploads/'~invite.subdirectory~'/'~invite.path : 'NULL' }}",
+    "attending":invite.attending{{ detailed is defined ? ',' : '' }}
+    {% if detailed is defined %}
+    "attendees":
+    [
+        {#{% for vote in post.votes %}#}
+               {#{% include "WhootVoteBundle:Vote:teaser.json.twig" with {'vote': vote} %}#}
+               {#{{ loop.last ? '' : ',' }}#}
+        {#{% endfor %}#}
+    ]
+    {% endif %}
+}
+{% else %}
+"NULL"
+{% endif %}

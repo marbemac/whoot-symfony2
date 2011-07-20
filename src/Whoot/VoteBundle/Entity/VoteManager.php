@@ -2,7 +2,7 @@
 
 namespace Whoot\VoteBundle\Entity;
 
-use Whoot\WhootUserBundle\Entity\UserManager;
+use Whoot\UserBundle\Entity\UserManager;
 use Whoot\WhootBundle\Entity\PostManager;
 use Whoot\WhootBundle\Entity\InviteManager;
 

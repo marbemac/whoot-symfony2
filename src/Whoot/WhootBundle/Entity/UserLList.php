@@ -42,13 +42,13 @@ class UserLList
 
     /**
      * @var User $deletedBy
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
      */
     protected $deletedBy;    
 
     /**
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User", inversedBy="lists", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User", inversedBy="lists", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;

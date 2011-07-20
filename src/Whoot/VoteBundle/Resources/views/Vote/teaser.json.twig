@@ -1,0 +1,5 @@
+{
+    "amount":{{ vote.amount }},
+    "createdAt":"{{ vote.createdAt.date }}",
+    "voter":{% include "WhootUserBundle:Profile:teaser.json.twig" with {'user': vote.voter} %}
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Whoot\WhootUserBundle\Entity;
+namespace Whoot\UserBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
@@ -42,7 +42,7 @@ class UserManager extends BaseUserManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u', 'l'))
-           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
+           ->from('Whoot\UserBundle\Entity\User', 'u')
            ->leftJoin('u.location', 'l');
 
         foreach ($criteria as $key => $val)
@@ -65,7 +65,7 @@ class UserManager extends BaseUserManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
-           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
+           ->from('Whoot\UserBundle\Entity\User', 'u')
            ->where('u.status = :status AND u.id != :currentUser')
            ->setParameters(array(
                'status' => 'Active',
@@ -130,34 +130,48 @@ class UserManager extends BaseUserManager
         return $response;
     }
 
-    public function getFollowing($user)
+    public function getFollowing($user, $offset, $limit)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
-           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
+           ->from('Whoot\UserBundle\Entity\User', 'u')
            ->innerJoin('u.followers', 'f', 'WITH', 'f.user = :user AND f.status = :status')
            ->where('u.status = :status')
            ->setParameters(array(
                'user' => $user,
                'status' => 'Active'
            ));
+
+        if ($limit && $offset != null)
+        {
+            $qb->setFirstResult($offset)
+               ->setMaxResults($limit);
+        }
+
         $query = $qb->getQuery();
         $followingUsers = $query->getArrayResult();
 
         return $followingUsers;
     }
 
-    public function getFollowers($user)
+    public function getFollowers($user, $offset, $limit)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
-           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
+           ->from('Whoot\UserBundle\Entity\User', 'u')
            ->innerJoin('u.following', 'f', 'WITH', 'f.following = :user AND f.status = :status')
            ->where('u.status = :status')
            ->setParameters(array(
                'user' => $user,
                'status' => 'Active'
            ));
+
+        if ($limit && $offset != null)
+        {
+            $qb->setFirstResult($offset)
+               ->setMaxResults($limit);
+        }
+
         $query = $qb->getQuery();
         $followersUsers = $query->getArrayResult();
 
@@ -168,7 +182,7 @@ class UserManager extends BaseUserManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
-           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
+           ->from('Whoot\UserBundle\Entity\User', 'u')
            ->leftJoin('u.posts', 'up', 'WITH', 'up.createdAt >= :since AND up.status = :status')
            ->having('count(up.id) = 0')
            ->groupBy('u.id')
@@ -209,7 +223,7 @@ class UserManager extends BaseUserManager
         }
         else if ($user)
         {
-            $followingUsers = $this->getFollowing($user);
+            $followingUsers = $this->getFollowing($user, null, null);
 
             // If they are not following anyone, there will be no undecided...
             if (count($followingUsers) == 0)
@@ -224,7 +238,7 @@ class UserManager extends BaseUserManager
             $qb->andwhere($qb->expr()->in('u.id', $following));
         }
 
-        if ($limit && $offset)
+        if ($limit && $offset != null)
         {
             $qb->setFirstResult($offset)
                ->setMaxResults($limit);
@@ -298,7 +312,7 @@ class UserManager extends BaseUserManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u', 'up', 'p', 'l'))
-           ->from('Whoot\WhootUserBundle\Entity\User', 'u')
+           ->from('Whoot\UserBundle\Entity\User', 'u')
            ->leftJoin('u.posts', 'up', 'WITH', 'up.status = :status AND up.createdAt >= :createdAt')
            ->leftJoin('up.post', 'p', 'WITH', 'p.status = :status')
            ->leftJoin('u.location', 'l')

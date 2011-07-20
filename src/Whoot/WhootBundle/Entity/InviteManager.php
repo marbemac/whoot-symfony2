@@ -5,8 +5,7 @@ namespace Whoot\WhootBundle\Entity;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 
-use Whoot\WhootUserBundle\Entity\UserManager;
-
+use Whoot\UserBundle\Entity\UserManager;
 
 class InviteManager
 {
@@ -18,10 +17,10 @@ class InviteManager
      *
      * @param EntityManager $em
      */
-    public function __construct($userManager, EntityManager $em)
+    public function __construct(EntityManager $em, UserManager $userManager)
     {
-        $this->userManager = $userManager;
         $this->em = $em;
+        $this->userManager = $userManager;
     }
 
     public function createInvite()
@@ -127,7 +126,7 @@ class InviteManager
             // get the users this user is following
             $qb2 = $this->em->createQueryBuilder();
             $qb2->select(array('u.id'))
-               ->from('Whoot\WhootUserBundle\Entity\User', 'u')
+               ->from('Whoot\UserBundle\Entity\User', 'u')
                ->innerJoin('u.followers', 'f', 'WITH', 'f.user = :user AND f.status = :status')
                ->setParameters(array(
                    'user' => $user,

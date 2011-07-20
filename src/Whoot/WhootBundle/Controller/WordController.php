@@ -25,7 +25,7 @@ class WordController extends ContainerAware
         $response = new Response();
 
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $trendingWords = $this->container->get('whoot.word_manager')->getTrending($user->getLocation(), date('Y-m-d 05:00:00', time()-(60*60*5)), 10, array('trendable' => true));
+        $trendingWords = $this->container->get('whoot.manager.word')->getTrending($user->getLocation(), date('Y-m-d 05:00:00', time()-(60*60*5)), 10, array('trendable' => true));
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Word:trending.html.twig', array(
             'trendingWords' => $trendingWords,
@@ -38,7 +38,7 @@ class WordController extends ContainerAware
      */
     public function makeTrendableAction($wordId)
     {
-        $wordManager = $this->container->get('whoot.word_manager');
+        $wordManager = $this->container->get('whoot.manager.word');
         $word = $wordManager->findWordBy(null, array('id' => $wordId), true);
         $word->setTrendable(true);
         $word->setIsStopWord(false);
@@ -59,7 +59,7 @@ class WordController extends ContainerAware
      */
     public function makeStopwordAction($wordId)
     {
-        $wordManager = $this->container->get('whoot.word_manager');
+        $wordManager = $this->container->get('whoot.manager.word');
         $word = $wordManager->findWordBy(null, array('id' => $wordId), true);
         $word->setTrendable(false);
         $word->setIsStopWord(true);

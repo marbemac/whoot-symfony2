@@ -1,6 +1,6 @@
 <?php
 
-namespace Whoot\WhootUserBundle;
+namespace Whoot\UserBundle;
 
 use FOS\UserBundle\FOSUserBundle as FOSUserBundle;
 

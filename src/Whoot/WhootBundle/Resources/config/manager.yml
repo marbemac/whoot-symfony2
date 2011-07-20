@@ -1,36 +1,41 @@
 parameters:
-    whoot.core_manager.class:                  Whoot\WhootBundle\Entity\CoreManager
-    whoot.post_manager.class:                  Whoot\WhootBundle\Entity\PostManager
-    whoot.invite_manager.class:                Whoot\WhootBundle\Entity\InviteManager
-    whoot.word_manager.class:                  Whoot\WhootBundle\Entity\WordManager
-    whoot.ping_manager.class:                  Whoot\WhootBundle\Entity\PingManager
-    whoot.comment_manager.class:               Whoot\WhootBundle\Entity\CommentManager
-    whoot.list_manager.class:                  Whoot\WhootBundle\Entity\LListManager
-    whoot.location_manager.class:              Whoot\WhootBundle\Entity\LocationManager
+    whoot.manager.core.class:                  Whoot\WhootBundle\Entity\CoreManager
+    whoot.manager.post.class:                  Whoot\WhootBundle\Entity\PostManager
+    whoot.manager.invite.class:                Whoot\WhootBundle\Entity\InviteManager
+    whoot.manager.word.class:                  Whoot\WhootBundle\Entity\WordManager
+    whoot.manager.ping.class:                  Whoot\WhootBundle\Entity\PingManager
+    whoot.manager.notification.class:          Whoot\WhootBundle\Entity\NotificationManager
+    whoot.manager.notification.entity:         Whoot\WhootBundle\Entity\Notification
+    whoot.manager.comment.class:               Whoot\WhootBundle\Entity\CommentManager
+    whoot.manager.list.class:                  Whoot\WhootBundle\Entity\LListManager
+    whoot.manager.location.class:              Whoot\WhootBundle\Entity\LocationManager
 
 services:
-    whoot.core_manager:
-        class:        %whoot.core_manager.class%
+    whoot.manager.notification:
+        class:        %whoot.manager.notification.class%
+        arguments:    ["@doctrine.orm.default_entity_manager", %whoot.manager.notification.entity]
+    whoot.manager.core:
+        class:        %whoot.manager.core.class%
         arguments:    ["@request", "@router", "@security.context"]
         scope:       request
-    whoot.post_manager:
-        class:        %whoot.post_manager.class%
-        arguments:    ["@whoot.user_manager", "@doctrine.orm.default_entity_manager"]
-    whoot.invite_manager:
-        class:        %whoot.invite_manager.class%
-        arguments:    ["@whoot.user_manager", "@doctrine.orm.default_entity_manager"]
-    whoot.word_manager:
-        class:        %whoot.word_manager.class%
+    whoot.manager.post:
+        class:        %whoot.manager.post.class%
+        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.user_manager"]
+    whoot.manager.invite:
+        class:        %whoot.manager.invite.class%
+        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.user_manager"]
+    whoot.manager.word:
+        class:        %whoot.manager.word.class%
         arguments:    ["@doctrine.orm.default_entity_manager"]
-    whoot.ping_manager:
-        class:        %whoot.ping_manager.class%
+    whoot.manager.ping:
+        class:        %whoot.manager.ping.class%
         arguments:    ["@doctrine.orm.default_entity_manager"]
-    whoot.comment_manager:
-        class:        %whoot.comment_manager.class%
+    whoot.manager.comment:
+        class:        %whoot.manager.comment.class%
         arguments:    ["@doctrine.orm.default_entity_manager", "@security.context"]
-    whoot.list_manager:
-        class:        %whoot.list_manager.class%
-        arguments:    ["@whoot.user_manager", "@doctrine.orm.default_entity_manager", "@security.context"]
-    whoot.location_manager:
-        class:        %whoot.location_manager.class%
+    whoot.manager.list:
+        class:        %whoot.manager.list.class%
+        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context", "@whoot.user_manager"]
+    whoot.manager.location:
+        class:        %whoot.manager.location.class%
         arguments:    ["@doctrine.orm.default_entity_manager"]

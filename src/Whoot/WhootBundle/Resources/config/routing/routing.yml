@@ -1,10 +1,18 @@
 user:
     resource: "@WhootUserBundle/Resources/config/routing/routing.yml"
 
+user_api:
+    resource: "@WhootUserBundle/Resources/config/routing/api.yml"
+    prefix:   /api/user
+
 vote:
     resource: "@WhootVoteBundle/Resources/config/routing/routing.yml"
     prefix:   /v
-    
+
+vote_api:
+    resource: "@WhootVoteBundle/Resources/config/routing/api.yml"
+    prefix:   /api/vote
+
 invite:
     resource: "@WhootBundle/Resources/config/routing/invite.yml"
     prefix:   /i
@@ -45,10 +53,6 @@ list:
     resource: "@WhootBundle/Resources/config/routing/list.yml"
     prefix:   /l
 
-user_api:
-    resource: "@WhootUserBundle/Resources/config/routing/api.yml"
-    prefix:   /api/user
-
 admin:
     resource: "@WhootBundle/Resources/config/routing/admin.yml"
     prefix:   /admin
@@ -65,7 +69,7 @@ feed_filter_change:
     defaults: { _controller: WhootBundle:Core:changeFeedFilter }
     requirements:
         key:  feedSort
-        value: popularity|created|activity
+        value: popularity|created
         _method: GET|POST
 
 deal_feed:
@@ -74,7 +78,7 @@ deal_feed:
 
 facebook_security_check:
     pattern:  /fb/login_check
-    defaults: { _controller: FOSUserBundle:Security:login }
+    defaults: { _controller: WhootUserBundle:Security:login }
 
 _security_logout:
     pattern:  /logout

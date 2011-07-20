@@ -4,9 +4,9 @@
 
 {% block data %}
     {
-        "posts":
+        "users":
         [
-            {% for user in undecidedUsers %}
+            {% for user in users %}
                 {% include "WhootUserBundle:Profile:teaser.json.twig" with {'user': user} %}
                 {{ loop.last ? '' : ',' }}
             {% endfor %}

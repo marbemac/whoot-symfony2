@@ -23,7 +23,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(), // FriendsOfSymfony UserBundle
             new FOS\FacebookBundle\FOSFacebookBundle(),
             new Bundle\GravatarBundle\GravatarBundle(),
-            new Whoot\WhootUserBundle\WhootUserBundle(),
+            new Evario\NotificationBundle\EvarioNotificationBundle(),
+            new Whoot\UserBundle\WhootUserBundle(),
             new Whoot\VoteBundle\WhootVoteBundle(),
             new Whoot\WhootBundle\WhootBundle(),
         );

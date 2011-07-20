@@ -7,7 +7,7 @@
         "posts":
         [
             {% for post in posts %}
-                {% render 'WhootBundle:Post:teaser' with {'postId': post[0].id, '_format': 'json'} %}
+                {% render 'WhootBundle:Post:teaser' with {'postId': post.id, '_format': 'json'} %}
                 {{ loop.last ? '' : ',' }}
             {% endfor %}
         ]

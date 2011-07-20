@@ -4,7 +4,7 @@ namespace Whoot\WhootBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
-use Whoot\WhootUserBundle\Entity\UserManager;
+use Whoot\UserBundle\Entity\UserManager;
 
 class PostFormType extends AbstractType
 {

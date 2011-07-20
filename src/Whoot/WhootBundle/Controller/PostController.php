@@ -20,7 +20,7 @@ class PostController extends ContainerAware
     /**
      * 
      */
-    public function feedAction($postTypes=null, $feedSort=null, $listId=null, $offset=0, $limit=null, $_format='html', $type=null)
+    public function feedAction($postTypes=null, $feedSort=null, $listId=null, $offset=0, $limit=null, $_format='html')
     {
         $response = new Response();
         $feedFilters = $this->container->get('session')->get('feedFilters');
@@ -37,7 +37,7 @@ class PostController extends ContainerAware
         }
         else
         {
-            $posts = $this->container->get('whoot.post_manager')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), $listId, $offset, $limit);
+            $posts = $this->container->get('whoot.manager.post')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), $listId, $offset, $limit);
         }
 
         $response->setCache(array(
@@ -48,10 +48,10 @@ class PostController extends ContainerAware
             // return $response;
         }
 
-        // Used by the API (feed/undecided)
-        if ($type)
+        // Used by the API
+        if ($_format == 'json')
         {
-            return $this->container->get('templating')->renderResponse('WhootBundle:Post:'.$type.'.'.$_format.'.twig', array(
+            return $this->container->get('templating')->renderResponse('WhootBundle:Post:feed.'.$_format.'.twig', array(
                 'posts' => $posts
             ), $response);
         }
@@ -68,10 +68,30 @@ class PostController extends ContainerAware
         ), $response);
     }
 
+    public function undecidedAction($offset=0, $limit=null, $_format='html')
+    {
+        $response = new Response();
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $undecidedUsers = $this->container->get('whoot.user_manager')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), null, $offset, $limit);
+
+        $response->setCache(array(
+        ));
+
+        if ($response->isNotModified($this->container->get('request'))) {
+            // return the 304 Response immediately
+            // return $response;
+        }
+
+        // Used by the API
+        return $this->container->get('templating')->renderResponse('WhootBundle:Post:undecided.'.$_format.'.twig', array(
+            'users' => $undecidedUsers
+        ), $response);
+    }
+
     public function myPostAction($_format='html')
     {
         $request = $this->container->get('request');
-        $myPost = $this->container->get('whoot.post_manager')->findPostBy(
+        $myPost = $this->container->get('whoot.manager.post')->findPostBy(
                                                                 null,
                                                                 $this->container->get('security.context')->getToken()->getUser()->getId(),
                                                                 date('Y-m-d 05:00:00', time()-(60*60*5)),
@@ -95,7 +115,7 @@ class PostController extends ContainerAware
      */
     public function createAction($_format='html')
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
@@ -172,7 +192,7 @@ class PostController extends ContainerAware
             // return $response;
         }
 
-        $post = $this->container->get('whoot.post_manager')->findPostBy($postId, null, null, 'Active', false);
+        $post = $this->container->get('whoot.manager.post')->findPostBy($postId, null, null, 'Active', false);
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:teaser.'.$_format.'.twig', array(
             'post' => $post
@@ -190,14 +210,15 @@ class PostController extends ContainerAware
             // return $response;
         }
 
-        $post = $this->container->get('whoot.post_manager')->findPostBy($postId, null, null, 'Active', false);
-        $comments = $this->container->get('whoot.comment_manager')->findCommentsBy($postId, null);
+        $post = $this->container->get('whoot.manager.post')->findPostBy($postId, null, null, 'Active', false);
+        $comments = $this->container->get('whoot.manager.comment')->findCommentsBy($postId, null);
 
         if ($_format == 'json')
         {
-            return $this->container->get('templating')->renderResponse('WhootBundle:Post:details.json.twig', array(
+            return $this->container->get('templating')->renderResponse('WhootBundle:Post:teaser.json.twig', array(
                 'post' => $post,
-                'comments' => $comments
+                'comments' => $comments,
+                'detailed' => true
             ), $response);
         }
 

@@ -48,19 +48,19 @@ class Ping
 
     /**
      * @var User $deletedBy
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
      */
     protected $deletedBy;    
 
     /**
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User", inversedBy="pinged", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User", inversedBy="pinged", cascade={"persist"})
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
     protected $createdBy;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootUserBundle\Entity\User", inversedBy="pings", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User", inversedBy="pings", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;

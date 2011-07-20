@@ -1,6 +1,6 @@
 <?php
 
-namespace Whoot\WhootUserBundle\Form\Type;
+namespace Whoot\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;

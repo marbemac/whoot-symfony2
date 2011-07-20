@@ -1,4 +1,4 @@
 <div class="scoreC {{ theme ? theme : 'large' }} sb-{{ objectId }}" data-id="{{ objectId }}">
     <div class="s s-{{ objectId }}">{{ score }}</div>
-    <a title="{{ vote ? 'Undo ' : ''}}+1" class="ac v u thumbs-up{{ theme ? '-'~theme : '' }}-icon {{ vote and vote.amount == 1 ? 'on' : '' }}" href="{{ path('vote_create', {'objectId': objectId, 'objectType': objectType, 'amount': 1}) }}">+</a>
+    <a title="{{ vote ? 'Undo ' : ''}}+1" class="ac v u thumbs-up{{ theme ? '-'~theme : '' }}-icon {{ vote and vote.amount == 1 ? 'on' : '' }}" href="{{ path('vote_create', {'objectId': objectId, 'amount': 1}) }}">+</a>
 </div>

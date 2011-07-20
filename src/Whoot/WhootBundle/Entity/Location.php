@@ -39,9 +39,9 @@ class Location
     protected $stateName;
 
     /**
-     * @var Whoot\WhootUserBundle\Entity\User
+     * @var Whoot\UserBundle\Entity\User
      *
-     * @ORM\OneToMany(targetEntity="Whoot\WhootUserBundle\Entity\User", mappedBy="location")
+     * @ORM\OneToMany(targetEntity="Whoot\UserBundle\Entity\User", mappedBy="location")
      */
     protected $users;
 

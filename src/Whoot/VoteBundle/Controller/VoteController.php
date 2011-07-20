@@ -21,7 +21,7 @@ class VoteController extends ContainerAware
      * Show a vote box.
      * @param integer $objectId
      */
-    public function showAction($objectId, $objectType, $score=null, $theme=null)
+    public function showAction($objectId, $score=null, $theme=null, $_format='html')
     {
         $securityContext = $this->container->get('security.context');
 
@@ -32,22 +32,14 @@ class VoteController extends ContainerAware
         $user = $securityContext->getToken()->getUser();
         if ($securityContext->isGranted('ROLE_USER'))
         {
-            switch ($objectType)
-            {
-                case 'Post':
-                    $object = $this->container->get('whoot.post_manager')->findPostBy($objectId, null, null, null, true);
-                    break;
-                case 'Invite':
-
-                    break;
-            }
+            $object = $this->container->get('whoot.manager.post')->findPostBy($objectId, null, null, null, true);
 
             // Error if the object does not exist.
             if (!$object)
             {
             }
 
-            $vote = $this->container->get('whoot.manager.vote')->findVoteBy(array(strtolower($objectType) => $objectId, 'voter' => $user->getId(), 'status' => 'Active'));
+            $vote = $this->container->get('whoot.manager.vote')->findVoteBy(array('post' => $objectId, 'voter' => $user->getId(), 'status' => 'Active'));
         }
         else
         {
@@ -59,9 +51,8 @@ class VoteController extends ContainerAware
             // return $response;
         }
 
-        return $this->container->get('templating')->renderResponse('WhootVoteBundle:Vote:show.html.twig', array(
+        return $this->container->get('templating')->renderResponse('WhootVoteBundle:Vote:show.'.$_format.'.twig', array(
             'objectId' => $objectId,
-            'objectType' => $objectType,
             'vote' => $vote,
             'score' => $score,
             'theme' => $theme
@@ -77,9 +68,9 @@ class VoteController extends ContainerAware
      *
      * @return redirect|json JSON format -> {'event': string, 'result': 'success|error|login', 'message': string, 'objectNewScore' => int, 'objectId': int, 'affectedUserNewScore': int, 'affectedUserId': int}
      */
-    public function createAction($objectType, $objectId, $amount)
+    public function createAction($objectId, $amount)
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
@@ -87,7 +78,7 @@ class VoteController extends ContainerAware
         }
 
         $request = $this->container->get('request');
-        $result = $this->container->get('whoot.manager.vote')->addVote($objectType, $objectId, $amount);
+        $result = $this->container->get('whoot.manager.vote')->addVote('Post', $objectId, $amount);
 
         if ($request->isXmlHttpRequest())
         {

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Whoot\WhootUserBundle\Controller;
+namespace Whoot\UserBundle\Controller;
 
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;

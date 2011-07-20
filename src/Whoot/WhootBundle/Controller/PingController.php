@@ -22,7 +22,7 @@ class PingController extends ContainerAware
      */
     public function toggleAction($userId, $_format='html')
     {
-        $coreManager = $this->container->get('whoot.core_manager');
+        $coreManager = $this->container->get('whoot.manager.core');
         $login = $coreManager->mustLogin();
         if ($login)
         {
@@ -30,7 +30,7 @@ class PingController extends ContainerAware
         }
 
         $request = $this->container->get('request');
-        $pingManager = $this->container->get('whoot.ping_manager');
+        $pingManager = $this->container->get('whoot.manager.ping');
 
         $result = $pingManager->togglePing($this->container->get('security.context')->getToken()->getUser()->getId(), $userId);
 
@@ -72,7 +72,7 @@ class PingController extends ContainerAware
         if ($securityContext->isGranted('ROLE_USER'))
         {
             $fromUser = $securityContext->getToken()->getUser()->getId();
-            $ping = $this->container->get('whoot.ping_manager')->findPing($fromUser, $toUser, date('Y-m-d 05:00:00', time()-(60*60*5)));
+            $ping = $this->container->get('whoot.manager.ping')->findPing($fromUser, $toUser, date('Y-m-d 05:00:00', time()-(60*60*5)));
             if ($ping)
             {
                 $countdown = time() - $ping['createdAt']->getTimestamp();

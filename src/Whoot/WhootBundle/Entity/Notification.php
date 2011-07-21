@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
     
 use Evario\NotificationBundle\Entity\Notification as BaseNotification;
+use Evario\NotificationBundle\Entity\NotificationInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -14,7 +15,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  * @ORM\Table(name="notification")
  * @ORM\HasLifecycleCallbacks
  */
-class Notification extends BaseNotification
+class Notification extends BaseNotification implements NotificationInterface
 {
     /**
      * @var integer $id
@@ -25,11 +26,11 @@ class Notification extends BaseNotification
     protected $id;
 
     /**
-     * @var User $createdBy
+     * @var User $affectedUser
      * @ORM\ManyToOne(targetEntity="Whoot\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
+     * @ORM\JoinColumn(name="affected_user_id", referencedColumnName="id")
      */
-    protected $createdBy;
+    protected $affectedUser;
 
     public function __construct() {
     }
@@ -45,13 +46,13 @@ class Notification extends BaseNotification
     }
 
     /**
-     * Set createdBy
+     * Set affectedUser
      *
-     * @param Whoot\UserBundle\Entity\User $createdBy
+     * @param Whoot\UserBundle\Entity\User $affectedUser
      */
-    public function setCreatedBy($createdBy)
+    public function setAffectedUser($affectedUser)
     {
-        $this->createdBy = $createdBy;
+        $this->affectedUser = $affectedUser;
     }
 
     /**
@@ -59,8 +60,16 @@ class Notification extends BaseNotification
      *
      * @return Whoot\UserBundle\Entity\User
      */
-    public function getCreatedBy()
+    public function getAffectedUser()
     {
-        return $this->createdBy;
+        return $this->affectedUser;
+    }
+    
+    /**
+     * @ORM\prePersist
+     */
+    public function touchCreated()
+    {
+        $this->createdAt = new \DateTime();
     }
 }

@@ -72,7 +72,7 @@ class PostController extends ContainerAware
     {
         $response = new Response();
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $undecidedUsers = $this->container->get('whoot.user_manager')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), null, $offset, $limit);
+        $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), null, $offset, $limit);
 
         $response->setCache(array(
         ));

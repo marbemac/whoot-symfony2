@@ -17,7 +17,7 @@
 
         <service id="whoot.form.type.invite" class="Whoot\WhootBundle\Form\Type\InviteFormType">
             <argument>whoot.form.invite</argument>
-            <argument type="service" id="whoot.user_manager" />
+            <argument type="service" id="whoot.manager.user" />
             <argument type="service" id="security.context" />
             <tag name="form.type" />
         </service>
@@ -39,7 +39,7 @@
 
         <service id="whoot.form.type.post" class="Whoot\WhootBundle\Form\Type\PostFormType">
             <argument>whoot.form.post</argument>
-            <argument type="service" id="whoot.user_manager" />
+            <argument type="service" id="whoot.manager.user" />
             <argument type="service" id="security.context" />
             <tag name="form.type" />
         </service>

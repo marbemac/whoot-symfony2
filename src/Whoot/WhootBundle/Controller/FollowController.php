@@ -30,7 +30,7 @@ class FollowController extends ContainerAware
         }
 
         $request = $this->container->get('request');
-        $userManager = $this->container->get('whoot.user_manager');
+        $userManager = $this->container->get('whoot.manager.user');
         $securityContext = $this->container->get('security.context');
 
         $result = $userManager->toggleFollow($this->container->get('security.context')->getToken()->getUser()->getId(), $userId);
@@ -104,7 +104,7 @@ class FollowController extends ContainerAware
         if ($securityContext->isGranted('ROLE_USER'))
         {
             $fromUser = $securityContext->getToken()->getUser()->getId();
-            $connection = $this->container->get('whoot.user_manager')->findFollowConnection($fromUser, $toUser);
+            $connection = $this->container->get('whoot.manager.user')->findFollowConnection($fromUser, $toUser);
         }
         else
         {

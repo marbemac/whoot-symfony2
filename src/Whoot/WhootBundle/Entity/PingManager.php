@@ -10,15 +10,17 @@ use Whoot\WhootBundle\Entity\Ping;
 class PingManager
 {
     protected $em;
+    protected $notificationManager;
 
     /**
      * Constructor.
      *
      * @param EntityManager           $em
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, NotificationManager $notificationManager)
     {
         $this->em = $em;
+        $this->notificationManager = $notificationManager;
     }
 
     /**
@@ -37,6 +39,9 @@ class PingManager
     {
         $ping->setStatus('Deleted');
         $this->em->persist($ping);
+
+        $this->notificationManager->removeNotification(array('affectedUser' => $ping->getUser(), 'type' => 'Ping'), false);
+
         $this->em->flush();
         return array('result' => 'success');
     }
@@ -94,6 +99,7 @@ class PingManager
         {
             if ($ping->getStatus() == 'Deleted')
             {
+                $this->notificationManager->addNotification('Ping', $toUser, null, false);
                 $response['state'] = 'new';
                 $ping->setStatus('Active');
                 $this->updatePing($ping);
@@ -115,6 +121,9 @@ class PingManager
 
             $ping->setCreatedBy($fromUser);
             $ping->setUser($toUser);
+
+            $this->notificationManager->addNotification('Ping', $toUser, null, false);
+
             $this->updatePing($ping);
         }
 

@@ -4,4 +4,4 @@ parameters:
 services:
     whoot.manager.vote:
         class:        %whoot.manager.vote.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context", "@whoot.user_manager", "@whoot.manager.post"]
+        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context", "@whoot.manager.user", "@whoot.manager.post"]

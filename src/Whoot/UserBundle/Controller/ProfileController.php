@@ -39,7 +39,7 @@ class ProfileController extends ContainerAware
             // return $response;
         }
 
-        $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
+        $user = $this->container->get('whoot.manager.user')->getUser(array('username' => $username));
 
         return $templating->renderResponse('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
@@ -105,7 +105,7 @@ class ProfileController extends ContainerAware
             // return $response;
         }
 
-        $object = $this->container->get('whoot.user_manager')->findObjectBy(array('id' => $id), array());
+        $object = $this->container->get('whoot.manager.user')->findObjectBy(array('id' => $id), array());
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:tag.html.twig', array(
             'object' => $object
@@ -114,7 +114,7 @@ class ProfileController extends ContainerAware
 
     public function listAction()
     {
-        $users = $this->container->get('whoot.user_manager')->getUsersBy($this->container->get('security.context')->getToken()->getUser());
+        $users = $this->container->get('whoot.manager.user')->getUsersBy($this->container->get('security.context')->getToken()->getUser());
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:list.html.twig', array(
             'users' => $users
@@ -125,14 +125,14 @@ class ProfileController extends ContainerAware
     {
         if ($username)
         {
-            $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
+            $user = $this->container->get('whoot.manager.user')->getUser(array('username' => $username));
         }
         else
         {
             $user = $this->container->get('security.context')->getToken()->getUser();
         }
         
-        $followers = $this->container->get('whoot.user_manager')->getFollowers($user, $offset, $limit);
+        $followers = $this->container->get('whoot.manager.user')->getFollowers($user, $offset, $limit);
 
         $response = new Response();
         $response->setCache(array(
@@ -154,14 +154,14 @@ class ProfileController extends ContainerAware
     {
         if ($username)
         {
-            $user = $this->container->get('whoot.user_manager')->getUser(array('username' => $username));
+            $user = $this->container->get('whoot.manager.user')->getUser(array('username' => $username));
         }
         else
         {
             $user = $this->container->get('security.context')->getToken()->getUser();
         }
         
-        $following = $this->container->get('whoot.user_manager')->getFollowing($user, $offset, $limit);
+        $following = $this->container->get('whoot.manager.user')->getFollowing($user, $offset, $limit);
 
         $response = new Response();
         $response->setCache(array(
@@ -182,7 +182,7 @@ class ProfileController extends ContainerAware
     public function settingsAction($username)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $location = $this->container->get('whoot.user_manager')->getLocation($user->getZipcode());
+        $location = $this->container->get('whoot.manager.user')->getLocation($user->getZipcode());
 
         if ($username != $user->getUsername())
         {
@@ -262,7 +262,7 @@ class ProfileController extends ContainerAware
             return $response;
         }
 
-        $results = $this->container->get('whoot.user_manager')->findForSearch(
+        $results = $this->container->get('whoot.manager.user')->findForSearch(
             $this->container->get('security.context')->getToken()->getUser()->getId(),
             $query
         );
@@ -299,7 +299,7 @@ class ProfileController extends ContainerAware
             return $response;
         }
 
-        $user = $this->container->get('whoot.user_manager')->getUser(array('id' => $id), false);
+        $user = $this->container->get('whoot.manager.user')->getUser(array('id' => $id), false);
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:hover_tab.html.twig', array(
             'user' => $user
@@ -352,7 +352,7 @@ class ProfileController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
         $user->setLocation($location);
-        $this->container->get('whoot.user_manager')->updateUser($user);
+        $this->container->get('whoot.manager.user')->updateUser($user);
 
         $result = array();
         $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());

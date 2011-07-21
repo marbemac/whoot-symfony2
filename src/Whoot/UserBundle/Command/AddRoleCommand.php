@@ -39,7 +39,7 @@ EOT
         $email = $input->getArgument('email');
         $role = $input->getArgument('role');
 
-        $userManager = $this->getContainer()->get('whoot.user_manager');
+        $userManager = $this->getContainer()->get('whoot.manager.user');
         $user = $userManager->findUserBy(array('email' => $email));
 
         if ($user)

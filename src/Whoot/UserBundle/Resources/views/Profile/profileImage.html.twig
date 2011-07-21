@@ -3,7 +3,7 @@
 
 {% if user.profileImage %}
     {% set src = '/slir/w'~w~'-h'~h~'-c1:1'~user.profileImage %}
-{% elseif user.facebookId %}
+{% elseif user.facebookId is defined and user.facebookId %}
     {% if w <= 50 %}
         {% set type = 'square' %}
     {% elseif w <= 100 %}

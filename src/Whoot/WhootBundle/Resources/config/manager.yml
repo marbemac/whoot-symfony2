@@ -13,29 +13,29 @@ parameters:
 services:
     whoot.manager.notification:
         class:        %whoot.manager.notification.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", %whoot.manager.notification.entity]
+        arguments:    ["@doctrine.orm.default_entity_manager", %whoot.manager.notification.entity%]
     whoot.manager.core:
         class:        %whoot.manager.core.class%
         arguments:    ["@request", "@router", "@security.context"]
         scope:       request
     whoot.manager.post:
         class:        %whoot.manager.post.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.user_manager"]
+        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.manager.user"]
     whoot.manager.invite:
         class:        %whoot.manager.invite.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.user_manager"]
+        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.manager.user"]
     whoot.manager.word:
         class:        %whoot.manager.word.class%
         arguments:    ["@doctrine.orm.default_entity_manager"]
     whoot.manager.ping:
         class:        %whoot.manager.ping.class%
-        arguments:    ["@doctrine.orm.default_entity_manager"]
+        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.manager.notification"]
     whoot.manager.comment:
         class:        %whoot.manager.comment.class%
         arguments:    ["@doctrine.orm.default_entity_manager", "@security.context"]
     whoot.manager.list:
         class:        %whoot.manager.list.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context", "@whoot.user_manager"]
+        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context", "@whoot.manager.user"]
     whoot.manager.location:
         class:        %whoot.manager.location.class%
         arguments:    ["@doctrine.orm.default_entity_manager"]

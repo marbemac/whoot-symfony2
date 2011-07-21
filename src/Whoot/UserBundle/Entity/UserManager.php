@@ -311,10 +311,9 @@ class UserManager extends BaseUserManager
     public function findForSearch($userId, $search)
     {
         $qb = $this->em->createQueryBuilder();
-        $qb->select(array('u', 'up', 'p', 'l'))
+        $qb->select(array('u', 'p', 'l'))
            ->from('Whoot\UserBundle\Entity\User', 'u')
-           ->leftJoin('u.posts', 'up', 'WITH', 'up.status = :status AND up.createdAt >= :createdAt')
-           ->leftJoin('up.post', 'p', 'WITH', 'p.status = :status')
+           ->leftJoin('u.posts', 'p', 'WITH', 'p.status = :status AND p.createdAt >= :createdAt')
            ->leftJoin('u.location', 'l')
            ->where(
                $qb->expr()->like('CONCAT(u.firstName, u.lastName)', ':query')
@@ -338,7 +337,7 @@ class UserManager extends BaseUserManager
                 'id' => $result['id'],
                 'location' => isset($result['location']['cityName']) ? $result['location']['cityName'].', '.$result['location']['stateName'] : 'Outer Space',
                 'profileImage' => $result['profileImage'],
-                'postId' => isset($result['posts'][0]) ? $result['posts'][0]['post']['id'] : null
+                'postId' => isset($result['post'][0]) ? $result['post'][0]['id'] : null
             );
         }
 

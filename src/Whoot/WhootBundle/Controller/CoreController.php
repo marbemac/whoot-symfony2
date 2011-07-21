@@ -19,7 +19,7 @@ class CoreController extends ContainerAware
         $location = json_decode($session->get('location'));
 //        if (!$location || !$location->zipcode)
 //        {
-//            $location = $this->container->get('whoot.user_manager')->getLocation($this->container->get('security.context')->getToken()->getUser()->getZipcode());
+//            $location = $this->container->get('whoot.manager.user')->getLocation($this->container->get('security.context')->getToken()->getUser()->getZipcode());
 //            $locationData = array();
 //            $locationData['zipcode'] = isset($location['zipcode']) ? $location['zipcode'] : '';
 //            $locationData['lat'] = isset($location['lat']) ? $location['lat'] : '';
@@ -235,8 +235,8 @@ class CoreController extends ContainerAware
     {
         $user = $this->container->get('security.context')->getToken()->getUser()->getId();
         $pingCount = $this->container->get('whoot.manager.ping')->findPingsBy($user, date('Y-m-d 05:00:00', time()-(60*60*5)));
-        $followingStats = $this->container->get('whoot.user_manager')->getFollowingStats($user, null, null);
-        $undecidedUsers = $this->container->get('whoot.user_manager')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), null, 0, 0);
+        $followingStats = $this->container->get('whoot.manager.user')->getFollowingStats($user, null, null);
+        $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), null, 0, 0);
 
         $response = new Response();
         $response->setCache(array(

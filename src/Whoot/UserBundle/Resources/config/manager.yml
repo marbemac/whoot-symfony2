@@ -1,9 +1,9 @@
 parameters:
-    whoot.user_manager.class:                  Whoot\UserBundle\Entity\UserManager
+    whoot.manager.user.class:                  Whoot\UserBundle\Entity\UserManager
 
 services:
-    whoot.user_manager:
-        class:        %whoot.user_manager.class%
+    whoot.manager.user:
+        class:        %whoot.manager.user.class%
         arguments:
             - %fos_user.encoder.algorithm%
             - @fos_user.util.username_canonicalizer

@@ -238,10 +238,6 @@ $(function() {
     // Show the post-where places autocomplete
     $('#whoot_invite_form_address').livequery(function() {
         var $self = $(this);
-//        var bounds = new google.maps.LatLngBounds(
-//                new google.maps.LatLng($self.data('lat'), $self.data('lon')),
-//                new google.maps.LatLng($self.data('lat'), $self.data('lon')));
-//        var $auto = new google.maps.places.Autocomplete(document.getElementById('post-address'), {bounds: bounds});
         var $auto = new google.maps.places.Autocomplete(document.getElementById('whoot_invite_form_address'));
 
         // Handle a place choice
@@ -475,9 +471,24 @@ $(function() {
     })
 
     /*
+     * NOTIFICATIONS
+     */
+    $('#my-notification-count').live('click', function(e) {
+        if ($(this).find('#notificationsC').length > 0)
+        {
+            $(this).find('#notificationsC').toggle();
+        }
+        else
+        {
+            startAction($(this), 'GET', $(this).attr('href'));
+        }
+        e.preventDefault;
+        return false;
+    })
+
+    /*
      * SEARCH
      */
-
     $(".search input").autocomplete($('.search input').data('url'), {
         minChars: 3,
         width: 245,

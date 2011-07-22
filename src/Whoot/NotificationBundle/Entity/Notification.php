@@ -1,6 +1,6 @@
 <?php
 
-namespace Whoot\WhootBundle\Entity;
+namespace Whoot\NotificationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -70,6 +70,14 @@ class Notification extends BaseNotification implements NotificationInterface
      */
     public function touchCreated()
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\preUpdate
+     */
+    public function touchUpdated()
+    {
+        $this->updatedAt = new \DateTime();
     }
 }

@@ -1,0 +1,8 @@
+parameters:
+    whoot.manager.notification.class:          Whoot\NotificationBundle\Entity\NotificationManager
+    whoot.manager.notification.entity:         Whoot\NotificationBundle\Entity\Notification
+
+services:
+    whoot.manager.notification:
+        class:        %whoot.manager.notification.class%
+        arguments:    ["@doctrine.orm.default_entity_manager", "@service_container", %whoot.manager.notification.entity%]

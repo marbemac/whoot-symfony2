@@ -68,3 +68,7 @@
 [FacebookSDK]
     git=git://github.com/facebook/php-sdk.git
     target=/facebook
+
+[WebProfilerExtra]
+    git=git://github.com/Elao/WebProfilerExtraBundle.git
+    target=/bundles/Elao/WebProfilerExtraBundle

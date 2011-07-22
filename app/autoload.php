@@ -15,6 +15,7 @@ $loader->registerNamespaces(array(
     'Assetic'          => __DIR__.'/../vendor/assetic/src',
     'Metadata'         => __DIR__.'/../vendor/metadata/src',
     'FOS'              => __DIR__.'/../vendor/bundles',
+    'Elao'             => __DIR__.'/../vendor/bundles',
     'Evario'           => __DIR__.'/../vendor/bundles',
     'Bundle'           => __DIR__.'/../src',
     'Whoot'            => __DIR__.'/../src',

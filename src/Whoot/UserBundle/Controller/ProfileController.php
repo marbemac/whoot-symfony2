@@ -132,7 +132,7 @@ class ProfileController extends ContainerAware
             $user = $this->container->get('security.context')->getToken()->getUser();
         }
         
-        $followers = $this->container->get('whoot.manager.user')->getFollowers($user, $offset, $limit);
+        $followers = $this->container->get('whoot.manager.user')->getFollowers($user, null, $offset, $limit);
 
         $response = new Response();
         $response->setCache(array(
@@ -161,7 +161,7 @@ class ProfileController extends ContainerAware
             $user = $this->container->get('security.context')->getToken()->getUser();
         }
         
-        $following = $this->container->get('whoot.manager.user')->getFollowing($user, $offset, $limit);
+        $following = $this->container->get('whoot.manager.user')->getFollowing($user, null, $offset, $limit);
 
         $response = new Response();
         $response->setCache(array(

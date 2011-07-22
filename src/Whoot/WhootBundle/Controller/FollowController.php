@@ -104,7 +104,8 @@ class FollowController extends ContainerAware
         if ($securityContext->isGranted('ROLE_USER'))
         {
             $fromUser = $securityContext->getToken()->getUser()->getId();
-            $connection = $this->container->get('whoot.manager.user')->findFollowConnection($fromUser, $toUser);
+            $connection = $this->container->get('whoot.manager.user')->findFollowConnections(array('user' => $fromUser, 'following' => $toUser));
+            $connection = isset($connection[0]) ? $connection[0] : null;
         }
         else
         {

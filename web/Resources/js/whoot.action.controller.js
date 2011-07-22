@@ -3,14 +3,13 @@ $(function(){
 
     // Perform an action. .ac for POST actions, .acg for GET actions.
     $('.ac, .acg').live('click',function(event){
-        // Ajaxify this link
-        var $this = $(this),
-            $currentTarget = $this,
-            url = $this.attr('href') ? $this.attr('href') : $this.data('url'),
-            requestType = $this.hasClass('ac') ? 'POST' : 'GET';
-
-        doAction({'url': url, 'requestType': requestType}, null, null);
         event.preventDefault();
+
+        startAction(
+            $(this),
+            ($(this).hasClass('ac') ? 'POST' : 'GET'),
+            ($(this).attr('href') ? $(this).attr('href') : $(this).data('url')
+        ));
 
         return false;
     });

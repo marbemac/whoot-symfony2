@@ -5,6 +5,7 @@ namespace Whoot\WhootBundle\Entity;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 
+use Evario\NotificationBundle\Entity\NotificationManager;
 use Whoot\WhootBundle\Entity\Ping;
 
 class PingManager
@@ -40,7 +41,7 @@ class PingManager
         $ping->setStatus('Deleted');
         $this->em->persist($ping);
 
-        $this->notificationManager->removeNotification(array('affectedUser' => $ping->getUser(), 'type' => 'Ping'), false);
+        $this->notificationManager->removeNotification(array('affectedUser' => $ping->getUser(), 'type' => 'Ping'), $ping->getCreatedAt(), false);
 
         $this->em->flush();
         return array('result' => 'success');
@@ -99,7 +100,7 @@ class PingManager
         {
             if ($ping->getStatus() == 'Deleted')
             {
-                $this->notificationManager->addNotification('Ping', $toUser, null, false);
+                $this->notificationManager->addNotification('Ping', $toUser, null, $ping->getCreatedAt(), false);
                 $response['state'] = 'new';
                 $ping->setStatus('Active');
                 $this->updatePing($ping);
@@ -122,7 +123,7 @@ class PingManager
             $ping->setCreatedBy($fromUser);
             $ping->setUser($toUser);
 
-            $this->notificationManager->addNotification('Ping', $toUser, null, false);
+            $this->notificationManager->addNotification('Ping', $toUser, null, null, false);
 
             $this->updatePing($ping);
         }
@@ -130,22 +131,37 @@ class PingManager
         return $response;
     }
 
-    public function findPingsBy($toUser, $since)
+    public function findPingsBy(array $criteria, $dateRange, $since)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('p'))
            ->from('Whoot\WhootBundle\Entity\Ping', 'p')
-           ->where('p.user = :toUser AND p.status = :status')
+           ->where('p.status = :status')
            ->setParameters(array(
-               'toUser' => $toUser,
                'status' => 'Active'
            ));
+
+        if ($dateRange)
+        {
+            $qb->andWhere('p.createdAt >= :dateFrom')
+               ->andWhere('p.createdAt <= :dateTo')
+               ->setParameters(array(
+                                   'dateFrom' => $dateRange['from'],
+                                   'dateTo' => $dateRange['to']
+                               ));
+        }
 
         if ($since)
         {
             $qb->andWhere('p.createdAt >= :since');
             $qb->setParameter('since', $since);
         }
+
+        foreach ($criteria as $key => $val)
+        {
+            $qb->andWhere('p.'.$key.' = :'.$key);
+        }
+        $qb->setParameters($criteria);
 
         $query = $qb->getQuery();
         return $query->getResult(Query::HYDRATE_ARRAY);

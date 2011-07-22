@@ -714,30 +714,65 @@ html.coming-soon body {
 }
 
 /* line 92, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
-#my-pings {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  border-radius: 3px;
-  position: absolute;
-  bottom: -6px;
-  left: -6px;
-  background: #cc3300;
+#notificationsC {
+  -moz-box-shadow: 0px 0px 5px #333333;
+  -webkit-box-shadow: 0px 0px 5px #333333;
+  -o-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333;
+  padding: 3px;
+}
+/* line 96, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+#notificationsC h4 {
+  margin: 2px 0 2px 5px;
+}
+/* line 99, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+#notificationsC li {
+  padding: 5px 10px;
+  border-bottom: 1px dotted #CCC;
+}
+/* line 102, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+#notificationsC li.unread {
   font-weight: bold;
-  padding: 0 5px;
-  color: #FFF;
+  background: #FFF3F1;
+}
+/* line 107, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+#notificationsC .none {
+  font-style: italic;
+}
+
+/* line 112, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+#my-notification-count {
+  display: block;
+  border-bottom: 1px solid #F1F1F1;
+  margin: 0 5px;
+  padding: 5px;
+  color: #000;
+  position: relative;
+}
+/* line 120, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+#my-notification-count .on {
+  color: red;
+  font-weight: bold;
+}
+/* line 124, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+#my-notification-count:hover {
+  cursor: pointer;
+  text-decoration: none;
+  background: #dcdcdc;
+}
+/* line 129, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+#my-notification-count #notificationsC {
+  position: absolute;
+  top: -1px;
+  left: -509px;
+  width: 500px;
+  border: 1px solid #CCC;
+  background-color: #FFF;
+  z-index: 150;
   cursor: default;
 }
 
-/* line 101, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
-.my-pings-tip {
-  font-size: 16px;
-  line-height: 1.2em;
-}
-
-/* line 106, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 141, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-profile-image {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -748,22 +783,22 @@ html.coming-soon body {
   margin: 10px 0 0 0;
 }
 
-/* line 111, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 146, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar {
   float: left;
   width: 130px;
   padding: 10px;
   margin: 5px 0;
 }
-/* line 117, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 152, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar h1 {
   margin: 0;
 }
-/* line 120, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 155, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .location {
   font-style: italic;
 }
-/* line 123, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 158, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .follow-B {
   overflow: hidden;
   *zoom: 1;
@@ -797,7 +832,7 @@ html.coming-soon body {
 #user-sidebar .follow-B:hover {
   text-decoration: none;
 }
-/* line 131, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 166, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .profileImage {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -807,7 +842,7 @@ html.coming-soon body {
   border-radius: 5px;
   margin: 10px 0 0 0;
 }
-/* line 137, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 172, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .nav a {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -819,33 +854,33 @@ html.coming-soon body {
   padding: 1px 8px;
   margin: 3px 0;
 }
-/* line 143, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 178, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .nav a:hover {
   background: #ffece5;
   text-decoration: none;
 }
-/* line 147, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 182, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .nav .on {
   cursor: default;
   color: #FFF;
   background: #CC3300;
 }
-/* line 152, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 187, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #user-sidebar .nav .on:hover {
   background: #CC3300;
 }
 
-/* line 159, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 194, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .following.feed,
 .followers.feed {
   padding: 10px 0 0 0;
 }
 
-/* line 163, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 198, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .teaser.user {
   padding: 8px 5px;
 }
-/* line 166, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 201, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .teaser.user img {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -858,22 +893,22 @@ html.coming-soon body {
   height: 30px;
   margin: -5px 10px 0 0;
 }
-/* line 172, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 207, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .teaser.user .actions {
   float: right;
 }
-/* line 177, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 212, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .teaser.user .follow-B,
 .teaser.user .ping-B,
 .teaser.user .pinged {
   padding: 0 12px;
 }
 
-/* line 183, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 218, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .tag.user .profile-image {
   margin: 0;
 }
-/* line 186, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 221, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .tag.user .profile-image img {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -882,7 +917,7 @@ html.coming-soon body {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 190, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 225, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .tag.user .user-link {
   margin: 0;
   padding: 0 0 0 10px;
@@ -890,12 +925,12 @@ html.coming-soon body {
   bottom: 7px;
 }
 
-/* line 197, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 232, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .search-result.user {
   padding: 5px 5px 5px 45px;
   position: relative;
 }
-/* line 201, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 236, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .search-result.user .profileImage {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -909,18 +944,18 @@ html.coming-soon body {
   left: 0px;
   margin-top: -17px;
 }
-/* line 212, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 247, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .search-result.user .location {
   font-style: italic;
 }
 
-/* line 217, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 252, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-link {
   position: relative;
   padding: 0 0 0 7px;
   z-index: 30;
 }
-/* line 222, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 257, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-link .drag-handleC {
   position: absolute;
   top: 50%;
@@ -931,27 +966,27 @@ html.coming-soon body {
   padding: 3px;
   display: none;
 }
-/* line 232, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 267, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-link .drag-handleC div {
   border: 2px dotted #999;
   height: 10px;
   width: 10px;
 }
-/* line 238, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 273, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-link:hover {
   text-decoration: none;
 }
-/* line 240, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 275, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-link:hover .drag-handleC {
   display: block;
 }
 
-/* line 246, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 281, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-hover-tab {
   position: relative;
   padding: 0 0 0 70px;
 }
-/* line 250, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 285, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-hover-tab .profileImage {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -963,7 +998,7 @@ html.coming-soon body {
   top: -5px;
   left: -5px;
 }
-/* line 256, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 291, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-hover-tab .follow-B {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -995,18 +1030,18 @@ html.coming-soon body {
 .user-hover-tab .follow-B:hover {
   text-decoration: none;
 }
-/* line 263, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 298, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-hover-tab .name {
   font-size: 20px;
   margin-top: 6px;
 }
-/* line 267, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 302, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-hover-tab .location {
   font-size: 16px;
   font-style: italic;
   margin: 8px 0 0 0;
 }
-/* line 272, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 307, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-hover-tab .stats {
   overflow: hidden;
   *zoom: 1;
@@ -1015,13 +1050,13 @@ html.coming-soon body {
   padding: 6px 0 15px 0;
   font-size: 14px;
 }
-/* line 279, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 314, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 .user-hover-tab .stats div {
   float: left;
   margin: 0 7px 0 0;
 }
 
-/* line 286, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 321, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #collect-info-box {
   -moz-border-radius-topleft: 10px;
   -webkit-border-top-left-radius: 10px;
@@ -1037,7 +1072,7 @@ html.coming-soon body {
   width: 760px;
   z-index: 100;
 }
-/* line 297, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 332, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #collect-info-box .options {
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
@@ -1057,12 +1092,12 @@ html.coming-soon body {
   margin: 0 0 0 -320px;
   padding: 20px;
 }
-/* line 308, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 343, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #collect-info-box .options h3 {
   text-align: center;
   margin: 0 0 15px 0;
 }
-/* line 313, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 348, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #collect-info-box .options .label {
   font-size: 20px;
   color: #666;
@@ -1070,7 +1105,7 @@ html.coming-soon body {
   width: 85px;
   float: left;
 }
-/* line 320, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 355, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #collect-info-box .options select {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1083,7 +1118,7 @@ html.coming-soon body {
   padding: 7px;
   color: #666;
 }
-/* line 327, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
+/* line 362, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss */
 #collect-info-box .options .submit {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;

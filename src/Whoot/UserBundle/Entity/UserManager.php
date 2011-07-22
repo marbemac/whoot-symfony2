@@ -8,6 +8,8 @@ use Doctrine\ORM\Query;
 use Whoot\WhootBundle\Entity\UserFollowing;
 use Whoot\WhootBundle\Entity\LocationManager;
 
+use Whoot\NotificationBundle\Entity\NotificationManager;
+
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Entity\UserManager as BaseUserManager;
 use FOS\UserBundle\Util\CanonicalizerInterface;
@@ -17,25 +19,19 @@ class UserManager extends BaseUserManager
 {
     protected $em;
     protected $locationManager;
+    protected $notificationManager;
 
     /**
      * Constructor.
      *
      * @param EntityManager           $em
      */
-    public function __construct(EncoderFactoryInterface $encoderFactory, $algorithm, CanonicalizerInterface $usernameCanonicalizer, CanonicalizerInterface $emailCanonicalizer, EntityManager $em, $class, LocationManager $locationManager)
+    public function __construct(EncoderFactoryInterface $encoderFactory, $algorithm, CanonicalizerInterface $usernameCanonicalizer, CanonicalizerInterface $emailCanonicalizer, EntityManager $em, $class, LocationManager $locationManager, NotificationManager $notificationManager)
     {
         parent::__construct($encoderFactory, $algorithm, $usernameCanonicalizer, $emailCanonicalizer, $em, $class);
         $this->em = $em;
         $this->locationManager = $locationManager;
-    }
-
-    public function createUser()
-    {
-        $user = new User();
-        $user->setAlgorithm($this->algorithm);
-
-        return $user;
+        $this->notificationManager = $notificationManager;
     }
 
     public function getUser(array $criteria, $returnObject = true)
@@ -80,36 +76,36 @@ class UserManager extends BaseUserManager
 
     /*
      * Check for a follow connection between two users. Return if found.
-     *
-     * @param integer $fromUser
-     * @param integer $toUser
      */
-    public function findFollowConnection($fromUser, $toUser, $returnObject = false)
+    public function findFollowConnections(array $criteria, $returnObject = false)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('f'))
-           ->from('Whoot\WhootBundle\Entity\UserFollowing', 'f')
-           ->where('f.user = :fromUser AND f.following = :toUser')
-           ->setParameters(array(
-               'fromUser' => $fromUser,
-               'toUser' => $toUser
-           ));
+           ->from('Whoot\WhootBundle\Entity\UserFollowing', 'f');
+
+        foreach ($criteria as $key => $val)
+        {
+            $qb->andWhere('f.'.$key.' = :'.$key);
+        }
+        $qb->setParameters($criteria);
 
         $query = $qb->getQuery();
-        $connection = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
+        $connections = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
 
-        return isset($connection[0]) ? $connection[0] : null;
+        return $connections;
     }
 
     public function toggleFollow($fromUser, $toUser)
     {
-        $connection = $this->findFollowConnection($fromUser, $toUser, true);
+        $connection = $this->findFollowConnections(array('user' => $fromUser, 'following' => $toUser), true);
+        $connection = isset($connection[0]) ? $connection[0] : null;
 
         $response = array();
 
         if ($connection)
         {
             $response['status'] = 'existing';
+            $this->notificationManager->removeNotification(array('affectedUser' => $toUser, 'type' => 'Follow'), $connection->getCreatedAt(), false);
             $this->em->remove($connection);
         }
         else
@@ -123,6 +119,8 @@ class UserManager extends BaseUserManager
             $connection->setUser($fromUser);
             $connection->setFollowing($toUser);
             $this->em->persist($connection);
+            
+            $this->notificationManager->addNotification('Follow', $toUser, null, null, false);
         }
 
         $this->em->flush();
@@ -130,7 +128,7 @@ class UserManager extends BaseUserManager
         return $response;
     }
 
-    public function getFollowing($user, $offset, $limit)
+    public function getFollowing($user, $dateRange, $offset, $limit)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
@@ -141,6 +139,16 @@ class UserManager extends BaseUserManager
                'user' => $user,
                'status' => 'Active'
            ));
+
+        if ($dateRange)
+        {
+            $qb->andWhere('f.createdAt >= :dateFrom')
+               ->andWhere('f.createdAt <= :dateTo')
+               ->setParameters(array(
+                                   'dateFrom' => $dateRange['from'],
+                                   'dateTo' => $dateRange['to']
+                               ));
+        }
 
         if ($limit && $offset != null)
         {
@@ -154,7 +162,7 @@ class UserManager extends BaseUserManager
         return $followingUsers;
     }
 
-    public function getFollowers($user, $offset, $limit)
+    public function getFollowers($user, $dateRange, $offset, $limit)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('u'))
@@ -165,6 +173,16 @@ class UserManager extends BaseUserManager
                'user' => $user,
                'status' => 'Active'
            ));
+
+        if ($dateRange)
+        {
+            $qb->andWhere('f.createdAt >= :dateFrom')
+               ->andWhere('f.createdAt <= :dateTo')
+               ->setParameters(array(
+                                   'dateFrom' => $dateRange['from'],
+                                   'dateTo' => $dateRange['to']
+                               ));
+        }
 
         if ($limit && $offset != null)
         {
@@ -223,7 +241,7 @@ class UserManager extends BaseUserManager
         }
         else if ($user)
         {
-            $followingUsers = $this->getFollowing($user, null, null);
+            $followingUsers = $this->getFollowing($user, null, null, null);
 
             // If they are not following anyone, there will be no undecided...
             if (count($followingUsers) == 0)

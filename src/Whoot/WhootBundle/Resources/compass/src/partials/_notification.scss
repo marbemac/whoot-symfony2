@@ -90,24 +90,7 @@
 }
 
 #notificationsC {
-    @include box-shadow();
-    padding: 3px;
-
-    h4 {
-        margin: 2px 0 2px 5px;
-    }
-    li {
-        padding: 5px 10px;
-        border-bottom: 1px dotted #CCC;
-        &.unread {
-            font-weight: bold;
-            background: #FFF3F1;
-        }
-    }
-    .none {
-        font-style: italic;
-        
-    }
+    padding: 10px;
 }
 #my-notification-count {
     display: block;
@@ -128,10 +111,10 @@
     }
     #notificationsC {
         position: absolute;
-        top: -1px;
-        left: -509px;
+        top: 0px;
+        left: -530px;
         width: 500px;
-        border: 1px solid #CCC;
+        border: 2px solid #CCC;
         background-color: #FFF;
         z-index: 150;
         cursor: default;

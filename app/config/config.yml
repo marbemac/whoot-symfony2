@@ -101,8 +101,8 @@ jms_security_extra:
     secure_all_services: false
 
 evario_notification:
-    notification_class:         Whoot\WhootBundle\Entity\Notification
-    notification_manager:       Whoot\WhootBundle\Entity\NotificationManager
+    notification_class:         Whoot\NotificationBundle\Entity\Notification
+    notification_manager:       Whoot\NotificationBundle\Entity\NotificationManager
 
 gravatar: ~
 

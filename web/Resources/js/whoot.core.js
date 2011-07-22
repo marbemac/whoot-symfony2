@@ -80,8 +80,14 @@
     }
 
     /*
-     * Main site-wide action function.
+     * Main site-wide action functions.
      */
+    startAction = function(target, requestType, url)
+    {
+        var $currentTarget = target;
+
+        doAction({'url': url, 'requestType': requestType}, null, null);
+    }
     doAction = function(params, success, error) {
         console.log('Action:' + params.url);
 
@@ -97,7 +103,6 @@
             }
         })
     };
-
     feedReload = function($url)
     {
         $.get($url, {}, function(html) {

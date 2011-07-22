@@ -9,11 +9,6 @@
         <div class="profile_image">
             <a id="profile-image-upload" href="#" data-w="65" data-h="65" data-url="{{ path('user_upload_picture') }}" data-target="#my-profile-image">change</a>
             {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': app.user, 'dimensions': 65, 'height': 80, 'width': 65, 'id': 'my-profile-image'} %}
-            {% if pingCount|length > 0 %}
-                <div id="my-pings" title="{{ pingCount|length }} {{ pingCount|length > 1 ? 'pings' : 'ping' }} today. {{ pingCount|length }} {{ pingCount|length > 1 ? 'people want' : 'person wants' }} to know what you're doing tonight!">
-                    {{ pingCount|length }}
-                </div>
-            {% endif %}
         </div>
         <div class="stats">
             <div class="item">
@@ -31,6 +26,8 @@
         </a>
         <div class="clear"></div>
     </div>
+    
+    {% render "EvarioNotificationBundle:Notification:notificationCount" %}
 
     {% render 'WhootBundle:Post:myPost' %}
 

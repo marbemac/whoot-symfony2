@@ -234,7 +234,6 @@ class CoreController extends ContainerAware
     public function sidebarAction()
     {
         $user = $this->container->get('security.context')->getToken()->getUser()->getId();
-        $pingCount = $this->container->get('whoot.manager.ping')->findPingsBy($user, date('Y-m-d 05:00:00', time()-(60*60*5)));
         $followingStats = $this->container->get('whoot.manager.user')->getFollowingStats($user, null, null);
         $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), null, 0, 0);
 
@@ -250,7 +249,6 @@ class CoreController extends ContainerAware
         }
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Core:sidebar.html.twig', array(
-                    'pingCount' => $pingCount,
                     'followingStats' => $followingStats,
                     'undecidedUsers' => $undecidedUsers
                 ), $response);

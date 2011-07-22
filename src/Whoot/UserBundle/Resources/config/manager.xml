@@ -13,6 +13,7 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%fos_user.model.user.class%</argument>
             <argument type="service" id="whoot.manager.location" />
+            <argument type="service" id="evario.manager.notification" />
         </service>
     </services>
 

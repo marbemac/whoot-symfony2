@@ -53,6 +53,9 @@ list:
     resource: "@WhootBundle/Resources/config/routing/list.yml"
     prefix:   /l
 
+notifications:
+    resource: "@EvarioNotificationBundle/Resources/config/routing.xml"
+
 admin:
     resource: "@WhootBundle/Resources/config/routing/admin.yml"
     prefix:   /admin

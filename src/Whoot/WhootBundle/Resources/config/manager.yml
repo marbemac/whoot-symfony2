@@ -4,16 +4,11 @@ parameters:
     whoot.manager.invite.class:                Whoot\WhootBundle\Entity\InviteManager
     whoot.manager.word.class:                  Whoot\WhootBundle\Entity\WordManager
     whoot.manager.ping.class:                  Whoot\WhootBundle\Entity\PingManager
-    whoot.manager.notification.class:          Whoot\WhootBundle\Entity\NotificationManager
-    whoot.manager.notification.entity:         Whoot\WhootBundle\Entity\Notification
     whoot.manager.comment.class:               Whoot\WhootBundle\Entity\CommentManager
     whoot.manager.list.class:                  Whoot\WhootBundle\Entity\LListManager
     whoot.manager.location.class:              Whoot\WhootBundle\Entity\LocationManager
 
 services:
-    whoot.manager.notification:
-        class:        %whoot.manager.notification.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", %whoot.manager.notification.entity%]
     whoot.manager.core:
         class:        %whoot.manager.core.class%
         arguments:    ["@request", "@router", "@security.context"]

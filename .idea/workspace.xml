@@ -23,28 +23,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UserManager.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/UserBundle/Entity/UserManager.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="85" selection-start="4137" selection-end="4137" vertical-scroll-proportion="-6.1153846">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="FollowController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/FollowController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="91" selection-start="4163" selection-end="4163" vertical-scroll-proportion="-15.576923">
+            <state line="106" column="91" selection-start="4163" selection-end="4163" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NotificationManager.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="NotificationManager.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Entity/NotificationManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="52" selection-start="2769" selection-end="2769" vertical-scroll-proportion="0.8769231">
+            <state line="73" column="9" selection-start="1969" selection-end="1969" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deps.lock" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/deps.lock">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="54" selection-start="830" selection-end="830" vertical-scroll-proportion="0.26508877">
               <folding />
             </state>
           </provider>
@@ -127,7 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Resources/views/Notification/notificationCount.html.twig" />
         <option value="$PROJECT_DIR$/web/Resources/js/whoot.main.js" />
         <option value="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/config/manager.xml" />
         <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Resources/views/Notification/feed_content.html.twig" />
@@ -143,6 +142,7 @@
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/PingManager.php" />
         <option value="$PROJECT_DIR$/src/Whoot/UserBundle/Entity/UserManager.php" />
         <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Entity/NotificationManager.php" />
+        <option value="$PROJECT_DIR$/deps.lock" />
       </list>
     </option>
   </component>
@@ -1039,8 +1039,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="xslt.associations" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../FOSFacebookBundle" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PublishConfig" serverName="socialite.local" serverId="a3b11430-97c4-40d7-b4a0-87c7e4babd8a">
     <servers>
@@ -1146,15 +1146,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-81" y="-1040" width="1859" height="947" extended-state="0" />
+    <frame x="4" y="22" width="1656" height="1012" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32448733" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3172497" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20762943" sideWeight="0.06996381" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21525885" sideWeight="0.6827503" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21752451" sideWeight="0.9932886" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1162,6 +1161,7 @@
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3172497" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1222,13 +1222,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Resources/views/Notification/feed_content.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="41" selection-start="262" selection-end="262" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state line="108" column="8" selection-start="2078" selection-end="2078" vertical-scroll-proportion="0.0" />
@@ -1236,98 +1229,83 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Resources/views/Notification/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="11" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="4" column="11" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/CoreController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="236" column="71" selection-start="9366" selection-end="9366" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
+        <state line="236" column="71" selection-start="9366" selection-end="9366" vertical-scroll-proportion="0.33333334" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/UserBundle/Controller/ProfileController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="92" selection-start="4457" selection-end="4457" vertical-scroll-proportion="0.0">
+        <state line="134" column="92" selection-start="4457" selection-end="4457" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/Post.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="386" column="5" selection-start="6963" selection-end="7241" vertical-scroll-proportion="0.85641026" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/UserBundle/Entity/UserManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="85" selection-start="4137" selection-end="4137" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/FollowController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="91" selection-start="4163" selection-end="4163" vertical-scroll-proportion="-15.576923">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/Post.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="386" column="5" selection-start="6963" selection-end="7241" vertical-scroll-proportion="0.85641026">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/NotificationBundle/Entity/Notification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="5" selection-start="1764" selection-end="1764" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Entity/Notification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="31" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="30" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.action.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="8" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="13" selection-start="2800" selection-end="2800" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/NotificationBundle/Entity/NotificationManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="0" selection-start="2873" selection-end="2873" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/PingManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="83" selection-start="3374" selection-end="3374" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/UserBundle/Entity/UserManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="85" selection-start="4137" selection-end="4137" vertical-scroll-proportion="-6.1153846">
+        <state line="106" column="91" selection-start="4163" selection-end="4163" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Entity/NotificationManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="52" selection-start="2769" selection-end="2769" vertical-scroll-proportion="0.8769231">
+        <state line="73" column="9" selection-start="1969" selection-end="1969" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="30" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.action.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="8" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="13" selection-start="2800" selection-end="2800" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Entity/PingManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="83" selection-start="3374" selection-end="3374" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Entity/Notification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="31" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/NotificationBundle/Entity/Notification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="81" column="5" selection-start="1764" selection-end="1764" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/NotificationBundle/Entity/NotificationManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="0" selection-start="2873" selection-end="2873" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deps.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="54" selection-start="830" selection-end="830" vertical-scroll-proportion="0.26508877">
           <folding />
         </state>
       </provider>

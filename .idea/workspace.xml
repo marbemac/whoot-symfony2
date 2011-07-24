@@ -23,15 +23,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FollowController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/FollowController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="91" selection-start="4163" selection-end="4163" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="NotificationManager.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Entity/NotificationManager.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -41,10 +32,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deps.lock" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="deps.lock" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deps.lock">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="54" selection-start="830" selection-end="830" vertical-scroll-proportion="0.26508877">
+            <state line="14" column="54" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deps" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/deps">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="78" column="4" selection-start="2039" selection-end="2039" vertical-scroll-proportion="0.9053255">
               <folding />
             </state>
           </provider>
@@ -127,7 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/web/Resources/js/whoot.main.js" />
         <option value="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/config/manager.xml" />
         <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Resources/views/Notification/feed_content.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss" />
@@ -143,6 +142,7 @@
         <option value="$PROJECT_DIR$/src/Whoot/UserBundle/Entity/UserManager.php" />
         <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Entity/NotificationManager.php" />
         <option value="$PROJECT_DIR$/deps.lock" />
+        <option value="$PROJECT_DIR$/deps" />
       </list>
     </option>
   </component>
@@ -1222,11 +1222,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_user.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="8" selection-start="2078" selection-end="2078" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Resources/views/Notification/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="11" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0" />
@@ -1305,7 +1300,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deps.lock">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="54" selection-start="830" selection-end="830" vertical-scroll-proportion="0.26508877">
+        <state line="14" column="54" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deps">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="4" selection-start="2039" selection-end="2039" vertical-scroll-proportion="0.9053255">
           <folding />
         </state>
       </provider>

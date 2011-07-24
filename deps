@@ -69,6 +69,11 @@
     git=git://github.com/facebook/php-sdk.git
     target=/facebook
 
+[EvarioNotificationBundle]
+    git=git://github.com/evario/NotificationBundle.git
+    target=/bundles/Evario/NotificationBundle
+
 [WebProfilerExtra]
     git=git://github.com/Elao/WebProfilerExtraBundle.git
     target=/bundles/Elao/WebProfilerExtraBundle
+    

@@ -1,10 +1,10 @@
 {{ notificationData.subject }} on The Whoot
 
-<h3>Greetings from The Whoot, we've got some updates for you:</h3>
+<h3>{{ user.firstName }}, greetings from <a href="{{ url('homepage', {'utm_source': 'email'})}}">The Whoot</a>, we've got some updates for you:</h3>
 {% for text in notificationData.texts %}
     <div style="margin: 15px 0;">-  {{ text }}</div>
 {% endfor %}
 
 <div style="color: #999; font-size: 12px; font-style: italic; margin-top: 15px">
-    You can turn these notifications off in the settings area of your account on The Whoot.
+    You can turn these notifications off in the settings area of your account on <a href="{{ url('homepage', {'utm_source': 'email'})}}">The Whoot</a>.
 </div>

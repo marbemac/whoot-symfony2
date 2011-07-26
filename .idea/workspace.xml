@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SendEmailsCommand.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SendEmailsCommand.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Command/SendEmailsCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="0" selection-start="2481" selection-end="2481" vertical-scroll-proportion="0.33709982">
+            <state line="73" column="21" selection-start="2991" selection-end="2991" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -35,7 +35,7 @@
       <file leaf-file-name="Mailer.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Mailer/Mailer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="11" selection-start="1413" selection-end="1413" vertical-scroll-proportion="0.0">
+            <state line="26" column="0" selection-start="889" selection-end="889" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -71,16 +71,25 @@
       <file leaf-file-name="config_dev.yml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="26" selection-start="780" selection-end="780" vertical-scroll-proportion="0.0">
+            <state line="34" column="0" selection-start="684" selection-end="780" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.yml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="config.yml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/config/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="28" selection-start="2735" selection-end="2735" vertical-scroll-proportion="0.0">
+            <state line="91" column="68" selection-start="2699" selection-end="2699" vertical-scroll-proportion="0.4519774">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parameters.ini" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/parameters.ini">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="25" selection-start="191" selection-end="195" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -120,7 +129,6 @@
       <list>
         <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Command/AddRoleCommand.php" />
         <option value="$PROJECT_DIR$/src/Whoot/UserBundle/Entity/User.php" />
-        <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/DependencyInjection/EvarioNotificationExtension.php" />
         <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/DependencyInjection/Configuration.php" />
         <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Resources/config/manager.xml" />
@@ -132,8 +140,9 @@
         <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Resources/views/Notification/email.html.twig" />
         <option value="$PROJECT_DIR$/src/Whoot/NotificationBundle/Entity/NotificationManager.php" />
         <option value="$PROJECT_DIR$/src/Whoot/NotificationBundle/Resources/views/Notification/email.html.twig" />
-        <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Mailer/Mailer.php" />
         <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Command/SendEmailsCommand.php" />
+        <option value="$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Mailer/Mailer.php" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
       </list>
     </option>
   </component>
@@ -1449,11 +1458,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="25" selection-start="191" selection-end="195" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/bundles/FOS/UserBundle/Resources/views/ChangePassword/changePassword_content.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -1489,16 +1493,6 @@
         <state line="4" column="4" selection-start="85" selection-end="85" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="26" selection-start="780" selection-end="780" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="28" selection-start="2735" selection-end="2735" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/NotificationBundle/Entity/NotificationManager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="67" column="55" selection-start="2442" selection-end="2442" vertical-scroll-proportion="0.0" />
@@ -1518,13 +1512,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Mailer/Mailer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="11" selection-start="1413" selection-end="1413" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/doctrine/lib/Doctrine/ORM/Internal/Hydration/IterableResult.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.29566854">
@@ -1534,7 +1521,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Command/SendEmailsCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="2481" selection-end="2481" vertical-scroll-proportion="0.33709982">
+        <state line="73" column="21" selection-start="2991" selection-end="2991" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/bundles/Evario/NotificationBundle/Mailer/Mailer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="0" selection-start="889" selection-end="889" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="25" selection-start="191" selection-end="195" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="0" selection-start="684" selection-end="780" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="68" selection-start="2699" selection-end="2699" vertical-scroll-proportion="0.4519774">
           <folding />
         </state>
       </provider>

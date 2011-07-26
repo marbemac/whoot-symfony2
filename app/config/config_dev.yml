@@ -31,3 +31,8 @@ web_profiler_extra:
     container:  true
     assetic:    true
     twig:       true
+
+swiftmailer:
+    transport: gmail
+    username:  testing@thewhoot.com
+    password: testingwhoot

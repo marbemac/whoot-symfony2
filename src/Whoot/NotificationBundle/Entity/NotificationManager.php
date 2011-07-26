@@ -32,12 +32,25 @@ class NotificationManager extends BaseNotificationManager
 
     protected function generatePingNotification($notification)
     {
-        $dateRange = $this->buildDateRange($notification['createdAt'], 0, 1);
-        $pings = $this->serviceContainer->get('whoot.manager.ping')->findPingsBy(array('user' => $notification['affectedUser']['id']), $dateRange, null);
+        if (is_object($notification))
+        {
+            $createdAt = $notification->getCreatedAt();
+            $affectedUserId = $notification->getAffectedUser()->getId();
+        }
+        else
+        {
+            $createdAt = $notification['createdAt'];
+            $affectedUserId = $notification['affectedUser']['id'];
+        }
+
+        $dateRange = $this->buildDateRange($createdAt, 0, 1);
+        $pings = $this->serviceContainer->get('whoot.manager.ping')->findPingsBy(array('user' => $affectedUserId), $dateRange, null);
 
         $notificationData = array();
         $notificationData['notification'] = $notification;
-        $notificationData['text'] = count($pings).(count($pings) > 1 ? ' people have ' : ' person ').'pinged you tonight!';
+        $notificationData['count'] = count($pings);
+        $notificationData['subject'] = $notificationData['count'] . ' new ping'.($notificationData['count'] > 1 ? 's' : '');
+        $notificationData['text'] = $notificationData['count'].($notificationData['count'] > 1 ? ' people have ' : ' person ').'pinged you tonight!';
 
         return $notificationData;
     }
@@ -54,19 +67,33 @@ class NotificationManager extends BaseNotificationManager
 
     protected function generateFollowNotification($notification)
     {
-        $dateRange = $this->buildDateRange($notification['createdAt'], 0, 1);
-        $followers = $this->serviceContainer->get('whoot.manager.user')->getFollowers($notification['affectedUser']['id'], $dateRange, null, null);
+        if (is_object($notification))
+        {
+            $createdAt = $notification->getCreatedAt();
+            $affectedUserId = $notification->getAffectedUser()->getId();
+        }
+        else
+        {
+            $createdAt = $notification['createdAt'];
+            $affectedUserId = $notification['affectedUser']['id'];
+        }
+
+        $dateRange = $this->buildDateRange($createdAt, 0, 1);
+        $followers = $this->serviceContainer->get('whoot.manager.user')->getFollowers($affectedUserId, $dateRange, null, null);
 
         $notificationData = array();
         $notificationData['notification'] = $notification;
+        $notificationData['count'] = count($followers);
+        $notificationData['subject'] = $notificationData['count'] . ' more '.($notificationData['count'] > 1 ? 'people' : 'person').' following you';
         $notificationData['text'] = $followers[0]['firstName'].' '.$followers[0]['lastName'];
-        if (count($followers) == 2)
+
+        if ($notificationData['count'] == 2)
         {
             $notificationData['text'] .= ' and '.$followers[1]['firstName'].' '.$followers[1]['lastName'] . ' are following you';
         }
-        else if (count($followers) > 2)
+        else if ($notificationData['count'] > 2)
         {
-            $notificationData['text'] .= ', '.$followers[1]['firstName'].' '.$followers[1]['lastName'] . ', and '.(count($followers)-2).' others are following you';
+            $notificationData['text'] .= ', '.$followers[1]['firstName'].' '.$followers[1]['lastName'] . ', and '.($notificationData['count']-2).' others are following you';
         }
         else
         {

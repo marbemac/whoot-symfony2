@@ -112,7 +112,7 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Whoot\WhootBundle\Entity\UserFollowing", mappedBy="following")
      */
     protected $followers;
-    
+
     /**
      * @var UserList
      *
@@ -334,7 +334,7 @@ class User extends BaseUser
     {
         $this->invites[] = $invite;
     }
-    
+
     /**
      * @param string $facebookID
      * @return void

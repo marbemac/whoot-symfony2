@@ -103,6 +103,7 @@ jms_security_extra:
 evario_notification:
     notification_class:         Whoot\NotificationBundle\Entity\Notification
     notification_manager:       Whoot\NotificationBundle\Entity\NotificationManager
+    from_email:                 marbemac@gmail.com
 
 gravatar: ~
 

@@ -1,10 +1,10 @@
-<div id="post-box" class="hide">
+<div id="post-box" class="{{ myPost ? 'hide' : '' }}">
     <div class="options">
 
-        {% if myPost is none %}
-            <h2>{{ app.user.firstName }}, first things first. Whatcha doin tonight?</h2>
-        {% else %}
+        {% if myPost %}
             <h2>You will change your current post.</h2>
+        {% else %}
+            <h2>{{ app.user.firstName }}, first things first. Whatcha doin tonight?</h2>
         {% endif %}
 
         <div class="label status">Status</div>
@@ -26,10 +26,10 @@
         </div>
 
         <div class="invite hide">
-            {% render "WhootBundle:Invite:create" with {'chromeless': true} %}
+            {#{% render "WhootBundle:Invite:create" with {'chromeless': true} %}#}
         </div>
 
-        {% if myPost is not none %}
+        {% if myPost %}
             <div class="cancel">Cancel</div>
         {% endif %}
 

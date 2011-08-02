@@ -1,29 +1,17 @@
-{% render "WhootBundle:Word:trending" %}
+{#{% render "WhootBundle:tag:trending" %}#}
 
 {% if posts|length > 0 %}
-    {#<div id="feed-stats">#}
-        {#{% set workingCount = posts|countStatus('working') %}#}
-        {#{% set lowInCount = posts|countStatus('low_in') %}#}
-        {#{% set lowOutCount = posts|countStatus('low_out') %}#}
-        {#{% set bigOutCount = posts|countStatus('big_out') %}#}
-        {#{% set totalCount = workingCount + lowInCount + lowOutCount + bigOutCount %}#}
-
-        {#<div class="working" title="{{ workingCount }} people are working tonight.">{{ (workingCount / totalCount * 100)|round('0') }}%</div>#}
-        {#<div class="low_in" title="{{ lowInCount }} people are staying in tonight.">{{ (lowInCount / totalCount * 100)|round('0') }}%</div>#}
-        {#<div class="low_out" title="{{ lowOutCount }} people are relaxing out tonight.">{{ (lowOutCount / totalCount * 100)|round('0') }}%</div>#}
-        {#<div class="big_out" title="{{ bigOutCount }} people are raging tonight.">{{ (bigOutCount / totalCount * 100)|round('0') }}%</div>#}
-    {#</div>#}
     <div class="clear"></div>
 
-    <div class="word-filters">
-        <div class="head">Word Filters</div>
+    <div class="tag-filters">
+        <div class="head">Tag Filters</div>
     </div>
 
     <ul class="decided feed">
 
         {% for post in posts %}
             <li class="{{ loop.first ? 'first' : '' }}">
-                {% render 'WhootBundle:Post:teaser' with {'postId': post.id} %}
+                {% render 'WhootBundle:Post:teaser' with {'post': post} %}
             </li>
         {% else %}
             <li class="none">
@@ -38,15 +26,3 @@
     <div class="no-post">No Posts...</div>
 
 {% endif %}
-
-{#{% if undecidedUsers|length > 0 %}#}
-    {#<h3>Undecided People</h3>#}
-    {#<a name="undecided"></a>#}
-    {#<div class="undecided-count">{{ undecidedUsers|length }}</div>#}
-    {#<div class="clear"></div>#}
-    {#<ul class="undecided feed">#}
-        {#{% for user in undecidedUsers %}#}
-            {#{% include "WhootUserBundle:Profile:teaser.html.twig" with {'user': user} %}#}
-        {#{% endfor %}#}
-    {#</ul>#}
-{#{% endif %}#}

@@ -5,16 +5,16 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="whoot.manager.user" class="Whoot\UserBundle\Entity\UserManager">
+
+        <service id="whoot.manager.user" class="Whoot\UserBundle\Document\UserManager" public="false">
             <argument type="service" id="security.encoder_factory" />
             <argument>%fos_user.encoder.algorithm%</argument>
             <argument type="service" id="fos_user.util.username_canonicalizer" />
             <argument type="service" id="fos_user.util.email_canonicalizer" />
-            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="doctrine.odm.mongodb.document_manager" />
             <argument>%fos_user.model.user.class%</argument>
-            <argument type="service" id="whoot.manager.location" />
-            <argument type="service" id="evario.manager.notification" />
         </service>
+
     </services>
 
 </container>

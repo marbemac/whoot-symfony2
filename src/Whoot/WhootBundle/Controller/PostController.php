@@ -20,13 +20,13 @@ class PostController extends ContainerAware
     /**
      * 
      */
-    public function feedAction($postTypes=null, $feedSort=null, $listId=null, $offset=0, $limit=null, $_format='html')
+    public function feedAction($listId=null, $offset=0, $limit=null, $_format='html')
     {
         $response = new Response();
         $feedFilters = $this->container->get('session')->get('feedFilters');
 
-        $postTypes = !$postTypes ? $feedFilters['postTypes'] : $postTypes;
-        $feedSort = !$feedSort ? $feedFilters['feedSort'] : $feedSort;
+        $postTypes = $feedFilters['postTypes'];
+        $feedSort = $feedFilters['feedSort'];
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
@@ -37,7 +37,9 @@ class PostController extends ContainerAware
         }
         else
         {
-            $posts = $this->container->get('whoot.manager.post')->findPostsBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), $listId, $offset, $limit);
+            $following = $user->getFollowing();
+            $following[] = $user->getId();
+            $posts = $this->container->get('whoot.manager.post')->findPostsBy(array('isCurrentPost' => true), array('type' => $postTypes, 'createdBy' => $following), array($feedSort => 'desc'), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))), $offset, $limit);
         }
 
         $response->setCache(array(
@@ -91,12 +93,7 @@ class PostController extends ContainerAware
     public function myPostAction($_format='html')
     {
         $request = $this->container->get('request');
-        $myPost = $this->container->get('whoot.manager.post')->findPostBy(
-                                                                null,
-                                                                $this->container->get('security.context')->getToken()->getUser()->getId(),
-                                                                date('Y-m-d 05:00:00', time()-(60*60*5)),
-                                                                'Active'
-                                                               );
+        $myPost = $this->container->get('whoot.manager.post')->getMyPost($this->container->get('security.context')->getToken()->getUser());
 
         $response = new Response();
         $response->setCache(array(
@@ -131,13 +128,6 @@ class PostController extends ContainerAware
 
         if ($formHandler->process(null, $user) === true) {
             $post = $form->getData();
-
-            if ($this->container->has('security.acl.provider')) {
-                $provider = $this->container->get('security.acl.provider');
-                $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($post));
-                $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
-                $provider->updateAcl($acl);
-            }
 
             if ($_format == 'json')
             {
@@ -181,7 +171,7 @@ class PostController extends ContainerAware
         ));
     }
 
-    public function teaserAction($postId, $_format='html')
+    public function teaserAction($post, $_format='html')
     {
         $response = new Response();
         $response->setCache(array(
@@ -192,7 +182,9 @@ class PostController extends ContainerAware
             // return $response;
         }
 
-        $post = $this->container->get('whoot.manager.post')->findPostBy($postId, null, null, 'Active', false);
+        $user = $this->container->get('whoot.manager.user')->findUserBy(array('id' => $post->getCreatedBy()));
+        $this->container->get('doctrine.odm.mongodb.document_manager')->detach($post);
+        $post->setCreatedBy($user, true);
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:teaser.'.$_format.'.twig', array(
             'post' => $post

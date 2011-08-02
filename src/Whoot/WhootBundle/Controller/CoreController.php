@@ -54,12 +54,14 @@ class CoreController extends ContainerAware
             //return $response;
         }
 
-        $myPost = $this->container->get('whoot.manager.post')->findPostBy(
-                                                                null,
-                                                                $this->container->get('security.context')->getToken()->getUser(),
-                                                                date('Y-m-d 05:00:00', time()-(60*60*5)),
-                                                                'Active'
-                                                               );
+        if ($this->container->get('security.context')->isGranted('ROLE_USER'))
+        {
+            $myPost = $this->container->get('whoot.manager.post')->getMyPost($this->container->get('security.context')->getToken()->getUser());
+        }
+        else
+        {
+            $myPost = null;
+        }
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Core:home.html.twig', array(
             'myPost' => $myPost        
@@ -79,12 +81,7 @@ class CoreController extends ContainerAware
             //return $response;
         }
 
-        $myPost = $this->container->get('whoot.manager.post')->findPostBy(
-                                                                null,
-                                                                $this->container->get('security.context')->getToken()->getUser(),
-                                                                date('Y-m-d 05:00:00', time()-(60*60*5)),
-                                                                'Active'
-                                                               );
+        $myPost = $this->container->get('whoot.manager.post')->getMyPost($this->container->get('security.context')->getToken()->getUser());
         
         return $this->container->get('templating')->renderResponse('WhootBundle:Core:deals.html.twig', array(
             'myPost' => $myPost
@@ -94,12 +91,9 @@ class CoreController extends ContainerAware
     public function postBoxAction()
     {
         $request = $this->container->get('request');
-        $myPost = $this->container->get('whoot.manager.post')->findPostBy(
-                                                                null,
-                                                                $this->container->get('security.context')->getToken()->getUser(),
-                                                                date('Y-m-d 05:00:00', time()-(60*60*5)),
-                                                                'Active'
-                                                               );
+
+        $myPost = $this->container->get('whoot.manager.post')->getMyPost($this->container->get('security.context')->getToken()->getUser());
+
         $response = new Response();
         $response->setCache(array(
         ));
@@ -132,7 +126,7 @@ class CoreController extends ContainerAware
         if ($reset)
         {
             $feedFilters['postTypes'] = isset($feedFilters['postTypes']) ? $feedFilters['postTypes'] : array('working', 'low_in', 'low_out', 'big_out');
-            $feedFilters['feedSort'] = isset($feedFilters['feedSort']) ? $feedFilters['feedSort'] : 'popularity';
+            $feedFilters['feedSort'] = isset($feedFilters['feedSort']) ? $feedFilters['feedSort'] : 'score';
             $feedFilters['timePeriod'] = isset($feedFilters['timePeriod']) ? $feedFilters['timePeriod'] : 3;
             $session->set('feedFilters', $feedFilters);
         }
@@ -233,9 +227,9 @@ class CoreController extends ContainerAware
 
     public function sidebarAction()
     {
-        $user = $this->container->get('security.context')->getToken()->getUser()->getId();
-        $followingStats = $this->container->get('whoot.manager.user')->getFollowingStats($user, null, null);
-        $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), null, 0, 0);
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $followers = $this->container->get('whoot.manager.user')->findUsersBy(array('following' => $user->getId()));
+        $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), 0, 0);
 
         $response = new Response();
         $response->setCache(array(
@@ -249,7 +243,7 @@ class CoreController extends ContainerAware
         }
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Core:sidebar.html.twig', array(
-                    'followingStats' => $followingStats,
+                    'followers' => $followers,
                     'undecidedUsers' => $undecidedUsers
                 ), $response);
     }

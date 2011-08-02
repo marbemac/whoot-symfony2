@@ -47,9 +47,6 @@ class ProfileController extends ContainerAware
         ), $response);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function teaserAction($id)
     {
         $response = new Response();
@@ -154,14 +151,14 @@ class ProfileController extends ContainerAware
     {
         if ($username)
         {
-            $user = $this->container->get('whoot.manager.user')->getUser(array('username' => $username));
+            $user = $this->container->get('whoot.manager.user')->findUserBy(array('username' => $username));
         }
         else
         {
             $user = $this->container->get('security.context')->getToken()->getUser();
         }
         
-        $following = $this->container->get('whoot.manager.user')->getFollowing($user, null, $offset, $limit);
+        $following = $this->container->get('whoot.manager.user')->findUsersBy(array(), array('id' => $user->getFollowing()), $offset, $limit);
 
         $response = new Response();
         $response->setCache(array(

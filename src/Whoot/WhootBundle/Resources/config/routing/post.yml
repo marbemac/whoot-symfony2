@@ -9,4 +9,3 @@ post_details:
     defaults: { _controller: WhootBundle:Post:details }
     requirements:
         _method: GET
-        postId: \d+

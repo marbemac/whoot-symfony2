@@ -20,13 +20,14 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle(),
             new FOS\UserBundle\FOSUserBundle(), // FriendsOfSymfony UserBundle
             new FOS\FacebookBundle\FOSFacebookBundle(),
             new Bundle\GravatarBundle\GravatarBundle(),
-            new Evario\NotificationBundle\EvarioNotificationBundle(),
+//            new Evario\NotificationBundle\EvarioNotificationBundle(),
             new Whoot\UserBundle\WhootUserBundle(),
             new Whoot\VoteBundle\WhootVoteBundle(),
-            new Whoot\NotificationBundle\WhootNotificationBundle(),
+//            new Whoot\NotificationBundle\WhootNotificationBundle(),
             new Whoot\WhootBundle\WhootBundle(),
         );
 
@@ -34,7 +35,6 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            $bundles[] = new Elao\WebProfilerExtraBundle\WebProfilerExtraBundle();
         }
 
         return $bundles;

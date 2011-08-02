@@ -30,14 +30,12 @@ class FollowController extends ContainerAware
         }
 
         $request = $this->container->get('request');
-        $userManager = $this->container->get('whoot.manager.user');
-        $securityContext = $this->container->get('security.context');
 
-        $result = $userManager->toggleFollow($this->container->get('security.context')->getToken()->getUser()->getId(), $userId);
+        $result = $this->container->get('whoot.manager.user')->toggleFollow($this->container->get('security.context')->getToken()->getUser(), $userId);
 
         if ($_format == 'json')
         {
-            $result['newText'] = $result['status'] == 'existing' ? 'Follow' : 'Unfollow';
+            $result['newText'] = $result['status'] == 'removed' ? 'Follow' : 'Unfollow';
             $result['status'] = 'success';
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
@@ -51,7 +49,7 @@ class FollowController extends ContainerAware
             $result['feed'] = $feed->getContent();
             $result['userId'] = $userId;
             $result['event'] = 'follow_toggle';
-            $result['flash'] = array('type' => 'success', 'message' => 'User ' . ($result['status'] == 'existing' ? 'unfollowed' : 'followed') .' successfully!');
+            $result['flash'] = array('type' => 'success', 'message' => 'User ' . ($result['status'] == 'removed' ? 'unfollowed' : 'followed') .' successfully!');
             $result['newText'] = $result['status'] == 'existing' ? 'Follow' : 'Unfollow';
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');

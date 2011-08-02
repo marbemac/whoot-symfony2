@@ -23,7 +23,7 @@ class PostsWords
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Word", inversedBy="posts", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Whoot\WhootBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
      * @ORM\JoinColumn(name="word_id", referencedColumnName="id")
      */
     protected $word;

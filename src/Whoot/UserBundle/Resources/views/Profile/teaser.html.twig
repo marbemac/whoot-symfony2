@@ -1,11 +1,11 @@
 <li class="teaser user {{ loop is defined and loop.first ? 'first' : '' }}">
-    <a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.firstName }} {{ user.lastName }}">
-        {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user, 'dimensions': 30, 'height': 30, 'width': 30} %}
+    <a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.fullName }}">
+        {#{% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user, 'dimensions': 30, 'height': 30, 'width': 30} %}#}
     </a>
     {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user} %}
     <div class="actions">
-        {% render "WhootBundle:Follow:tag" with {'toUser': user.id} %}
+        {% include "WhootBundle:Follow:tag.html.twig" with {'toUser': user} %}
         -
-        {% render "WhootBundle:Ping:tag" with {'toUser': user.id} %}
+        {% include "WhootBundle:Ping:tag.html.twig" with {'toUser': user} %}
     </div>
 </li>

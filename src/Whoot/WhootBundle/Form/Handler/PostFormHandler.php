@@ -8,23 +8,27 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 
-use Whoot\WhootBundle\Entity\Post;
-use Whoot\WhootBundle\Entity\PostManager;
-use Whoot\WhootBundle\Entity\WordManager;
+use Whoot\WhootBundle\Document\Post;
+use Whoot\WhootBundle\Document\PostManager;
+use Whoot\WhootBundle\Document\TagManager;
+use Whoot\WhootBundle\Util\SlugNormalizer;
+use FOS\UserBundle\Document\UserManager;
 
 class PostFormHandler
 {
     protected $form;
     protected $request;
     protected $postManager;
-    protected $wordManager;
+    protected $tagManager;
+    protected $userManager;
 
-    public function __construct(Form $form, Request $request, PostManager $postManager, WordManager $wordManager)
+    public function __construct(Form $form, Request $request, PostManager $postManager, TagManager $tagManager, UserManager $userManager)
     {
         $this->form = $form;
         $this->request = $request;
         $this->postManager = $postManager;
-        $this->wordManager = $wordManager;
+        $this->tagManager = $tagManager;
+        $this->userManager = $userManager;
     }
 
     public function process(Post $post = null, $createdBy)
@@ -43,62 +47,73 @@ class PostFormHandler
                 return false;
             }
 
-            // Validate the words
-            $wordCount = 0;
+            // Validate the tags
+            $tagCount = 0;
             $characterCount = 0;
-            $wordError = false;
-            foreach ($params['whoot_post_form']['words'] as $word)
+            $tagError = false;
+            foreach ($params['whoot_post_form']['tags'] as $tag)
             {
-                if (strlen(trim($word['content'])) > 0)
+                if (strlen(trim($tag['name'])) > 0)
                 {
-                    $words = explode(' ', trim($word['content']));
-                    $wordCount += count($words);
-                    $characterCount += strlen(implode('', $words));
+                    $tags = explode(' ', trim($tag['name']));
+                    $tagCount += count($tags);
+                    $characterCount += strlen(implode('', $tags));
                 }
             }
 
-            if ($wordCount > 5)
+            if ($tagCount > 5)
             {
-                $wordError = true;
-                $error = new FormError('You can only use 5 words total!');
+                $tagError = true;
+                $error = new FormError('You can only use 5 words total (if a tag is "night dancing" that is two words)!');
                 $this->form->addError($error);
             }
 
             if ($characterCount > 50)
             {
-                $wordError = true;
-                $error = new FormError('You can only use 50 characters for your 5 words!');
+                $tagError = true;
+                $error = new FormError('You can only use 50 characters total!');
                 $this->form->addError($error);
             }
 
-            if (!$wordError)
+            if (!$tagError)
             {
                 $this->form->bindRequest($this->request);
 
                 if ($this->form->isValid())
                 {
-                    // Create the words and links if necessary
-                    $usedWords = array();
-                    foreach ($params['whoot_post_form']['words'] as $word)
+                    // Create the tags and links if necessary
+                    $post->setTags(array());
+                    $usedtags = array();
+                    foreach ($params['whoot_post_form']['tags'] as $tag)
                     {
-                        if (strlen(trim($word['content'])) > 0)
+                        if (strlen(trim($tag['name'])) > 0)
                         {
-                            $found = $this->wordManager->findWordBy($word['content'], array(), true);
-                            if (!$found && !in_array(trim($word['content']), $usedWords))
+                            $slug = new SlugNormalizer($tag['name']);
+                            $foundTag = $this->tagManager->findTagBy(array('slug' => $slug->__toString()));
+                            if (!$foundTag && !in_array($slug, $usedtags))
                             {
-                                $found = $this->wordManager->createWord();
-                                $found->setContent($word['content']);
-                                $usedWords[] = trim($word['content']);
+                                $foundTag = $this->tagManager->createTag();
+                                $foundTag->setName($tag['name']);
+                                $this->tagManager->updateTag($foundTag, false);
+                                $usedtags[] = $slug;
                             }
 
-                            $this->wordManager->linkPostWord($post, $found);
+                            $post->addTag($foundTag);
                         }
                     }
 
-                    $post->setWords(null);
+                    $oldPosts = $this->postManager->findPostsBy(array('createdBy' => $createdBy->getId(), 'isCurrentPost' => true), array(), array(), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))));
+                    foreach ($oldPosts as $oldPost)
+                    {
+
+                        $oldPost->setIsCurrentPost(false);
+                        $this->postManager->updatePost($oldPost, false);
+                    }
+
                     $post->setCreatedBy($createdBy);
-                    $this->postManager->disableDailyPosts($createdBy);
                     $this->postManager->updatePost($post);
+                    $createdBy->setCurrentPost($post);
+                    $this->userManager->updateUser($createdBy);
 
                     return true;
                 }

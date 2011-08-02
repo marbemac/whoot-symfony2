@@ -1,12 +1,12 @@
 /*
-Document   : word
+Document   : tag
 Created on : May 3, 2011, 9:41:00 PM
 Author     : Marc MacLeod (marbemac@gmail.com)
 Description:
 Purpose of the stylesheet follows.
 */
 
-.word {
+.tag {
     &.t {
         border-bottom: 1px dotted #BBB;
 
@@ -18,7 +18,7 @@ Purpose of the stylesheet follows.
     }
 }
 
-.word-filters {
+.tag-filters {
     @include clearfix();
     margin: 10px 0 15px 15px;
     display: none;
@@ -30,7 +30,7 @@ Purpose of the stylesheet follows.
         color: #999;
         cursor: default;
     }
-    .word {
+    .tag {
         float: left;
         position: relative;
         margin-right: 10px;
@@ -49,19 +49,19 @@ Purpose of the stylesheet follows.
     }
 }
 
-.trendingWords {
+.trendingtags {
 
     .head {
         margin: 0 0 2px 18px;
     }
-    .words {
+    .tags {
         @include border-radius(5px);
         @include clearfix();
         background: #f9f9f9;
         padding: 5px 10px;
         margin: 0 10px 10px 10px;
     }
-    .word {
+    .tag {
         float: left;
         margin: 0 10px 0 0;
     }

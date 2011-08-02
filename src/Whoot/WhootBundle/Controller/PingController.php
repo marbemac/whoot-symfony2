@@ -30,9 +30,9 @@ class PingController extends ContainerAware
         }
 
         $request = $this->container->get('request');
-        $pingManager = $this->container->get('whoot.manager.ping');
+        $pingManager = $this->container->get('whoot.manager.user');
 
-        $result = $pingManager->togglePing($this->container->get('security.context')->getToken()->getUser()->getId(), $userId);
+        $result = $pingManager->togglePing($this->container->get('security.context')->getToken()->getUser(), $userId);
 
         if ($_format == 'json')
         {

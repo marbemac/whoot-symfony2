@@ -1,9 +1,9 @@
-{% if fromUser == toUser %}
+{% if app.user.id == toUser.id %}
     {# Do nothing. We don't want to show follow buttons for objects to follow themselves... #}
-{% elseif not fromUser %}
-    <a class="follow-B fol_{{ toUser }} auth" href="{{ path('follow_toggle', {'userId': toUser}) }}">Follow</a>
-{% elseif connection %}
-    <a class="follow-B ac fol_{{ toUser }}" href="{{ path('follow_toggle', {'userId': toUser}) }}">Unfollow</a>
+{% elseif not app.user.id %}
+    <a class="follow-B fol_{{ toUser.id }} auth" href="{{ path('follow_toggle', {'userId': toUser.id}) }}">Follow</a>
+{% elseif toUser.id in app.user.following %}
+    <a class="follow-B ac fol_{{ toUser.id }}" href="{{ path('follow_toggle', {'userId': toUser.id}) }}">Unfollow</a>
 {% else %}
-    <a class="follow-B ac fol_{{ toUser }}" href="{{ path('follow_toggle', {'userId': toUser}) }}">Follow</a>
+    <a class="follow-B ac fol_{{ toUser.id }}" href="{{ path('follow_toggle', {'userId': toUser.id}) }}">Follow</a>
 {% endif %}

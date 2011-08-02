@@ -1,45 +1,45 @@
 <div class="manage-trending">
 
-    <h4>Uncategorized Words</h4>
+    <h4>Uncategorized tags</h4>
     <ul>
-        {% for word in uncategorizedWords %}
-            {% if word[0].content %}
-                <li class="w-{{ word[0].id }}">
-                    <div class="word"><div>{{ word[0].content }}</div> ({{ word[0].score }} popularity)</div>
-                    <a class="ac" href="{{ path('admin_make_trendable', {'wordId': word[0].id}) }}">Make Trendable</a>
-                    <a class="ac" href="{{ path('admin_make_stopword', {'wordId': word[0].id}) }}">Make Stop Word</a>
+        {% for tag in uncategorizedtags %}
+            {% if tag[0].content %}
+                <li class="w-{{ tag[0].id }}">
+                    <div class="tag"><div>{{ tag[0].content }}</div> ({{ tag[0].score }} popularity)</div>
+                    <a class="ac" href="{{ path('admin_make_trendable', {'tagId': tag[0].id}) }}">Make Trendable</a>
+                    <a class="ac" href="{{ path('admin_make_stoptag', {'tagId': tag[0].id}) }}">Make Stop tag</a>
                 </li>
             {% endif %}
         {% else %}
-            <li class="none">No uncategorized words. Yahoo.</li>
+            <li class="none">No uncategorized tags. Yahoo.</li>
         {% endfor %}
     </ul>
 
-    <h4>Trendable Words</h4>
+    <h4>Trendable tags</h4>
     <ul id="admin-trendable">
-        {% for word in trendableWords %}
-            {% if word[0].content %}
-                <li class="w-{{ word[0].id }}">
-                    <div class="word"><div>{{ word[0].content }}</div> ({{ word[0].score }} popularity)</div>
-                    <a class="ac" href="{{ path('admin_make_stopword', {'wordId': word[0].id}) }}">Make Stop Word</a>
+        {% for tag in trendabletags %}
+            {% if tag[0].content %}
+                <li class="w-{{ tag[0].id }}">
+                    <div class="tag"><div>{{ tag[0].content }}</div> ({{ tag[0].score }} popularity)</div>
+                    <a class="ac" href="{{ path('admin_make_stoptag', {'tagId': tag[0].id}) }}">Make Stop tag</a>
                 </li>
             {% endif %}
         {% else %}
-            <li class="none">No trendable words...</li>
+            <li class="none">No trendable tags...</li>
         {% endfor %}
     </ul>
 
-    <h4>Stop Words</h4>
-    <ul id="admin-stopwords">
-        {% for word in stopWords %}
-            {% if word[0].content %}
-                <li class="w-{{ word[0].id }}">
-                    <div class="word"><div>{{ word[0].content }}</div> ({{ word[0].score }} popularity)</div>
-                    <a class="ac" href="{{ path('admin_make_trendable', {'wordId': word[0].id}) }}">Make Trendable</a>
+    <h4>Stop tags</h4>
+    <ul id="admin-stoptags">
+        {% for tag in stoptags %}
+            {% if tag[0].content %}
+                <li class="w-{{ tag[0].id }}">
+                    <div class="tag"><div>{{ tag[0].content }}</div> ({{ tag[0].score }} popularity)</div>
+                    <a class="ac" href="{{ path('admin_make_trendable', {'tagId': tag[0].id}) }}">Make Trendable</a>
                 </li>
             {% endif %}
         {% else %}
-            <li class="none">No stop words...</li>
+            <li class="none">No stop tags...</li>
         {% endfor %}
     </ul>
 </div>

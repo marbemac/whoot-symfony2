@@ -1,8 +1,8 @@
 <a name="post-{{ post.id }}"></a>
 <div class="teaser post {{ post.type }}" id="post-{{ post.id }}" data-details="{{ path('post_details', {'postId': post.id, 'type': 'normal'}) }}">
-    <a class="profile-image" href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}" title="{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}">
-        {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 50} %}
-    </a>
+    {#<a class="profile-image" href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}" title="{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}">#}
+        {#{% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 50} %}#}
+    {#</a>#}
 
     {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': post.createdBy, 'nameLimit': 15} %}
 
@@ -10,23 +10,23 @@
         {{ post.type|printPostTypeShort }}
     </div>
 
-    <div class="words">
-        {% if post.invite.id is defined %}
-            <a href="{{ path('invite_show', {'inviteId': post.invite.id}) }}">
-                @{{ post.invite.venue }} with {{ post.invite.attending > 1 ? post.invite.attending-1~' others' : 'nobody.. loser' }}
-            </a>
-        {% else %}
-            {% for word in post.words %}
-                {% include "WhootBundle:Word:teaser.html.twig" with {'word': word.word} %}
+    <div class="tags">
+        {#{% if post.invite.id is defined %}#}
+            {#<a href="{{ path('invite_show', {'inviteId': post.invite.id}) }}">#}
+                {#@{{ post.invite.venue }} with {{ post.invite.attending > 1 ? post.invite.attending-1~' others' : 'nobody.. loser' }}#}
+            {#</a>#}
+        {#{% else %}#}
+            {% for tag in post.tags %}
+                {% include "WhootBundle:Tag:teaser.html.twig" with {'tag': tag} %}
             {% else %}
-                Hmm... no words. How did you do this?!
+                Hmm... no tags. How did you do this?!
             {% endfor %}
-        {% endif %}
+        {#{% endif %}#}
     </div>
 
-    {% if post.invite.id is not defined %}
-        {% render "WhootVoteBundle:Vote:show" with {'objectId': post.id, 'objectType': 'Post', 'score': post.score} %}
-    {% endif %}
+    {#{% if post.invite.id is not defined %}#}
+        {#{% render "WhootVoteBundle:Vote:show" with {'objectId': post.id, 'objectType': 'Post', 'score': post.score} %}#}
+    {#{% endif %}#}
     
     <div class="clear"></div>
 </div>

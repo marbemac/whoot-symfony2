@@ -4,11 +4,11 @@
     <h4>Undecided Users</h4>
     {% for user in undecidedUsers %}
         <div class="item">
-            <a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.firstName }} {{ user.lastName }}">
-                {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user, 'dimensions': 30} %}
-            </a>
+            {#<a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.firstName }} {{ user.lastName }}">#}
+                {#{% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user, 'dimensions': 30} %}#}
+            {#</a>#}
             {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user, 'nameLimit': 12} %}
-            {% render "WhootBundle:Ping:tag" with {'toUser': user.id} %}
+            {% include "WhootBundle:Ping:tag.html.twig" with {'toUser': user} %}
         </div>
     {% else %}
         <div class="none">None!</div>

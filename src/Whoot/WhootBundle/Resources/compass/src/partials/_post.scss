@@ -20,9 +20,9 @@ Purpose of the stylesheet follows.
         float: left;
         color: #777;
     }
-    .words {
+    .tags {
         @include clearfix();
-        .word {
+        .tag {
             float: left;
             border-bottom: none;
             margin: 5px 10px 0 0;
@@ -218,16 +218,16 @@ Purpose of the stylesheet follows.
         position: relative;
         border-width: 2px;
     }
-    .words-help {
+    .tags-help {
         font-size: 13px;
         font-stype: italic;
         color: #888;
         margin: 0 0 0 100px;
     }
-    .wordsC {
+    .tagsC {
         @include clearfix();
         margin: 10px 0 15px 85px;
-        .word {
+        .tag {
             display: none;
             float: left;
             position: relative;
@@ -453,7 +453,7 @@ $post-hover-color: #E7EDFF;
         overflow: hidden;
         padding: 18px 0 0 10px;
     }
-    .words {
+    .tags {
         @include clearfix();
         float: left;
         padding: 18px 0 0 10px;
@@ -462,7 +462,7 @@ $post-hover-color: #E7EDFF;
         overflow: hidden;
         white-space: nowrap;
     }
-    .word {
+    .tag {
         float: left;
         margin: 0 15px 0 0;
     }

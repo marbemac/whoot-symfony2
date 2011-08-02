@@ -18,58 +18,34 @@ framework:
         default_locale: %locale%
         auto_start:     true
         lifetime:       3600
-#        storage_id:     session.storage.pdo
     annotations:
         cache: file
         debug: %kernel.debug%
 
-parameters:
-    pdo.db_options:
-        db_table: session
-        db_id_col: session_id
-        db_data_col: session_value
-        db_time_col: session_time
-
 services:
-    session.storage.pdo:
-        class:     Symfony\Component\HttpFoundation\SessionStorage\PdoSessionStorage
-        arguments: [@pdo, {}, %pdo.db_options%]
-
-    pdo:
-        class: PDO
-        arguments:
-                dsn:      "mysql:dbname=%database_name%"
-                user:     %database_user%
-                password: %database_password%
-
     whoot.facebook.user:
         class: Whoot\WhootBundle\Security\User\Provider\FacebookProvider
         arguments:
             facebook:    "@fos_facebook.api"
-            userManager: "@whoot.manager.user"
+            userManager: "@fos_user.user_manager"
             locationManager: "@whoot.manager.location"
 
-# Doctrine Configuration
-doctrine:
-    dbal:
-        driver:   %database_driver%
-        host:     %database_host%
-        port:     %database_port%
-        dbname:   %database_name%
-        user:     %database_user%
-        password: %database_password%
-        logging:  %kernel.debug%
+doctrine_mongodb:
+    default_database: whoot_%kernel.environment%
+    auto_generate_proxy_classes: %kernel.debug%
+    connections:
+        default:
+            server: mongodb://localhost:27017
+            options:
+                connect: true
+    document_managers:
+        default:
+            metadata_cache_driver: array
+            mappings:
+                FOSUserBundle: ~
+                WhootUserBundle: ~
+                WhootBundle: ~
 
-    orm:
-        auto_mapping: true
-        auto_generate_proxy_classes: %kernel.debug%
-        proxy_namespace: Proxies
-        proxy_dir: %kernel.cache_dir%/doctrine/orm/Proxies
-        default_entity_manager: default
-        metadata_cache_driver: array
-        query_cache_driver: array
-        result_cache_driver: array
-        
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
@@ -100,15 +76,10 @@ swiftmailer:
     username:  testing@thewhoot.com
     password: testingwhoot
 
-# This came with the symfony-standard distribution, not sure what it is.
-jms_security_extra:
-    secure_controllers:  true
-    secure_all_services: false
-
-evario_notification:
-    notification_class:         Whoot\NotificationBundle\Entity\Notification
-    notification_manager:       Whoot\NotificationBundle\Entity\NotificationManager
-    from_email:                 marbemac@gmail.com
+#evario_notification:
+#    notification_class:         Whoot\NotificationBundle\Entity\Notification
+#    notification_manager:       Whoot\NotificationBundle\Entity\NotificationManager
+#    from_email:                 marbemac@gmail.com
 
 gravatar: ~
 
@@ -121,10 +92,12 @@ fos_facebook:
 
 # FriendsOfSymfony UserBundle Configuration
 fos_user:
-    db_driver:     orm
-    firewall_name: main
-    user_class:    Whoot\UserBundle\Entity\User
-    use_listener:  true
+    db_driver:      mongodb
+    firewall_name:  main
+    user_class:     Whoot\UserBundle\Document\User
+    use_listener:   true
+    use_username_form_type: false
+#    model_manager_name: whoot.manager.user  # change it to the name of your entity/document manager if you don't want to use the default one.
     from_email:
         address: marc@thewhoot.com
         sender_name: Marc
@@ -148,7 +121,7 @@ fos_user:
 #            enabled:    false
 #            template:   FOSUserBundle:Registration:email.txt.twig
         form:
-                type:               whoot_user_registration
+            type:               whoot_user_registration
 #            handler:            fos_user.registration.form.handler.default
 #            name:               fos_user_registration_form
 #            validation_groups:  [Registration]

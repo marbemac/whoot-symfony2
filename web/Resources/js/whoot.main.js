@@ -26,6 +26,12 @@ $(function() {
             $('#auth-login').fadeToggle(300);
             return false;
         }
+
+        if (e.ctrlKey && $code == 99)
+        {
+            $('#auth-register').fadeToggle(300);
+            return false;
+        }
     })
 
     /**
@@ -163,11 +169,11 @@ $(function() {
         $payload[$('#whoot_post_form_type').attr('name')] = $('#whoot_post_form_type').val();
         $payload[$('#whoot_post_form_location').attr('name')] = $('#whoot_post_form_location').val();
         
-        $wordCount = 0;
-        $.each($('input.word'), function() {
+        $tagCount = 0;
+        $.each($('input.tag'), function() {
             if ($.trim($(this).val()).length > 0)
             {
-                $wordCount++;
+                $tagCount++;
             }
             $payload[$(this).attr('name')] = $(this).val();
         })
@@ -177,10 +183,10 @@ $(function() {
             $('#post-box .status').addClass('error');
         }
 
-        if ($wordCount == 0)
+        if ($tagCount == 0)
         {
             $error_flag = true;
-            $('.post_create .errors').text('You must input 1 - 5 words! Be sure to press enter after inputting them.');
+            $('.post_create .errors').text('You must input 1 - 5 tags! Be sure to press enter after inputting them.');
         }
 
         if ($error_flag) {
@@ -209,7 +215,7 @@ $(function() {
     // Toggle the activity of a post
     var postActivityToggle = false;
     $('.teaser.post').live('click', function(ev) {
-        if ($(ev.target).is('a') || $(ev.target).hasClass('word') || postActivityToggle)
+        if ($(ev.target).is('a') || $(ev.target).hasClass('tag') || postActivityToggle)
             return;
 
         postActivityToggle = true;
@@ -285,45 +291,45 @@ $(function() {
     })
 
     /*
-     * WORDS
+     * tagS
      */
 
-    // Handle post words
-    // How many words are we allowed?
-    var $wordMax = 5;
-    // How many characters per word (avg)
+    // Handle post tags
+    // How many tags are we allowed?
+    var $tagMax = 5;
+    // How many characters per tag (avg)
     var $characterMax = 10;
-    $('.post_create .words').live('keypress', function(e) {
+    $('.post_create .tags').live('keypress', function(e) {
         var $code = e.which ? e.which : e.keyCode;
         $(this).siblings('.errors').text('');
 
-        // Get the number of words the user is trying to add
-        $wordNum = $.trim($(this).val()).split(' ').length;
+        // Get the number of tags the user is trying to add
+        $tagNum = $.trim($(this).val()).split(' ').length;
 
         // 13 enter keypress
         if ($code == 13)
         {
-            // Calculate how many words the user has already added
-            $currentWords = '';
-            $.each($('input.word'), function() {
+            // Calculate how many tags the user has already added
+            $currenttags = '';
+            $.each($('input.tag'), function() {
                 if ($.trim($(this).val()).length > 0)
                 {
-                    $currentWords += $(this).val() + ' ';
+                    $currenttags += $(this).val() + ' ';
                 }
             })
 
-            if ($currentWords.replace(' ', '').length + $(this).val().replace(' ', '').length > $wordMax*$characterMax)
+            if ($currenttags.replace(' ', '').length + $(this).val().replace(' ', '').length > $tagMax*$characterMax)
             {
-                $(this).siblings('.error').text('Stop using such big words. You may use a maximum of '+$wordMax*$characterMax+' characters for your 5 words.');
+                $(this).siblings('.error').text('Stop using such big tags. You may use a maximum of '+$tagMax*$characterMax+' characters for your 5 tags.');
             }
-            else if ($.trim($currentWords).split(' ').length + $wordNum > $wordMax)
+            else if ($.trim($currenttags).split(' ').length + $tagNum > $tagMax)
             {
-                $(this).siblings('.errors').text('You cannot use more than '+$wordMax+' words total.');
+                $(this).siblings('.errors').text('You cannot use more than '+$tagMax+' tags total.');
             }
-            // Add the word
+            // Add the tag
             else
             {
-                var target = $(this).siblings('.wordsC .word:not(.on):first');
+                var target = $(this).siblings('.tagsC .tag:not(.on):first');
                 target.addClass('on').prepend('<div>'+$(this).val()+'</div>');
                 $(target.data('target')).val($(this).val());
                 $(this).val('');
@@ -332,30 +338,30 @@ $(function() {
         }
         else
         {
-            // We only allow phrases of 3 or less words...
-            if (($wordNum > 3 || ($wordNum == 3 && $code == 32)) && $code != 8 && $code != 46)
+            // We only allow phrases of 3 or less tags...
+            if (($tagNum > 3 || ($tagNum == 3 && $code == 32)) && $code != 8 && $code != 46)
             {
                 e.preventDefault();
-                $(this).siblings('.errors').text('You cannot use more than three words in a single phrase');
+                $(this).siblings('.errors').text('You cannot use more than three tags in a single phrase');
             }
         }
     })
 
-    // Used to delete an already added word (on the submit post form)
-    $('.post_create .word span').live('click', function() {
+    // Used to delete an already added tag (on the submit post form)
+    $('.post_create .tag span').live('click', function() {
         $(this).siblings().remove();
         $($(this).parent().removeClass('on').data('target')).val('');
     })
 
-    // Filter posts by word
-    $('.word').live('click', function() {
+    // Filter posts by tag
+    $('.tag').live('click', function() {
         var $self = $(this);
 
-        if ($('.word-filters .w-'+$(this).data('id')).length == 0)
+        if ($('.tag-filters .w-'+$(this).data('id')).length == 0)
         {
-            $('.word-filters').show();
+            $('.tag-filters').show();
             
-            $('.word-filters').append($(this).clone().append('<span>x</span>'));
+            $('.tag-filters').append($(this).clone().append('<span>x</span>'));
             $('.teaser').each(function() {
                 if ($(this).find('.w-'+$self.data('id')).length == 0)
                 {
@@ -365,17 +371,17 @@ $(function() {
         }
     })
 
-    // Remove a filtered word
-    $('.word-filters .word').live('click', function() {
-        var $word = $(this);
+    // Remove a filtered tag
+    $('.tag-filters .tag').live('click', function() {
+        var $tag = $(this);
 
         var $filteredFound = false;
-        var $filteredWords = '';
-        $.each($('.word-filters .word'), function() {
-            if ($(this).data('id') != $word.data('id'))
+        var $filteredtags = '';
+        $.each($('.tag-filters .tag'), function() {
+            if ($(this).data('id') != $tag.data('id'))
             {
                 $filteredFound = true;
-                $filteredWords += '.w-'+$(this).data('id')+', ';
+                $filteredtags += '.w-'+$(this).data('id')+', ';
             }
         })
 
@@ -385,9 +391,9 @@ $(function() {
         }
         else
         {
-            console.log($filteredWords);
+            console.log($filteredtags);
             $('.teaser').each(function() {
-                if ($(this).find($filteredWords).length != 0)
+                if ($(this).find($filteredtags).length != 0)
                 {
                     $(this).fadeIn(150);
                 }
@@ -395,9 +401,9 @@ $(function() {
         }
         $(this).remove();
 
-        if ($('.word-filters .word').length == 0)
+        if ($('.tag-filters .tag').length == 0)
         {
-            $('.word-filters').hide();
+            $('.tag-filters').hide();
         }
     })
 
@@ -507,60 +513,6 @@ $(function() {
     });
     $(".search input").result(function(event, data, formatted) {
         $(".search input").val($(".search input").data('default'));
-        if (data.postId && $('#post-' + data.postId).length > 0) {
-            $.scrollTo('#post-' + data.postId, {
-                duration: 500,
-                onAfter: function() {
-                    $('#post-' + data.postId).click();
-
-                    $(this).oneTime(1000, "show-search-tip", function() {
-                        $('.user-' + data.id).qtip({
-                            content: 'Found!',
-                            style: {
-                                classes: 'ui-tooltip-red ui-tooltip-shadow ui-tooltip-rounded my-pings-tip'
-                            },
-                            position: {
-                                my: 'bottom center',
-                                at: 'top center'
-                            }
-                        });
-                        $('.user-' + data.id).qtip('show');
-
-
-                        $(this).oneTime(3000, "hide-search-tip", function() {
-                            $('.user-' + data.id).qtip('destroy');
-                        })
-                    });
-                }
-            })
-        }
-        else if ($('.user-' + data.id).length > 0) {
-            $.scrollTo('.user-' + data.id, {
-                duration: 500,
-                onAfter: function() {
-                    $(this).oneTime(1000, "show-search-tip", function() {
-                        $('.user-' + data.id).qtip({
-                            content: 'Found!',
-                            style: {
-                                classes: 'ui-tooltip-red ui-tooltip-shadow ui-tooltip-rounded my-pings-tip'
-                            },
-                            position: {
-                                my: 'bottom center',
-                                at: 'top center'
-                            }
-                        });
-                        $('.user-' + data.id).qtip('show');
-
-
-                        $(this).oneTime(3000, "hide-search-tip", function() {
-                            $('.user-' + data.id).qtip('destroy');
-                        })
-                    });
-                }
-            })
-        }
-        else {
-            window.location = '/' + data.username + '/following';
-        }
+        window.location = '/' + data.username + '/following';
     });
 })

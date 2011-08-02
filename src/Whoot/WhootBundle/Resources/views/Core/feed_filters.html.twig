@@ -38,8 +38,8 @@
             <div class="arrow-small"></div>
             <div class="label">Sorted</div>
             <ul class="sc-menu">
-                <li class="{{ feedFilters and feedFilters.feedSort == 'created' ? 'on' : 'hide' }}"><a href="{{ path('feed_filter_change', {'key': 'feedSort', 'value': 'created'}) }}" class="ac">Newest</a></li>
-                <li class="{{ feedFilters and feedFilters.feedSort == 'popularity' ? 'on' : 'hide' }}"><a href="{{ path('feed_filter_change', {'key': 'feedSort', 'value': 'popularity'}) }}" class="ac">Popularity</a></li>
+                <li class="{{ feedFilters and feedFilters.feedSort == 'createdAt' ? 'on' : 'hide' }}"><a href="{{ path('feed_filter_change', {'key': 'feedSort', 'value': 'createdAt'}) }}" class="ac">Newest</a></li>
+                <li class="{{ feedFilters and feedFilters.feedSort == 'score' ? 'on' : 'hide' }}"><a href="{{ path('feed_filter_change', {'key': 'feedSort', 'value': 'score'}) }}" class="ac">Popularity</a></li>
             </ul>
         </div>
         <div class="clear"></div>

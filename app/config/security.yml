@@ -8,7 +8,7 @@ security:
     #session_fixation_strategy: migrate
     providers:
         whoot_user:
-            id: whoot.manager.user
+            id: fos_user.user_manager
         whoot_facebook:
             id: whoot.facebook.user
 
@@ -56,6 +56,3 @@ security:
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN:  [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-
-    acl:
-        connection: default

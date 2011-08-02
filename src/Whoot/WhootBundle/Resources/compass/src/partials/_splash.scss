@@ -72,3 +72,13 @@ html.coming-soon {
     background: #FFF;
     padding: 20px;
 }
+
+#auth-register {
+    @include opacity(.85);
+    @include border-radius(4px);
+    position: fixed;
+    bottom: 200px;
+    left: 20px;
+    background: #FFF;
+    padding: 20px;
+}

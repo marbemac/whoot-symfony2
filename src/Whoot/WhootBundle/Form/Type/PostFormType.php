@@ -4,7 +4,7 @@ namespace Whoot\WhootBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
-use Whoot\UserBundle\Entity\UserManager;
+use Whoot\UserBundle\Document\UserManager;
 
 class PostFormType extends AbstractType
 {
@@ -18,14 +18,14 @@ class PostFormType extends AbstractType
 
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $userLocation = $this->userManager->getUserLocation($this->securityContext->getToken()->getUser()->getId());
+//        $userLocation = $this->userManager->getUserLocation($this->securityContext->getToken()->getUser()->getId());
         $builder
             ->add('type', 'hidden')
-            ->add('words', 'collection', array('type' => new WordFormType()))
-            ->add('location', 'entity', array(
-                'class' => 'Whoot\WhootBundle\Entity\Location',
-                'preferred_choices' => array($userLocation ? $userLocation['id'] : '')
-            ));
+            ->add('tags', 'collection', array('type' => new TagFormType()));
+//            ->add('location', 'entity', array(
+//                'class' => 'Whoot\WhootBundle\Document\Location',
+//                'preferred_choices' => array($userLocation ? $userLocation['id'] : '')
+//            ));
     }
 
     public function getName()

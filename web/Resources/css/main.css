@@ -31,6 +31,7 @@ body.night {
   background-image: -webkit-linear-gradient(#05162e, #09213b 30%, #0c2b4b 50%, #0f3762);
   background-image: -moz-linear-gradient(#05162e, #09213b 30%, #0c2b4b 50%, #0f3762);
   background-image: -o-linear-gradient(#05162e, #09213b 30%, #0c2b4b 50%, #0f3762);
+  background-image: -ms-linear-gradient(#05162e, #09213b 30%, #0c2b4b 50%, #0f3762);
   background-image: linear-gradient(#05162e, #09213b 30%, #0c2b4b 50%, #0f3762);
 }
 
@@ -41,6 +42,7 @@ body.sunset {
   background-image: -webkit-linear-gradient(#995a51, #d2785e 15%, #eb885f 30%, #ffa45e 55%, #ffc681);
   background-image: -moz-linear-gradient(#995a51, #d2785e 15%, #eb885f 30%, #ffa45e 55%, #ffc681);
   background-image: -o-linear-gradient(#995a51, #d2785e 15%, #eb885f 30%, #ffa45e 55%, #ffc681);
+  background-image: -ms-linear-gradient(#995a51, #d2785e 15%, #eb885f 30%, #ffa45e 55%, #ffc681);
   background-image: linear-gradient(#995a51, #d2785e 15%, #eb885f 30%, #ffa45e 55%, #ffc681);
 }
 
@@ -51,6 +53,7 @@ body.day {
   background-image: -webkit-linear-gradient(#4178a2, #73a3cd 30%, #80b0e7 60%, #a2c5e7);
   background-image: -moz-linear-gradient(#4178a2, #73a3cd 30%, #80b0e7 60%, #a2c5e7);
   background-image: -o-linear-gradient(#4178a2, #73a3cd 30%, #80b0e7 60%, #a2c5e7);
+  background-image: -ms-linear-gradient(#4178a2, #73a3cd 30%, #80b0e7 60%, #a2c5e7);
   background-image: linear-gradient(#4178a2, #73a3cd 30%, #80b0e7 60%, #a2c5e7);
 }
 
@@ -103,6 +106,7 @@ input.submit {
   background-image: -webkit-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: -moz-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: -o-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
+  background-image: -ms-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background: #FC770D;
   color: #FFF;
@@ -183,7 +187,6 @@ ul, ol {
 }
 /* line 104, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #header .nav a:hover {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
   color: #000;
@@ -191,7 +194,6 @@ ul, ol {
 }
 /* line 109, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #header .nav a.on {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
   background: #FFF;
@@ -219,7 +221,6 @@ ul, ol {
 }
 /* line 129, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #header .search input {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   opacity: 0.7;
   -moz-border-radius: 5px;
@@ -232,6 +233,7 @@ ul, ol {
   background-image: -webkit-linear-gradient(#1e5293, #1c5197 25%, #164f9e 75%, #134fa1);
   background-image: -moz-linear-gradient(#1e5293, #1c5197 25%, #164f9e 75%, #134fa1);
   background-image: -o-linear-gradient(#1e5293, #1c5197 25%, #164f9e 75%, #134fa1);
+  background-image: -ms-linear-gradient(#1e5293, #1c5197 25%, #164f9e 75%, #134fa1);
   background-image: linear-gradient(#1e5293, #1c5197 25%, #164f9e 75%, #134fa1);
   background: #164F9E;
   border: 2px solid #FFF;
@@ -242,7 +244,6 @@ ul, ol {
 }
 /* line 140, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #header .search input:focus {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
@@ -308,6 +309,7 @@ ul, ol {
   background-image: -webkit-linear-gradient(#3077ce, #2b6fc6 25%, #1b59ae 75%, #1551a5);
   background-image: -moz-linear-gradient(#3077ce, #2b6fc6 25%, #1b59ae 75%, #1551a5);
   background-image: -o-linear-gradient(#3077ce, #2b6fc6 25%, #1b59ae 75%, #1551a5);
+  background-image: -ms-linear-gradient(#3077ce, #2b6fc6 25%, #1b59ae 75%, #1551a5);
   background-image: linear-gradient(#3077ce, #2b6fc6 25%, #1b59ae 75%, #1551a5);
   background: #1B59AE;
   height: 20px;
@@ -328,7 +330,7 @@ ul, ol {
 
 /* line 193, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #stars-bg {
-  background-image: url('/images/stars-bg.png?1310479515');
+  background-image: url('/images/stars-bg.png?1312209403');
   background-repeat: repeat;
   background-position: top left;
   width: 100%;
@@ -340,14 +342,13 @@ ul, ol {
 }
 /* line 205, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #stars-bg.fade {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   opacity: 0.4;
 }
 
 /* line 209, ../../../src/Whoot/WhootBundle/Resources/compass/src/main.scss */
 #city-bg {
-  background-image: url('/images/city-bg.png?1310479515');
+  background-image: url('/images/city-bg.png?1312209403');
   background-repeat: repeat-x;
   background-position: bottom left;
   background-color: transparent;
@@ -467,9 +468,9 @@ ul, ol {
     Description:
         Sprite definitions.
 */
-/* line 55, icon */
+/* line 57, icon */
 .icon-sprite, .handle-small, .arrow-small, .check-working, .check-low_in, .check-low_out, .check-big_out {
-  background: url('/images/icon-7525341807.png') no-repeat;
+  background: url('/images/icon-s7525341807.png') no-repeat;
 }
 
 /* line 10, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_sprite.scss */
@@ -553,7 +554,7 @@ html.coming-soon body {
   margin: -272.222px 0 0 -442.632px;
   width: 841px;
   height: 490px;
-  background-image: url('/images/splash-bg.png?1310580572');
+  background-image: url('/images/splash-bg.png?1312209403');
   background-repeat: none;
   background-color: transparent;
 }
@@ -589,7 +590,6 @@ html.coming-soon body {
 
 /* line 66, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_splash.scss */
 #auth-login {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
   opacity: 0.85;
   -moz-border-radius: 4px;
@@ -600,6 +600,23 @@ html.coming-soon body {
   border-radius: 4px;
   position: fixed;
   bottom: 10px;
+  left: 20px;
+  background: #FFF;
+  padding: 20px;
+}
+
+/* line 76, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_splash.scss */
+#auth-register {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
+  opacity: 0.85;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 200px;
   left: 20px;
   background: #FFF;
   padding: 20px;
@@ -812,6 +829,7 @@ html.coming-soon body {
   background-image: -webkit-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: -moz-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: -o-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
+  background-image: -ms-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background: #FC770D;
   color: #FFF;
@@ -1010,6 +1028,7 @@ html.coming-soon body {
   background-image: -webkit-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: -moz-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: -o-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
+  background-image: -ms-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background: #FC770D;
   color: #FFF;
@@ -1130,6 +1149,7 @@ html.coming-soon body {
   background-image: -webkit-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: -moz-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: -o-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
+  background-image: -ms-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background: #FC770D;
   color: #FFF;
@@ -1223,12 +1243,12 @@ Purpose of the stylesheet follows.
   color: #777;
 }
 /* line 23, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
-#my-post .words {
+#my-post .tags {
   overflow: hidden;
   *zoom: 1;
 }
 /* line 25, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
-#my-post .words .word {
+#my-post .tags .tag {
   float: left;
   border-bottom: none;
   margin: 5px 10px 0 0;
@@ -1310,7 +1330,6 @@ Purpose of the stylesheet follows.
 
 /* line 93, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
 #post-box {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=95)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=95);
   opacity: 0.95;
   -moz-border-radius-topleft: 10px;
@@ -1483,26 +1502,26 @@ Purpose of the stylesheet follows.
   border-width: 2px;
 }
 /* line 221, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
-#post-box .words-help,
-.post_create .words-help,
-.invite_create .words-help {
+#post-box .tags-help,
+.post_create .tags-help,
+.invite_create .tags-help {
   font-size: 13px;
   font-stype: italic;
   color: #888;
   margin: 0 0 0 100px;
 }
 /* line 227, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
-#post-box .wordsC,
-.post_create .wordsC,
-.invite_create .wordsC {
+#post-box .tagsC,
+.post_create .tagsC,
+.invite_create .tagsC {
   overflow: hidden;
   *zoom: 1;
   margin: 10px 0 15px 85px;
 }
 /* line 230, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
-#post-box .wordsC .word,
-.post_create .wordsC .word,
-.invite_create .wordsC .word {
+#post-box .tagsC .tag,
+.post_create .tagsC .tag,
+.invite_create .tagsC .tag {
   display: none;
   float: left;
   position: relative;
@@ -1510,18 +1529,18 @@ Purpose of the stylesheet follows.
   margin: 0 0 0 15px;
 }
 /* line 236, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
-#post-box .wordsC .word div,
-.post_create .wordsC .word div,
-.invite_create .wordsC .word div {
+#post-box .tagsC .tag div,
+.post_create .tagsC .tag div,
+.invite_create .tagsC .tag div {
   border-bottom: 1px dotted #999;
   line-height: 1.1;
   font-size: 20px;
   cursor: default;
 }
 /* line 242, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
-#post-box .wordsC .word span,
-.post_create .wordsC .word span,
-.invite_create .wordsC .word span {
+#post-box .tagsC .tag span,
+.post_create .tagsC .tag span,
+.invite_create .tagsC .tag span {
   position: absolute;
   right: 6px;
   top: 1px;
@@ -1529,15 +1548,15 @@ Purpose of the stylesheet follows.
   cursor: pointer;
 }
 /* line 248, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
-#post-box .wordsC .word span:hover,
-.post_create .wordsC .word span:hover,
-.invite_create .wordsC .word span:hover {
+#post-box .tagsC .tag span:hover,
+.post_create .tagsC .tag span:hover,
+.invite_create .tagsC .tag span:hover {
   color: red;
 }
 /* line 252, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
-#post-box .wordsC .word.on,
-.post_create .wordsC .word.on,
-.invite_create .wordsC .word.on {
+#post-box .tagsC .tag.on,
+.post_create .tagsC .tag.on,
+.invite_create .tagsC .tag.on {
   display: block;
 }
 /* line 258, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
@@ -1572,6 +1591,7 @@ Purpose of the stylesheet follows.
   background-image: -webkit-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: -moz-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: -o-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
+  background-image: -ms-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background-image: linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
   background: #FC770D;
   color: #FFF;
@@ -1599,6 +1619,7 @@ Purpose of the stylesheet follows.
   background-image: -webkit-linear-gradient(#f9f9f9, #f6f6f6 25%, #ebebeb 75%, #e8e8e8);
   background-image: -moz-linear-gradient(#f9f9f9, #f6f6f6 25%, #ebebeb 75%, #e8e8e8);
   background-image: -o-linear-gradient(#f9f9f9, #f6f6f6 25%, #ebebeb 75%, #e8e8e8);
+  background-image: -ms-linear-gradient(#f9f9f9, #f6f6f6 25%, #ebebeb 75%, #e8e8e8);
   background-image: linear-gradient(#f9f9f9, #f6f6f6 25%, #ebebeb 75%, #e8e8e8);
   -moz-border-radius-topleft: 10px;
   -webkit-border-top-left-radius: 10px;
@@ -1834,7 +1855,7 @@ Purpose of the stylesheet follows.
   padding: 18px 0 0 10px;
 }
 /* line 456, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
-.teaser.post .words {
+.teaser.post .tags {
   overflow: hidden;
   *zoom: 1;
   float: left;
@@ -1845,7 +1866,7 @@ Purpose of the stylesheet follows.
   white-space: nowrap;
 }
 /* line 465, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
-.teaser.post .word {
+.teaser.post .tag {
   float: left;
   margin: 0 15px 0 0;
 }
@@ -2063,7 +2084,6 @@ Purpose of the stylesheet follows.
 }
 /* line 639, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
 .undecidedC .bg {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
   position: absolute;
@@ -2126,7 +2146,6 @@ Purpose of the stylesheet follows.
 }
 /* line 688, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss */
 .undecidedC:hover .bg {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
@@ -2375,40 +2394,40 @@ Purpose of the stylesheet follows.
 }
 
 /*
-Document   : word
+Document   : tag
 Created on : May 3, 2011, 9:41:00 PM
 Author     : Marc MacLeod (marbemac@gmail.com)
 Description:
 Purpose of the stylesheet follows.
 */
-/* line 10, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_word.scss */
-.word.t {
+/* line 10, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_tag.scss */
+.tag.t {
   border-bottom: 1px dotted #BBB;
 }
-/* line 13, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_word.scss */
-.word.t:hover {
+/* line 13, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_tag.scss */
+.tag.t:hover {
   cursor: pointer;
   border-color: #FF9900;
   border-width: 2px;
 }
 
-/* line 21, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_word.scss */
-.word-filters {
+/* line 21, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_tag.scss */
+.tag-filters {
   overflow: hidden;
   *zoom: 1;
   margin: 10px 0 15px 15px;
   display: none;
 }
-/* line 26, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_word.scss */
-.word-filters .head {
+/* line 26, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_tag.scss */
+.tag-filters .head {
   float: left;
   margin: 3px 11px 0 0;
   font-size: 12px;
   color: #999;
   cursor: default;
 }
-/* line 33, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_word.scss */
-.word-filters .word {
+/* line 33, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_tag.scss */
+.tag-filters .tag {
   float: left;
   position: relative;
   margin-right: 10px;
@@ -2416,24 +2435,24 @@ Purpose of the stylesheet follows.
   cursor: default;
   padding: 0 20px 0 0;
 }
-/* line 41, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_word.scss */
-.word-filters span {
+/* line 41, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_tag.scss */
+.tag-filters span {
   position: absolute;
   top: 0px;
   right: 3px;
   cursor: pointer;
 }
-/* line 46, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_word.scss */
-.word-filters span:hover {
+/* line 46, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_tag.scss */
+.tag-filters span:hover {
   color: red;
 }
 
-/* line 54, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_word.scss */
-.trendingWords .head {
+/* line 54, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_tag.scss */
+.trendingtags .head {
   margin: 0 0 2px 18px;
 }
-/* line 57, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_word.scss */
-.trendingWords .words {
+/* line 57, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_tag.scss */
+.trendingtags .tags {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
@@ -2446,13 +2465,13 @@ Purpose of the stylesheet follows.
   padding: 5px 10px;
   margin: 0 10px 10px 10px;
 }
-/* line 64, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_word.scss */
-.trendingWords .word {
+/* line 64, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_tag.scss */
+.trendingtags .tag {
   float: left;
   margin: 0 10px 0 0;
 }
-/* line 68, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_word.scss */
-.trendingWords .none {
+/* line 68, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_tag.scss */
+.trendingtags .none {
   font-style: italic;
   font-size: 12px;
 }
@@ -2582,12 +2601,12 @@ Purpose of the stylesheet follows.
   margin: 0 10px 0 0;
 }
 /* line 47, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_admin.scss */
-.manage-trending ul .word {
+.manage-trending ul .tag {
   width: 430px;
   float: left;
 }
 /* line 51, ../../../src/Whoot/WhootBundle/Resources/compass/src/partials/_admin.scss */
-.manage-trending ul .word div {
+.manage-trending ul .tag div {
   float: left;
   width: 250px;
 }

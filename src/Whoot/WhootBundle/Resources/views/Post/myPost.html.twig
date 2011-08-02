@@ -43,11 +43,11 @@
                 </a>
             {% endif %}
         {% else %}
-            <div class="words">
-                {% for word in myPost.words %}
-                    {% include "WhootBundle:Word:teaser.html.twig" with {'word': word.word} %}
+            <div class="tags">
+                {% for tag in myPost.tags %}
+                    {% include "WhootBundle:Tag:teaser.html.twig" with {'tag': tag} %}
                 {% else %}
-                    Hmm... no words. How did you do this?!
+                    Hmm... no tags. How did you do this?!
                 {% endfor %}
             </div>
         {% endif %}

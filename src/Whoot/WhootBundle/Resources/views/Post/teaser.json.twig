@@ -5,10 +5,10 @@
     "score":{{ post.score }},
     "createdBy":{% include "WhootUserBundle:Profile:teaser.json.twig" with {'user': post.createdBy} %},
     "voted":{% render "WhootVoteBundle:Vote:show" with {'objectId': post.id, 'objectType': 'Post', '_format': 'json'} %},
-    "words":
+    "tags":
     [
-        {% for word in post.words %}
-               {% include "WhootBundle:Word:teaser.json.twig" with {'word': word.word } %}
+        {% for tag in post.tags %}
+               {% include "WhootBundle:Tag:teaser.json.twig" with {'tag': tag.tag } %}
                {{ loop.last ? '' : ',' }}
         {% endfor %}
     ],

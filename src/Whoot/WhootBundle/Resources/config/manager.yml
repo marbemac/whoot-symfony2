@@ -1,12 +1,14 @@
 parameters:
-    whoot.manager.core.class:                  Whoot\WhootBundle\Entity\CoreManager
-    whoot.manager.post.class:                  Whoot\WhootBundle\Entity\PostManager
-    whoot.manager.invite.class:                Whoot\WhootBundle\Entity\InviteManager
-    whoot.manager.word.class:                  Whoot\WhootBundle\Entity\WordManager
-    whoot.manager.ping.class:                  Whoot\WhootBundle\Entity\PingManager
-    whoot.manager.comment.class:               Whoot\WhootBundle\Entity\CommentManager
-    whoot.manager.list.class:                  Whoot\WhootBundle\Entity\LListManager
-    whoot.manager.location.class:              Whoot\WhootBundle\Entity\LocationManager
+    whoot.manager.core.class:                  Whoot\WhootBundle\Document\CoreManager
+    whoot.manager.post.class:                  Whoot\WhootBundle\Document\PostManager
+    whoot.post.class:                          Whoot\WhootBundle\Document\Post
+#    whoot.manager.invite.class:                Whoot\WhootBundle\Entity\InviteManager
+    whoot.manager.tag.class:                   Whoot\WhootBundle\Document\TagManager
+    whoot.tag.class:                           Whoot\WhootBundle\Document\Tag
+#    whoot.manager.ping.class:                  Whoot\WhootBundle\Entity\PingManager
+#    whoot.manager.comment.class:               Whoot\WhootBundle\Entity\CommentManager
+#    whoot.manager.list.class:                  Whoot\WhootBundle\Entity\LListManager
+    whoot.manager.location.class:              Whoot\WhootBundle\Document\LocationManager
 
 services:
     whoot.manager.core:
@@ -15,22 +17,22 @@ services:
         scope:       request
     whoot.manager.post:
         class:        %whoot.manager.post.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.manager.user"]
-    whoot.manager.invite:
-        class:        %whoot.manager.invite.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.manager.user"]
-    whoot.manager.word:
-        class:        %whoot.manager.word.class%
-        arguments:    ["@doctrine.orm.default_entity_manager"]
-    whoot.manager.ping:
-        class:        %whoot.manager.ping.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.manager.notification"]
-    whoot.manager.comment:
-        class:        %whoot.manager.comment.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context"]
-    whoot.manager.list:
-        class:        %whoot.manager.list.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context", "@whoot.manager.user"]
+        arguments:    ["@doctrine.odm.mongodb.document_manager", %whoot.post.class%]
+#    whoot.manager.invite:
+#        class:        %whoot.manager.invite.class%
+#        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.manager.user"]
+    whoot.manager.tag:
+        class:        %whoot.manager.tag.class%
+        arguments:    ["@doctrine.odm.mongodb.document_manager", %whoot.tag.class%]
+#    whoot.manager.ping:
+#        class:        %whoot.manager.ping.class%
+#        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.manager.notification"]
+#    whoot.manager.comment:
+#        class:        %whoot.manager.comment.class%
+#        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context"]
+#    whoot.manager.list:
+#        class:        %whoot.manager.list.class%
+#        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context", "@whoot.manager.user"]
     whoot.manager.location:
         class:        %whoot.manager.location.class%
-        arguments:    ["@doctrine.orm.default_entity_manager"]
+        arguments:    ["@doctrine.odm.mongodb.document_manager"]

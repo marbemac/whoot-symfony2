@@ -1,64 +1,64 @@
 user:
     resource: "@WhootUserBundle/Resources/config/routing/routing.yml"
 
-user_api:
-    resource: "@WhootUserBundle/Resources/config/routing/api.yml"
-    prefix:   /api/user
-
-vote:
-    resource: "@WhootVoteBundle/Resources/config/routing/routing.yml"
-    prefix:   /v
-
-vote_api:
-    resource: "@WhootVoteBundle/Resources/config/routing/api.yml"
-    prefix:   /api/vote
-
+#user_api:
+#    resource: "@WhootUserBundle/Resources/config/routing/api.yml"
+#    prefix:   /api/user
+#
+#vote:
+#    resource: "@WhootVoteBundle/Resources/config/routing/routing.yml"
+#    prefix:   /v
+#
+#vote_api:
+#    resource: "@WhootVoteBundle/Resources/config/routing/api.yml"
+#    prefix:   /api/vote
+#
 invite:
     resource: "@WhootBundle/Resources/config/routing/invite.yml"
     prefix:   /i
-    
+
 post:
     resource: "@WhootBundle/Resources/config/routing/post.yml"
     prefix:   /p
 
-post_api:
-    resource: "@WhootBundle/Resources/config/routing/post_api.yml"
-    prefix:   /api/post
-
+#post_api:
+#    resource: "@WhootBundle/Resources/config/routing/post_api.yml"
+#    prefix:   /api/post
+#
 follow:
     resource: "@WhootBundle/Resources/config/routing/follow.yml"
     prefix:   /f
 
-follow_api:
-    resource: "@WhootBundle/Resources/config/routing/follow_api.yml"
-    prefix:   /api/follow
-
+#follow_api:
+#    resource: "@WhootBundle/Resources/config/routing/follow_api.yml"
+#    prefix:   /api/follow
+#
 ping:
     resource: "@WhootBundle/Resources/config/routing/ping.yml"
     prefix:   /ping
 
-ping_api:
-    resource: "@WhootBundle/Resources/config/routing/ping_api.yml"
-    prefix:   /api/ping
-
-comment:
-    resource: "@WhootBundle/Resources/config/routing/comment.yml"
-    prefix:   /c
-
-comment_api:
-    resource: "@WhootBundle/Resources/config/routing/comment_api.yml"
-    prefix:   /api/comment
-
-list:
-    resource: "@WhootBundle/Resources/config/routing/list.yml"
-    prefix:   /l
-
-notifications:
-    resource: "@EvarioNotificationBundle/Resources/config/routing.xml"
-
-admin:
-    resource: "@WhootBundle/Resources/config/routing/admin.yml"
-    prefix:   /admin
+#ping_api:
+#    resource: "@WhootBundle/Resources/config/routing/ping_api.yml"
+#    prefix:   /api/ping
+#
+#comment:
+#    resource: "@WhootBundle/Resources/config/routing/comment.yml"
+#    prefix:   /c
+#
+#comment_api:
+#    resource: "@WhootBundle/Resources/config/routing/comment_api.yml"
+#    prefix:   /api/comment
+#
+#list:
+#    resource: "@WhootBundle/Resources/config/routing/list.yml"
+#    prefix:   /l
+#
+#notifications:
+#    resource: "@EvarioNotificationBundle/Resources/config/routing.xml"
+#
+#admin:
+#    resource: "@WhootBundle/Resources/config/routing/admin.yml"
+#    prefix:   /admin
 
 feed_filter_toggle:
     pattern:  /ac/tf/{postType}
@@ -72,7 +72,7 @@ feed_filter_change:
     defaults: { _controller: WhootBundle:Core:changeFeedFilter }
     requirements:
         key:  feedSort
-        value: popularity|created
+        value: score|createdAt
         _method: GET|POST
 
 deal_feed:

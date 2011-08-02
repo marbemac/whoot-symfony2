@@ -3,12 +3,10 @@ ping_toggle:
     defaults: { _controller: WhootBundle:Ping:toggle, userId: 0 }
     requirements:
         _method: GET|POST
-        userId: \d+
 
 ping_show:
     pattern:  /{userId}
     defaults: { _controller: WhootBundle:Ping:show, _format: html }
     requirements:
         _method: GET
-        userId: \d+
         format: html|xml

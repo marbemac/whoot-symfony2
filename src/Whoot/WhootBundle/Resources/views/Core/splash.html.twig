@@ -10,8 +10,7 @@
     <div id="auth-login" class="hide">
         {% render "WhootUserBundle:Security:login" with { 'chromeless': true } %}
     </div>
-    {#<div id="auth-register" class="panel">#}
-        {#<h3>Register</h3>#}
-        {#{% render "WhootUserBundle:Registration:register" with { 'chromeless': true } %}#}
-    {#</div>#}
+    <div id="auth-register" class="hide">
+        {% render "WhootUserBundle:Registration:register" with { 'chromeless': true } %}
+    </div>
 </div>

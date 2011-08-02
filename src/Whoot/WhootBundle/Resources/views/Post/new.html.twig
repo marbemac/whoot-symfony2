@@ -2,33 +2,33 @@
     {{ form_errors(form) }}
 
     {{ form_widget(form.type, { 'attr': {'autocomplete': 'off'} })}}
-    {{ form_widget(form.words) }}
+    {{ form_widget(form.tags) }}
 
-    <div class="label">Words</div>
-    <input type="text" id="words" autocomplete="off" name="words" class="words iclear b" value="Type 1-3 words at a time and press enter" />
+    <div class="label">Tags</div>
+    <input type="text" id="tags" autocomplete="off" name="tags" class="tags iclear b" value="Type 1-3 tags at a time and press enter" />
     <div class="errors"></div>
-    <div class="words-help">
+    <div class="tags-help">
         How do you feel about tonight? Have a bar in mind? Feel like dancing?
         <br />
-        You've got 5 words total, make'em count
+        You've got 5 tags total, make'em count
     </div>
 
-    <div class="wordsC">
-        <div class="word" data-target="#word1"><span>x</span></div>
-        <div class="word" data-target="#word2"><span>x</span></div>
-        <div class="word" data-target="#word3"><span>x</span></div>
-        <div class="word" data-target="#word4"><span>x</span></div>
-        <div class="word" data-target="#word5"><span>x</span></div>
+    <div class="tagsC">
+        <div class="tag" data-target="#tag1"><span>x</span></div>
+        <div class="tag" data-target="#tag2"><span>x</span></div>
+        <div class="tag" data-target="#tag3"><span>x</span></div>
+        <div class="tag" data-target="#tag4"><span>x</span></div>
+        <div class="tag" data-target="#tag5"><span>x</span></div>
     </div>
 
-    <input id="word1" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][0][content]" />
-    <input id="word2" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][1][content]" />
-    <input id="word3" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][2][content]" />
-    <input id="word4" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][3][content]" />
-    <input id="word5" type="hidden" autocomplete="off" class="word" name="whoot_post_form[words][4][content]" />
+    <input id="tag1" type="hidden" autocomplete="off" class="tag" name="whoot_post_form[tags][0][name]" />
+    <input id="tag2" type="hidden" autocomplete="off" class="tag" name="whoot_post_form[tags][1][name]" />
+    <input id="tag3" type="hidden" autocomplete="off" class="tag" name="whoot_post_form[tags][2][name]" />
+    <input id="tag4" type="hidden" autocomplete="off" class="tag" name="whoot_post_form[tags][3][name]" />
+    <input id="tag5" type="hidden" autocomplete="off" class="tag" name="whoot_post_form[tags][4][name]" />
 
     <div class="label">Location</div>
-    {{ form_widget(form.location) }}
+    {#{{ form_widget(form.location) }}#}
     <div class="clear"></div>
 
     {{ form_rest(form) }}

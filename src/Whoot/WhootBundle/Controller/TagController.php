@@ -27,7 +27,7 @@ class WordController extends ContainerAware
         $user = $this->container->get('security.context')->getToken()->getUser();
         $trendingWords = $this->container->get('whoot.manager.word')->getTrending($user->getLocation(), date('Y-m-d 05:00:00', time()-(60*60*5)), 10, array('trendable' => true));
 
-        return $this->container->get('templating')->renderResponse('WhootBundle:Word:trending.html.twig', array(
+        return $this->container->get('templating')->renderResponse('WhootBundle:Tag:trending.html.twig', array(
             'trendingWords' => $trendingWords,
             'location' => $user->getLocation()
         ), $response);

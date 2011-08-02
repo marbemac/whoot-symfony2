@@ -1,5 +1,6 @@
 [symfony]
     git=http://github.com/symfony/symfony.git
+    version=v2.0.0
 
 [twig]
     git=http://github.com/fabpot/Twig.git
@@ -55,7 +56,17 @@
 [AsseticBundle]
     git=http://github.com/symfony/AsseticBundle.git
     target=/bundles/Symfony/Bundle/AsseticBundle
-    version=v1.0.0RC1
+    version=v1.0.0RC2
+
+[doctrine-mongodb]
+    git=http://github.com/doctrine/mongodb.git
+
+[doctrine-mongodb-odm]
+    git=http://github.com/doctrine/mongodb-odm.git
+
+[DoctrineMongoDBBundle]
+    git=http://github.com/symfony/DoctrineMongoDBBundle.git
+    target=/bundles/Symfony/Bundle/DoctrineMongoDBBundle
 
 [FOSUserBundle]
     git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
@@ -73,7 +84,6 @@
     git=git://github.com/evario/NotificationBundle.git
     target=/bundles/Evario/NotificationBundle
 
-[WebProfilerExtra]
-    git=git://github.com/Elao/WebProfilerExtraBundle.git
-    target=/bundles/Elao/WebProfilerExtraBundle
-    
+[Imagine]
+    git=git://github.com/avalanche123/Imagine.git
+    target=/imagine

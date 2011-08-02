@@ -3,12 +3,10 @@ follow_toggle:
     defaults: { _controller: WhootBundle:Follow:toggle, userId: 0 }
     requirements:
         _method: GET|POST
-        userId: \d+
 
 follow_show:
     pattern:  /{userId}
     defaults: { _controller: WhootBundle:Follow:show, _format: html }
     requirements:
         _method: GET
-        userId: \d+
         format: html|xml

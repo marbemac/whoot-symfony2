@@ -43,7 +43,7 @@ class WordManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('w'))
-           ->from('Whoot\WhootBundle\Entity\Word', 'w');
+           ->from('Whoot\WhootBundle\Entity\Tag', 'w');
 
         if ($content)
         {
@@ -70,7 +70,7 @@ class WordManager
         $slug = new SlugNormalizer($content);
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('w'))
-           ->from('Whoot\WhootBundle\Entity\Word', 'w')
+           ->from('Whoot\WhootBundle\Entity\Tag', 'w')
            ->where('w.slug = :slug')
            ->setParameter('slug', $slug);
 
@@ -94,7 +94,7 @@ class WordManager
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select(array('w, count(w.id) AS popularity'))
-           ->from('Whoot\WhootBundle\Entity\Word', 'w')
+           ->from('Whoot\WhootBundle\Entity\Tag', 'w')
            ->innerJoin('w.posts', 'pw')
            ->innerJoin('pw.post', 'p', 'WITH', 'p.status = :status')
            ->setParameters(array(

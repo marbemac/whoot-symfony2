@@ -108,23 +108,11 @@ class UserManager extends BaseUserManager
         return $response;
     }
 
-    public function togglePing($fromUser, $toUserId)
+    public function addPing($fromUser, $toUserId, $andFlush = true)
     {
-        $response = array();
-        if ($fromUser->hasPinged($toUserId))
-        {
-            $response['state'] = 'removed';
-            $fromUser->removePing($toUserId);
-        }
-        else
-        {
-            $response['state'] = 'new';
-            $fromUser->addPing($toUserId);
-        }
+        $fromUser->addPing($toUserId);
 
-        $this->updateUser($fromUser);
-
-        return $response;
+        $this->updateUser($fromUser, $andFlush);
     }
 
     public function findUndecided($user, $since, $offset, $limit)

@@ -4,6 +4,7 @@ namespace Whoot\WhootBundle\Document;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Whoot\WhootBundle\Model\ObjectManager as BaseManager;
+use Whoot\WhootBundle\Util\DateConverter;
 
 class PostManager extends BaseManager
 {
@@ -39,7 +40,8 @@ class PostManager extends BaseManager
 
     public function getMyPost($user)
     {
-        if ($user->getCurrentPost())
+        $date = new DateConverter($user->getCurrentPost()->getCreatedAt(), 'Y-m-d', '+5 hours');
+        if ($user->getCurrentPost() &&  $date == date('Y-m-d', time()))
         {
             $myPost = $this->findPostBy(array('id' => $user->getCurrentPost()->getPost()));
         }

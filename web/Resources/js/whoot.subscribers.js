@@ -37,14 +37,7 @@ $(function(){
     amplify.subscribe("ping_toggle", function( data ) {
         actionCommon($('.ping-'+data.userId), data);
 
-        if (data.status == 'new')
-        {
-            $('.ping-'+data.userId).replaceWith('<span class="pinged">Pinged</span>');
-        }
-        else if (data.status == 'deleted')
-        {
-            $('.ping-countdown-'+data.userId).remove();
-        }
+        $('.ping-'+data.userId).replaceWith('<span class="pinged">Pinged</span>');
     });
 
     amplify.subscribe("location_updated", function( data ) {

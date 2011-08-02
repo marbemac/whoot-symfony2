@@ -88,7 +88,7 @@ class User extends BaseUser
     protected $following;
 
     /**
-     * @MongoDB\EmbedMany(targetDocument="DailyPing")
+     * @MongoDB\EmbedOne(targetDocument="DailyPing")
      */
     protected $dailyPings;
 
@@ -97,7 +97,6 @@ class User extends BaseUser
         $this->status = 'Active';
         $this->score = 0;
         $this->following = array();
-        $this->dailyPings = array();
     }
 
     /**
@@ -311,7 +310,7 @@ class User extends BaseUser
     public function hasPinged($userId)
     {
         $date = date('Y-m-d', time());
-        if (count($this->dailyPings) > 0 && $this->dailyPings[0]->getDateGroup() == $date && in_array($userId, $this->dailyPings[0]->getPings()))
+        if ($this->dailyPings && $this->dailyPings->getDateGroup() == $date && in_array($userId, $this->dailyPings->getPings()))
         {
             return true;
         }
@@ -324,26 +323,25 @@ class User extends BaseUser
     public function addPing($userId)
     {
         $date = date('Y-m-d', time());
-        $this->dailyPings = $this->dailyPings ? $this->dailyPings : array();
-        if (count($this->dailyPings) == 0 || $this->dailyPings[0]->getDateGroup() != $date)
+        if (!$this->dailyPings || $this->dailyPings->getDateGroup() != $date)
         {
             $dailyPing = new DailyPing();
             $dailyPing->setDateGroup($date);
             $dailyPing->addPing($userId);
-            $this->dailyPings = array($dailyPing) + $this->dailyPings; // Insert at the beginning of the array.
+            $this->dailyPings = $dailyPing;
         }
         else
         {
-            $this->dailyPings[0]->addPing($userId);
+            $this->dailyPings->addPing($userId);
         }
     }
 
     public function removePing($userId)
     {
         $date = date('Y-m-d', time());
-        if (count($this->dailyPings) > 0 && $this->dailyPings[0]->getDateGroup() == $date)
+        if ($this->dailyPings && $this->dailyPings->getDateGroup() == $date)
         {
-            $this->dailyPings[0]->removePing($userId);
+            $this->dailyPings->removePing($userId);
         }
     }
 

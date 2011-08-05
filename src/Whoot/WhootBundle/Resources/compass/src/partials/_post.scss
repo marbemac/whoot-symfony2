@@ -206,7 +206,7 @@ Purpose of the stylesheet follows.
     .errors {
         font-weight: bold;
         color: red;
-        margin: 0 0 0 86px;
+        margin: 0 0 0 99px;
         font-size: 12px;
     }
     input {
@@ -254,8 +254,7 @@ Purpose of the stylesheet follows.
             }
         }
     }
-    #whoot_post_form_location,
-    #whoot_invite_form_location {
+    .location {
         @include border-radius(3px);
         font-size: 18px;
         border: 2px solid #CCC;

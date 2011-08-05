@@ -3,116 +3,90 @@
 namespace Whoot\WhootBundle\Document;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
+use Whoot\WhootBundle\Model\ObjectManager as BaseManager;
 
-class LocationManager
+class LocationManager extends BaseManager
 {
-    protected $dm;
-
-    public function __construct(DocumentManager $dm)
+    public function __construct(DocumentManager $dm, $class)
     {
-        $this->dm = $dm;
+        parent::__construct($dm, $class);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function createLocation()
     {
-        $location = new Location();
-        return $location;
+        return $this->createObject();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function deleteLocation(Location $location)
+    public function deleteLocation(Location $location, $andFlush = true)
     {
-        echo 'delete location';
-        exit();
-        $location->setStatus('Deleted');
-        $this->dm->persist($location);
-        $this->dm->flush();
-        return array('result' => 'success');
+        return $this->deleteObject($location, $andFlush);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function updateLocation(Location $location, $andFlush = true)
     {
-        $this->dm->persist($location);
-
-        if ($andFlush)
-        {
-            $this->dm->flush();
-        }
+        return $this->updateObject($location, $andFlush);
     }
 
-    /*
-     * Find a location. Return if found.
-     */
-    public function findLocationBy(array $criteria, $returnObject = false)
+    public function findLocationBy(array $criteria)
     {
-        $qb = $this->dm->createQueryBuilder();
-        $qb->select(array('l'))
-           ->from('Whoot\WhootBundle\Entity\Location', 'l');
-
-        foreach ($criteria as $key => $val)
-        {
-            $qb->andWhere('l.'.$key.' = :'.$key);
-        }
-        $qb->setParameters($criteria);
-
-        $query = $qb->getQuery();
-        $location = $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
-
-        return isset($location[0]) ? $location[0] : null;
+        return $this->findObjectBy($criteria);
     }
 
-    public function findLocationsBy(array $criteria, $returnObject = false)
+    public function findLocationsBy(array $criteria, array $inCriteria = array(), $sorts = array(), $dateRange = null, $limit = null, $offset = 0)
     {
-        $qb = $this->dm->createQueryBuilder();
-        $qb->select(array('l'))
-           ->from('Whoot\WhootBundle\Entity\Location', 'l');
-
-        foreach ($criteria as $key => $val)
-        {
-            $qb->andWhere('l.'.$key.' = :'.$key)
-               ->setParameter($key, $val);
-
-        }
-        $qb->orderBy('l.cityName', 'ASC');
-        
-        $query = $qb->getQuery();
-        return $query->getResult($returnObject ? Query::HYDRATE_OBJECT : Query::HYDRATE_ARRAY);
+        return $this->findObjectsBy($criteria, $inCriteria, $sorts, $dateRange, $limit, $offset);
     }
 
-    /*
-     * Given a location string (from facebook or otherwise), split it at the ',' and
-     * attempt to find and match it to one of our locations. If found, set the users location.
-     */
-    public function getFBLocation($location)
+    public function deleteCity($cityId)
     {
-        $locations = explode(',', $location);
-        foreach ($locations as $key => $location)
-        {
-            $locations[$key] = trim($location);
-        }
-
-        $qb = $this->dm->createQueryBuilder();
-        $qb->select(array('l'))
-            ->from('Whoot\WhootBundle\Entity\Location', 'l')
-            ->where(
-                $qb->expr()->in('l.cityName', $locations)
+        $this->m->Location->update(
+            array('cities._id' => new \MongoId($cityId)),
+            array('$set' =>
+                array('cities.$.status' => 'Deleted')
             )
-            ->andWhere(
-                $qb->expr()->in('l.stateName', $locations)
-            );
+        );
+    }
 
-        $query = $qb->getQuery();
-        $query->useResultCache(true, 300, 'location_search_'.$location);
-        $results = $query->getResult();
+    public function deleteSchool($schoolId)
+    {
+        $location = $this->findLocationBy(array('cities.schools._id' => new \MongoId($schoolId)));
+        $location->setSchoolStatus($schoolId, 'Deleted');
+        $this->updateLocation($location);
+    }
 
-        return count($results) > 0 ? $results[0] : null;
+    public function addSchool($cityId, $school)
+    {
+        $location = $this->findLocationBy(array('cities._id' => new \MongoId($cityId)));
+
+        if ($location)
+        {
+            $location->addSchool($cityId, $school);
+            $this->updateLocation($location);
+        }
+    }
+
+    public function updateCurrentLocation($target, $location)
+    {
+        $parts = explode('-', $location);
+        if (count($parts) == 1)
+        {
+            $type = 'State';
+            $location = $this->findLocationBy(array('id' => new \MongoId($parts[0])));
+        }
+        else if (count($parts) == 2) {
+            $type = 'City';
+            $location = $this->findLocationBy(array('cities._id' => new \MongoId($parts[1])));
+        }
+        else if (count($parts) == 3) {
+            $type = 'School';
+            $location = $this->findLocationBy(array('cities.schools._id' => new \MongoId($parts[2])));
+        }
+
+        if ($location)
+        {
+            $target->updateCurrentLocation($location, $parts, $type);
+        }
+
+        return $target;
     }
 }

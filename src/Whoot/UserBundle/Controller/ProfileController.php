@@ -47,24 +47,6 @@ class ProfileController extends ContainerAware
         ), $response);
     }
 
-    public function teaserAction($id)
-    {
-        $response = new Response();
-        $response->setCache(array(
-        ));
-
-        if ($response->isNotModified($this->container->get('request'))) {
-            // return the 304 Response immediately
-            // return $response;
-        }
-
-        $object = $this->container->get('limelight.user_manager')->findObjectBy(array('id' => $id));
-
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Profile:teaser.html.twig', array(
-            'object' => $object
-        ), $response);
-    }
-
     /**
      * Edit the user
      */
@@ -91,24 +73,6 @@ class ProfileController extends ContainerAware
         );
     }
 
-    public function tagAction($id)
-    {
-        $response = new Response();
-        $response->setCache(array(
-        ));
-
-        if ($response->isNotModified($this->container->get('request'))) {
-            // return the 304 Response immediately
-            // return $response;
-        }
-
-        $object = $this->container->get('whoot.manager.user')->findObjectBy(array('id' => $id), array());
-
-        return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:tag.html.twig', array(
-            'object' => $object
-        ), $response);
-    }
-
     public function listAction()
     {
         $users = $this->container->get('whoot.manager.user')->getUsersBy($this->container->get('security.context')->getToken()->getUser());
@@ -122,14 +86,14 @@ class ProfileController extends ContainerAware
     {
         if ($username)
         {
-            $user = $this->container->get('whoot.manager.user')->getUser(array('username' => $username));
+            $user = $this->container->get('whoot.manager.user')->findUserBy(array('username' => $username));
         }
         else
         {
             $user = $this->container->get('security.context')->getToken()->getUser();
         }
         
-        $followers = $this->container->get('whoot.manager.user')->getFollowers($user, null, $offset, $limit);
+        $followers = $this->container->get('whoot.manager.user')->findUsersBy(array('following' => $user->getId()), array(), $offset, $limit);
 
         $response = new Response();
         $response->setCache(array(
@@ -200,6 +164,37 @@ class ProfileController extends ContainerAware
             'location' => $location,
             'navSelected' => 'settings'
         ), $response);
+    }
+
+    public function profileImageAction($w, $h)
+    {
+        $coreManager = $this->container->get('whoot.manager.core');
+        $login = $coreManager->mustLogin();
+        if ($login)
+        {
+            return $login;
+        }
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if ($user->getFacebookId())
+        {
+            // deal with fb image here
+        }
+        else
+        {
+            // Pull from gravatar
+            $url = 'http://www.gravatar.com/avatar/'.md5( strtolower( trim( $user->getEmail() ) ) ).'?d=mm&s=500';
+            $tmpLocation = '/tmp/'.uniqid('i', true).'.png';
+            file_put_contents($tmpLocation, file_get_contents($url));
+            $image = $this->container->get('marbemac.manager.image')->saveImage($tmpLocation, $user->getId(), null, 'user-profile', null, true, null, null, null);
+        }
+
+        $user->setCurrentProfileImage($image->getGroupId());
+        $this->container->get('whoot.manager.user')->updateUser($user);
+
+        $imageData = $this->container->get('marbemac.manager.image')->getImageUrlData($image->getGroupId(), $w, $h);
+
+        return $this->container->get('http_kernel')->forward('MarbemacImageBundle:Image:show', array('imageData' => $imageData));
     }
 
     public function uploadPictureAction()
@@ -321,10 +316,10 @@ class ProfileController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
         $collect = array();
-        if (!$user->getLocation())
+        if (!$user->getCurrentLocation())
         {
-            $locations = $this->container->get('whoot.manager.location')->findLocationsBy(array());
-            $collect['location'] = $locations;
+            $locations = $this->container->get('whoot.manager.location')->findLocationsBy(array('status' => 'Active'), array(), array('stateName', 'ASC'));
+            $collect['locations'] = $locations;
         }
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:collect_info.html.twig', array(
@@ -341,15 +336,14 @@ class ProfileController extends ContainerAware
             return $login;
         }
 
-        $request = $this->container->get('request');
-        $location = $request->request->get('location', null);
-        $location = $this->container->get('whoot.manager.location')->findLocationBy(array('id' => $location), true);
-        if (!$location)
-            return null;
-
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $user->setLocation($location);
-        $this->container->get('whoot.manager.user')->updateUser($user);
+        $request = $this->container->get('request');
+        $locationData = $request->request->get('location', null);
+        if ($locationData)
+        {
+            $user = $this->container->get('whoot.manager.location')->updateCurrentLocation($user, $locationData);
+            $this->container->get('whoot.manager.user')->updateUser($user);
+        }
 
         $result = array();
         $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array());

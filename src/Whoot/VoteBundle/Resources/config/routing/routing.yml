@@ -1,7 +1,0 @@
-vote_create:
-    pattern:  /new/{objectId}/{amount}
-    defaults: { _controller: WhootVoteBundle:Vote:create }
-    requirements:
-        _method: POST
-        objectId: \d+
-        amount: 1

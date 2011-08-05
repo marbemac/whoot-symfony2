@@ -21,11 +21,8 @@ class PostFormType extends AbstractType
 //        $userLocation = $this->userManager->getUserLocation($this->securityContext->getToken()->getUser()->getId());
         $builder
             ->add('type', 'hidden')
-            ->add('tags', 'collection', array('type' => new TagFormType()));
-//            ->add('location', 'entity', array(
-//                'class' => 'Whoot\WhootBundle\Document\Location',
-//                'preferred_choices' => array($userLocation ? $userLocation['id'] : '')
-//            ));
+            ->add('tags', 'collection', array('type' => new TagFormType()))
+            ->add('currentLocation', 'choice');
     }
 
     public function getName()

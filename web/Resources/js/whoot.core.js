@@ -47,12 +47,19 @@
             createGrowl( false, params.flash.message.capitalize(), params.flash.type.capitalize(), theme );
         }
 
-        // does the user have to login?
-        if (params.result && params.result == 'login')
+        if (params.result)
         {
-          $('#login').click();
+            // does the user have to login?
+            if (params.result == 'login')
+            {
+                $('#login').click();
 
-          return false;
+                return false;
+            }
+            else if (params.result == 'error')
+            {
+                return false;
+            }
         }
 
         if (params.feed)

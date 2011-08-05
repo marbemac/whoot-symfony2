@@ -1,11 +1,11 @@
 <div class="search-result user">
-    {#{% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': data, 'dimensions': 30} %}#}
-    
+    {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': data.profileImage, 'w': 30, 'h': 30, 'class': 'profileImage'} %}
+
     <div class="name">
         {{ data.name }}
     </div>
 
     <div class="location">
-        {#{{ data.location is not empty ? data.location : 'Location Unknown' }}#}
+        {{ data.location ? data.location : 'Location Unknown' }}
     </div>
 </div>

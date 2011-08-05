@@ -167,7 +167,7 @@ $(function() {
 
         var $payload = {};
         $payload[$('#whoot_post_form_type').attr('name')] = $('#whoot_post_form_type').val();
-        $payload[$('#whoot_post_form_location').attr('name')] = $('#whoot_post_form_location').val();
+        $payload[$('#whoot_post_form_currentLocation').attr('name')] = $('#whoot_post_form_currentLocation').val();
         
         $tagCount = 0;
         $.each($('input.tag'), function() {

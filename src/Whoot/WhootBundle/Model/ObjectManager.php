@@ -9,6 +9,7 @@ class ObjectManager
     protected $dm;
     protected $repository;
     protected $class;
+    protected $m;
 
     public function __construct(DocumentManager $dm, $class)
     {
@@ -17,6 +18,8 @@ class ObjectManager
 
         $metadata = $dm->getClassMetadata($class);
         $this->class = $metadata->name;
+
+        $this->m = $dm->getConnection()->selectDatabase($dm->getConfiguration()->getDefaultDB());
     }
 
     public function createObject()

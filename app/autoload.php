@@ -19,8 +19,8 @@ $loader->registerNamespaces(array(
     'Doctrine'                  => __DIR__.'/../vendor/doctrine/lib',
     'FOS'              => __DIR__.'/../vendor/bundles',
     'Evario'           => __DIR__.'/../vendor/bundles',
-    'Imagine'          => __DIR__.'/../imagine',
-    'Bundle'           => __DIR__.'/../src',
+    'Marbemac'         => __DIR__.'/../vendor/bundles',
+    'Imagine'          => __DIR__.'/../vendor/imagine/lib',
     'Whoot'            => __DIR__.'/../src',
 ));
 

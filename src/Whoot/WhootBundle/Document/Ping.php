@@ -15,6 +15,7 @@ class Ping implements ObjectInterface
 
     /**
      * @MongoDB\Field(type="string")
+     * @MongoDB\Index(order="asc")
      */
     protected $dateGroup;
 
@@ -30,6 +31,7 @@ class Ping implements ObjectInterface
 
     /**
      * @MongoDB\ObjectId
+     * @MongoDB\Index(order="asc")
      */
     protected $pinged;
 

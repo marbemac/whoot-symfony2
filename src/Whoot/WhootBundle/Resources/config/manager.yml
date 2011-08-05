@@ -10,6 +10,7 @@ parameters:
 #    whoot.manager.comment.class:               Whoot\WhootBundle\Entity\CommentManager
 #    whoot.manager.list.class:                  Whoot\WhootBundle\Entity\LListManager
     whoot.manager.location.class:              Whoot\WhootBundle\Document\LocationManager
+    whoot.location.class:                      Whoot\WhootBundle\Document\Location
 
 services:
     whoot.manager.core:
@@ -39,4 +40,4 @@ services:
 #        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context", "@whoot.manager.user"]
     whoot.manager.location:
         class:        %whoot.manager.location.class%
-        arguments:    ["@doctrine.odm.mongodb.document_manager"]
+        arguments:    ["@doctrine.odm.mongodb.document_manager", %whoot.location.class%]

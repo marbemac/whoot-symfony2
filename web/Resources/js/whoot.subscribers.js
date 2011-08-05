@@ -74,11 +74,8 @@ $(function(){
      */
     // Listens to votes being registered.
     amplify.subscribe("vote_toggle", function( data ) {
-        // Turn the scorebox voted button on/off
-        $('.sb-'+data.objectId+' .v').toggleClass('on');
-
-        // Update the objects scores
-        $('.s-'+data.objectId).text(data.objectNewScore);
+        // Update the objects scores and turn the scorebox voted button on/off
+        $('.s-'+data.objectId).text(data.objectNewScore).siblings('.v').toggleClass('on');
     });
 
     /*

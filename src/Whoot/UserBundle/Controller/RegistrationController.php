@@ -50,11 +50,10 @@ class RegistrationController extends ContainerAware
                 $route = 'fos_user_registration_confirmed';
             }
 
-            if ($this->container->has('security.acl.provider')) {
-                $provider = $this->container->get('security.acl.provider');
-                $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($user));
-                $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
-                $provider->updateAcl($acl);
+            $rockstars = $this->container->get('whoot.manager.user')->findUsersBy(array(), array('email' => array('marbemac@gmail.com', 'wquartner@gmail.com', 'rcoyne1022@gmail.com')));
+            foreach ($rockstars as $rockstar)
+            {
+                $result = $this->container->get('whoot.manager.user')->toggleFollow($user, $rockstar->getId());
             }
             
             $this->container->get('session')->setFlash('notice', 'Account created successfully!');

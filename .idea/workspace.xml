@@ -2,14 +2,344 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="405ad658-0246-4e47-b5e1-ae7638add36b" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Bundle/GravatarBundle/DependencyInjection/Configuration.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Bundle/GravatarBundle/DependencyInjection/GravatarExtension.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Bundle/GravatarBundle/GravatarApi.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Bundle/GravatarBundle/GravatarBundle.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Bundle/GravatarBundle/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Bundle/GravatarBundle/README.markdown" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Bundle/GravatarBundle/Resources/config/config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Bundle/GravatarBundle/Templating/Helper/GravatarHelper.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Bundle/GravatarBundle/Tests/GravatarApiTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Bundle/GravatarBundle/Tests/Templating/Helper/GravatarHelperTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Bundle/GravatarBundle/Twig/GravatarExtension.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Command/ActivateUserCommand.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Command/ChangePasswordCommand.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Command/CreateUserCommand.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Command/DeactivateUserCommand.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Command/DemoteSuperAdminCommand.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Command/InstallAcesCommand.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Command/PromoteSuperAdminCommand.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Controller/ChangePasswordController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Controller/GroupController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Controller/ProfileController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Controller/RegistrationController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Controller/ResettingController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Controller/SecurityController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/CouchDocument/GroupManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/CouchDocument/UserListener.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/CouchDocument/UserManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/DependencyInjection/Configuration.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/DependencyInjection/FOSUserExtension.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Document/Group.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Document/GroupManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Document/User.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Document/UserListener.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Document/UserManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Entity/Group.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Entity/GroupManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Entity/User.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Entity/UserListener.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Entity/UserManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/FOSUserBundle.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/ChangePassword.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/ChangePasswordFormHandler.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/ChangePasswordFormType.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/GroupFormHandler.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/GroupFormType.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/ProfileFormHandler.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/ProfileFormType.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/RegistrationFormHandler.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/RegistrationFormType.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/ResetPassword.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/ResettingFormHandler.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/ResettingFormType.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Form/UpdateCanonicalFieldsListener.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Mailer/Mailer.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Mailer/MailerInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Mailer/NoopMailer.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Model/Group.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Model/GroupInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Model/GroupManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Model/GroupManagerInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Model/User.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Model/UserInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Model/UserManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Model/UserManagerInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/README.markdown" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/change_password.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/couchdb.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/couchdb_group.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/doctrine/Group.couchdb.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/doctrine/Group.mongodb.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/doctrine/Group.orm.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/doctrine/User.couchdb.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/doctrine/User.mongodb.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/doctrine/User.orm.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/group.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/mailer.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/mongodb.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/mongodb_group.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/orm.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/orm_group.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/profile.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/registration.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/resetting.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/routing/change_password.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/routing/group.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/routing/profile.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/routing/registration.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/routing/resetting.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/routing/security.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/security.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/util.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/validation.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/config/validator.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/doc/index.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/meta/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/translations/FOSUserBundle.da.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/translations/FOSUserBundle.de.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/translations/FOSUserBundle.en.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/translations/FOSUserBundle.es.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/translations/FOSUserBundle.et.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/translations/FOSUserBundle.fr.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/translations/FOSUserBundle.nl.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/translations/FOSUserBundle.pl.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/translations/FOSUserBundle.pt_BR.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/translations/FOSUserBundle.pt_PT.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/ChangePassword/changePassword.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/ChangePassword/changePassword_content.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Group/edit.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Group/edit_content.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Group/list.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Group/list_content.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Group/new.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Group/new_content.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Group/show.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Group/show_content.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Profile/edit.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Profile/edit_content.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Profile/show.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Profile/show_content.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Registration/checkEmail.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Registration/confirmed.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Registration/email.txt.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Registration/register.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Registration/register_content.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Resetting/checkEmail.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Resetting/email.txt.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Resetting/passwordAlreadyRequested.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Resetting/request.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Resetting/request_content.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Resetting/reset.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Resetting/reset_content.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/Security/login.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/form.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Resources/views/layout.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Security/Encoder/EncoderFactory.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Security/InteractiveLoginListener.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/CouchDocument/UserManagerTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/DependencyInjection/FOSUserExtensionTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/Document/DocumentUserManagerTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/Model/UserManagerTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/Model/UserTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/Security/Encoder/EncoderFactoryTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/TestUser.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/Util/AceManagerTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/Util/UserManipulatorTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/Validation/PasswordValidatorTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/Validation/UniqueValidatorTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/autoload.php.dist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Tests/bootstrap.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Util/AceManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Util/Canonicalizer.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Util/CanonicalizerInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Util/UserManipulator.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Validator/Password.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Validator/PasswordValidator.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Validator/Unique.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/Validator/UniqueValidator.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FOS/UserBundle/phpunit.xml.dist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/views/Profile/profileImage.html.twig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Whoot/VoteBundle/Controller/VoteController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Whoot/VoteBundle/Entity/Vote.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Whoot/VoteBundle/Entity/VoteManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Whoot/VoteBundle/Resources/config/config.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Whoot/VoteBundle/Resources/config/manager.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Whoot/VoteBundle/Resources/config/routing/api.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Whoot/VoteBundle/Resources/config/routing/routing.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Validator/Unique.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Validator/UniqueValidator.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/.htaccess" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/COPYING" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/cache/.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/croppers/centered.class.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/croppers/face.class.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/croppers/slircropper.interface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/croppers/smart.class.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/croppers/topcentered.class.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/facedetector/face.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/facedetector/facedetector.class.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/AUTHORS" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/COPYING" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/INSTALL" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/NEWS" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/README" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/TODO" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/authors.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/examples/README" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/examples/dirsort.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/examples/dump-image.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/examples/edit-description.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/examples/gps.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/examples/rename.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/examples/resize.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/make-release.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/makepackagexml.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/po/da.po" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/po/de.po" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/po/es.po" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/po/fr.po" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/po/ja.po" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/po/pel.pot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/po/pl.po" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/run-phpdoc.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/Pel.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelConvert.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelDataWindow.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelEntry.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelEntryAscii.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelEntryByte.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelEntryLong.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelEntryNumber.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelEntryRational.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelEntryShort.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelEntryUndefined.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelExif.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelFormat.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelIfd.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelJpeg.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelJpegComment.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelJpegContent.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelJpegMarker.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelTag.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/src/PelTiff.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/README" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/ascii.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/bug1730993.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/bug2979466.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/config.local.example.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/convert.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/data-window.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/ifd.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/COPYING" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/README" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/canon-ixus-ii-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/canon-ixus-ii.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/canon-ixus-ii.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/canon-powershot-s60-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/canon-powershot-s60.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/canon-powershot-s60.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/leica-d-lux-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/leica-d-lux.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/leica-d-lux.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/nikon-coolscan-iv.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/nikon-coolscan-iv.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/nikon-e5000-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/nikon-e5000.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/nikon-e5000.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/nikon-e950-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/nikon-e950.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/nikon-e950.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/no-exif.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/no-exif.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/olympus-c5050z-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/olympus-c5050z.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/olympus-c5050z.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/olympus-c50z-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/olympus-c50z.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/olympus-c50z.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/olympus-c765uz-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/olympus-c765uz.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/olympus-c765uz.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/pentax-istDS-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/pentax-istDS.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/pentax-istDS.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/read-write.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/sony-dsc-v1-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/sony-dsc-v1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/image-tests/sony-dsc-v1.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/images/bug1730993_large.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/images/bug1730993_tmp.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/images/bug2979466.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/number.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/run-tests.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/test/undefined.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/tutorials/PEL/PEL.pkg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/tutorials/PEL/PEL.pkg.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/tutorials/PEL/faq.pkg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/tutorials/PEL/schemas.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/tutorials/PEL/using.pkg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/update-locales.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/pel-0.9.2/update-pot.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/slir.class.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/slirconfig.class.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/slirconfigdefaults.class.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/slirexception.class.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/slirimage.class.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/slir/slirrequest.class.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/uploads/.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/uploads/user_profile_images/.gitkeep" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/autoload.php" afterPath="$PROJECT_DIR$/app/autoload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/security.yml" afterPath="$PROJECT_DIR$/app/config/security.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/NotificationBundle/Resources/config/config.yml" afterPath="$PROJECT_DIR$/src/Whoot/NotificationBundle/Resources/config/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/NotificationBundle/Resources/views/Notification/feed.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/NotificationBundle/Resources/views/Notification/feed.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/UserBundle/Controller/ProfileController.php" afterPath="$PROJECT_DIR$/src/Whoot/UserBundle/Controller/ProfileController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/UserBundle/Controller/RegistrationController.php" afterPath="$PROJECT_DIR$/src/Whoot/UserBundle/Controller/RegistrationController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/UserBundle/Document/User.php" afterPath="$PROJECT_DIR$/src/Whoot/UserBundle/Document/User.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/UserBundle/Document/UserManager.php" afterPath="$PROJECT_DIR$/src/Whoot/UserBundle/Document/UserManager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PingController.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PingController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/config/routing/routing.yml" afterPath="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/config/routing/routing.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/views/Profile/collect_info.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/views/Profile/collect_info.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/views/Profile/search_result.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/views/Profile/search_result.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/views/Profile/sidebar.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/views/Profile/sidebar.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/views/Profile/teaser.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/views/Profile/teaser.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/VoteBundle/Resources/views/Vote/show.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/VoteBundle/Resources/views/Vote/show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/AdminController.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/AdminController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/FollowController.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/FollowController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PostController.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PostController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Location.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Location.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/LocationManager.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/LocationManager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Ping.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Ping.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Post.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Post.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/PostManager.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/PostManager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Tag.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Tag.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Form/Handler/PostFormHandler.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Form/Handler/PostFormHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Form/Type/PostFormType.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Form/Type/PostFormType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Model/ObjectManager.php" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Model/ObjectManager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_admin.scss" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_admin.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/compass/src/partials/_post.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/form.xml" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/form.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/manager.yml" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/manager.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/admin.yml" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/admin.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/routing.yml" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/routing.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Admin/layout.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Admin/layout.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/sidebar.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Core/sidebar.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/feed.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/feed.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/new.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/new.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/teaser.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/teaser.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/base.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/Resources/css/main.css" afterPath="$PROJECT_DIR$/web/Resources/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/Resources/js/whoot.core.js" afterPath="$PROJECT_DIR$/web/Resources/js/whoot.core.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/Resources/js/whoot.main.js" afterPath="$PROJECT_DIR$/web/Resources/js/whoot.main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js" afterPath="$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/Resources/js/whoot.utilities.js" afterPath="$PROJECT_DIR$/web/Resources/js/whoot.utilities.js" />
     </list>
     <ignored path="whoot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,37 +362,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PingController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PingController.php">
+      <file leaf-file-name="VoteManager.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Document/VoteManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="38" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.0">
+            <state line="56" column="13" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.77968174">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserManager.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/UserBundle/Document/UserManager.php">
+      <file leaf-file-name="manager.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Resources/config/manager.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="30" selection-start="3824" selection-end="3824" vertical-scroll-proportion="0.0">
+            <state line="9" column="0" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/UserBundle/Document/User.php">
+      <file leaf-file-name="Configuration.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/DependencyInjection/Configuration.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="379" column="25" selection-start="7773" selection-end="7773" vertical-scroll-proportion="0.0">
+            <state line="28" column="0" selection-start="724" selection-end="724" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ping.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Ping.php">
+      <file leaf-file-name="MarbemacVoteExtension.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/DependencyInjection/MarbemacVoteExtension.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="0" selection-start="1840" selection-end="1840" vertical-scroll-proportion="0.0">
+            <state line="35" column="7" selection-start="1106" selection-end="1106" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Post.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Post.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="218" column="7" selection-start="4000" selection-end="4000" vertical-scroll-proportion="-9.923077">
               <folding />
             </state>
           </provider>
@@ -71,52 +410,43 @@
       <file leaf-file-name="whoot.subscribers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="496" selection-end="496" vertical-scroll-proportion="-14.423077">
+            <state line="78" column="0" selection-start="1989" selection-end="1989" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deps" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/deps">
+      <file leaf-file-name="VoteController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Controller/VoteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="0" selection-start="1483" selection-end="2294" vertical-scroll-proportion="0.9040512">
+            <state line="41" column="91" selection-start="1701" selection-end="1701" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PingManager.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Document/PingManager.php">
+      <file leaf-file-name="whoot.request.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.request.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="49" selection-start="1638" selection-end="1638" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoreController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/CoreController.php">
+      <file leaf-file-name="whoot.core.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.core.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="64" selection-start="3367" selection-end="3367" vertical-scroll-proportion="0.0">
+            <state line="60" column="29" selection-start="1847" selection-end="1847" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PostManager.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Document/PostManager.php">
+      <file leaf-file-name="show.html.twig" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Whoot/VoteBundle/Resources/views/Vote/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="5" selection-start="683" selection-end="683" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DateConverter.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Util/DateConverter.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="12" selection-start="636" selection-end="636" vertical-scroll-proportion="0.0">
+            <state line="5" column="6" selection-start="458" selection-end="458" vertical-scroll-proportion="-3.125">
               <folding />
             </state>
           </provider>
@@ -136,22 +466,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/undecided.html.twig" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/ping.yml" />
         <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/routing.yml" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Ping/tag.html.twig" />
-        <option value="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/views/Profile/teaser.html.twig" />
-        <option value="$PROJECT_DIR$/src/Whoot/UserBundle/Document/User.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Post.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/manager.yml" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/PingManager.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/UserBundle/Document/UserManager.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/CoreController.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Util/DateConverter.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/PostManager.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PingController.php" />
-        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Ping.php" />
+        <option value="$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Resources/config/routing/routing.xml" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Post/teaser.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Document/Vote.php" />
+        <option value="$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Document/VotableInterface.php" />
+        <option value="$PROJECT_DIR$/vendor/doctrine-common/lib/Doctrine/Common/Collections/ArrayCollection.php" />
+        <option value="$PROJECT_DIR$/src/Whoot/VoteBundle/Resources/views/Vote/show.html.twig" />
+        <option value="$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Resources/config/manager.xml" />
+        <option value="$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/DependencyInjection/Configuration.php" />
+        <option value="$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/DependencyInjection/MarbemacVoteExtension.php" />
         <option value="$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js" />
+        <option value="$PROJECT_DIR$/web/Resources/js/whoot.core.js" />
+        <option value="$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Controller/VoteController.php" />
+        <option value="$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Post.php" />
+        <option value="$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Document/VoteManager.php" />
       </list>
     </option>
   </component>
@@ -282,6 +612,438 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="doctrine-common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="doctrine-common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Doctrine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="doctrine-common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Doctrine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Collections" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Marbemac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VoteBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Marbemac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VoteBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Marbemac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VoteBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Marbemac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VoteBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="routing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Marbemac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VoteBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Document" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Marbemac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VoteBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DependencyInjection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Marbemac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VoteBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Marbemac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FOS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UserBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FOS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UserBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DependencyInjection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FOS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -330,7 +1092,45 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Util" />
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Whoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhootBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Post" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -421,108 +1221,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="routing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhootBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="compass" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhootBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="compass" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhootBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="compass" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -574,92 +1272,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Type" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhootBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Handler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhootBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhootBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Document" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -707,26 +1319,8 @@
               <option name="myItemId" value="Whoot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
+              <option name="myItemId" value="VoteBundle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -748,7 +1342,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
+              <option name="myItemId" value="VoteBundle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -778,7 +1372,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
+              <option name="myItemId" value="VoteBundle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -790,7 +1384,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Profile" />
+              <option name="myItemId" value="Vote" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -809,104 +1403,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="routing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Document" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Whoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -957,11 +1453,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Whoot/WhootBundle/Util" />
-      <recent name="$PROJECT_DIR$/src/Whoot/WhootBundle/Document" />
-      <recent name="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/config/routing" />
-      <recent name="$PROJECT_DIR$/src/Whoot/UserBundle/Resources/config" />
-      <recent name="$PROJECT_DIR$/src/Whoot/UserBundle/Document" />
+      <recent name="$PROJECT_DIR$/vendor/bundles/Marbemac" />
+      <recent name="$PROJECT_DIR$/vendor/bundles/Marbemac/ImageBundle/DependencyInjection" />
+      <recent name="$PROJECT_DIR$/vendor/bundles/Marbemac/ImageBundle" />
+      <recent name="$PROJECT_DIR$/vendor/bundles/Marbemac/ImageBundle/Document" />
+      <recent name="$PROJECT_DIR$/vendor/bundles" />
     </key>
   </component>
   <component name="RunManager">
@@ -1014,22 +1510,22 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-71" y="-1156" width="1834" height="1105" extended-state="0" />
+    <frame x="-60" y="-1087" width="1800" height="984" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25278294" sideWeight="0.32730263" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17759104" sideWeight="0.87841946" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19246145" sideWeight="0.99061525" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1078,110 +1574,114 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/ping.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/views/Ping/tag.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="38" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/routing/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="961" selection-end="961" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/UserBundle/Resources/views/Profile/teaser.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="5" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Post.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="158" selection-end="203" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Resources/config/manager.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="24" selection-start="1783" selection-end="1783" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Document/PingManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="49" selection-start="1638" selection-end="1638" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/UserBundle/Document/UserManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="30" selection-start="3824" selection-end="3824" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/UserBundle/Document/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="379" column="25" selection-start="7773" selection-end="7773" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/CoreController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="64" selection-start="3367" selection-end="3367" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Util/DateConverter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="12" selection-start="636" selection-end="636" vertical-scroll-proportion="0.0">
+        <state line="40" column="5" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Document/PostManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="5" selection-start="683" selection-end="683" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Controller/PingController.php">
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Document/LocationManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="38" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.0">
+        <state line="41" column="8" selection-start="1107" selection-end="1299" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Ping.php">
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="0" selection-start="1840" selection-end="1840" vertical-scroll-proportion="0.0">
+        <state line="53" column="36" selection-start="1556" selection-end="1556" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/doctrine-common/lib/Doctrine/Common/Collections/ArrayCollection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="220" column="7" selection-start="5758" selection-end="5758" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Document/VotableInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Resources/config/manager.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/DependencyInjection/Configuration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="724" selection-end="724" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/DependencyInjection/MarbemacVoteExtension.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="7" selection-start="1106" selection-end="1106" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/VoteBundle/Resources/views/Vote/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="6" selection-start="458" selection-end="458" vertical-scroll-proportion="-3.125">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.subscribers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="496" selection-end="496" vertical-scroll-proportion="-14.423077">
+        <state line="78" column="0" selection-start="1989" selection-end="1989" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deps">
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.request.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="0" selection-start="1483" selection-end="2294" vertical-scroll-proportion="0.9040512">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Resources/js/whoot.core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="29" selection-start="1847" selection-end="1847" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Controller/VoteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="91" selection-start="1701" selection-end="1701" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Whoot/WhootBundle/Document/Post.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="218" column="7" selection-start="4000" selection-end="4000" vertical-scroll-proportion="-9.923077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/bundles/Marbemac/VoteBundle/Document/VoteManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="13" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.77968174">
           <folding />
         </state>
       </provider>

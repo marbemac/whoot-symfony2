@@ -19,15 +19,15 @@ class AppKernel extends Kernel
             new Symfony\Bundle\DoctrineBundle\DoctrineBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle(),
             new FOS\UserBundle\FOSUserBundle(), // FriendsOfSymfony UserBundle
             new FOS\FacebookBundle\FOSFacebookBundle(),
-            new Bundle\GravatarBundle\GravatarBundle(),
-//            new Evario\NotificationBundle\EvarioNotificationBundle(),
+//            new Evario\ImageBundle\EvarioNotificationBundle(),
+            new Marbemac\ImageBundle\MarbemacImageBundle(),
+            new Marbemac\VoteBundle\MarbemacVoteBundle(),
             new Whoot\UserBundle\WhootUserBundle(),
             new Whoot\VoteBundle\WhootVoteBundle(),
-//            new Whoot\NotificationBundle\WhootNotificationBundle(),
+//            new Whoot\ImageBundle\WhootNotificationBundle(),
             new Whoot\WhootBundle\WhootBundle(),
         );
 

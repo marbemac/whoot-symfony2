@@ -4,13 +4,9 @@
             <h3>Woops, we need a little more info to finish creating your account!</h3>
 
             <form action="{{ path('user_update_location')}}" method="POST">
-                {% if collect.location is defined %}
-                <div class="label">Location</div>
-                <select name="location">
-                    {% for location in collect.location %}
-                        <option value="{{ location.id }}">{{ location.cityName~', '~location.stateCode }}</option>
-                    {% endfor %}
-                </select>
+                {% if collect.locations is defined %}
+                    <div class="label">Location</div>
+                    {% include "WhootBundle:Location:selectBox.html.twig" with {'locations': collect.locations} %}
                 {% endif %}
 
                 <input type="submit" class="submit" value="submit" />

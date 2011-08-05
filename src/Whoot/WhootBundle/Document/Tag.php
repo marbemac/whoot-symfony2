@@ -28,6 +28,7 @@ class Tag implements ObjectInterface
 
     /**
      * @MongoDB\Field(type="string")
+     * @MongoDB\Index(order="asc")
      */
     protected $slug;
 

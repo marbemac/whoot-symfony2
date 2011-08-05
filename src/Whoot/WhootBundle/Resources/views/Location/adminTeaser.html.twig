@@ -1,0 +1,30 @@
+<div class="teaser location">
+    <div class="state">{{ location.stateName }}</div>
+
+    {% for city in location.cities %}
+        {% if city.status == 'Active' %}
+            <div class="city">{{ city.name }} <a href="{{ path('admin_location_city_delete', {'cityId': city.id}) }}" class="delete cr">[x]</a></div>
+
+            <div class="schools">
+                <div class="add">
+                    <form action="{{ path('admin_location_school_create') }}" method="POST" class="noajax">
+                        <input type="hidden" name="cityId" value="{{ city.id }}"  autocomplete="off" />
+                        <input type="text" name="school" autocomplete="off" />
+                        <input type="submit" value="Add School" />
+                    </form>
+                </div>
+                
+                {% for school in city.schools %}
+                    {% if school.status == 'Active' %}
+                        <div class="school">{{ school.name }} <a href="{{ path('admin_location_school_delete', {'schoolId': school.id}) }}" class="delete cr">[x]</a></div>
+                    {% endif %}
+                {% else %}
+                    <div class="school none">No schools...</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    {% else %}
+        <div class="city none">No cities...</div>
+    {% endfor %}
+</div>

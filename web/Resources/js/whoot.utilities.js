@@ -45,4 +45,16 @@ $(function() {
         }
     })
 
+    // Confirmation required. Prompt for confirmation before proceeding.
+    $('.cr').live('click', function(e) {
+        var $confirm = confirm("Are you sure?");
+
+        if ($confirm)
+        {
+            return true;
+        }
+
+        return false;
+    })
+
 })

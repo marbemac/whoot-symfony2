@@ -8,7 +8,7 @@ security:
     #session_fixation_strategy: migrate
     providers:
         whoot_user:
-            id: fos_user.user_manager
+            id: whoot.manager.user
         whoot_facebook:
             id: whoot.facebook.user
 

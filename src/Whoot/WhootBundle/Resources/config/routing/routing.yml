@@ -1,13 +1,15 @@
 user:
     resource: "@WhootUserBundle/Resources/config/routing/routing.yml"
 
+image:
+    resource: "@MarbemacImageBundle/Resources/config/routing/routing.xml"
+
 #user_api:
 #    resource: "@WhootUserBundle/Resources/config/routing/api.yml"
 #    prefix:   /api/user
 #
-#vote:
-#    resource: "@WhootVoteBundle/Resources/config/routing/routing.yml"
-#    prefix:   /v
+vote:
+    resource: "@MarbemacVoteBundle/Resources/config/routing/routing.xml"
 #
 #vote_api:
 #    resource: "@WhootVoteBundle/Resources/config/routing/api.yml"
@@ -56,9 +58,9 @@ ping:
 #notifications:
 #    resource: "@EvarioNotificationBundle/Resources/config/routing.xml"
 #
-#admin:
-#    resource: "@WhootBundle/Resources/config/routing/admin.yml"
-#    prefix:   /admin
+admin:
+    resource: "@WhootBundle/Resources/config/routing/admin.yml"
+    prefix:   /admin
 
 feed_filter_toggle:
     pattern:  /ac/tf/{postType}

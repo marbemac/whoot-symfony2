@@ -1,0 +1,7 @@
+{% render "WhootBundle:Location:create" %}
+
+{% for location in locations %}
+    {% include "WhootBundle:Location:adminTeaser.html.twig" %}
+{% else %}
+    No locations yet... try adding one.
+{% endfor %}

@@ -40,17 +40,16 @@ class PostManager extends BaseManager
 
     public function getMyPost($user)
     {
-        $date = new DateConverter($user->getCurrentPost()->getCreatedAt(), 'Y-m-d', '+5 hours');
-        if ($user->getCurrentPost() &&  $date == date('Y-m-d', time()))
+        if ($user->getCurrentPost())
         {
-            $myPost = $this->findPostBy(array('id' => $user->getCurrentPost()->getPost()));
-        }
-        else
-        {
-            $myPost = null;
+            $date = new DateConverter(clone $user->getCurrentPost()->getCreatedAt(), 'Y-m-d', '+5 hours');
+            if ($date == date('Y-m-d', time()))
+            {
+                return $this->findPostBy(array('id' => $user->getCurrentPost()->getPost()));
+            }
         }
 
-        return $myPost;
+        return null;
     }
 
 //    public function findPostBy($postId, $createdBy=null, $createdAt=null, $postStatus=null, $returnObject=false)

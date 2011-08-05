@@ -40,4 +40,16 @@ class AdminController extends ContainerAware
             'uncategorizedWords' => $uncategorizedWords
         ), $response);
     }
+
+    public function locationAction()
+    {
+        $response = new Response();
+
+        $locations = $this->container->get('whoot.manager.location')->findLocationsBy(array('status' => 'Active'), array(), array('stateName' => 'ASC'));
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:Admin:location.html.twig', array(
+            'page' => 'location',
+            'locations' => $locations
+        ), $response);
+    }
 }

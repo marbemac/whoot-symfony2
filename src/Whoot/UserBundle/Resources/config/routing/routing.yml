@@ -39,6 +39,12 @@ user_search:
     defaults: { _controller: WhootUserBundle:Profile:search }
     requirements:
         _method: GET
+        
+user_profile_image:
+    pattern: /profileImage/{w}/{h}
+    defaults: { _controller: WhootUserBundle:Profile:profileImage }
+    requirements:
+      _method: GET
 
 user_followers:
     pattern:  /{username}/followers

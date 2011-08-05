@@ -1,14 +1,13 @@
 <div id="user-sidebar">
     <h1>{{ user.fullName }}</h1>
 
-    {#<div class="location">#}
-        {#{{ user.location.cityName is defined and user.location.cityName|length > 2 ? user.location.cityName~', '~user.location.stateCode : 'Outer Space' }}#}
-    {#</div>#}
+    <div class="location">
+        {{ user.currentLocation is defined ? user.currentLocation.name : 'Outer Space' }}
+    </div>
 
     {% include "WhootBundle:Follow:tag.html.twig" with {'toUser': user} %}
-    {#{% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user, 'dimensions': 130, 'height': 165, 'width': 130, 'id': 'user-profile-image'} %}#}
+    {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': user.currentProfileImage, 'w': 130, 'h': 165, 'class': 'profileImage'} %}
     <ul class="nav">
-        {#<li><a class="{{ navSelected == 'feed' ? 'on' : '' }}" href="{{ path('user_profile_show', {'username': user.username}) }}">Feed</a></li>#}
         <li><a class="{{ navSelected == 'following' ? 'on' : '' }}" href="{{ path('user_following', {'username': user.username}) }}">Following</a></li>
         <li><a class="{{ navSelected == 'followers' ? 'on' : '' }}" href="{{ path('user_followers', {'username': user.username}) }}">Followers</a></li>
         {% if app.user.id == user.id %}

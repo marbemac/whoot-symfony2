@@ -9,6 +9,7 @@
 
     <div class="admin-nav">
         <a href="{{ path('admin_home') }}" class="{{ page == 'home' ? 'on' : ''}}">Admin Home</a>
+        <a href="{{ path('admin_manage_location') }}" class="{{ page == 'trending' ? 'on' : ''}}">Manage Locations</a>
         <a href="{{ path('admin_manage_trending') }}" class="{{ page == 'trending' ? 'on' : ''}}">Manage Trending tags</a>
     </div>
 {% endblock %}

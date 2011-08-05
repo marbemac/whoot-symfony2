@@ -71,7 +71,6 @@ class UserManager extends BaseUserManager
 
         $qb->field('status')->equals('Active')
             ->field('nameSlug')->equals(new \MongoRegex("/^{$slug->__toString()}/"));
-//           ->where("function() { return this.nameSlug.match('".$slug->__toString()."'); }");
 
         $query = $qb->getQuery();
         $users = $query->execute();
@@ -81,7 +80,9 @@ class UserManager extends BaseUserManager
         {
             $response[] = array(
                 'name' => $user->getFullName(),
-                'username' => $user->getUsername()
+                'username' => $user->getUsername(),
+                'profileImage' => $user->getCurrentProfileImage(),
+                'location' => $user->getCurrentLocation() ? $user->getCurrentLocation()->getName() : null
             );
         }
         return $response;
@@ -132,6 +133,21 @@ class UserManager extends BaseUserManager
         }
 
         return $query->execute();
+    }
+
+    /**
+     * Finds a user by username or email
+     *
+     * @param string $usernameOrEmail
+     * @return UserInterface
+     */
+    public function findUserByUsername($usernameOrEmail)
+    {
+        if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)) {
+            return $this->findUserByEmail($usernameOrEmail);
+        }
+
+        return $this->findUserBy(array('usernameCanonical' => $this->canonicalizeUsername($usernameOrEmail)));
     }
 
     // OLD CODE BELOW -----------------------

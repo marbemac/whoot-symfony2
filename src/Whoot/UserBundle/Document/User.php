@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Whoot\WhootBundle\Document\Post;
 use Doctrine\Common\Collections\ArrayCollection;
 use Whoot\WhootBundle\Util\SlugNormalizer;
+use Whoot\WhootBundle\Document\CurrentLocation;
 
 /**
  * @MongoDB\Document
@@ -44,6 +45,7 @@ class User extends BaseUser
 
     /**
      * @MongoDB\Field(type="string")
+     * @MongoDB\Index(order="asc")
      */
     protected $nameSlug;
 
@@ -68,14 +70,9 @@ class User extends BaseUser
     protected $score;
 
     /**
-     * @MongoDB\Field(type="object_id")
+     * @MongoDB\EmbedOne(targetDocument="Whoot\WhootBundle\Document\CurrentLocation")
      */
     protected $currentLocation;
-
-    /**
-     * @MongoDB\Field(type="object_id")
-     */
-    protected $location;
 
     /**
      * @MongoDB\EmbedOne(targetDocument="CurrentPost")
@@ -126,7 +123,7 @@ class User extends BaseUser
     /**
      * @param ObjectId $currentProfileImage
      */
-    public function setProfileImage($currentProfileImage)
+    public function setCurrentProfileImage($currentProfileImage)
     {
         $this->currentProfileImage = $currentProfileImage;
     }
@@ -219,34 +216,26 @@ class User extends BaseUser
     }
 
     /**
-     * @return ObjectId $location
-     */
-    public function getLocation()
-    {
-        return new \MongoId($this->location);
-    }
-
-    /**
-     * @param ObjectId $location
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
-    }
-
-    /**
      * @return ObjectId $currentLocation
      */
     public function getCurrentLocation()
     {
-        return $this->currentLocation ? new \MongoId($this->currentLocation) : $this->getLocation();
+        return $this->currentLocation;
+    }
+
+    public function setCurrentLocation($location)
+    {
+        // noop function because the form system looks for this automatically. Dumb.
     }
 
     /**
      * @param Current $currentLocation
      */
-    public function setCurrentLocation($currentLocation)
+    public function updateCurrentLocation($location, $locationIds, $type)
     {
+        $currentLocation = new CurrentLocation($locationIds);
+        $currentLocation->setType($type);
+        $currentLocation->setName($location->buildName($locationIds[count($locationIds)-1], $type));
         $this->currentLocation = $currentLocation;
     }
 
@@ -267,16 +256,17 @@ class User extends BaseUser
         $this->following = $following;
     }
 
-    public function addFollowing($following)
+    public function addFollowing($followingId)
     {
-        if (!in_array($following, $this->following, true)) {
-            $this->following[] = $following;
+        if (!in_array($followingId, $this->following, true)) {
+            $this->following[] = new \MongoId($followingId);
         }
     }
 
     public function getFollowing()
     {
         $following = array();
+        $this->following = $this->following ? $this->following : array();
         foreach ($this->following as $id)
         {
             $following[] = new \MongoId($id);

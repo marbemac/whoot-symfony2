@@ -43,6 +43,8 @@ doctrine_mongodb:
             metadata_cache_driver: array
             mappings:
                 FOSUserBundle: ~
+                MarbemacImageBundle: ~
+                MarbemacVoteBundle: ~
                 WhootUserBundle: ~
                 WhootBundle: ~
 
@@ -77,11 +79,14 @@ swiftmailer:
     password: testingwhoot
 
 #evario_notification:
-#    notification_class:         Whoot\NotificationBundle\Entity\Notification
-#    notification_manager:       Whoot\NotificationBundle\Entity\NotificationManager
+#    notification_class:         Whoot\ImageBundle\Entity\Image
+#    notification_manager:       Whoot\ImageBundle\Entity\NotificationManager
 #    from_email:                 marbemac@gmail.com
 
-gravatar: ~
+marbemac_image: ~
+
+marbemac_vote:
+    document_stem: Whoot\WhootBundle\Document
 
 # FOS Facebook config
 fos_facebook:

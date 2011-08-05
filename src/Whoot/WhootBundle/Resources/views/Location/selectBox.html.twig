@@ -1,0 +1,17 @@
+<select name="{{ name is defined ? name : 'location' }}" class="location" id="{{ id is defined ? id : '' }}">
+    {% for state in locations %}
+        <optgroup label="{{ state.stateName }}">
+            {% for city in state.cities %}
+                {% if city.status == 'Active' %}
+                    <option value="{{ state.id }}-{{ city.id }}" {{ default is defined and default == city.id ? 'selected="yes"' : '' }}>{{ city.name }}</option>
+
+                    {% for school in city.schools %}
+                        {% if school.status == 'Active' %}
+                            <option value="{{ state.id }}-{{ city.id }}-{{ school.id }}" {{ default is defined and default == school.id ? 'selected="yes"' : '' }}>{{ school.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </optgroup>
+    {% endfor %}
+</select>

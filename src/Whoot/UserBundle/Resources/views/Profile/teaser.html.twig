@@ -1,6 +1,6 @@
 <li class="teaser user {{ loop is defined and loop.first ? 'first' : '' }}">
     <a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.fullName }}">
-        {#{% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user, 'dimensions': 30, 'height': 30, 'width': 30} %}#}
+        {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': user.currentProfileImage, 'w': 30, 'h': 30} %}
     </a>
     {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user} %}
     <div class="actions">

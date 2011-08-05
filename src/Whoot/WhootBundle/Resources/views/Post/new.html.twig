@@ -28,10 +28,9 @@
     <input id="tag5" type="hidden" autocomplete="off" class="tag" name="whoot_post_form[tags][4][name]" />
 
     <div class="label">Location</div>
+    {% include "WhootBundle:Location:selectBox.html.twig" with {'locations': locations, 'default': app.user.currentLocation ? app.user.currentLocation.id : none, 'name': 'whoot_post_form[currentLocation]', 'id': 'whoot_post_form_currentLocation'} %}
     {#{{ form_widget(form.location) }}#}
     <div class="clear"></div>
-
-    {{ form_rest(form) }}
 
     <div class="submit">Submit Post</div>
 </form>

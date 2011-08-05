@@ -155,11 +155,13 @@ class PostController extends ContainerAware
             }
         }
 
+        $locations = $this->container->get('whoot.manager.location')->findLocationsBy(array('status' => 'Active'), array(), array('stateName', 'ASC'));
+
         if ($request->isXmlHttpRequest())
         {
             $result = array();
             $result['result'] = 'error';
-            $result['form'] = $templating->render('WhootBundle:Post:new.html.twig', array('form' => $form->createView()));
+            $result['form'] = $templating->render('WhootBundle:Post:new.html.twig', array('form' => $form->createView(), 'locations' => $locations));
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
@@ -167,6 +169,7 @@ class PostController extends ContainerAware
 
         return $templating->renderResponse('WhootBundle:Post:new.html.twig', array(
             'form' => $form->createView(),
+            'locations' => $locations,
             '_format' => $_format
         ));
     }

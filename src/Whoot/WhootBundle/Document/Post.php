@@ -5,12 +5,13 @@ namespace Whoot\WhootBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
 use Whoot\WhootBundle\Model\ObjectInterface;
+use Marbemac\VoteBundle\Document\VotableInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @MongoDB\Document
  */
-class Post implements ObjectInterface
+class Post implements ObjectInterface, VotableInterface
 {
     /**
      * The allowable post types...
@@ -33,6 +34,7 @@ class Post implements ObjectInterface
 
     /**
      * @MongoDB\Field(type="int")
+     * @MongoDB\Index(order="asc")
      */
     protected $score;
 
@@ -48,6 +50,7 @@ class Post implements ObjectInterface
 
     /**
      * @MongoDB\Field(type="date")
+     * @MongoDB\Index(order="asc")
      */
     protected $createdAt;
 
@@ -58,6 +61,7 @@ class Post implements ObjectInterface
 
     /**
      * @MongoDB\Field(type="object_id")
+     * @MongoDB\Index(order="asc")
      */
     protected $createdBy;
 
@@ -67,21 +71,26 @@ class Post implements ObjectInterface
     protected $deletedBy;
 
     /**
-     * @MongoDB\Field(type="object_id")
+     * @MongoDB\EmbedOne(targetDocument="Whoot\WhootBundle\Document\CurrentLocation")
      */
-    protected $location;
+    protected $currentLocation;
 
     /**
      * @MongoDB\EmbedMany(targetDocument="PostTag")
      */
     protected $tags;
 
+    /**
+     * @MongoDB\field(type="hash")
+     */
+    protected $votes;
 
     public function __construct() {
         $this->status = 'Active';
         $this->score = 0;
         $this->isCurrentPost = true;
-        $this->tags = new ArrayCollection();
+        $this->tags = array();
+        $this->votes = array();
     }
 
     /**
@@ -265,6 +274,46 @@ class Post implements ObjectInterface
     public function getDeletedAt()
     {
         return $this->deletedAt;
+    }
+
+    /**
+     * @return ObjectId $currentLocation
+     */
+    public function getCurrentLocation()
+    {
+        return $this->currentLocation;
+    }
+
+    public function setCurrentLocation($location)
+    {
+        // noop function because the form system looks for this automatically. Dumb.
+    }
+    
+    /**
+     * @param Current $currentLocation
+     */
+    public function updateCurrentLocation($location, $locationIds, $type)
+    {
+        $currentLocation = new CurrentLocation($locationIds);
+        $currentLocation->setType($type);
+        $currentLocation->setName($location->buildName($locationIds[count($locationIds)-1], $type));
+        $this->currentLocation = $currentLocation;
+    }
+
+    public function getVotes()
+    {
+        return $this->votes;
+    }
+
+    public function findVote($voterId)
+    {
+        $voterId = is_object($voterId) ? $voterId->__toString() : $voterId;
+        if ($this->votes)
+        {
+            return isset($this->votes[$voterId]) ? $this->votes[$voterId] : false;
+        }
+
+        return false;
     }
 
     /**

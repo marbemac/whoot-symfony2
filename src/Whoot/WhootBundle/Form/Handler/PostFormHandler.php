@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 
 use Whoot\WhootBundle\Document\Post;
 use Whoot\WhootBundle\Document\PostManager;
+use Whoot\WhootBundle\Document\LocationManager;
 use Whoot\WhootBundle\Document\TagManager;
 use Whoot\WhootBundle\Util\SlugNormalizer;
 use FOS\UserBundle\Document\UserManager;
@@ -21,14 +22,16 @@ class PostFormHandler
     protected $postManager;
     protected $tagManager;
     protected $userManager;
+    protected $locationManager;
 
-    public function __construct(Form $form, Request $request, PostManager $postManager, TagManager $tagManager, UserManager $userManager)
+    public function __construct(Form $form, Request $request, PostManager $postManager, TagManager $tagManager, UserManager $userManager, LocationManager $locationManager)
     {
         $this->form = $form;
         $this->request = $request;
         $this->postManager = $postManager;
         $this->tagManager = $tagManager;
         $this->userManager = $userManager;
+        $this->locationManager = $locationManager;
     }
 
     public function process(Post $post = null, $createdBy)
@@ -47,11 +50,13 @@ class PostFormHandler
                 return false;
             }
 
+            $params = $params['whoot_post_form'];
+
             // Validate the tags
             $tagCount = 0;
             $characterCount = 0;
             $tagError = false;
-            foreach ($params['whoot_post_form']['tags'] as $tag)
+            foreach ($params['tags'] as $tag)
             {
                 if (strlen(trim($tag['name'])) > 0)
                 {
@@ -83,19 +88,33 @@ class PostFormHandler
                 {
                     // Create the tags and links if necessary
                     $post->setTags(array());
-                    $usedtags = array();
-                    foreach ($params['whoot_post_form']['tags'] as $tag)
+                    $usedTags = array();
+                    foreach ($params['tags'] as $tag)
                     {
                         if (strlen(trim($tag['name'])) > 0)
                         {
                             $slug = new SlugNormalizer($tag['name']);
                             $foundTag = $this->tagManager->findTagBy(array('slug' => $slug->__toString()));
-                            if (!$foundTag && !in_array($slug, $usedtags))
+                            // Is it a new tag?
+                            if (!$foundTag)
                             {
-                                $foundTag = $this->tagManager->createTag();
-                                $foundTag->setName($tag['name']);
-                                $this->tagManager->updateTag($foundTag, false);
-                                $usedtags[] = $slug;
+                                $used = false;
+                                foreach ($usedTags as $usedTag)
+                                {
+                                    if ($usedTag->getSlug() == $slug)
+                                    {
+                                        $used = true;
+                                        $foundTag = $usedTag;
+                                    }
+                                }
+
+                                if (!$used)
+                                {
+                                    $foundTag = $this->tagManager->createTag();
+                                    $foundTag->setName($tag['name']);
+                                    $this->tagManager->updateTag($foundTag, false);
+                                    $usedTags[] = $foundTag;
+                                }
                             }
 
                             $post->addTag($foundTag);
@@ -110,8 +129,16 @@ class PostFormHandler
                         $this->postManager->updatePost($oldPost, false);
                     }
 
+                    // Update the users current location to the location of this post
+                    $createdBy = $this->locationManager->updateCurrentLocation($createdBy, $params['currentLocation']);
+
+                    // Add the post location
+                    $post = $this->locationManager->updateCurrentLocation($post, $params['currentLocation']);
+                    
                     $post->setCreatedBy($createdBy);
+
                     $this->postManager->updatePost($post);
+
                     $createdBy->setCurrentPost($post);
                     $this->userManager->updateUser($createdBy);
 

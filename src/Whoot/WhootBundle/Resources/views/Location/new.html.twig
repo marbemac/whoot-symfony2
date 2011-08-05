@@ -1,0 +1,11 @@
+<form action="{{ path('admin_location_create') }}" {{ form_enctype(form) }} method="POST" class="location_create noajax">
+    {{ form_errors(form.state) }}
+    {{ form_label(form.state, "State") }}
+    {{ form_widget(form.state) }}
+
+    {{ form_errors(form.cities) }}
+    {{ form_label(form.cities, "City") }}
+    {{ form_widget(form.cities, {'attr': {'autocomplete': 'off', 'value': ''}}) }}
+
+    <input type="submit" value="Create Location" />
+</form>

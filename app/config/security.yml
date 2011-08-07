@@ -34,7 +34,8 @@ security:
                 check_path: /fb/login_check
             logout: true
             anonymous: true
-
+            switch_user: true
+            
     access_control:
         # The WDT has to be allowed to anonymous users to avoid requiring the login with the AJAX request
         - { path: ^/_wdt/, role: IS_AUTHENTICATED_ANONYMOUSLY }

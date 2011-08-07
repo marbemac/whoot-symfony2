@@ -14,40 +14,32 @@ list_edit:
     pattern:  /edit/{id}
     defaults: { _controller: WhootBundle:LList:edit }
     requirements:
-        id:  \d+
         _method: GET
 
 list_update:
     pattern:  /edit/{id}
     defaults: { _controller: WhootBundle:LList:update }
     requirements:
-        id:  \d+
-        _method: POST
-
-list_delete:
-    pattern:  /delete/{id}
-    defaults: { _controller: WhootBundle:LList:delete }
-    requirements:
-        id:  \d+
         _method: POST
 
 list_user_add:
     pattern:  /add/u/{listId}
     defaults: { _controller: WhootBundle:LList:userAdd }
     requirements:
-        listId:  \d+
-        userId:  \d+
         _method: POST
 
 list_user_delete:
     pattern:  /delete/u
     defaults: { _controller: WhootBundle:LList:userDelete }
     requirements:
-        userListId:  \d+
         _method: POST
+
+list_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: WhootBundle:LList:delete }
 
 list_show:
     pattern:  /{id}/{slug}
     defaults: { _controller: WhootBundle:LList:show }
     requirements:
-        id:  \d+
+        _method: GET

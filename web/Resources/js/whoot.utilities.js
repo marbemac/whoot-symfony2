@@ -57,4 +57,8 @@ $(function() {
         return false;
     })
 
+    $('.toggle').live('click', function() {
+        $($(this).data('target')).toggle();
+    })
+
 })

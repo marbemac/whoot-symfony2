@@ -20,7 +20,7 @@ class PostController extends ContainerAware
     /**
      * 
      */
-    public function feedAction($listId=null, $offset=0, $limit=null, $_format='html')
+    public function feedAction($list=null, $offset=0, $limit=null, $_format='html')
     {
         $response = new Response();
         $feedFilters = $this->container->get('session')->get('feedFilters');
@@ -34,6 +34,10 @@ class PostController extends ContainerAware
         if (empty($postTypes))
         {
             $posts = array();
+        }
+        else if ($list)
+        {
+            $posts = $this->container->get('whoot.manager.post')->findPostsBy(array('isCurrentPost' => true), array('createdBy' => $list->getUsers()), array($feedSort => 'desc'), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))), $offset, $limit);
         }
         else
         {
@@ -94,6 +98,20 @@ class PostController extends ContainerAware
     {
         $request = $this->container->get('request');
         $myPost = $this->container->get('whoot.manager.post')->getMyPost($this->container->get('security.context')->getToken()->getUser());
+
+        if ($myPost && $myPost->getInvite())
+        {
+            $invite = $this->container->get('whoot.manager.invite')->findInviteBy(array('id' => $myPost->getInvite()->getInvite()));
+            if ($invite)
+            {
+                $this->container->get('doctrine.odm.mongodb.document_manager')->detach($myPost);
+                $this->container->get('doctrine.odm.mongodb.document_manager')->detach($invite);
+
+                $createdBy = $this->container->get('whoot.manager.user')->findUserBy(array('id' => new \MongoId($invite->getCreatedBy())));
+                $invite->setCreatedBy($createdBy, true);
+                $myPost->setInvite($invite, true);
+            }
+        }
 
         $response = new Response();
         $response->setCache(array(
@@ -205,8 +223,11 @@ class PostController extends ContainerAware
             // return $response;
         }
 
-        $post = $this->container->get('whoot.manager.post')->findPostBy($postId, null, null, 'Active', false);
-        $comments = $this->container->get('whoot.manager.comment')->findCommentsBy($postId, null);
+        $post = $this->container->get('whoot.manager.post')->findPostBy(array('id' => $postId));
+        $voters = $this->container->get('whoot.manager.user')->findUsersBy(array('status' => 'Active'), array('id' => $post->getVotes()));
+        $post->setVoters($voters);
+
+        $comments = $this->container->get('whoot.manager.comment')->findCommentsBy(array('post' => $post->getId(), 'status' => 'Active'));
 
         if ($_format == 'json')
         {

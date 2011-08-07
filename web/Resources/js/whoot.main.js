@@ -26,45 +26,20 @@ $(function() {
             $('#auth-login').fadeToggle(300);
             return false;
         }
-
-        if (e.ctrlKey && $code == 99)
+        else if (e.ctrlKey && $code == 99)
         {
             $('#auth-register').fadeToggle(300);
             return false;
+        }
+        else if (e.ctrlKey && $code == 101)
+        {
+            window.location = document.URL + '?_switch_user=_exit';
         }
     })
 
     /**
      * USERS
      */
-
-    // Enabling dragging of user tags.
-    $(".user-link").livequery(function() {
-        $(this).draggable({
-            opacity: 0.7,
-            helper: "clone",
-            handle: ".drag-handleC",
-            appendTo: "body"
-        });
-    });
-    // Enabling dropping of user tags.
-    $('.my-lists .teaser').livequery(function() {
-        $(this).droppable({
-            accept:      ".user-link",
-            activeClass: "dragging",
-            hoverClass:  "dropping",
-            drop: function(event, ui) {
-
-                // Get the base follow_add url and add the target users ID to the end.
-                var $url = $(this).data('d').url;
-                var $payload = {};
-                $payload['userId'] = ui.draggable.data('d').id;
-                $payload['feedReload'] = 'no';
-
-                doAction({'url': $url, 'requestType': 'POST', 'payload': $payload}, null, null);
-            }
-        })
-    });
 
     $('.user-link').livequery(function() {
         $(this).each(function() {
@@ -90,7 +65,7 @@ $(function() {
                     at: 'top center',
                     viewport: $(window)
                 },
-                show: {delay: 400},
+                show: {delay: 1000},
                 hide: {delay: 300, fixed: true}
             })
         })
@@ -133,7 +108,7 @@ $(function() {
     })
 
     // Toggle new post options
-    $('#post-box .type').live('click', function() {
+    $('#post-box .type, #invite-page .type').live('click', function() {
         $(this).addClass('on').siblings('.type').removeClass('on');
         $('#whoot_post_form_type,#whoot_invite_form_type').val($(this).data('val'));
     })
@@ -249,10 +224,8 @@ $(function() {
         // Handle a place choice
         google.maps.event.addListener($auto, 'place_changed', function() {
             var place = $auto.getPlace();
-            console.log(place);
             $('#whoot_invite_form_address').val(place.formatted_address);
-            $('#whoot_invite_form_lat').val(place.geometry.location.Ka);
-            $('#whoot_invite_form_lon').val(place.geometry.location.La);
+            $('#whoot_invite_form_coordinates').val(place.geometry.location.lat()+':'+place.geometry.location.lng());
         })
     })
 
@@ -338,11 +311,11 @@ $(function() {
         }
         else
         {
-            // We only allow phrases of 3 or less tags...
-            if (($tagNum > 3 || ($tagNum == 3 && $code == 32)) && $code != 8 && $code != 46)
+            // We only allow phrases of 4 or less tags...
+            if (($tagNum > 4 || ($tagNum == 4 && $code == 32)) && $code != 8 && $code != 46)
             {
                 e.preventDefault();
-                $(this).siblings('.errors').text('You cannot use more than three tags in a single phrase');
+                $(this).siblings('.errors').text('You cannot use more than four words in a single phrase');
             }
         }
     })
@@ -427,6 +400,7 @@ $(function() {
         }
     });
     $("#list-add-user").result(function(event, data, formatted) {
+        console.log(data);
         $.post($('#list-add-user').data('url-add'), {'userId': data.id}, function(data) {
                     appUpdate(data);
                     $('#list-add-user').val($('#list-add-user').data('default'));
@@ -512,7 +486,6 @@ $(function() {
         }
     });
     $(".search input").result(function(event, data, formatted) {
-        $(".search input").val($(".search input").data('default'));
         window.location = '/' + data.username + '/following';
     });
 })

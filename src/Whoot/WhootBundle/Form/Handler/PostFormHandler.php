@@ -13,7 +13,7 @@ use Whoot\WhootBundle\Document\PostManager;
 use Whoot\WhootBundle\Document\LocationManager;
 use Whoot\WhootBundle\Document\TagManager;
 use Whoot\WhootBundle\Util\SlugNormalizer;
-use FOS\UserBundle\Document\UserManager;
+use Whoot\UserBundle\Document\UserManager;
 
 class PostFormHandler
 {
@@ -121,13 +121,8 @@ class PostFormHandler
                         }
                     }
 
-                    $oldPosts = $this->postManager->findPostsBy(array('createdBy' => $createdBy->getId(), 'isCurrentPost' => true), array(), array(), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))));
-                    foreach ($oldPosts as $oldPost)
-                    {
-
-                        $oldPost->setIsCurrentPost(false);
-                        $this->postManager->updatePost($oldPost, false);
-                    }
+                    // Disable old posts
+                    $this->postManager->disableDailyPosts($createdBy);
 
                     // Update the users current location to the location of this post
                     $createdBy = $this->locationManager->updateCurrentLocation($createdBy, $params['currentLocation']);

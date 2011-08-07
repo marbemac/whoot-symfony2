@@ -5,7 +5,7 @@
     {{ form_widget(form.tags) }}
 
     <div class="label">Tags</div>
-    <input type="text" id="tags" autocomplete="off" name="tags" class="tags iclear b" value="Type 1-3 tags at a time and press enter" />
+    <input type="text" id="tags" autocomplete="off" name="tags" class="tags iclear b" value="Type 1-4 words at a time and press enter" />
     <div class="errors"></div>
     <div class="tags-help">
         How do you feel about tonight? Have a bar in mind? Feel like dancing?
@@ -29,7 +29,6 @@
 
     <div class="label">Location</div>
     {% include "WhootBundle:Location:selectBox.html.twig" with {'locations': locations, 'default': app.user.currentLocation ? app.user.currentLocation.id : none, 'name': 'whoot_post_form[currentLocation]', 'id': 'whoot_post_form_currentLocation'} %}
-    {#{{ form_widget(form.location) }}#}
     <div class="clear"></div>
 
     <div class="submit">Submit Post</div>

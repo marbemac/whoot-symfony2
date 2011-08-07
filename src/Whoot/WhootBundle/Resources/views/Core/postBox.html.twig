@@ -11,7 +11,7 @@
         <div class="type working" data-val="working">Working</div>
         <div class="type low_in" data-val="low_in">Staying In</div>
         <div class="type low_out" data-val="low_out">Relaxing Out</div>
-        <div class="type big_out" data-val="big_out">Raging</div>
+        <div class="type big_out" data-val="big_out">Partying</div>
         <div class="clear"></div>
 
         <div class="clear"></div>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="invite hide">
-            {#{% render "WhootBundle:Invite:create" with {'chromeless': true} %}#}
+            {% render "WhootBundle:Invite:create" with {'chromeless': true} %}
         </div>
 
         {% if myPost %}

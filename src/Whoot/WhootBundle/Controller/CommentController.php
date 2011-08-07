@@ -37,22 +37,13 @@ class CommentController extends ContainerAware
         $form = $this->container->get('whoot.form.comment');
         $formHandler = $this->container->get('whoot.form.handler.comment');
 
-        $process = $formHandler->process(null);
+        $process = $formHandler->process(null, $user);
 
         if ($process === true) {
             $comment = $form->getData();
-
-            if ($this->container->has('security.acl.provider'))
-            {
-                // creating the ACL
-                $aclProvider = $this->container->get('security.acl.provider');
-                $acl = $aclProvider->createAcl(ObjectIdentity::fromDomainObject($comment));
-
-                // grant owner access
-                $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
-                $aclProvider->updateAcl($acl);
-            }
-
+            $this->container->get('doctrine.odm.mongodb.document_manager')->detach($comment);
+            $comment->setCreatedBy($user, true);
+            
             $flashMessage = 'Comment posted successfully!';
             $url = $this->container->get('router')->generate('homepage');
 
@@ -61,7 +52,7 @@ class CommentController extends ContainerAware
                 $result = array();
                 $result['event'] = 'comment_created';
                 $result['flash'] = array('type' => 'notice', 'message' => $flashMessage);
-                $result['rootId'] = $comment->getPost() ? $comment->getPost()->getId() : $comment->getInvite()->getId();
+                $result['rootId'] = $comment->getPost() ? $comment->getPost()->__toString() : $comment->getInvite()->__toString();
                 $result['comment'] = $templating->render('WhootBundle:Comment:teaser.html.twig', array('comment' => $comment));
                 $response = new Response(json_encode($result));
                 $response->headers->set('Content-Type', 'application/json');
@@ -87,6 +78,17 @@ class CommentController extends ContainerAware
             'form' => $form->createView(),
             'rootId' => $rootId,
             'type' => $type
+        ));
+    }
+
+    public function teaserAction($comment)
+    {
+        $user = $this->container->get('whoot.manager.user')->findUserBy(array('id' => new \MongoId($comment->getCreatedBy())));
+        $this->container->get('doctrine.odm.mongodb.document_manager')->detach($comment);
+        $comment->setCreatedBy($user, true);
+
+        return $this->container->get('templating')->renderResponse('WhootBundle:Comment:teaser.html.twig', array(
+            'comment' => $comment
         ));
     }
 

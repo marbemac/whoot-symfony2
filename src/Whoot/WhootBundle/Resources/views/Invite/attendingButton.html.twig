@@ -1,9 +1,7 @@
-{% if post.invite.id is not defined or post.invite.createdBy.id != app.user.id %}
-    {% if not fromUser %}
-        <a class="attending-B attending_{{ inviteId }} auth" href="{{ path('invite_attend', {'inviteId': inviteId}) }}">+ I'm Attending</a>
-    {% elseif post.invite.id is not defined or post.invite.id != inviteId %}
-        <a class="attending-B ac attending_{{ inviteId }}" href="{{ path('invite_attend', {'inviteId': inviteId}) }}">+ I'm Attending</a>
+{% if invite and invite.createdBy.id != app.user.id %}
+    {% if not invite.findAttendee(app.user.id) %}
+        <a class="attending-B ac attending_{{ invite.id }}" href="{{ path('invite_attend', {'inviteId': invite.id}) }}">+ I'm Attending</a>
     {% else %}
-        <a class="attending-B ac attending_{{ inviteId }}" href="{{ path('invite_attend', {'inviteId': inviteId}) }}">- Cancel Attending</a>
+        <a class="attending-B ac attending_{{ invite.id }}" href="{{ path('invite_attend', {'inviteId': invite.id}) }}">- Cancel Attending</a>
     {% endif %}
 {% endif %}

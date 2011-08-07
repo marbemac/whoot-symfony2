@@ -8,8 +8,8 @@
             <div class="hide">
                 <div id="invite-cancel-confirm">
                     <div class="num">
-                        {% if myPost.invite.attending > 1 %}
-                            {{ myPost.invite.attending-1 }}
+                        {% if myPost.invite.attendingCount > 1 %}
+                            {{ myPost.invite.attendingCount-1 }}
                             people have indicated they are attending your open invite. The invite will be cancelled for them as well!
                         {% else %}
                             Looks like your invite wasn't very popular huh? Go ahead, cancel away...
@@ -30,15 +30,15 @@
 
         <div class="clear"></div>
 
-        {% if myPost.invite.id is defined %}
+        {% if myPost.invite is defined and myPost.invite %}
             {% if myPost.invite.createdBy.id == app.user.id %}
                 <a href="{{ path('invite_show', {'inviteId': myPost.invite.id}) }}">
                     You're inviting people out to {{ myPost.invite.venue }}.
-                    {{ myPost.invite.attending-1 }} people are attending.
+                    {{ myPost.invite.attendingCount-1 }} people are attending.
                 </a>
             {% else %}
                 <a href="{{ path('invite_show', {'inviteId': myPost.invite.id}) }}">
-                    You're attending {{ myPost.invite.createdBy.firstName ~ ' ' ~ myPost.invite.createdBy.lastName }}'s
+                    You're attending {{ myPost.invite.createdBy.fullName }}'s
                     open invite at {{ myPost.invite.venue }}.
                 </a>
             {% endif %}

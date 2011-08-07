@@ -9,8 +9,7 @@
 
     <div class="label">Address</div>
     {{ form_widget(form.address, { 'attr': {'autocomplete': 'off'} }) }}
-    {{ form_widget(form.lat, { 'attr': {'autocomplete': 'off'} }) }}
-    {{ form_widget(form.lon, { 'attr': {'autocomplete': 'off'} }) }}
+    {{ form_widget(form.coordinates, { 'attr': {'autocomplete': 'off'} }) }}
     <div class="clear"></div>
 
     <div class="label">Time</div>
@@ -18,7 +17,7 @@
     <div class="clear"></div>
 
     <div class="label">Picture</div>
-    {{ form_widget(form.file) }}
+    {{ form_widget(form.image) }}
     <div class="clear"></div>
 
     <div class="label">Description</div>
@@ -26,11 +25,8 @@
     <div class="clear"></div>
 
     <div class="label">Location</div>
-    {{ form_widget(form.location) }}
+    {% include "WhootBundle:Location:selectBox.html.twig" with {'locations': locations, 'default': app.user.currentLocation ? app.user.currentLocation.id : none, 'name': 'whoot_invite_form[currentLocation]'} %}
     <div class="clear"></div>
-    <div class="clear"></div>
-
-    {{ form_rest(form) }}
 
     <input type="submit" class="submit" value="Create Invite" />
 </form>

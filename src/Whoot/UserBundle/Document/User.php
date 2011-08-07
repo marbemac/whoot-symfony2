@@ -8,6 +8,7 @@ use Whoot\WhootBundle\Document\Post;
 use Doctrine\Common\Collections\ArrayCollection;
 use Whoot\WhootBundle\Util\SlugNormalizer;
 use Whoot\WhootBundle\Document\CurrentLocation;
+use Whoot\WhootBundle\Util\DateConverter;
 
 /**
  * @MongoDB\Document
@@ -70,6 +71,21 @@ class User extends BaseUser
     protected $score;
 
     /**
+     * @MongoDB\Field(type="int")
+     */
+    protected $followingCount;
+
+    /**
+     * @MongoDB\Field(type="int")
+     */
+    protected $followerCount;
+
+    /**
+     * @MongoDB\Field(type="int")
+     */
+    protected $pingCount;
+
+    /**
      * @MongoDB\EmbedOne(targetDocument="Whoot\WhootBundle\Document\CurrentLocation")
      */
     protected $currentLocation;
@@ -89,11 +105,23 @@ class User extends BaseUser
      */
     protected $dailyPings;
 
+    /**
+     * @MongoDB\Field(type="date")
+     */
+    protected $updatedAt;
+
+    /**
+     * @MongoDB\Field(type="date")
+     */
+    protected $createdAt;
+
     public function __construct() {
         parent::__construct();
         $this->status = 'Active';
         $this->score = 0;
-        $this->following = array();
+        $this->followingCount = 0;
+        $this->followerCount = 0;
+        $this->pingCount = 0;
     }
 
     /**
@@ -118,6 +146,16 @@ class User extends BaseUser
     public function getStatus()
     {
         return $this->status;
+    }
+    
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 
     /**
@@ -239,11 +277,20 @@ class User extends BaseUser
         $this->currentLocation = $currentLocation;
     }
 
-    public function setCurrentPost(Post $post)
+    public function setCurrentPost($post)
     {
-        $currentPost = new CurrentPost();
-        $currentPost->setPost($post);
-        $this->currentPost = $currentPost;
+        if ($post)
+        {
+            $currentPost = new CurrentPost();
+            $currentPost->setType($post->getType());
+            $currentPost->setLocation($post->getCurrentLocation()->getName());
+            $currentPost->setPost($post);
+            $this->currentPost = $currentPost;
+        }
+        else
+        {
+            $this->currentPost = null;
+        }
     }
 
     public function getCurrentPost()
@@ -251,16 +298,10 @@ class User extends BaseUser
         return $this->currentPost;
     }
 
-    public function setFollowing(array $following)
+    public function isFollowing($userId)
     {
-        $this->following = $following;
-    }
-
-    public function addFollowing($followingId)
-    {
-        if (!in_array($followingId, $this->following, true)) {
-            $this->following[] = new \MongoId($followingId);
-        }
+        $userId = is_object($userId) ? $userId->__toString() : $userId;
+        return isset($this->following[$userId]);
     }
 
     public function getFollowing()
@@ -272,11 +313,6 @@ class User extends BaseUser
             $following[] = new \MongoId($id);
         }
         return $following;
-    }
-
-    public function removeFollowing($key)
-    {
-        unset($this->following[$key]);
     }
 
     /**
@@ -295,6 +331,36 @@ class User extends BaseUser
     public function getFacebookId()
     {
         return $this->facebookId;
+    }
+
+    public function setFollowingCount($count)
+    {
+        $this->followingCount = $count;
+    }
+
+    public function getFollowingCount()
+    {
+        return $this->followingCount;
+    }
+
+    public function setFollowerCount($count)
+    {
+        $this->followerCount = $count;
+    }
+
+    public function getFollowerCount()
+    {
+        return $this->followerCount;
+    }
+
+    public function setPingCount($count)
+    {
+        $this->pingCount = $count;
+    }
+
+    public function getPingCount()
+    {
+        return $this->pingCount;
     }
 
     public function hasPinged($userId)
@@ -357,6 +423,22 @@ class User extends BaseUser
             $this->setGender($fbdata['gender']);
         }
     }
+
+    /**
+     * @MongoDB\prePersist
+     */
+    public function touchCreated()
+    {
+        $this->createdAt = $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @MongoDB\preUpdate
+     */
+    public function touchUpdated()
+    {
+        $this->updatedAt = new \DateTime();
+    }
 }
 
 /**
@@ -368,6 +450,16 @@ class CurrentPost
      * @MongoDB\Field(type="date")
      */
     protected $createdAt;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $type;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $location;
 
     /**
      * @MongoDB\Field(type="object_id")
@@ -384,10 +476,42 @@ class CurrentPost
         return $this->createdAt;
     }
 
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
+
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
     public function setPost($post)
     {
         $this->post = $post->getId();
         $this->createdAt = $post->getCreatedAt() ? $post->getCreatedAt() : new \Date();
+    }
+
+    public function isValid()
+    {
+        $date = new DateConverter(clone $this->getCreatedAt(), 'Y-m-d', '-5 hours');
+
+        if ($date == date('Y-m-d', time()))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public function getPost()

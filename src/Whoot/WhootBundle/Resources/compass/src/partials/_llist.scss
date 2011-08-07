@@ -105,33 +105,48 @@
     h2 {
         margin:  5px 0 10px 0;
     }
-    .list-left {
-        position: absolute;
-        top: -5px; left: 0px;
-        width: $list-left-w;
-        padding:  0 0 0 10px;
-
-        .none {
-            font-style: italic;
-        }
-        li {
-            padding-right: 25px;
-            position: relative;
-        }
-        .delete {
-            @include link();
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 12px;
-            font-weight: bold;
-        }
+    .list-name {
+        margin: 10px 0 10px 15px;
     }
-    .list-feed {
-        h2 {
-            margin-left: 10px;
+    .list-right {
+        position: absolute;
+        top: -10px; right: 0px;
+        z-index: 10;
+        .toggle {
+            @include orange-button(3px, 12px);
+            position: absolute;
+            top: 5px;
+            left: -125px;
+            padding: 2px 5px;
         }
-        padding-left: $list-left-w;
+        .wrapper
+        {
+            @include border-bottom-left-radius(3px);
+            @include single-box-shadow(#AAA, 0px, 0px);
+            width: $list-left-w;
+            padding:  5px 0 10px 10px;
+            background: #FFF;
+            border-left: 3px solid #999;
+            border-bottom: 3px solid #999;
+            max-height: 500px;
+            overflow: auto;
+
+            .none {
+                font-style: italic;
+            }
+            li {
+                padding-right: 25px;
+                position: relative;
+            }
+            .delete {
+                @include link();
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 12px;
+                font-weight: bold;
+            }
+        }
     }
 }
 #list-add-user {

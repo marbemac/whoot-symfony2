@@ -5,6 +5,18 @@
 {% endblock %}
 
 {% block page_content %}
-    <h1 class="create_invite-head">Create Open Invite</h1>
-    {% include "WhootBundle:Invite:new_content.html.twig" %}
+    <div id="invite-page">
+        <h1 class="create_invite-head">Create Open Invite</h1>
+
+        <div class="postBox-types">
+            <div class="label status">Status</div>
+            <div class="type working" data-val="working">Working</div>
+            <div class="type low_in" data-val="low_in">Staying In</div>
+            <div class="type low_out" data-val="low_out">Relaxing Out</div>
+            <div class="type big_out" data-val="big_out">Partying</div>
+            <div class="clear"></div>
+        </div>
+
+        {% include "WhootBundle:Invite:new_content.html.twig" %}
+    </div>
 {% endblock %}

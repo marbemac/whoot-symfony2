@@ -8,13 +8,9 @@ use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\DependencyInjection\ContainerAware,
     Symfony\Component\HttpKernel\Exception\NotFoundHttpException,
     Symfony\Component\Security\Core\Exception\AccessDeniedException,
-    Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken,
-    Symfony\Component\Security\Acl\Permission\MaskBuilder,
-    Symfony\Component\Security\Acl\Domain\UserSecurityIdentity,
-    Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+    Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-use Whoot\WhootBundle\Entity\LList;
-use Whoot\WhootBundle\Form\ListForm;
+use Whoot\WhootBundle\Form\Type\ListFormType;
 
 class LListController extends ContainerAware
 {
@@ -25,7 +21,7 @@ class LListController extends ContainerAware
      */
     public function listAction($userId)
     {
-        $lists = $this->container->get('whoot.manager.list')->findListsBy(array('createdBy' => $userId, 'status' => 'Active'));
+        $lists = $this->container->get('whoot.manager.llist')->findLListsBy(array('createdBy' => $userId, 'status' => 'Active'));
 
         $response = new Response();
         $response->setCache(array(
@@ -52,28 +48,17 @@ class LListController extends ContainerAware
         }
 
         $request = $this->container->get('request');
-        $securityContext = $this->container->get('security.context');
         $templating = $this->container->get('templating');
+        $user = $this->container->get('security.context')->getToken()->getUser();
 
         $form = $this->container->get('whoot.form.list');
         $formHandler = $this->container->get('whoot.form.handler.list');
 
-        $process = $formHandler->process(null);
+        $process = $formHandler->process(null, $user);
         if ($process) {
             $list = $form->getData();
             $redirectUrl = $this->container->get('router')->generate('homepage');
             $flashMessage = 'List created successfully!';
-
-            if ($this->container->has('security.acl.provider'))
-            {
-                // creating the ACL
-                $aclProvider = $this->container->get('security.acl.provider');
-                $acl = $aclProvider->createAcl(ObjectIdentity::fromDomainObject($list));
-
-                // grant owner access
-                $acl->insertObjectAce(UserSecurityIdentity::fromAccount($securityContext->getToken()->getUser()), MaskBuilder::MASK_OWNER);
-                $aclProvider->updateAcl($acl);
-            }
 
             if ($request->isXmlHttpRequest())
             {
@@ -192,16 +177,23 @@ class LListController extends ContainerAware
             return $login;
         }
 
-        $listManager = $this->container->get('whoot.manager.list');
-        $list = $listManager->findListBy(array('id' => $id), true);
-        $denied = $coreManager->accessDenied('EDIT', $list, 'error', 'You do not have permission to delete this list!');
-        if ($denied)
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $listManager = $this->container->get('whoot.manager.llist');
+        $list = $listManager->findLListBy(array('id' => $id));
+
+        if (!$list)
         {
-            return $denied;
+            return new RedirectResponse($_SERVER['HTTP_REFERER']);
         }
 
+        if ($list->getCreatedBy() != $user->getId())
+        {
+            return new RedirectResponse($_SERVER['HTTP_REFERER']);
+        }
+
+        $listManager->deleteLList($list);
+
         $request = $this->container->get('request');
-        $result = $listManager->deleteList($list);
 
         if ($request->isXmlHttpRequest())
         {
@@ -232,10 +224,12 @@ class LListController extends ContainerAware
             // return $response;
         }
 
-        $list = $this->container->get('whoot.manager.list')->findListUsers($id);
+        $list = $this->container->get('whoot.manager.llist')->findLListBy(array('id' => $id));
+        $listUsers = $this->container->get('whoot.manager.user')->findUsersBy(array('status' => 'Active'), array('id' => $list->getUsers()));
 
         return $this->container->get('templating')->renderResponse('WhootBundle:LList:show.html.twig', array(
-            'list' => $list
+            'list' => $list,
+            'listUsers' => $listUsers
         ), $response);
     }
 
@@ -289,8 +283,8 @@ class LListController extends ContainerAware
             return $response;
         }
 
-        $userList = $this->container->get('whoot.manager.list')->findUserList(array('list' => $listId, 'user' => $userId), true);
-        if ($userList && $userList->getStatus() == 'Active')
+        $userList = $this->container->get('whoot.manager.llist')->findLListBy(array('id' => $listId));
+        if ($userList && $userList->findUser($userId))
         {
             $result = array();
             $result['result'] = 'error';
@@ -301,24 +295,17 @@ class LListController extends ContainerAware
             return $response;
         }
 
-        $list = $this->container->get('whoot.manager.list')->findListBy(array('id' => $listId), true);
-//        $denied = $coreManager->accessDenied('EDIT', $list, 'error', 'You do not have permission to edit this list!');
-//        if ($denied)
-//        {
-//            return $denied;
-//        }
 
-        $user = $this->container->get('whoot.manager.list')->addUser($userList, $list, $userId);
+        $list = $this->container->get('whoot.manager.llist')->findLListBy(array('id' => $listId));
+        $this->container->get('whoot.manager.llist')->addUser($list, $userId);
+        $user = $this->container->get('whoot.manager.user')->findUserBy(array('id' => $userId));
 
-        if ($user && $request->isXmlHttpRequest())
+        if ($request->isXmlHttpRequest())
         {
             $result = array();
             $result['event'] = 'list_user_added';
-            if ($feedReload != 'no')
-            {
-                $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array('listId' => $listId));
-                $result['feed'] = $feed->getContent();
-            }
+            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array('list' => $list));
+            $result['feed'] = $feed->getContent();
             $result['user'] = $this->container->get('templating')->render('WhootUserBundle:Profile:tag.html.twig', array('user' => $user));
             $result['flash'] = array('type' => 'success', 'message' => 'User added to list successfully!');
             $response = new Response(json_encode($result));
@@ -345,10 +332,10 @@ class LListController extends ContainerAware
         }
 
         $request = $this->container->get('request');
-        $userListId = $request->query->get('userListId', null);
+        $userId = $request->query->get('userId', null);
         $listId = $request->query->get('listId', null);
 
-        if (!$userListId || !$listId)
+        if (!$userId || !$listId)
         {
             $result = array();
             $result['result'] = 'error';
@@ -359,8 +346,8 @@ class LListController extends ContainerAware
             return $response;
         }
 
-        $userList = $this->container->get('whoot.manager.list')->findUserList(array('id' => $userListId), true);
-        if (!$userList)
+        $list = $this->container->get('whoot.manager.llist')->findLListBy(array('id' => new \MongoId($listId)));
+        if (!$list || !$list->findUser($userId))
         {
             $result = array();
             $result['result'] = 'error';
@@ -371,23 +358,16 @@ class LListController extends ContainerAware
             return $response;
         }
 
-//        $list = $this->container->get('whoot.manager.list')->findListBy(array('id' => $listId), true);
-//        $denied = $coreManager->accessDenied('EDIT', $list, 'error', 'You do not have permission to edit this list!');
-//        if ($denied)
-//        {
-//            return $denied;
-//        }
+        $this->container->get('whoot.manager.llist')->removeUser($list, $userId);
 
-        $user = $this->container->get('whoot.manager.list')->deleteUserList($userList);
-
-        if ($user && $request->isXmlHttpRequest())
+        if ($request->isXmlHttpRequest())
         {
             $result = array();
             $result['event'] = 'list_user_deleted';
-            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array('listId' => $listId));
+            $feed = $this->container->get('http_kernel')->forward('WhootBundle:Post:feed', array('list' => $list));
             $result['feed'] = $feed->getContent();
             $result['flash'] = array('type' => 'success', 'message' => 'User removed successfully!');
-            $result['objectId'] = $userListId;
+            $result['objectId'] = $userId;
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 

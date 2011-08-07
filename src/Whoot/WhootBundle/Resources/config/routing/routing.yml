@@ -43,18 +43,18 @@ ping:
 #    resource: "@WhootBundle/Resources/config/routing/ping_api.yml"
 #    prefix:   /api/ping
 #
-#comment:
-#    resource: "@WhootBundle/Resources/config/routing/comment.yml"
-#    prefix:   /c
-#
+comment:
+    resource: "@WhootBundle/Resources/config/routing/comment.yml"
+    prefix:   /c
+
 #comment_api:
 #    resource: "@WhootBundle/Resources/config/routing/comment_api.yml"
 #    prefix:   /api/comment
 #
 #list:
-#    resource: "@WhootBundle/Resources/config/routing/list.yml"
-#    prefix:   /l
-#
+    resource: "@WhootBundle/Resources/config/routing/list.yml"
+    prefix:   /l
+
 #notifications:
 #    resource: "@EvarioNotificationBundle/Resources/config/routing.xml"
 #

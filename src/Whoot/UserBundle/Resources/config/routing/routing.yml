@@ -23,14 +23,16 @@ user_update_location:
         _method: POST
 
 user_upload_picture:
-    pattern:  /upload-picture
+    pattern:  /user/upload-picture
     defaults: { _controller: WhootUserBundle:Profile:uploadPicture }
     requirements:
         _method: POST
 
 user_ajax_search:
-    pattern:  /ajax-search
-    defaults: { _controller: WhootUserBundle:Profile:ajaxSearch }
+    pattern:  /ajax-search/{onlyFollowing}
+    defaults:
+        _controller: WhootUserBundle:Profile:ajaxSearch
+        onlyFollowing: false
     requirements:
         _method: GET
 
@@ -71,7 +73,7 @@ user_profile_show:
       _method: GET
 
 user_hover_tab:
-    pattern:  /{id}/ht
+    pattern:  /{userId}/ht
     defaults: { _controller: WhootUserBundle:Profile:hoverTab }
     requirements:
       _method: GET

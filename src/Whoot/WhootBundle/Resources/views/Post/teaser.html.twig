@@ -11,22 +11,22 @@
     </div>
 
     <div class="tags">
-        {#{% if post.invite.id is defined %}#}
-            {#<a href="{{ path('invite_show', {'inviteId': post.invite.id}) }}">#}
-                {#@{{ post.invite.venue }} with {{ post.invite.attending > 1 ? post.invite.attending-1~' others' : 'nobody.. loser' }}#}
-            {#</a>#}
-        {#{% else %}#}
+        {% if post.invite is defined and post.invite %}
+            <a href="{{ path('invite_show', {'inviteId': post.invite.invite}) }}">
+                @{{ post.invite.name }}
+            </a>
+        {% else %}
             {% for tag in post.tags %}
                 {% include "WhootBundle:Tag:teaser.html.twig" with {'tag': tag} %}
             {% else %}
                 Hmm... no tags. How did you do this?!
             {% endfor %}
-        {#{% endif %}#}
+        {% endif %}
     </div>
 
-    {#{% if post.invite.id is not defined %}#}
+    {% if post.invite is not defined or not post.invite %}
         {% include "WhootVoteBundle:Vote:show.html.twig" with {'object': post, 'objectType': 'Post'} %}
-    {#{% endif %}#}
+    {% endif %}
     
     <div class="clear"></div>
 </div>

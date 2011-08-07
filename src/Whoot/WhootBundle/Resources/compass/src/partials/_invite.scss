@@ -118,6 +118,11 @@ Purpose of the stylesheet follows.
         padding: 0 0 0 200px;
     }
 
+    .cancelled {
+        color: red;
+        font-weight: bold;
+    }
+
     .attending {
         li {
             margin: 5px 0 0 0;

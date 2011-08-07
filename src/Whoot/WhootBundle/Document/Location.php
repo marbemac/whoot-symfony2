@@ -2,7 +2,6 @@
 
 namespace Whoot\WhootBundle\Document;
 
-use FOS\UserBundle\Document\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
 use Whoot\WhootBundle\Model\ObjectInterface;
@@ -474,7 +473,7 @@ class School
 
     public function setFullName($state, $city)
     {
-        $this->fullName = $this->name.' - '.$city.', '.$state;
+        $this->fullName = $this->name.', '.$state;
         $this->slug = new SlugNormalizer($this->fullName);
         $this->slug = $this->slug->__toString();
     }
@@ -490,106 +489,52 @@ class School
     }
 }
 
-/**
- * @MongoDB\EmbeddedDocument
- */
-class CurrentLocation
+/** @MongoDB\EmbeddedDocument */
+class Coordinates
 {
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    protected $name;
+    /** @MongoDB\Field(type="float") */
+    protected $latitude;
+
+    /** @MongoDB\Field(type="float") */
+    protected $longitude;
 
     /**
-     * @MongoDB\Field(type="string")
+     * Set latitude
+     *
+     * @param float $latitude
      */
-    protected $type;
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+    }
 
     /**
-     * @MongoDB\Field(type="object_id")
+     * Get latitude
+     *
+     * @return float $latitude
      */
-    protected $state;
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
 
     /**
-     * @MongoDB\Field(type="object_id")
+     * Set longitude
+     *
+     * @param float $longitude
      */
-    protected $city;
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+    }
 
     /**
-     * @MongoDB\Field(type="object_id")
+     * Get longitude
+     *
+     * @return float $longitude
      */
-    protected $school;
-
-    public function __construct($locationData)
+    public function getLongitude()
     {
-        // Set the location IDs
-        $keys = array('state', 'city', 'school');
-        foreach ($locationData as $key => $id)
-        {
-            $this->$keys[$key] = $id;
-        }
-    }
-
-    // Gets the most specific ID on thie current location.
-    public function getId()
-    {
-        $keys = array('school', 'city', 'state');
-        foreach ($keys as $check)
-        {
-            if ($this->$check)
-            {
-                return $this->$check;
-            }
-        }
-    }
-
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    public function setState($stateId)
-    {
-        $this->state = $stateId;
-    }
-
-    public function getState()
-    {
-        return new \MongoId($this->state);
-    }
-
-    public function setCity($cityId)
-    {
-        $this->city = $cityId;
-    }
-
-    public function getCity()
-    {
-        return new \MongoId($this->city);
-    }
-
-    public function setSchool($schoolId)
-    {
-        $this->school = $schoolId;
-    }
-
-    public function getSchool()
-    {
-        return new \MongoId($this->school);
+        return $this->longitude;
     }
 }

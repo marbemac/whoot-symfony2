@@ -8,8 +8,8 @@ use Symfony\Component\Form\Error;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 
-use Whoot\WhootBundle\Entity\LList;
-use Whoot\WhootBundle\Entity\LlistManager;
+use Whoot\WhootBundle\Document\LList;
+use Whoot\WhootBundle\Document\LlistManager;
 
 class ListFormHandler
 {
@@ -24,7 +24,7 @@ class ListFormHandler
         $this->listManager = $listManager;
     }
     
-    public function process(LList $list = null)
+    public function process(LList $list = null, $createdBy)
     {
         if (null === $list) {
             $list = $this->listManager->createLList();
@@ -36,8 +36,8 @@ class ListFormHandler
             $this->form->bindRequest($this->request);
 
             if ($this->form->isValid()) {
-                $list->setSlug($list->getName());
-                $this->listManager->updateList($list);
+                $list->setCreatedBy($createdBy);
+                $this->listManager->updateLList($list);
 
                 return true;
             }

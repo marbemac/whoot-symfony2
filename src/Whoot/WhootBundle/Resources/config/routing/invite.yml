@@ -21,4 +21,3 @@ invite_show:
     defaults: { _controller: WhootBundle:Invite:show }
     requirements:
         _method: GET
-        inviteId: \d+

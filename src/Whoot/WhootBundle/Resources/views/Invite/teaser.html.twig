@@ -1,7 +1,7 @@
 <a name="invite-{{ invite.id }}"></a>
 <div class="teaser invite {{ invite.type }}" id="invite-{{ invite.id }}">
-    {% if invite.path %}
-        <img class="inviteImage" src="/slir/w120-h120-c1:1/uploads/{{ invite.subdirectory }}/{{ invite.path }}" />
+    {% if invite.image %}
+        {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': invite.image, 'w': 120, 'h': 120, 'class': 'inviteImage'} %}
     {% else %}
         <img class="inviteImage" src="/slir/w120-h120-c1:1/bundles/whoot/images/inviteDefault.png" />
     {% endif %}
@@ -29,12 +29,12 @@
 
     <div class="attending">
         <div class="container">
-            {% for post in invite.posts %}
-                <a href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}" title="{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}">
-                    {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 30} %}
+            {% for user in invite.attendees %}
+                <a href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.fullName }}">
+                    {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': user.currentProfileImage, 'w': 30, 'h': 30} %}
                 </a>
             {% endfor %}
         </div>
-        <h5>{{ invite.posts|length }} attending</h5>
+        <h5>{{ invite.attendingCount }} attending</h5>
     </div>
 </div>

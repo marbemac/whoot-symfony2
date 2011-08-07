@@ -3,7 +3,7 @@
 
         {% for invite in invites %}
             <li class="{{ loop.first ? 'first' : '' }}">
-                {% render 'WhootBundle:Invite:teaser' with {'inviteId': invite.id} %}
+                {% render 'WhootBundle:Invite:teaser' with {'invite': invite} %}
             </li>
         {% else %}
             <li class="none">

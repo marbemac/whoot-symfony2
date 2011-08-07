@@ -135,8 +135,11 @@ Purpose of the stylesheet follows.
             margin: 15px 0 7px 0;
         }
     }
+}
 
-        .type {
+#post-box,
+#invite-page {
+    .type {
         @include border-radius(5px);
         float: left;
         padding: 5px 15px;
@@ -318,7 +321,7 @@ $feed-filters-margin-top: 5px;
             .icon {
                 position: absolute;
                 left: 7px;
-                top: 4px;
+                top: 6px;
                 display: none;
             }
             li.on {
@@ -434,6 +437,7 @@ $post-hover-color: #E7EDFF;
         position: relative;
         top: 3px;
         left: 3px;
+        width: 45px;
         
         img {
             @include border-radius(5px);
@@ -549,16 +553,8 @@ $post-hover-color: #E7EDFF;
         margin: 0 0 0 185px;
     }
 
-    &.normal {
-    }
-    &.invite {
-        .activity-list {
-            width: 460px;
-        }
-        .right {
-            float: left;
-            width: 465px;
-        }
+    .location {
+        margin-bottom: 5px;
     }
 }
 
@@ -670,7 +666,7 @@ $post-hover-color: #E7EDFF;
         }
     }
     .user-link {
-        margin: 0;
+        margin: 0 0 0 6px;
         height: 10px;
         overflow: hidden;
         white-space: nowrap;

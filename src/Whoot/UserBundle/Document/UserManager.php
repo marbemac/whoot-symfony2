@@ -13,9 +13,13 @@ use Whoot\WhootBundle\Util\SlugNormalizer;
 
 class UserManager extends BaseUserManager
 {
+    protected $m;
+    
     public function __construct(EncoderFactoryInterface $encoderFactory, $algorithm, CanonicalizerInterface $usernameCanonicalizer, CanonicalizerInterface $emailCanonicalizer, DocumentManager $dm, $class)
     {
         parent::__construct($encoderFactory, $algorithm, $usernameCanonicalizer, $emailCanonicalizer, $dm, $class);
+
+        $this->m = $dm->getConnection()->selectDatabase($dm->getConfiguration()->getDefaultDB());
     }
 
     public function findUserBy(array $criteria)
@@ -64,25 +68,60 @@ class UserManager extends BaseUserManager
      * @param integer $userId
      * @param string $query
      */
-    public function findForSearch($userId, $search)
+    public function findForSearch($user, $search, $onlyFollowing, $limit)
     {
         $slug = new SlugNormalizer($search);
         $qb = $this->dm->createQueryBuilder($this->class);
 
+        $followingIds = $user->getFollowing();
+
         $qb->field('status')->equals('Active')
-            ->field('nameSlug')->equals(new \MongoRegex("/^{$slug->__toString()}/"));
+            ->select('id', 'firstName', 'lastName', 'username', 'currentProfileImage', 'currentLocation')
+            ->field('id')->in($followingIds)
+            ->field('nameSlug')->equals(new \MongoRegex("/^{$slug->__toString()}/"))
+            ->limit($limit);
 
         $query = $qb->getQuery();
-        $users = $query->execute();
+        $followingFound = $query->execute();
+
+        $foundUsers = array();
+        foreach ($followingFound as $foundUser)
+        {
+            $foundUsers[] = $foundUser;
+        }
+
+        // Are we also getting users we are not following?
+        if (!$onlyFollowing && count($foundUsers) < $limit)
+        {
+            $qb = $this->dm->createQueryBuilder($this->class);
+            $qb->field('status')->equals('Active')
+                ->select('id', 'firstName', 'lastName', 'username', 'currentProfileImage', 'currentLocation')
+                ->field('nameSlug')->equals(new \MongoRegex("/^{$slug->__toString()}/"))
+                ->limit($limit - count($followingFound));
+
+            if (count($foundUsers) > 0)
+            {
+                $qb->field('id')->notIn($followingIds);
+            }
+
+            $query = $qb->getQuery();
+            $users = $query->execute();
+
+            foreach ($users as $foundUser)
+            {
+                $foundUsers[] = $foundUser;
+            }
+        }
 
         $response = array();
-        foreach ($users as $user)
+        foreach ($foundUsers as $foundUser)
         {
             $response[] = array(
-                'name' => $user->getFullName(),
-                'username' => $user->getUsername(),
-                'profileImage' => $user->getCurrentProfileImage(),
-                'location' => $user->getCurrentLocation() ? $user->getCurrentLocation()->getName() : null
+                'id' => $foundUser->getId()->__toString(),
+                'name' => $foundUser->getFullName(),
+                'username' => $foundUser->getUsername(),
+                'profileImage' => $foundUser->getCurrentProfileImage(),
+                'location' => $foundUser->getCurrentLocation() ? $user->getCurrentLocation()->getName() : null
             );
         }
         return $response;
@@ -91,20 +130,62 @@ class UserManager extends BaseUserManager
     public function toggleFollow($fromUser, $toUserId)
     {
         $response = array();
-        $key = array_search($toUserId, $fromUser->getFollowing());
+        $toUser = $this->findUserBy(array('id' => new \MongoId($toUserId)));
 
-        if ($key !== false)
+        // Remove the follower
+        if ($toUser && $fromUser->isFollowing($toUserId))
         {
             $response['status'] = 'removed';
-            $fromUser->removeFollowing($key);
+            $this->m->User->update(
+                array('_id' => $fromUser->getId()),
+                array(
+                    '$inc' =>
+                        array(
+                            'followingCount' => -1
+                        ),
+                    '$unset' =>
+                        array(
+                            'following.'.$toUser->getId()->__toString() => 1,
+                        )
+                )
+            );
+            $this->m->User->update(
+                array('_id' => $toUser->getId()),
+                array(
+                    '$inc' =>
+                        array(
+                            'followerCount' => -1
+                        )
+                )
+            );
         }
+        // Add the follower
         else
         {
             $response['status'] = 'new';
-            $fromUser->addFollowing($toUserId);
+            $this->m->User->update(
+                array('_id' => $fromUser->getId()),
+                array(
+                    '$inc' =>
+                        array(
+                            'followingCount' => 1
+                        ),
+                    '$set' =>
+                        array(
+                            'following.'.$toUser->getId()->__toString() => $toUser->getId(),
+                        )
+                )
+            );
+            $this->m->User->update(
+                array('_id' => $toUser->getId()),
+                array(
+                    '$inc' =>
+                        array(
+                            'followerCount' => 1
+                        )
+                )
+            );
         }
-
-        $this->updateUser($fromUser);
 
         return $response;
     }

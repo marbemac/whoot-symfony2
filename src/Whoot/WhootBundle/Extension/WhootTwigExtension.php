@@ -13,21 +13,21 @@ class WhootTwigExtension extends \Twig_Extension {
         'working' => '<span>working</span> tonight',
         'low_in'  => '<span>staying in</span> tonight',
         'low_out' => '<span>relaxing out</span> tonight',
-        'big_out' => '<span>raging</span> tonight'
+        'big_out' => '<span>partying</span> tonight'
     );
 
     private $postTypesShort = array(
         'working' => 'Working',
         'low_in' => 'Staying In',
         'low_out' => 'Relaxing Out',
-        'big_out' => 'Raging'
+        'big_out' => 'Partying'
     );
 
     private $postTypesNoun = array(
         'working' => 'work',
         'low_in' => 'stay in',
         'low_out' => 'relax',
-        'big_out' => 'rage'
+        'big_out' => 'party'
     );
 
     public function getFilters() {
@@ -46,6 +46,7 @@ class WhootTwigExtension extends \Twig_Extension {
             'round'  => new \Twig_Filter_Method($this, 'round'),
             'json_encode'  => new \Twig_Filter_Method($this, 'json_encode'),
             'json_decode'  => new \Twig_Filter_Method($this, 'json_decode'),
+            'toString'  => new \Twig_Filter_Method($this, 'toString'),
         );
     }
 
@@ -251,6 +252,11 @@ class WhootTwigExtension extends \Twig_Extension {
             case ($hour >= 20 || $hour < 5):
                 return 'night';
         }
+    }
+
+    public function toString($obj)
+    {
+        return $obj->__toString();
     }
 
     public function getName()

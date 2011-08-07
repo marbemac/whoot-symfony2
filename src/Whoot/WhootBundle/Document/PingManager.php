@@ -54,6 +54,17 @@ class PingManager extends BaseManager
             $pingGroup->addPinger($fromUser->getId());
         }
 
+        // Increment the # of pings the target user has received
+        $this->m->User->update(
+            array('_id' => new \MongoId($toUserId)),
+            array(
+                '$inc' =>
+                    array(
+                        'pingCount' => 1
+                    )
+            )
+        );
+
         $this->updatePing($pingGroup, $andFlush);
     }
 }

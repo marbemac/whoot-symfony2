@@ -73,7 +73,7 @@
     target=/bundles/FOS/UserBundle
 
 [FOSFacebookBundle]
-    git=git://github.com/FriendsOfSymfony/FOSFacebookBundle.git
+    git=git://github.com/marbemac/FOSFacebookBundle.git
     target=/bundles/FOS/FacebookBundle
 
 [FacebookSDK]
@@ -83,6 +83,14 @@
 [EvarioNotificationBundle]
     git=git://github.com/evario/NotificationBundle.git
     target=/bundles/Evario/NotificationBundle
+
+[MarbemacVoteBundle]
+    git=git://github.com/marbemac/VoteBundle.git
+    target=/bundles/Marbemac/VoteBundle
+
+[MarbemacImageBundle]
+    git=git://github.com/marbemac/ImageBundle.git
+    target=/bundles/Marbemac/ImageBundle
 
 [Imagine]
     git=git://github.com/avalanche123/Imagine.git

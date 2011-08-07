@@ -1,6 +1,14 @@
 <div id="user-sidebar">
     <h1>{{ user.fullName }}</h1>
 
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="username">username: {{ user.username }}</div>
+        {% if user.id != app.user.id %}
+            <a class="user-switch" href="{{ path('homepage', {'_switch_user': user.username}) }}">Impersonate User</a>
+        {% endif %}
+    {% endif %}
+
+
     <div class="location">
         {{ user.currentLocation is defined ? user.currentLocation.name : 'Outer Space' }}
     </div>
@@ -13,5 +21,13 @@
         {% if app.user.id == user.id %}
             <li><a class="{{ navSelected == 'settings' ? 'on' : '' }}" href="{{ path('user_settings', {'username': user.username}) }}">Settings</a></li>
         {% endif %}
+    </ul>
+
+    <ul class="stats">
+        <li>Joined {{ user.createdAt|timeLapse(1) }}</li>
+        <li>Last login {{ user.lastLogin|timeLapse(1) }}</li>
+        <li>Following: {{ user.followingCount }}</li>
+        <li>Followers: {{ user.followerCount }}</li>
+        <li>Lifetime Pings: {{ user.pingCount }}</li>
     </ul>
 </div>

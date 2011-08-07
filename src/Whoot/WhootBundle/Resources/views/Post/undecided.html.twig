@@ -4,9 +4,9 @@
     <h4>Undecided Users</h4>
     {% for user in undecidedUsers %}
         <div class="item">
-            {#<a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.firstName }} {{ user.lastName }}">#}
-                {#{% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': user, 'dimensions': 30} %}#}
-            {#</a>#}
+            <a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.fullName }}">
+                {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': user.currentProfileImage, 'w': 30, 'h': 30} %}
+            </a>
             {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user, 'nameLimit': 12} %}
             {% include "WhootBundle:Ping:tag.html.twig" with {'toUser': user} %}
         </div>

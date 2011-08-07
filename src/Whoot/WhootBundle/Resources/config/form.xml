@@ -7,27 +7,28 @@
     <services>
 
 
-        <!--&lt;!&ndash; INVITE &ndash;&gt;-->
-        <!--<service id="whoot.form.invite" factory-method="create" factory-service="form.factory" class="%form.factory.class%">-->
-            <!--<argument type="service" id="whoot.form.type.invite" />-->
-            <!--<argument type="collection">-->
-                <!--<argument key="data_class">Whoot\WhootBundle\Entity\Invite</argument>-->
-            <!--</argument>-->
-        <!--</service>-->
+        <!-- INVITE -->
+        <service id="whoot.form.invite" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
+            <argument type="service" id="whoot.form.type.invite" />
+            <argument type="collection">
+                <argument key="data_class">Whoot\WhootBundle\Document\Invite</argument>
+            </argument>
+        </service>
 
-        <!--<service id="whoot.form.type.invite" class="Whoot\WhootBundle\Form\Type\InviteFormType">-->
-            <!--<argument>whoot.form.invite</argument>-->
-            <!--<argument type="service" id="whoot.manager.user" />-->
-            <!--<argument type="service" id="security.context" />-->
-            <!--<tag name="form.type" />-->
-        <!--</service>-->
+        <service id="whoot.form.type.invite" class="Whoot\WhootBundle\Form\Type\InviteFormType">
+            <argument>whoot.form.invite</argument>
+            <tag name="form.type" />
+        </service>
 
-        <!--<service id="whoot.form.handler.invite" class="Whoot\WhootBundle\Form\Handler\InviteFormHandler" scope="request">-->
-            <!--<argument type="service" id="whoot.form.invite" />-->
-            <!--<argument type="service" id="request" />-->
-            <!--<argument type="service" id="whoot.manager.invite" />-->
-            <!--<argument type="service" id="whoot.manager.post" />-->
-        <!--</service>-->
+        <service id="whoot.form.handler.invite" class="Whoot\WhootBundle\Form\Handler\InviteFormHandler" scope="request">
+            <argument type="service" id="whoot.form.invite" />
+            <argument type="service" id="request" />
+            <argument type="service" id="whoot.manager.invite" />
+            <argument type="service" id="whoot.manager.post" />
+            <argument type="service" id="marbemac.manager.image" />
+            <argument type="service" id="whoot.manager.user" />
+            <argument type="service" id="whoot.manager.location" />
+        </service>
 
         <!-- POST -->
         <service id="whoot.form.post" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
@@ -39,8 +40,6 @@
 
         <service id="whoot.form.type.post" class="Whoot\WhootBundle\Form\Type\PostFormType">
             <argument>whoot.form.post</argument>
-            <argument type="service" id="whoot.manager.user" />
-            <argument type="service" id="security.context" />
             <tag name="form.type" />
         </service>
 
@@ -66,45 +65,45 @@
             <tag name="form.type" />
         </service>
 
-        <!--&lt;!&ndash; COMMENT &ndash;&gt;-->
-        <!--<service id="whoot.form.comment" factory-method="create" factory-service="form.factory" class="%form.factory.class%">-->
-            <!--<argument type="service" id="whoot.form.type.comment" />-->
-            <!--<argument type="collection">-->
-                <!--<argument key="data_class">Whoot\WhootBundle\Entity\Comment</argument>-->
-            <!--</argument>-->
-        <!--</service>-->
+        <!-- COMMENT -->
+        <service id="whoot.form.comment" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
+            <argument type="service" id="whoot.form.type.comment" />
+            <argument type="collection">
+                <argument key="data_class">Whoot\WhootBundle\Document\Comment</argument>
+            </argument>
+        </service>
 
-        <!--<service id="whoot.form.type.comment" class="Whoot\WhootBundle\Form\Type\CommentFormType">-->
-            <!--<argument>whoot.form.comment</argument>-->
-            <!--<tag name="form.type" />-->
-        <!--</service>-->
+        <service id="whoot.form.type.comment" class="Whoot\WhootBundle\Form\Type\CommentFormType">
+            <argument>whoot.form.comment</argument>
+            <tag name="form.type" />
+        </service>
 
-        <!--<service id="whoot.form.handler.comment" class="Whoot\WhootBundle\Form\Handler\CommentFormHandler" scope="request">-->
-            <!--<argument type="service" id="whoot.form.comment" />-->
-            <!--<argument type="service" id="request" />-->
-            <!--<argument type="service" id="whoot.manager.comment" />-->
-            <!--<argument type="service" id="whoot.manager.post" />-->
-            <!--<argument type="service" id="whoot.manager.invite" />-->
-        <!--</service>-->
+        <service id="whoot.form.handler.comment" class="Whoot\WhootBundle\Form\Handler\CommentFormHandler" scope="request">
+            <argument type="service" id="whoot.form.comment" />
+            <argument type="service" id="request" />
+            <argument type="service" id="whoot.manager.comment" />
+            <argument type="service" id="whoot.manager.post" />
+            <argument type="service" id="whoot.manager.invite" />
+        </service>
 
-        <!--&lt;!&ndash; LLIST &ndash;&gt;-->
-        <!--<service id="whoot.form.list" factory-method="create" factory-service="form.factory" class="%form.factory.class%">-->
-            <!--<argument type="service" id="whoot.form.type.list" />-->
-            <!--<argument type="collection">-->
-                <!--<argument key="data_class">Whoot\WhootBundle\Entity\LList</argument>-->
-            <!--</argument>-->
-        <!--</service>-->
+        <!-- LLIST -->
+        <service id="whoot.form.list" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
+            <argument type="service" id="whoot.form.type.list" />
+            <argument type="collection">
+                <argument key="data_class">Whoot\WhootBundle\Document\LList</argument>
+            </argument>
+        </service>
 
-        <!--<service id="whoot.form.type.list" class="Whoot\WhootBundle\Form\Type\ListFormType">-->
-            <!--<argument>whoot.form.list</argument>-->
-            <!--<tag name="form.type" />-->
-        <!--</service>-->
+        <service id="whoot.form.type.list" class="Whoot\WhootBundle\Form\Type\ListFormType">
+            <argument>whoot.form.list</argument>
+            <tag name="form.type" />
+        </service>
 
-        <!--<service id="whoot.form.handler.list" class="Whoot\WhootBundle\Form\Handler\ListFormHandler" scope="request">-->
-            <!--<argument type="service" id="whoot.form.list" />-->
-            <!--<argument type="service" id="request" />-->
-            <!--<argument type="service" id="whoot.manager.list" />-->
-        <!--</service>-->
+        <service id="whoot.form.handler.list" class="Whoot\WhootBundle\Form\Handler\ListFormHandler" scope="request">
+            <argument type="service" id="whoot.form.list" />
+            <argument type="service" id="request" />
+            <argument type="service" id="whoot.manager.llist" />
+        </service>
 
         <!-- LOCATION -->
         <service id="form.type.state" class="Whoot\WhootBundle\Form\Type\StateType">

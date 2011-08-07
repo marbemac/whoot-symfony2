@@ -25,8 +25,8 @@ class InviteController extends ContainerAware
         $response = new Response();
         $feedFilters = $this->container->get('session')->get('feedFilters');
 
-        $postTypes = !$postTypes ? $feedFilters['postTypes'] : $postTypes;
-        $feedSort = !$feedSort ? $feedFilters['feedSort'] : $feedSort;
+        $postTypes = $feedFilters['postTypes'];
+        $feedSort = $feedFilters['feedSort'];
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
@@ -37,7 +37,9 @@ class InviteController extends ContainerAware
         }
         else
         {
-            $invites = $this->container->get('whoot.manager.invite')->findInvitesBy($user, $postTypes, $feedSort, date('Y-m-d 05:00:00', time()-(60*60*5)), $offset, $limit);
+            $following = $user->getFollowing();
+            $following[] = $user->getId();
+            $invites = $this->container->get('whoot.manager.invite')->findInvitesBy(array('status' => 'Active'), array('type' => $postTypes, 'createdBy' => $following), array($feedSort => 'desc'), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))), $offset, $limit);
         }
 
         $response->setCache(array(
@@ -73,7 +75,6 @@ class InviteController extends ContainerAware
         }
 
         $templating = $this->container->get('templating');
-        $request = $this->container->get('request');
         $securityContext = $this->container->get('security.context');
         $user = $securityContext->getToken()->getUser();
         $form = $this->container->get('whoot.form.invite');
@@ -81,13 +82,6 @@ class InviteController extends ContainerAware
 
         if ($formHandler->process(null, $user) === true) {
             $invite = $form->getData();
-
-            if ($this->container->has('security.acl.provider')) {
-                $provider = $this->container->get('security.acl.provider');
-                $acl = $provider->createAcl(ObjectIdentity::fromDomainObject($invite));
-                $acl->insertObjectAce(UserSecurityIdentity::fromAccount($user), MaskBuilder::MASK_OWNER);
-                $provider->updateAcl($acl);
-            }
 
             if ($_format == 'json')
             {
@@ -101,16 +95,20 @@ class InviteController extends ContainerAware
             return new RedirectResponse($this->container->get('router')->generate('invite_show', array('inviteId' => $invite->getId())));
         }
 
+        $locations = $this->container->get('whoot.manager.location')->findLocationsBy(array('status' => 'Active'), array(), array('stateName', 'ASC'));
+
         if ($chromeless)
         {
             return $templating->renderResponse('WhootBundle:Invite:new_content.html.twig', array(
                 'form' => $form->createView(),
+                'locations' => $locations,
                 '_format' => $_format
             ));
         }
 
         return $templating->renderResponse('WhootBundle:Invite:new.html.twig', array(
             'form' => $form->createView(),
+            'locations' => $locations,
             '_format' => $_format
         ));
     }
@@ -127,9 +125,18 @@ class InviteController extends ContainerAware
             return $login;
         }
 
+        $user = $this->container->get('security.context')->getToken()->getUser();
         $request = $this->container->get('request');
-        $myPost = $this->container->get('whoot.manager.post')->findPostBy(null, $this->container->get('security.context')->getToken()->getUser(), date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active');
-        if (!isset($myPost['invite']['id']) || $myPost['invite']['createdBy']['id'] != $this->container->get('security.context')->getToken()->getUser()->getId())
+        $oldInvites = $this->container->get('whoot.manager.invite')->findInvitesBy(array('createdBy' => $user->getId(), 'status' => 'Active'), array(), array(), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))));
+
+        $invite = null;
+        foreach ($oldInvites as $oldInvite)
+        {
+            $invite = $oldInvite;
+            break;
+        }
+
+        if (!$invite)
         {
             if ($request->isXmlHttpRequest())
             {
@@ -143,7 +150,15 @@ class InviteController extends ContainerAware
             }
         }
 
-        $this->container->get('whoot.manager.invite')->cancelInvite($myPost['invite']['id']);
+        $this->container->get('whoot.manager.invite')->cancelInvite($invite);
+
+        // Move all of the attendees to their old posts
+        $attendees = $this->container->get('whoot.manager.user')->findUsersBy(array('status' => 'Active'), array('id' => $invite->getAttending()));
+        $postManager = $this->container->get('whoot.manager.post');
+        foreach ($attendees as $attendee)
+        {
+            $postManager->activateLastPost($attendee);
+        }
 
         if ($request->isXmlHttpRequest())
         {
@@ -178,8 +193,13 @@ class InviteController extends ContainerAware
             // return $response;
         }
 
-        $invite = $this->container->get('whoot.manager.invite')->findInviteBy($inviteId);
-        $comments = $this->container->get('whoot.manager.comment')->findCommentsBy(null, $inviteId);
+        $invite = $this->container->get('whoot.manager.invite')->findInviteBy(array('id' => $inviteId));
+        $user = $this->container->get('whoot.manager.user')->findUserBy(array('id' => $invite->getCreatedBy()));
+        $attendees = $this->container->get('whoot.manager.user')->findUsersBy(array('status' => 'Active'), array('id' => $invite->getAttending()));
+        $this->container->get('doctrine.odm.mongodb.document_manager')->detach($invite);
+        $invite->setCreatedBy($user, true);
+        $invite->setAttendees($attendees);
+        $comments = $this->container->get('whoot.manager.comment')->findCommentsBy(array('invite' => $invite->getId(), 'status' => 'Active'));
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Invite:show.html.twig', array(
             'invite' => $invite,
@@ -188,7 +208,7 @@ class InviteController extends ContainerAware
         ), $response);
     }
 
-    public function teaserAction($inviteId, $_format='html')
+    public function teaserAction($invite, $_format='html')
     {
         $response = new Response();
         $response->setCache(array(
@@ -199,39 +219,15 @@ class InviteController extends ContainerAware
             // return $response;
         }
 
-        $invite = $this->container->get('whoot.manager.invite')->findInviteBy($inviteId, null, null, 'Active', false);
+        $user = $this->container->get('whoot.manager.user')->findUserBy(array('id' => $invite->getCreatedBy()));
+        $attendees = $this->container->get('whoot.manager.user')->findUsersBy(array('status' => 'Active'), array('id' => $invite->getAttending()));
+        $this->container->get('doctrine.odm.mongodb.document_manager')->detach($invite);
+        $invite->setCreatedBy($user, true);
+        $invite->setAttendees($attendees);
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Invite:teaser.'.$_format.'.twig', array(
             'invite' => $invite
         ), $response);
-    }
-
-
-    /**
-     * Display a attending button for the current user.
-     *
-     * @param integer $inviteId
-     */
-    public function attendingButtonAction($inviteId, $_format='html')
-    {
-        $securityContext = $this->container->get('security.context');
-
-        if ($securityContext->isGranted('ROLE_USER'))
-        {
-            $fromUser = $securityContext->getToken()->getUser();
-            $post = $this->container->get('whoot.manager.post')->findPostBy(null, $fromUser, date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active');
-        }
-        else
-        {
-            $fromUser = null;
-            $post = null;
-        }
-
-        return $this->container->get('templating')->renderResponse('WhootBundle:Invite:attendingButton.'.$_format.'.twig', array(
-            'fromUser' => $fromUser,
-            'inviteId' => $inviteId,
-            'post' => $post,
-        ));
     }
 
     /*
@@ -250,11 +246,11 @@ class InviteController extends ContainerAware
 
         $request = $this->container->get('request');
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $postManager = $this->container->get('whoot.manager.post');
 
         // Check to see if this user is the creator of a currently active open invite
-        $myPost = $postManager->findPostBy(null, $user, date('Y-m-d 05:00:00', time()-(60*60*5)), 'Active', true);
-        if ($myPost->getInvite() && $myPost->getInvite()->getCreatedBy()->getId() == $user->getId())
+        $oldInvite = $this->container->get('whoot.manager.invite')->findInvitesBy(array('createdBy' => $user->getId(), 'status' => 'Active'), array(), array(), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))));
+
+        if (count($oldInvite) > 0)
         {
             $result = array();
             $result['result'] = 'error';
@@ -265,7 +261,17 @@ class InviteController extends ContainerAware
             return $response;
         }
 
-        $result = $this->container->get('whoot.manager.invite')->toggleAttending($user->getId(), $myPost, $inviteId);
+        $this->container->get('whoot.manager.post')->disableDailyPosts($user);
+        $result = $this->container->get('whoot.manager.invite')->toggleAttendee($inviteId, $user);
+
+        if ($result['action'] == 'add')
+        {
+            $this->container->get('whoot.manager.post')->setInvitePost($result['invite'], $user);
+        }
+        else
+        {
+            $this->container->get('whoot.manager.post')->activateLastPost($user);
+        }
 
         if ($_format == 'json')
         {

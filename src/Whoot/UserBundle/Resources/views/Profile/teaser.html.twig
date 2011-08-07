@@ -5,7 +5,8 @@
     {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user} %}
     <div class="actions">
         {% include "WhootBundle:Follow:tag.html.twig" with {'toUser': user} %}
-        -
-        {% include "WhootBundle:Ping:tag.html.twig" with {'toUser': user} %}
+        {% if not user.currentPost or not user.currentPost.isValid %}
+            {% include "WhootBundle:Ping:tag.html.twig" with {'toUser': user} %}
+        {% endif %}
     </div>
 </li>

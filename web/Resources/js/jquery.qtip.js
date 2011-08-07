@@ -9,7 +9,7 @@
 *   http://en.wikipedia.org/wiki/MIT_License
 *   http://en.wikipedia.org/wiki/GNU_General_Public_License
 *
-* Date: Wed Jul 13 11:48:29 PDT 2011
+* Date: Mon Aug  1 10:57:03 PDT 2011
 */
 
 /*jslint browser: true, onevar: true, undef: true, nomen: true, bitwise: true, regexp: true, newcap: true, immed: true, strict: true */
@@ -209,12 +209,14 @@ function QTip(target, options, id, attr)
 		}
 	}
 
-	function removeTitle()
+	function removeTitle(reposition)
 	{
 		if(elements.title) {
 			elements.titlebar.remove();
 			elements.titlebar = elements.title = elements.button = NULL;
-			self.reposition();
+
+			// Reposition if enabled
+			if(reposition !== FALSE) { self.reposition(); }
 		}
 	}
 
@@ -315,11 +317,11 @@ function QTip(target, options, id, attr)
 
 		// Use function to parse content
 		if($.isFunction(content)) {
-			content = content.call(target, cache.event, self) || '';
+			content = content.call(target, cache.event, self);
 		}
 
-		// Remove title if content is FALSE
-		if(elem && content === FALSE) { removeTitle(); }
+		// Remove title if callback returns false
+		if(content === FALSE) { return removeTitle(FALSE); }
 
 		// Append new content if its a DOM array and show it if hidden
 		else if(content.jquery && content.length > 0) {
@@ -358,15 +360,18 @@ function QTip(target, options, id, attr)
 
 		// Image detection
 		function detectImages(next) {
-			var images;
+			var images, srcs = {};
 
-			function imageLoad(event) {
-				// Clear any timers and events associated with the image
-				clearTimeout(self.timers.img[this]);
-				$(this).unbind(namespace);
+			function imageLoad(image) {
+				// Clear src from object and any timers and events associated with the image
+				if(image) {
+					delete srcs[image.src];
+					clearTimeout(self.timers.img[image.src]);
+					$(image).unbind(namespace);
+				}
 
 				// If queue is empty after image removal, update tooltip and continue the queue
-				if((images = images.not(this)).length === 0) {
+				if($.isEmptyObject(srcs)) {
 					self.redraw();
 					if(reposition !== FALSE) {
 						self.reposition(cache.event);
@@ -377,20 +382,26 @@ function QTip(target, options, id, attr)
 			}
 
 			// Find all content images without dimensions, and if no images were found, continue
-			if((images = elem.find('img:not([height]):not([width])')).length === 0) { return imageLoad.call(images); }
+			if((images = elem.find('img:not([height]):not([width])')).length === 0) { return imageLoad(); }
 
 			// Apply timer to each image to poll for dimensions
 			images.each(function(i, elem) {
+				// Skip if the src is already present
+				if(srcs[elem.src] !== undefined) { return; }
+
 				(function timer(){
 					// When the dimensions are found, remove the image from the queue
-					if(elem.height && elem.width) { return imageLoad.call(elem); }
+					if(elem.height || elem.width) { return imageLoad(elem); }
 
 					// Restart timer
-					self.timers.img[elem] = setTimeout(timer, 1000);
+					self.timers.img[elem.src] = setTimeout(timer, 700);
 				}());
 
 				// Also apply regular load/error event handlers
-				$(elem).bind('error'+namespace+' load'+namespace, imageLoad);
+				$(elem).bind('error'+namespace+' load'+namespace, function(){ imageLoad(this); });
+
+				// Store the src and element in our object
+				srcs[elem.src] = elem;
 			});
 		}
 
@@ -446,7 +457,7 @@ function QTip(target, options, id, attr)
 		// Define hide method
 		function hideMethod(event)
 		{
-			if(tooltip.hasClass(disabled)) { return FALSE; }
+			if(tooltip.hasClass(disabled) || isPositioning || isDrawing) { return FALSE; }
 
 			// Check if new target was actually the tooltip element
 			var relatedTarget = $(event.relatedTarget || event.target),
@@ -459,7 +470,7 @@ function QTip(target, options, id, attr)
 
 			// Prevent hiding if tooltip is fixed and event target is the tooltip. Or if mouse positioning is enabled and cursor momentarily overlaps
 			if((posOptions.target === 'mouse' && ontoTooltip) || (options.hide.fixed && ((/mouse(out|leave|move)/).test(event.type) && (ontoTooltip || ontoTarget)))) {
-				event.preventDefault(); return;
+				event.preventDefault(); event.stopImmediatePropagation(); return;
 			}
 
 			// If tooltip has displayed, start hide timer
@@ -531,7 +542,7 @@ function QTip(target, options, id, attr)
 				var $target = $(event.target),
 					enabled = !tooltip.hasClass(disabled) && tooltip.is(':visible');
 
-				if($target.parents(selector).length === 0 && $target.add(target).length > 1) {
+				if($target[0] !== tooltip[0] && $target.parents(selector).length === 0 && $target.add(target).length > 1) {
 					self.hide(event);
 				}
 			});
@@ -577,7 +588,7 @@ function QTip(target, options, id, attr)
 		// Check if the tooltip hides when mouse is moved a certain distance
 		if('number' === typeof options.hide.distance) {
 			// Bind mousemove to target to detect distance difference
-			targets.show.bind('mousemove'+namespace, function(event) {
+			targets.show.add(tooltip).bind('mousemove'+namespace, function(event) {
 				var origin = cache.origin || {},
 					limit = options.hide.distance,
 					abs = Math.abs;
@@ -754,14 +765,14 @@ function QTip(target, options, id, attr)
 					})
 				);
 
-			// Set rendered flag and prevent redundant redraw calls for npw
+			// Set rendered flag and prevent redundant redraw/reposition calls for now
 			self.rendered = -1;
-			isDrawing = 1;
+			isDrawing = 1; isPositioning = 1;
 
 			// Update title
 			if(title) { 
 				createTitle();
-				updateTitle(title);
+				updateTitle(title, FALSE);
 			}
 
 			// Set proper rendered flag and update content
@@ -796,10 +807,13 @@ function QTip(target, options, id, attr)
 				callback.originalEvent = cache.event;
 				tooltip.trigger(callback, [self]);
 
-				// Redraw the tooltip manually now we're fully rendered
-				isDrawing = 0; self.redraw();
+				// Reset flags
+				isDrawing = 0; isPositioning = 0;
 
-				// Update tooltip position and show tooltip if needed
+				// Redraw the tooltip manually now we're fully rendered
+				self.redraw();
+
+				// Show tooltip if needed
 				if(options.show.ready || show) {
 					self.toggle(TRUE, cache.event);
 				}
@@ -998,6 +1012,11 @@ function QTip(target, options, id, attr)
 						left: '',
 						top: ''
 					});
+
+					// Autofocus elements if enabled
+					if('string' === typeof opts.autofocus) {
+						$(opts.autofocus, tooltip).focus();
+					}
 				}
 				else {
 					// Prevent antialias from disappearing in IE by removing filter
@@ -1225,11 +1244,11 @@ function QTip(target, options, id, attr)
 				at = { x: 'left', y: 'top' };
 
 				// Use cached event if one isn't available for positioning
-				event = event && (event.type === 'resize' || event.type === 'scroll') ? cache.event :
+				event = (event && (event.type === 'resize' || event.type === 'scroll') ? cache.event :
 					event && event.pageX && event.type === 'mousemove' ? event :
-					MOUSE && (adjust.mouse || !event || !event.pageX) ? { pageX: MOUSE.pageX, pageY: MOUSE.pageY } :
-					!adjust.mouse && cache.origin ? cache.origin :
-					event;
+					MOUSE && MOUSE.pageX && (adjust.mouse || !event || !event.pageX) ? { pageX: MOUSE.pageX, pageY: MOUSE.pageY } :
+					!adjust.mouse && cache.origin && cache.origin.pageX ? cache.origin :
+					event) || event || cache.event || MOUSE || {};
 
 				// Use event coordinates for position
 				position = { top: event.pageY, left: event.pageX };
@@ -1401,14 +1420,12 @@ function QTip(target, options, id, attr)
 
 		disable: function(state)
 		{
-			var c = disabled;
-			
 			if('boolean' !== typeof state) {
-				state = !(tooltip.hasClass(c) || cache.disabled);
+				state = !(tooltip.hasClass(disabled) || cache.disabled);
 			}
 			 
 			if(self.rendered) {
-				tooltip.toggleClass(c, state);
+				tooltip.toggleClass(disabled, state);
 				$.attr(tooltip[0], 'aria-disabled', state);
 			}
 			else {
@@ -1462,7 +1479,7 @@ function QTip(target, options, id, attr)
 // Initialization method
 function init(id, opts)
 {
-	var obj, posOptions, attr, config,
+	var obj, posOptions, attr, config, title,
 
 	// Setup element references
 	elem = $(this),
@@ -1530,9 +1547,8 @@ function init(id, opts)
 	}
 
 	// Remove title attribute and store it if present
-	if($.attr(this, 'title')) {
-		$.attr(this, oldtitle, $.attr(this, 'title'));
-		this.removeAttribute('title');
+	if(title = $.attr(this, 'title')) {
+		$(this).removeAttr('title').attr(oldtitle, title);
 	}
 
 	// Initialize the tooltip and add API reference
@@ -1857,7 +1873,8 @@ QTIP.defaults = {
 		effect: TRUE,
 		delay: 90,
 		solo: FALSE,
-		ready: FALSE
+		ready: FALSE,
+		autofocus: FALSE
 	},
 	hide: {
 		target: FALSE,
@@ -1927,7 +1944,7 @@ function Ajax(api)
 			// Make sure default event hasn't been prevented
 			if(event && event.isDefaultPrevented()) { return self; }
 			
-			var hasSelector = opts.url.indexOf(' '), 
+			var hasSelector = opts.url.indexOf(' '),
 				url = opts.url,
 				selector,
 				hideFirst = opts.once && !opts.loading && first;
@@ -1945,6 +1962,9 @@ function Ajax(api)
 			function after() {
 				// Re-display tip if loading and first time, and reset first flag
 				if(hideFirst) { tooltip.css('visibility', ''); first = FALSE; }
+
+				// Call users complete if it was defined
+				if($.isFunction(opts.complete)) { opts.complete.apply(this, arguments); }
 			}
 
 			// Define success handler
@@ -1962,15 +1982,13 @@ function Ajax(api)
 
 				// Set the content
 				api.set('content.text', content);
-
-				after(); // Call common callback
 			}
 
 			// Error handler
-			function errorHandler(xh, status, error){ api.set('content.text', status + ': ' + error); after(); }
+			function errorHandler(xh, status, error){ api.set('content.text', status + ': ' + error); }
 
 			// Setup $.ajax option object and process the request
-			$.ajax( $.extend({ success: successHandler, error: errorHandler, context: api }, opts, { url: url }) );
+			$.ajax( $.extend({ success: successHandler, error: errorHandler, context: api }, opts, { url: url, complete: after }) );
 			
 			return self;
 		}
@@ -2647,7 +2665,7 @@ function Modal(api)
 
 			// Adjust modal z-index on tooltip focus
 			.bind('tooltipfocus'+globalNamespace, function(event, api, zIndex) {
-				overlay[0].style.zIndex = zIndex;
+				overlay[0].style.zIndex = zIndex - 1;
 			})
 
 			// Focus any other visible modals when this one blurs
@@ -2801,8 +2819,7 @@ function Modal(api)
 	self.init();
 }
 
-PLUGINS.modal = function(api)
-{
+PLUGINS.modal = function(api) {
 	var self = api.plugins.modal;
 
 	return 'object' === typeof self ? self : (api.plugins.modal = new Modal(api));

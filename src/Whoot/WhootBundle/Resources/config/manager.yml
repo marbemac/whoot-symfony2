@@ -2,13 +2,16 @@ parameters:
     whoot.manager.core.class:                  Whoot\WhootBundle\Document\CoreManager
     whoot.manager.post.class:                  Whoot\WhootBundle\Document\PostManager
     whoot.post.class:                          Whoot\WhootBundle\Document\Post
-#    whoot.manager.invite.class:                Whoot\WhootBundle\Entity\InviteManager
+    whoot.manager.invite.class:                Whoot\WhootBundle\Document\InviteManager
+    whoot.invite.class:                        Whoot\WhootBundle\Document\Invite
     whoot.manager.tag.class:                   Whoot\WhootBundle\Document\TagManager
     whoot.tag.class:                           Whoot\WhootBundle\Document\Tag
     whoot.manager.ping.class:                  Whoot\WhootBundle\Document\PingManager
     whoot.ping.class:                          Whoot\WhootBundle\Document\Ping
-#    whoot.manager.comment.class:               Whoot\WhootBundle\Entity\CommentManager
-#    whoot.manager.list.class:                  Whoot\WhootBundle\Entity\LListManager
+    whoot.manager.comment.class:               Whoot\WhootBundle\Document\CommentManager
+    whoot.comment.class:                       Whoot\WhootBundle\Document\Comment
+    whoot.manager.llist.class:                 Whoot\WhootBundle\Document\LListManager
+    whoot.llist.class:                         Whoot\WhootBundle\Document\LList
     whoot.manager.location.class:              Whoot\WhootBundle\Document\LocationManager
     whoot.location.class:                      Whoot\WhootBundle\Document\Location
 
@@ -20,24 +23,21 @@ services:
     whoot.manager.post:
         class:        %whoot.manager.post.class%
         arguments:    ["@doctrine.odm.mongodb.document_manager", %whoot.post.class%]
-#    whoot.manager.invite:
-#        class:        %whoot.manager.invite.class%
-#        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.manager.user"]
+    whoot.manager.invite:
+        class:        %whoot.manager.invite.class%
+        arguments:    ["@doctrine.odm.mongodb.document_manager", %whoot.invite.class%]
     whoot.manager.tag:
         class:        %whoot.manager.tag.class%
         arguments:    ["@doctrine.odm.mongodb.document_manager", %whoot.tag.class%]
     whoot.manager.ping:
         class:        %whoot.manager.ping.class%
         arguments:    ["@doctrine.odm.mongodb.document_manager", %whoot.ping.class%]
-#    whoot.manager.ping:
-#        class:        %whoot.manager.ping.class%
-#        arguments:    ["@doctrine.orm.default_entity_manager", "@whoot.manager.notification"]
-#    whoot.manager.comment:
-#        class:        %whoot.manager.comment.class%
-#        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context"]
-#    whoot.manager.list:
-#        class:        %whoot.manager.list.class%
-#        arguments:    ["@doctrine.orm.default_entity_manager", "@security.context", "@whoot.manager.user"]
+    whoot.manager.comment:
+        class:        %whoot.manager.comment.class%
+        arguments:    ["@doctrine.odm.mongodb.document_manager", %whoot.comment.class%]
+    whoot.manager.llist:
+        class:        %whoot.manager.llist.class%
+        arguments:    ["@doctrine.odm.mongodb.document_manager", %whoot.llist.class%]
     whoot.manager.location:
         class:        %whoot.manager.location.class%
         arguments:    ["@doctrine.odm.mongodb.document_manager", %whoot.location.class%]

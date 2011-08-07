@@ -6,7 +6,6 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
 use Whoot\WhootBundle\Model\ObjectInterface;
 use Marbemac\VoteBundle\Document\VotableInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @MongoDB\Document
@@ -29,6 +28,12 @@ class Post implements ObjectInterface, VotableInterface
     
     /**
      * @MongoDB\Field(type="string")
+     *
+     * @ASSERT\NotBlank()
+     * @ASSERT\Choice(
+     *     choices = {"working", "low_in", "low_out", "big_out"},
+     *     message = "Choose a valid activity."
+     * )
      */
     protected $type;
 
@@ -85,12 +90,18 @@ class Post implements ObjectInterface, VotableInterface
      */
     protected $votes;
 
+    protected $voters;
+
+    /**
+     * @MongoDB\EmbedOne(targetDocument="PostInvite")
+     */
+    protected $invite;
+
     public function __construct() {
         $this->status = 'Active';
         $this->score = 0;
         $this->isCurrentPost = true;
         $this->tags = array();
-        $this->votes = array();
     }
 
     /**
@@ -300,11 +311,6 @@ class Post implements ObjectInterface, VotableInterface
         $this->currentLocation = $currentLocation;
     }
 
-    public function getVotes()
-    {
-        return $this->votes;
-    }
-
     public function findVote($voterId)
     {
         $voterId = is_object($voterId) ? $voterId->__toString() : $voterId;
@@ -314,6 +320,52 @@ class Post implements ObjectInterface, VotableInterface
         }
 
         return false;
+    }
+
+    public function getVotes()
+    {
+        $votes = array();
+        if ($this->votes)
+        {
+            foreach ($this->votes as $key => $vote)
+            {
+                $votes[] = new \MongoId($key);
+            }
+        }
+
+        return $votes;
+    }
+    
+    public function setVoters($voters)
+    {
+        $this->voters = $voters;
+    }
+
+    public function getVoters()
+    {
+        return $this->voters;
+    }
+
+    public function setInvite(Invite $invite, $embed = false)
+    {
+        if ($embed)
+        {
+            $this->invite = $invite;
+        }
+        else
+        {
+            $this->type = $invite->getType();
+            $this->currentLocation = $invite->getCurrentLocation();
+            $postInvite = new PostInvite();
+            $postInvite->setName($invite->getVenue());
+            $postInvite->setInvite($invite);
+            $this->invite = $postInvite;
+        }
+    }
+
+    public function getInvite()
+    {
+        return $this->invite;
     }
 
     /**
@@ -367,5 +419,41 @@ class PostTag
     public function getTag()
     {
         return new \MongoId($this->tag);
+    }
+}
+
+/**
+ * @MongoDB\EmbeddedDocument
+ */
+class PostInvite
+{
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $name;
+
+    /**
+     * @MongoDB\Field(type="object_id")
+     */
+    protected $invite;
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setInvite(Invite $invite)
+    {
+        $this->invite = $invite->getId();
+    }
+
+    public function getInvite()
+    {
+        return new \MongoId($this->invite);
     }
 }

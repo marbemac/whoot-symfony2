@@ -39,7 +39,8 @@ $(function() {
             // @param file basename of uploaded file
             // @param response server response
             onComplete: function(file, response) {
-                location.reload();
+                var response = $.parseJSON(response);
+                $('#my-profile-image').attr('src', response.imageUrl);
             }
         });
     })

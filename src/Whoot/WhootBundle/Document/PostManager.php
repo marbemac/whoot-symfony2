@@ -4,7 +4,6 @@ namespace Whoot\WhootBundle\Document;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Whoot\WhootBundle\Model\ObjectManager as BaseManager;
-use Whoot\WhootBundle\Util\DateConverter;
 
 class PostManager extends BaseManager
 {
@@ -42,14 +41,90 @@ class PostManager extends BaseManager
     {
         if ($user->getCurrentPost())
         {
-            $date = new DateConverter(clone $user->getCurrentPost()->getCreatedAt(), 'Y-m-d', '+5 hours');
-            if ($date == date('Y-m-d', time()))
+            if ($user->getCurrentPost()->isValid())
             {
                 return $this->findPostBy(array('id' => $user->getCurrentPost()->getPost()));
             }
         }
 
         return null;
+    }
+
+    public function disableDailyPosts($user)
+    {
+        $oldPosts = $this->findPostsBy(array('createdBy' => $user->getId(), 'isCurrentPost' => true), array(), array(), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))));
+        foreach ($oldPosts as $oldPost)
+        {
+            $oldPost->setIsCurrentPost(false);
+            $this->updatePost($oldPost, false);
+
+            if ($oldPost->getInvite())
+            {
+                $this->m->Invite->update(
+                    array('_id' => $oldPost->getInvite()->getInvite()),
+                    array(
+                        '$inc' =>
+                            array(
+                                'attendingCount' => -1
+                            ),
+                        '$unset' =>
+                            array(
+                                'attending.'.$user->getId()->__toString() => 1,
+                            )
+                    )
+                );
+            }
+        }
+        $this->dm->flush();
+    }
+
+    public function setInvitePost($invite, $user)
+    {
+        $post = $this->findPostBy(array('createdBy' => $user->getId(), 'invite.invite' => $invite->getId()));
+
+        if ($post)
+        {
+            $post->setIsCurrentPost(true);
+        }
+        else
+        {
+            $post = $this->createPost();
+            $post->setInvite($invite);
+            $post->setCreatedBy($user->getId()->__toString());
+        }
+
+        $this->updatePost($post);
+        $user->setCurrentPost($post);
+        $this->dm->persist($user);
+        $this->dm->flush();
+    }
+
+    public function activateLastPost($user)
+    {
+        $qb = $this->dm->createQueryBuilder($this->class);
+
+        $qb->field('createdBy')->equals($user->getId())
+            ->field('isCurrentPost')->equals(false)
+            ->field('invite')->exists(false)
+            ->field('createdAt')->gte(new \MongoDate(strtotime(date('Y-m-d 05:00:00', time()-(60*60*5)))))
+            ->sort('createdAt', 'DESC');
+
+        $query = $qb->getQuery();
+
+        $post = $query->getSingleResult();
+
+        if ($post)
+        {
+            $post->setIsCurrentPost(true);
+            $user->setCurrentPost($post);
+            $this->updatePost($post);
+        }
+        else
+        {
+            $user->setCurrentPost(null);
+        }
+
+        $this->dm->persist($user);
     }
 
 //    public function findPostBy($postId, $createdBy=null, $createdAt=null, $postStatus=null, $returnObject=false)

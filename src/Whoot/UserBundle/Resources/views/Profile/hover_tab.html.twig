@@ -1,14 +1,20 @@
 <div class="user-hover-tab">
-    {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user':user, 'dimensions':50} %}
-    {% render "WhootBundle:Follow:tag" with {'toUser': user.id} %}
+    {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': user.currentProfileImage, 'w': 50, 'h': 50, 'class': 'profileImage'} %}
+    {% include "WhootBundle:Follow:tag.html.twig" with {'toUser': user} %}
 
-    <div class="name">{{ user.firstName }} {{ user.lastName }}</div>
-    <div class="location">
-        {{ user.location.cityName is defined and user.location.cityName|length > 2 ? user.location.cityName~', '~user.location.stateCode : 'Outer Space' }}
+    <div class="name">{{ user.fullName }}</div>
+
+    <div class="what {{ user.currentPost and user.currentPost.isValid ? user.currentPost.type : '' }}">
+        {% if user.currentPost and user.currentPost.isValid %}
+            <div>{{ user.currentPost.type|printPostTypeShort }}</div>
+            <div>{{ user.currentPost.location }}</div>
+        {% else %}
+            Undecided - {% include "WhootBundle:Ping:tag.html.twig" with {'toUser': user} %}
+        {% endif%}
     </div>
+
     <div class="stats">
-        <div class="followers">23 Followers</div>
-        <div class="pings">5 Pings</div>
-        <div class="jives">12 Jives</div>
+        <div class="following">Following: {{ user.followingCount }}</div>
+        <div class="followers">Followers: {{ user.followerCount }}</div>
     </div>
 </div>

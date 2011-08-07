@@ -8,27 +8,32 @@
     <div class="invite_show {{ invite.type }}">
         <h1><span>{{ invite.type|printPostTypeNoun|capitalize }}</span> at {{ invite.venue }}</h1>
         <div class="left">
-            {% if invite.path %}
-                <img class="inviteImage" src="/slir/w180-h180-c1:1/uploads/{{ invite.subdirectory }}/{{ invite.path }}" />
+            {% if invite.image %}
+                {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': invite.image, 'w': 180, 'h': 180, 'class': 'inviteImage'} %}
             {% else %}
                 <img class="inviteImage" src="/slir/w180-h180-c1:1/bundles/whoot/images/inviteDefault.png" />
             {% endif %}
 
-            <h3>{{ invite.posts|length }} attending</h3>
+            <h3>{{ invite.attendingCount }} attending</h3>
             <ul class="attending">
-                {% for post in invite.posts %}
+                {% for user in invite.attendees %}
                     <li>
-                        <a class="profile-image" href="{{ path('user_profile_show', {'username': post.createdBy.username}) }}" title="{{ post.createdBy.firstName }} {{ post.createdBy.lastName }}">
-                            {% include "WhootUserBundle:Profile:profileImage.html.twig" with {'user': post.createdBy, 'dimensions': 30} %}
+                        <a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.fullName }}">
+                            {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': user.currentProfileImage, 'w': 30, 'h': 30} %}
                         </a>
-                        {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': post.createdBy} %}
+                        {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user} %}
                     </li>
                 {% endfor %}
             </ul>
         </div>
         <div class="right">
             <div class="info">
-                {% render "WhootBundle:Invite:attendingButton" with {'inviteId': invite.id} %}
+                {% if invite.status == 'Active' %}
+                    {% include "WhootBundle:Invite:attendingButton.html.twig" with {'invite': invite} %}
+                {% else %}
+                    <div class="cancelled">This invite was cancelled.</div>
+                {% endif %}
+
                 <div class="item">
                     created by
                     {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': invite.createdBy, 'nameLimit': 15} %}
@@ -42,8 +47,8 @@
                 <div class="description">
                     {{ invite.description }}
                 </div>
-                {% if invite.lat and invite.lon %}
-                    <div id="map-{{ invite.id }}" class="invite-map" data-name="{{ invite.venue }}" data-lat="{{ invite.lat }}" data-lon="{{ invite.lon }}"></div>
+                {% if invite.coordinates %}
+                    <div id="map-{{ invite.id }}" class="invite-map" data-name="{{ invite.venue }}" data-lat="{{ invite.coordinates.latitude }}" data-lon="{{ invite.coordinates.longitude }}"></div>
                 {% endif %}
             </div>
             {% include "WhootBundle:Comment:feed.html.twig" with {'rootId': invite.id, 'type': 'invite', 'comments': comments} %}

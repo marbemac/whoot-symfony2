@@ -50,7 +50,7 @@ class FollowController extends ContainerAware
             $result['userId'] = $userId;
             $result['event'] = 'follow_toggle';
             $result['flash'] = array('type' => 'success', 'message' => 'User ' . ($result['status'] == 'removed' ? 'unfollowed' : 'followed') .' successfully!');
-            $result['newText'] = $result['status'] == 'existing' ? 'Follow' : 'Unfollow';
+            $result['newText'] = $result['status'] == 'removed' ? 'Follow' : 'Unfollow';
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
 

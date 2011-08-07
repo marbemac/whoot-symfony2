@@ -56,19 +56,6 @@ $(function(){
         $('#my-post').replaceWith(data.myPost);
     });
 
-    amplify.subscribe("jive_toggle", function( data ) {
-        $('#my-post').replaceWith(data.myPost);
-
-        if (data.oldPostId)
-        {
-            $('#post-'+data.oldPostId).parent().fadeOut(500, function() { $(this).remove() });
-        }
-
-        $('#post-'+data.postId).parent().fadeTo(250, .01, function() {
-            $(this).html(data.post).fadeTo(250, 1);
-        })
-    });
-
     /*
      * VOTING
      */
@@ -147,6 +134,11 @@ $(function(){
     // Listens for when a list user is deleted
     amplify.subscribe("list_user_deleted", function( data ) {
         $('#uld-'+data.objectId).parent().remove();
+    });
+
+    // Listens for when a list user is added
+    amplify.subscribe("list_user_added", function( data ) {
+        $('#list-user-panel ul').prepend(data.user);
     });
 
 

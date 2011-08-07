@@ -23,8 +23,5 @@ fos_facebook:
     app_id: 224410564236351
     secret: 3c09fdeb1e2fddde45dd895c70c790a0
 
-swiftmailer:
+#swiftmailer:
 #    disable_delivery: true
-    transport: gmail
-    username:  testing@thewhoot.com
-    password: testingwhoot

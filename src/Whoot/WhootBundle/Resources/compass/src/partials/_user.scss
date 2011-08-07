@@ -188,6 +188,26 @@
             background: #CC3300;
         }
     }
+    .stats {
+        font-size: 10px;
+        color: #666;
+        border-top: 1px solid #DDD;
+        padding: 5px 0 0 3px;
+
+        li {
+            margin: 2px 0;
+        }
+    }
+    .username {
+        font-size: 10px;
+        margin: 0 0 2px 3px;
+        color: red;
+    }
+    .user-switch {
+        font-size: 10px;
+        margin: 0 0 2px 3px;
+        display: block;
+    }
 }
 
 .following.feed,
@@ -251,45 +271,25 @@
 
 .user-link {
     position: relative;
-    padding: 0 0 0 7px;
     z-index: 30;
 
-    .drag-handleC {
-        position: absolute;
-        top: 50%;
-        margin-top: -10px;
-        left: -16px;
-        cursor: move;
-        background: #FFF;
-        padding: 3px;
-        display: none;
-
-        div {
-            border:  2px dotted #999;
-            height: 10px;
-            width: 10px;
-        }
-    }
     &:hover {
         text-decoration: none;
-        .drag-handleC {
-            display: block;
-        }
     }
 }
 
 .user-hover-tab {
     position: relative;
-    padding: 0 0 0 70px;
+    padding: 0 0 0 65px;
 
     .profileImage {
         @include border-radius(3px);
         position: absolute;
         top: -5px;
-        left: -5px;
+        left: 0px;
     }
     .follow-B {
-        @include orange-button(3px, 12px);
+        @include orange-button(3px, 10px);
         position: absolute;
         bottom: 0;
         left: -5px;
@@ -299,17 +299,28 @@
         font-size: 20px;
         margin-top: 6px;
     }
-    .location {
-        font-size: 16px;
-        font-style: italic;
-        margin: 8px 0 0 0;
+    .what {
+        font-size: 12px;
+        margin: 6px 0 0 0;
+    }
+    .working {
+        color: $post-working-color;
+    }
+    .low_in {
+        color: $post-low_in-color;
+    }
+    .low_out {
+        color: $post-low_out-color;
+    }
+    .big_out {
+        color: $post-big_out-color;
     }
     .stats {
         @include clearfix();
         border-top: 1px solid #AAA;
         margin: 6px 0 0 0;
-        padding: 6px 0 15px 0;
-        font-size: 14px;
+        padding: 6px 0 2px 0;
+        font-size: 12px;
 
         div {
             float: left;
@@ -366,5 +377,14 @@
             padding: 4px 10px;
             margin: 20px 10px 0 10px;
         }
+    }
+}
+
+select.location {
+    .c {
+        font-weight: bold;
+    }
+    .s {
+        padding-left: 30px;
     }
 }

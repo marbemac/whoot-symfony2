@@ -93,7 +93,7 @@ class ProfileController extends ContainerAware
             $user = $this->container->get('security.context')->getToken()->getUser();
         }
         
-        $followers = $this->container->get('whoot.manager.user')->findUsersBy(array('following' => $user->getId()), array(), $offset, $limit);
+        $followers = $this->container->get('whoot.manager.user')->findUsersBy(array('following.'.$user->getId()->__toString() => $user->getId()), array(), $offset, $limit);
 
         $response = new Response();
         $response->setCache(array(
@@ -184,7 +184,7 @@ class ProfileController extends ContainerAware
         {
             // Pull from gravatar
             $url = 'http://www.gravatar.com/avatar/'.md5( strtolower( trim( $user->getEmail() ) ) ).'?d=mm&s=500';
-            $tmpLocation = '/tmp/'.uniqid('i', true).'.png';
+            $tmpLocation = '/tmp/'.uniqid('i');
             file_put_contents($tmpLocation, file_get_contents($url));
             $image = $this->container->get('marbemac.manager.image')->saveImage($tmpLocation, $user->getId(), null, 'user-profile', null, true, null, null, null);
         }
@@ -203,40 +203,21 @@ class ProfileController extends ContainerAware
 
         $img = $_FILES['file']['tmp_name'];
 
-        // check that it's an image
-        $fileTypes = array('jpg','jpeg','gif','png'); // File extensions
-        $imgInfo_array = getimagesize($img);
-        $parts = explode('/', $imgInfo_array['mime']);
-        $ext = $parts[count($parts)-1];
+        $image = $this->container->get('marbemac.manager.image')->saveImage($img, $user->getId(), null, 'user-profile', null, true, null, null, null);
+        $user->setCurrentProfileImage($image->getGroupId());
+        $this->container->get('whoot.manager.user')->updateUser($user);
 
         $result = array();
-
-        if ($img > 5000000 || !in_array($ext,$fileTypes))
-        {
-            $result['status'] = 'error';
-        }
-        else
-        {
-            $filename = uniqid('UI') . '.' . $ext;
-            $filepath = $_SERVER['DOCUMENT_ROOT'].'/uploads/user_profile_images/'.$filename;
-            $webpath = '/uploads/user_profile_images/'.$filename;
-            move_uploaded_file($img, $filepath);
-            $result['status'] = 'success';
-            $result['filename'] = $filename;
-            $result['filepath'] = $webpath;
-            $user->setProfileImage($webpath);
-            $this->container->get('doctrine')->getEntityManager()->persist($user);
-            $this->container->get('doctrine')->getEntityManager()->flush();
-        }
-
-        return 'For some reason returning a json response screws things up...';
-
-        $response = new Response(json_encode($result));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        $result['status'] = 'success';
+        $result['imageUrl'] = $this->container->get('router')->generate('image_show', array(
+                                                                                                'imageData' => $this->container->get('marbemac.manager.image')->getImageUrlData($image->getGroupId(), 65, 65)
+                                                                                           )
+        );
+        echo json_encode($result);
+        exit();
     }
 
-    public function ajaxSearchAction()
+    public function ajaxSearchAction($onlyFollowing)
     {
         $query = $this->container->get('request')->query->get('q');
 
@@ -255,8 +236,10 @@ class ProfileController extends ContainerAware
         }
 
         $results = $this->container->get('whoot.manager.user')->findForSearch(
-            $this->container->get('security.context')->getToken()->getUser()->getId(),
-            $query
+            $this->container->get('security.context')->getToken()->getUser(),
+            $query,
+            $onlyFollowing,
+            10
         );
 
         // Add the images
@@ -276,12 +259,12 @@ class ProfileController extends ContainerAware
     /*
      * The tab that is shown to users when hovering over a user name.
      */
-    public function hoverTabAction($id)
+    public function hoverTabAction($userId)
     {
         $response = new Response();
         $response->setCache(array(
-            'etag'          => 'user-hover-'.$id,
-            's_maxage'      => 300,
+//            'etag'          => 'user-hover-'.$userId,
+            's_maxage'      => 60,
             'public'        => true
         ));
 
@@ -291,7 +274,7 @@ class ProfileController extends ContainerAware
             return $response;
         }
 
-        $user = $this->container->get('whoot.manager.user')->getUser(array('id' => $id), false);
+        $user = $this->container->get('whoot.manager.user')->findUserBy(array('id' => new \MongoId($userId)));
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:hover_tab.html.twig', array(
             'user' => $user

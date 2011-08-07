@@ -1,21 +1,22 @@
 <div class="list-page">
-    <div class="list-left">
-        <h2>Users</h2>
-        <input id="list-add-user" data-url-add="{{ path('list_user_add', {'listId': list.id}) }}" type="text" class="iclear b" data-url="{{ path('user_ajax_search') }}" autocomplete="off" value="Add a friend..." />
-        <ul>
-            {% for listUser in list.users %}
-                <li>
-                    {% include "WhootUserBundle:Profile:tag.html.twig" with {'user': listUser.user} %}
-                    <div class="delete ac" id="uld-{{ listUser.id }}" data-title="Remove this user from this list." data-url="{{ path('list_user_delete', {'listId': list.id, 'userListId': listUser.id})}}">X</div>
-                </li>
-            {% else %}
-                <li class="none">You have not added any friends to this list.</li>
-            {% endfor %}
-        </ul>
+    <div class="list-right">
+        <div class="toggle" data-target="#list-user-panel">Toggle User Panel</div>
+        <div class="wrapper" id="list-user-panel">
+            <h2>List Users</h2>
+            <input id="list-add-user" data-url-add="{{ path('list_user_add', {'listId': list.id}) }}" type="text" class="iclear b" data-url="{{ path('user_ajax_search', {'onlyFollowing': true}) }}" autocomplete="off" value="Add a friend..." />
+            <ul>
+                {% for listUser in listUsers %}
+                    <li>
+                        {% include "WhootUserBundle:Profile:tag.html.twig" with {'user': listUser} %}
+                        <div class="delete ac" id="uld-{{ listUser.id }}" data-title="Remove this user from this list." data-url="{{ path('list_user_delete', {'listId': list.id|toString, 'userId': listUser.id|toString})}}">X</div>
+                    </li>
+                {% else %}
+                    <li class="none">You have not added any friends to this list.</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 
-    <div class="list-feed">
-        <h2>{{ list.name }}</h2>
-        {% render 'WhootBundle:Post:feed' with {'listId': list.id} %}
-    </div>
+    <h2 class="list-name">{{ list.name }}</h2>
+    {% render 'WhootBundle:Post:feed' with {'list': list} %}
 </div>

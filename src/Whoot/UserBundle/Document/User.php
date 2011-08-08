@@ -504,9 +504,9 @@ class CurrentPost
 
     public function isValid()
     {
-        $date = new DateConverter(clone $this->getCreatedAt(), 'Y-m-d', '-5 hours');
+        $date = new DateConverter(clone $this->getCreatedAt(), 'Y-m-d');
 
-        if ($date == date('Y-m-d', time()))
+        if ($date == date('Y-m-d', time()-(60*60*5)))
         {
             return true;
         }

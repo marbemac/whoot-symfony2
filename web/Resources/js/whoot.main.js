@@ -26,12 +26,12 @@ $(function() {
             $('#auth-login').fadeToggle(300);
             return false;
         }
-        else if (e.ctrlKey && $code == 99)
+        else if (e.ctrlKey && ($code == 99 || $code == 3))
         {
             $('#auth-register').fadeToggle(300);
             return false;
         }
-        else if (e.ctrlKey && $code == 101)
+        else if (e.ctrlKey && ($code == 101 || $code == 5))
         {
             window.location = document.URL + '?_switch_user=_exit';
         }

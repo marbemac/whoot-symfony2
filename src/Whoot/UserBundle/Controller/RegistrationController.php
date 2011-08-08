@@ -53,7 +53,7 @@ class RegistrationController extends ContainerAware
             $rockstars = $this->container->get('whoot.manager.user')->findUsersBy(array(), array('email' => array('marbemac@gmail.com', 'wquartner@gmail.com', 'rcoyne1022@gmail.com')));
             foreach ($rockstars as $rockstar)
             {
-                if ($rockstar != $user->getEmail())
+                if ($rockstar->getEmail() != $user->getEmail())
                 {
                     $result = $this->container->get('whoot.manager.user')->toggleFollow($user, $rockstar->getId());
                 }

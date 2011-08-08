@@ -23,11 +23,6 @@ class LListController extends ContainerAware
     {
         $lists = $this->container->get('whoot.manager.llist')->findLListsBy(array('createdBy' => $userId, 'status' => 'Active'));
 
-        if (count($lists) == 0)
-        {
-            $lists = array();
-        }
-
         $response = new Response();
         $response->setCache(array(
         ));

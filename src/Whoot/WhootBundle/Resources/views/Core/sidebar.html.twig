@@ -35,7 +35,7 @@
 
     {% render 'WhootBundle:Post:myPost' %}
 
-    {% render "WhootBundle:LList:list" with {'userId': app.user.id}, {'standalone': true} %}
+    {% render "WhootBundle:LList:list" with {'userId': app.user.id} %}
 
     {% include 'WhootBundle:Post:undecided.html.twig' with {'users': undecidedUsers} %}
 

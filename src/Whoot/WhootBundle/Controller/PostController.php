@@ -8,19 +8,14 @@ use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\DependencyInjection\ContainerAware,
     Symfony\Component\HttpKernel\Exception\NotFoundHttpException,
     Symfony\Component\Security\Core\Exception\AccessDeniedException,
-    Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken,
-    Symfony\Component\Security\Acl\Permission\MaskBuilder,
-    Symfony\Component\Security\Acl\Domain\UserSecurityIdentity,
-    Symfony\Component\Security\Acl\Domain\ObjectIdentity;
-
-use Whoot\WhootBundle\Entity\Post;
+    Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class PostController extends ContainerAware
 {
     /**
      * 
      */
-    public function feedAction($list=null, $offset=0, $limit=null, $_format='html')
+    public function feedAction($list=null, $offset=0, $limit=null, $showTrending=true, $_format='html')
     {
         $response = new Response();
         $feedFilters = $this->container->get('session')->get('feedFilters');
@@ -58,19 +53,22 @@ class PostController extends ContainerAware
         if ($_format == 'json')
         {
             return $this->container->get('templating')->renderResponse('WhootBundle:Post:feed.'.$_format.'.twig', array(
-                'posts' => $posts
+                'posts' => $posts,
+                'showTrending' => $showTrending
             ), $response);
         }
 
         if ($this->container->get('request')->isXmlHttpRequest())
         {
             return $this->container->get('templating')->renderResponse('WhootBundle:Post:feed_content.html.twig', array(
-                'posts' => $posts
+                'posts' => $posts,
+                'showTrending' => $showTrending
             ), $response);
         }
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Post:feed.html.twig', array(
-            'posts' => $posts
+            'posts' => $posts,
+            'showTrending' => $showTrending
         ), $response);
     }
 

@@ -10,7 +10,7 @@
 
 
     <div class="location">
-        {{ user.currentLocation is defined ? user.currentLocation.name : 'Outer Space' }}
+        {{ user.currentLocation ? user.currentLocation.name : 'Outer Space' }}
     </div>
 
     {% include "WhootBundle:Follow:tag.html.twig" with {'toUser': user} %}

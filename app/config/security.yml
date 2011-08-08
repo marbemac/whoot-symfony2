@@ -52,7 +52,7 @@ security:
         # The rest of the site (optional ROLE_FACEBOOK if wanted)
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # For ESI
-        - { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+#        - { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER

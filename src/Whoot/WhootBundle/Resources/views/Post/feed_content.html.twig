@@ -1,4 +1,6 @@
-{% render "WhootBundle:Tag:trending" %}
+{% if showTrending %}
+    {% render "WhootBundle:Tag:trending" %}
+{% endif %}
 
 {% if posts|length > 0 %}
     <div class="clear"></div>

@@ -18,5 +18,5 @@
     </div>
 
     <h2 class="list-name">{{ list.name }}</h2>
-    {% render 'WhootBundle:Post:feed' with {'list': list} %}
+    {% render 'WhootBundle:Post:feed' with {'list': list, 'showTrending': false} %}
 </div>

@@ -37,16 +37,16 @@ admin_manage_trending:
         _method: GET
 
 admin_make_trendable:
-    pattern:  /trending/add/{wordId}
+    pattern:  /trending/add/{tagId}
     defaults:
-        _controller: WhootBundle:Word:makeTrendable
+        _controller: WhootBundle:Tag:makeTrendable
     requirements:
         _method: POST
 
-admin_make_stopword:
-    pattern:  /stopword/add/{wordId}
+admin_make_stoptag:
+    pattern:  /stopword/add/{tagId}
     defaults:
-        _controller: WhootBundle:Word:makeStopword
+        _controller: WhootBundle:Tag:makeStopword
     requirements:
         _method: POST
 

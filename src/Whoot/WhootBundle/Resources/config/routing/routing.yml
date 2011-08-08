@@ -51,7 +51,7 @@ comment:
 #    resource: "@WhootBundle/Resources/config/routing/comment_api.yml"
 #    prefix:   /api/comment
 #
-#list:
+list:
     resource: "@WhootBundle/Resources/config/routing/list.yml"
     prefix:   /l
 

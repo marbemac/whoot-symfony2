@@ -2,14 +2,12 @@
 
     <h4>Uncategorized tags</h4>
     <ul>
-        {% for tag in uncategorizedtags %}
-            {% if tag[0].content %}
-                <li class="w-{{ tag[0].id }}">
-                    <div class="tag"><div>{{ tag[0].content }}</div> ({{ tag[0].score }} popularity)</div>
-                    <a class="ac" href="{{ path('admin_make_trendable', {'tagId': tag[0].id}) }}">Make Trendable</a>
-                    <a class="ac" href="{{ path('admin_make_stoptag', {'tagId': tag[0].id}) }}">Make Stop tag</a>
-                </li>
-            {% endif %}
+        {% for tag in uncategorizedTags %}
+            <li class="w-{{ tag.id }}">
+                <div class="tag"><div>{{ tag.name }}</div> ({{ tag.score }} popularity)</div>
+                <a class="ac" href="{{ path('admin_make_trendable', {'tagId': tag.id}) }}">Make Trendable</a>
+                <a class="ac" href="{{ path('admin_make_stoptag', {'tagId': tag.id}) }}">Make Stop tag</a>
+            </li>
         {% else %}
             <li class="none">No uncategorized tags. Yahoo.</li>
         {% endfor %}
@@ -17,11 +15,11 @@
 
     <h4>Trendable tags</h4>
     <ul id="admin-trendable">
-        {% for tag in trendabletags %}
-            {% if tag[0].content %}
-                <li class="w-{{ tag[0].id }}">
-                    <div class="tag"><div>{{ tag[0].content }}</div> ({{ tag[0].score }} popularity)</div>
-                    <a class="ac" href="{{ path('admin_make_stoptag', {'tagId': tag[0].id}) }}">Make Stop tag</a>
+        {% for tag in trendableTags %}
+            {% if tag.name %}
+                <li class="w-{{ tag.id }}">
+                    <div class="tag"><div>{{ tag.name }}</div> ({{ tag.score }} popularity)</div>
+                    <a class="ac" href="{{ path('admin_make_stoptag', {'tagId': tag.id}) }}">Make Stop tag</a>
                 </li>
             {% endif %}
         {% else %}
@@ -31,11 +29,11 @@
 
     <h4>Stop tags</h4>
     <ul id="admin-stoptags">
-        {% for tag in stoptags %}
-            {% if tag[0].content %}
-                <li class="w-{{ tag[0].id }}">
-                    <div class="tag"><div>{{ tag[0].content }}</div> ({{ tag[0].score }} popularity)</div>
-                    <a class="ac" href="{{ path('admin_make_trendable', {'tagId': tag[0].id}) }}">Make Trendable</a>
+        {% for tag in stopTags %}
+            {% if tag.name %}
+                <li class="w-{{ tag.id }}">
+                    <div class="tag"><div>{{ tag.name }}</div> ({{ tag.score }} popularity)</div>
+                    <a class="ac" href="{{ path('admin_make_trendable', {'tagId': tag.id}) }}">Make Trendable</a>
                 </li>
             {% endif %}
         {% else %}

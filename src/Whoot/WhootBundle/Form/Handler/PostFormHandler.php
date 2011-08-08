@@ -112,9 +112,13 @@ class PostFormHandler
                                 {
                                     $foundTag = $this->tagManager->createTag();
                                     $foundTag->setName($tag['name']);
-                                    $this->tagManager->updateTag($foundTag, false);
+                                    $this->tagManager->updateTag($foundTag);
                                     $usedTags[] = $foundTag;
                                 }
+                            }
+                            else
+                            {
+                                $foundTag->setScore($foundTag->getScore()+1);
                             }
 
                             $post->addTag($foundTag);

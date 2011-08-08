@@ -31,17 +31,20 @@ Purpose of the stylesheet follows.
         cursor: default;
     }
     .tag {
+        @include border-radius(2px);
         float: left;
         position: relative;
+        margin-top: -1px;
         margin-right: 10px;
         border: none;
         cursor: default;
-        padding: 0 20px 0 0;
+        padding: 2px 30px 2px 7px;
+        background: $post-hover-color;
     }
     span {
         position: absolute;
-        top: 0px;
-        right: 3px;
+        top: 1px;
+        right: 5px;
         cursor: pointer;
         &:hover {
             color: red;
@@ -64,6 +67,12 @@ Purpose of the stylesheet follows.
     .tag {
         float: left;
         margin: 0 10px 0 0;
+        cursor: pointer;
+        color: $link-color;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
     .none {
         font-style: italic;

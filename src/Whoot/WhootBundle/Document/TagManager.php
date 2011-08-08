@@ -36,4 +36,55 @@ class TagManager extends BaseManager
     {
         return $this->findObjectsBy($criteria, $inCriteria, $sorts, $dateRange, $limit, $offset);
     }
+
+    public function getTrending($posts, $limit)
+    {
+        $tagCounts = array();
+        foreach ($posts as $post)
+        {
+            foreach ($post->getTags() as $tag)
+            {
+                if (isset($tagCounts[$tag->getTag()->__toString()]))
+                {
+                    $tagCounts[$tag->getTag()->__toString()] += 1;
+                }
+                else
+                {
+                    $tagCounts[$tag->getTag()->__toString()] = 1;
+                }
+            }
+        }
+
+        arsort($tagCounts);
+
+        $ids = array();
+        foreach ($tagCounts as $key => $count)
+        {
+            $ids[] = new \MongoId($key);
+        }
+
+        $trendableTags = $this->m->Tag->find(
+            array(
+                'isTrendable' => true,
+                '_id' => array(
+                    '$in' => $ids
+                )
+            )
+        );
+
+        $trendableTags = iterator_to_array($trendableTags);
+
+        $trendingTags = array();
+        $found = 0;
+        foreach ($tagCounts as $key => $tagCount)
+        {
+            if (isset($trendableTags[$key]) && $found < $limit)
+            {
+                $trendingTags[] = $trendableTags[$key];
+                $found++;
+            }
+        }
+
+        return $trendingTags;
+    }
 }

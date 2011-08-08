@@ -68,7 +68,7 @@ Purpose of the stylesheet follows.
         text-decoration: underline;
     }
     .cancel {
-        margin: 16px 0 0 30px;
+        margin: 20px 0 0 30px;
     }
 }
 
@@ -411,6 +411,10 @@ $post-hover-color: #E7EDFF;
         &.on {
             background: $post-hover-color;
             cursor: pointer;
+
+            .tag {
+                border-color: #FFF;
+            }
         }
     }
 }
@@ -466,8 +470,18 @@ $post-hover-color: #E7EDFF;
         white-space: nowrap;
     }
     .tag {
+        @include border-radius(2px);
         float: left;
-        margin: 0 15px 0 0;
+        margin: -4px 15px 0 0;
+        padding: 2px 7px;
+        background: $post-hover-color;
+        border: 2px dotted transparent;
+
+        &:hover {
+            background: #164F9E;
+            border: 2px solid #164F9E !important;
+            color: #FFF;
+        }
     }
     &.working .what {
         color: $post-working-color;

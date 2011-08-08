@@ -1,14 +1,10 @@
 <div class="trendingtags">
-    <h4 class="head">Trending in {{ location is defined and location ? location.getCityName()~', '~location.getStateCode() : 'Outer Space' }} on this fine {{ "now-5 hours"|date('l') }} night</h4>
+    <h4 class="head">Trending in {{ app.user.currentLocation ? app.user.currentLocation.name : 'Outer Space' }} on this fine {{ "now-5 hours"|date('l') }} night</h4>
     <div class="tags">
-        {% if ("now"|date('G') >= 20 and "now"|date('G') <= 5) or is_granted('ROLE_ADMIN') %}
-            {% for tag in trendingtags %}
-                {% include "WhootBundle:Tag:teaser.html.twig" with {'tag': tag[0]} %}
-            {% else %}
-               <div class="none">Hmm... nothing is trending. People, start posting!</div>
-            {% endfor %}
+        {% for tag in trendingTags %}
+            {% include "WhootBundle:Tag:teaser.html.twig" with {'tag': tag} %}
         {% else %}
-            <div class="none">Check back at 8PM to see what's trending in {{ location is defined and location ? location.getCityName() : 'Outer Space' }} tonight</div>
-        {% endif %}
+           <div class="none">Hmm... nothing is trending. People, start posting!</div>
+        {% endfor %}
     </div>
 </div>

@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request,
 
 use Whoot\WhootBundle\Entity\Post;
 
-class WordController extends ContainerAware
+class TagController extends ContainerAware
 {
     /**
      * 
@@ -25,29 +25,46 @@ class WordController extends ContainerAware
         $response = new Response();
 
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $trendingWords = $this->container->get('whoot.manager.word')->getTrending($user->getLocation(), date('Y-m-d 05:00:00', time()-(60*60*5)), 10, array('trendable' => true));
+
+        if ($user->getCurrentLocation())
+        {
+            $posts = $this->container->get('whoot.manager.post')->findPostsBy(
+                array(
+                     'isCurrentPost' => true,
+                     'currentLocation.'.strtolower($user->getCurrentLocation()->getType()) => new \MongoId($user->getCurrentLocation()->getId())
+                ),
+                array(),
+                array(),
+                array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5)))
+            );
+            
+            $trendingTags = $this->container->get('whoot.manager.tag')->getTrending($posts, 10);
+        }
+        else
+        {
+            $trendingTags = array();
+        }
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Tag:trending.html.twig', array(
-            'trendingWords' => $trendingWords,
-            'location' => $user->getLocation()
+            'trendingTags' => $trendingTags
         ), $response);
     }
 
     /*
      * Make a word trendable
      */
-    public function makeTrendableAction($wordId)
+    public function makeTrendableAction($tagId)
     {
-        $wordManager = $this->container->get('whoot.manager.word');
-        $word = $wordManager->findWordBy(null, array('id' => $wordId), true);
-        $word->setTrendable(true);
-        $word->setIsStopWord(false);
-        $wordManager->updateWord($word);
+        $tagManager = $this->container->get('whoot.manager.tag');
+        $tag = $tagManager->findTagBy(array('id' => $tagId));
+        $tag->setIsTrendable(true);
+        $tag->setIsStopWord(false);
+        $tagManager->updateTag($tag);
 
         $result = array();
         $result['result'] = 'success';
-        $result['event'] = 'make_word_trendable';
-        $result['wordId'] = $word->getId();
+        $result['event'] = 'make_tag_trendable';
+        $result['tagId'] = $tag->getId()->__toString();
         $response = new Response(json_encode($result));
         $response->headers->set('Content-Type', 'application/json');
 
@@ -57,18 +74,18 @@ class WordController extends ContainerAware
     /*
      * Make a word a stop word
      */
-    public function makeStopwordAction($wordId)
+    public function makeStopwordAction($tagId)
     {
-        $wordManager = $this->container->get('whoot.manager.word');
-        $word = $wordManager->findWordBy(null, array('id' => $wordId), true);
-        $word->setTrendable(false);
-        $word->setIsStopWord(true);
-        $wordManager->updateWord($word);
+        $tagManager = $this->container->get('whoot.manager.tag');
+        $tag = $tagManager->findTagBy(array('id' => $tagId));
+        $tag->setIsTrendable(false);
+        $tag->setIsStopWord(true);
+        $tagManager->updateTag($tag);
 
         $result = array();
         $result['result'] = 'success';
-        $result['event'] = 'make_word_stopword';
-        $result['wordId'] = $word->getId();
+        $result['event'] = 'make_tag_stopword';
+        $result['tagId'] = $tag->getId()->__toString();
         $response = new Response(json_encode($result));
         $response->headers->set('Content-Type', 'application/json');
 

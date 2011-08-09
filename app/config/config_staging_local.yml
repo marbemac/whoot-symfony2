@@ -1,0 +1,7 @@
+imports:
+    - { resource: config_staging.yml }
+
+doctrine_mongodb:
+    connections:
+        default:
+            server: mongodb://staging_monsta:nIwo8Dnqie30xW@dbh13.mongolab.com:27137/whoot_staging

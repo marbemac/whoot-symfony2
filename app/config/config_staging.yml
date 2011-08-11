@@ -8,9 +8,8 @@ fos_facebook:
     app_id: 120786798012675
     secret: 772c338ce553ec0008fbf2b266f343a5
 
-#doctrine_mongodb:
-#    default_database: whoot_staging
-#    connections:
-#        default:
-#            server: mongodb://staging_monsta:nIwo8Dnqie30xW@10.179.98.224:27247/whoot_staging
-#            server: mongodb://localhost:27017/whoot_staging
+doctrine_mongodb:
+    default_database: whoot_staging
+    connections:
+        default:
+            server: mongodb://staging_monsta:nIwo8Dnqie30xW@10.179.98.224:27247/whoot_staging

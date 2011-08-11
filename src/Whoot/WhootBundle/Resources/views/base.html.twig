@@ -183,7 +183,11 @@
                         {% endif %}
 
                         $('#logout').live('click', function() {
-                            FB.logout();
+                            var $tmp = FB.logout();
+                            if (!$tmp)
+                            {
+                                return true;
+                            }
                             return false;
                         })
 

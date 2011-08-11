@@ -27,6 +27,8 @@ security:
                 provider: whoot_facebook
                 login_path: /login
                 check_path: /fb/login_check
+                app_url: "http://apps.facebook.com/whoot_staging/"
+                server_url: "http://whoot.local/app_dev.php/"
             form_login:
                 provider:       whoot_user
                 login_path:     /login

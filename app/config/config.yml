@@ -41,7 +41,7 @@ doctrine_mongodb:
                 connect: true
     document_managers:
         default:
-            metadata_cache_driver: apc
+            metadata_cache_driver: array
             mappings:
                 FOSUserBundle: ~
                 MarbemacImageBundle: ~

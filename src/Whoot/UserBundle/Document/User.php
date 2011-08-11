@@ -521,9 +521,10 @@ class CurrentPost
 
     public function isValid()
     {
-        $date = new DateConverter(clone $this->getCreatedAt(), 'Y-m-d', '-5 hours', $this->getTimezone());
+        $submitted = new DateConverter(clone $this->getCreatedAt(), 'Y-m-d', '-5 hours', $this->getTimezone());
+        $current = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getTimezone());
 
-        if ($date == date('Y-m-d'))
+        if ($submitted->__toString() == $current->__toString())
         {
             return true;
         }

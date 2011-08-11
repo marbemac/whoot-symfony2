@@ -24,7 +24,7 @@ class PostController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $this->getCurrentLocation() ? $this->getCurrentLocation()->getTimezone() : 'UTC');
+        $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation() ? $user->getCurrentLocation()->getTimezone() : 'UTC');
         // Don't even bother getting objects if we aren't including ANY node types
         if (empty($postTypes))
         {
@@ -76,7 +76,7 @@ class PostController extends ContainerAware
     {
         $response = new Response();
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $this->getCurrentLocation() ? $this->getCurrentLocation()->getTimezone() : 'UTC');
+        $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation() ? $user->getCurrentLocation()->getTimezone() : 'UTC');
         $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, $start, null, $offset, $limit);
 
         $response->setCache(array(

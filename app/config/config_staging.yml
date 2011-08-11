@@ -12,4 +12,4 @@ doctrine_mongodb:
     default_database: whoot_staging
     connections:
         default:
-            server: mongodb://staging_monsta:nIwo8Dnqie30xW@10.179.98.224:27247/whoot_staging
+            server: mongodb://staging_pluto:nIwo8Dnqie30xW@10.179.98.224:27137/whoot_staging

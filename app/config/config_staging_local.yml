@@ -12,7 +12,7 @@ doctrine_mongodb:
     default_database: whoot_staging
     connections:
         default:
-            server: mongodb://staging_monsta:nIwo8Dnqie30xW@dbh24.mongolab.com:27247/whoot_staging
+            server: mongodb://staging_pluto:nIwo8Dnqie30xW@dbh13.mongolab.com:27137/whoot_staging
 
 fos_facebook:
     app_id: 224410564236351

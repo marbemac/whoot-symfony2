@@ -53,7 +53,7 @@ class PostManager extends BaseManager
 
     public function disableDailyPosts($user)
     {
-        $start = new DateConverter(null, 'Y-m-d', '-5 hours', $user->getCurrentLocation()->getTimezone());
+        $start = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getCurrentLocation() ? $this->getCurrentLocation()->getTimezone() : 'UTC');
         $oldPosts = $this->findPostsBy(array('createdBy' => $user->getId(), 'isCurrentPost' => true), array(), array(), array('target' => 'createdAt', 'start' => $start));
         foreach ($oldPosts as $oldPost)
         {
@@ -105,7 +105,7 @@ class PostManager extends BaseManager
     {
         $qb = $this->dm->createQueryBuilder($this->class);
 
-        $start = new DateConverter(null, 'Y-m-d', '-5 hours', $user->getCurrentLocation()->getTimezone());
+        $start = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getCurrentLocation() ? $this->getCurrentLocation()->getTimezone() : 'UTC');
         $qb->field('createdBy')->equals($user->getId())
             ->field('isCurrentPost')->equals(false)
             ->field('invite')->exists(false)

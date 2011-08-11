@@ -366,7 +366,7 @@ class User extends BaseUser
 
     public function hasPinged($userId)
     {
-        $date = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getCurrentLocation()->getTimezone());
+        $date = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getCurrentLocation() ? $this->getCurrentLocation()->getTimezone() : 'UTC');
 
         if ($this->dailyPings && $this->dailyPings->getDateGroup() == $date && in_array($userId, $this->dailyPings->getPings()))
         {
@@ -380,7 +380,7 @@ class User extends BaseUser
 
     public function addPing($userId)
     {
-        $date = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getCurrentLocation()->getTimezone());
+        $date = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getCurrentLocation() ? $this->getCurrentLocation()->getTimezone() : 'UTC');
         if (!$this->dailyPings || $this->dailyPings->getDateGroup() != $date)
         {
             $dailyPing = new DailyPing();
@@ -396,7 +396,7 @@ class User extends BaseUser
 
     public function removePing($userId)
     {
-        $date = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getCurrentLocation()->getTimezone());
+        $date = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getCurrentLocation() ? $this->getCurrentLocation()->getTimezone() : 'UTC');
         if ($this->dailyPings && $this->dailyPings->getDateGroup() == $date)
         {
             $this->dailyPings->removePing($userId);

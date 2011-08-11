@@ -213,7 +213,7 @@ class CoreController extends ContainerAware
     public function sidebarAction()
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $since = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation()->getTimezone());
+        $since = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $this->getCurrentLocation() ? $this->getCurrentLocation()->getTimezone() : 'UTC');
         $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, $since, 0, 0);
 
         $response = new Response();

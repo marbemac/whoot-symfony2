@@ -28,7 +28,7 @@ class TagController extends ContainerAware
 
         if ($user->getCurrentLocation())
         {
-            $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation()->getTimezone());
+            $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $this->getCurrentLocation() ? $this->getCurrentLocation()->getTimezone() : 'UTC');
             $posts = $this->container->get('whoot.manager.post')->findPostsBy(
                 array(
                      'isCurrentPost' => true,

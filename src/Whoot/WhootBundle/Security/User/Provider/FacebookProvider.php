@@ -47,13 +47,17 @@ class FacebookProvider implements UserProviderInterface
             $user = $this->userManager->findUserBy(array('username' => $username));
         }
 
-        try {
-            $fbdata = $this->facebook->api('/me');
-        } catch (FacebookApiException $e) {
-            $fbdata = null;
+        $fbdata = null;
+        if (!$user && $this->facebook->getUser())
+        {
+            try {
+                $fbdata = $this->facebook->api('/me');
+            } catch (FacebookApiException $e) {
+                $fbdata = null;
+            }
         }
 
-        if (!empty($fbdata)) {
+        if (!$user && $fbdata) {
 
             if (empty($user)) {
                 $user = $this->userManager->findUserBy(array('email' => $fbdata['email']));

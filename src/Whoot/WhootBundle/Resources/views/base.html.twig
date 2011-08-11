@@ -173,7 +173,7 @@
                         {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         {% autoescape false %}
                             FB.getLoginStatus(function(response) {
-                                if (response.status == 'connected') {
+                                if (response.status == 'connected' && response.authResponse.accessToken) {
                                     // logged in and connected user
                                     console.log('FB Logged');
                                     window.location = '{{ path('facebook_security_check') }}';
@@ -184,11 +184,7 @@
 
                         $('#logout').live('click', function() {
                             var $tmp = FB.logout();
-                            if (!$tmp)
-                            {
-                                return true;
-                            }
-                            return false;
+                            return true;
                         })
 
                         FB.Event.subscribe('auth.login', function(response) {

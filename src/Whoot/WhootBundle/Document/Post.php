@@ -308,7 +308,7 @@ class Post implements ObjectInterface, VotableInterface
         $currentLocation = new CurrentLocation($locationIds);
         $currentLocation->setType($type);
         $currentLocation->setName($location->buildName($locationIds[count($locationIds)-1], $type));
-        $currentLocation->setTimezone($location->getTimezone($locationIds[1]));
+        $currentLocation->setTimezone($location->findTimezone($locationIds[1]));
         $this->currentLocation = $currentLocation;
     }
 

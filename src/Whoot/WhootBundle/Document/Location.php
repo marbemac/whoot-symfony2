@@ -212,7 +212,12 @@ class Location implements ObjectInterface
         // noop
     }
 
-    public function getTimezone($cityId)
+    public function getTimezone()
+    {
+        return ''; // noop
+    }
+
+    public function findTimezone($cityId)
     {
         foreach ($this->cities as $city)
         {

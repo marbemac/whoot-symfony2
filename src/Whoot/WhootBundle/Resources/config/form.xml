@@ -110,6 +110,10 @@
             <tag name="form.type" alias="state" />
         </service>
 
+        <service id="form.type.timezone" class="Whoot\WhootBundle\Form\Type\TimezoneType">
+            <tag name="form.type" alias="timezone" />
+        </service>
+
         <service id="whoot.form.location" factory-method="create" factory-service="form.factory" class="%form.factory.class%">
             <argument type="service" id="whoot.form.type.location" />
             <argument type="collection">

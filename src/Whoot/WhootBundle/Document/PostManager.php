@@ -4,6 +4,7 @@ namespace Whoot\WhootBundle\Document;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Whoot\WhootBundle\Model\ObjectManager as BaseManager;
+use Whoot\WhootBundle\Util\DateConverter;
 
 class PostManager extends BaseManager
 {
@@ -52,7 +53,8 @@ class PostManager extends BaseManager
 
     public function disableDailyPosts($user)
     {
-        $oldPosts = $this->findPostsBy(array('createdBy' => $user->getId(), 'isCurrentPost' => true), array(), array(), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))));
+        $start = new DateConverter(null, 'Y-m-d', '-5 hours', $user->getCurrentLocation()->getTimezone());
+        $oldPosts = $this->findPostsBy(array('createdBy' => $user->getId(), 'isCurrentPost' => true), array(), array(), array('target' => 'createdAt', 'start' => $start));
         foreach ($oldPosts as $oldPost)
         {
             $oldPost->setIsCurrentPost(false);
@@ -103,10 +105,11 @@ class PostManager extends BaseManager
     {
         $qb = $this->dm->createQueryBuilder($this->class);
 
+        $start = new DateConverter(null, 'Y-m-d', '-5 hours', $user->getCurrentLocation()->getTimezone());
         $qb->field('createdBy')->equals($user->getId())
             ->field('isCurrentPost')->equals(false)
             ->field('invite')->exists(false)
-            ->field('createdAt')->gte(new \MongoDate(strtotime(date('Y-m-d 05:00:00', time()-(60*60*5)))))
+            ->field('createdAt')->gte(new \MongoDate(strtotime($start->__toString())))
             ->sort('createdAt', 'DESC');
 
         $query = $qb->getQuery();

@@ -45,6 +45,7 @@ class LocationFormHandler
                 $location = $existing ? $existing : $location;
 
                 $location->addCity($params['cities']);
+                $location->setCityTimezone($params['cities'], $params['timezone']);
 
                 $this->locationManager->updateLocation($location);
 

@@ -4,6 +4,7 @@ namespace Whoot\WhootBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
+use Whoot\WhootBundle\Util\DateConverter;
 
 class CoreController extends ContainerAware
 {
@@ -14,22 +15,6 @@ class CoreController extends ContainerAware
         $response = new Response();
         $response->setCache(array(
         ));
-
-        $session = $this->container->get('request')->getSession();
-        $location = json_decode($session->get('location'));
-//        if (!$location || !$location->zipcode)
-//        {
-//            $location = $this->container->get('whoot.manager.user')->getLocation($this->container->get('security.context')->getToken()->getUser()->getZipcode());
-//            $locationData = array();
-//            $locationData['zipcode'] = isset($location['zipcode']) ? $location['zipcode'] : '';
-//            $locationData['lat'] = isset($location['lat']) ? $location['lat'] : '';
-//            $locationData['lon'] = isset($location['lon']) ? $location['lon'] : '';
-//            $locationData['city'] = isset($location['city']) ? $location['city'] : '';
-//            $locationData['state'] = isset($location['state']) ? $location['state'] : '';
-//            $locationData['location'] = isset($location['locationText']) ? $location['locationText'] : '';
-//            $session->set('location', json_encode($locationData));
-//        }
-        $location = '';
 
         if ($response->isNotModified($request)) {
             // return the 304 Response immediately
@@ -228,7 +213,8 @@ class CoreController extends ContainerAware
     public function sidebarAction()
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), 0, 0);
+        $since = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation()->getTimezone());
+        $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, $since, 0, 0);
 
         $response = new Response();
         $response->setCache(array(

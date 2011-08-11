@@ -7,10 +7,10 @@ security:
     # strategy can be: none, migrate, invalidate
     #session_fixation_strategy: migrate
     providers:
-        whoot_user:
-            id: whoot.manager.user
         whoot_facebook:
             id: whoot.facebook.user
+        whoot_user:
+            id: whoot.manager.user
 
     firewalls:
         profiler:
@@ -23,15 +23,15 @@ security:
 
         main:
             pattern:   .*
+            fos_facebook:
+                provider: whoot_facebook
+                login_path: /login
+                check_path: /fb/login_check
             form_login:
                 provider:       whoot_user
                 login_path:     /login
                 use_forward:    false
                 check_path:     /login_check
-            fos_facebook:
-                provider: whoot_facebook
-                login_path: /login
-                check_path: /fb/login_check
             logout: true
             anonymous: true
             switch_user: true

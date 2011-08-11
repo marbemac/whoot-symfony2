@@ -7,14 +7,23 @@ class DateConverter
     public $date;
     public $format;
     public $modify;
-    public $timezoneAdjust;
+    public $timezone;
+    public $calculated = null;
 
-    public function __construct(\DateTime $date, $format, $modify=null, $timezoneAdjust=true)
+    public function __construct(\DateTime $date=null, $format=null, $modify=null, $timezone=null)
     {
-        $this->date = $date;
+        if ($date)
+        {
+            $this->date = $date;
+        }
+        else
+        {
+            $this->date = new \DateTime();
+        }
+
         $this->format = $format;
         $this->modify = $modify;
-        $this->timezoneAdjust = $timezoneAdjust;
+        $this->timezone = $timezone;
     }
 
     public function calculate()
@@ -24,14 +33,13 @@ class DateConverter
             $this->date->modify($this->modify);
         }
 
-        $time = $this->date->format('U');
-
-        if ($this->timezoneAdjust)
+        if ($this->timezone)
         {
-            $time += $this->date->getOffset();
+            date_default_timezone_set($this->timezone);
+            $this->date->setTimezone(new \DateTimeZone($this->timezone));
         }
 
-        return date($this->format, $time);
+        $this->calculated = $this->date->format($this->format);
     }
 
 	/**
@@ -39,6 +47,11 @@ class DateConverter
 	 */
 	public function __toString()
 	{
-		return $this->calculate();
+        if (!$this->calculated)
+        {
+            $this->calculate();
+        }
+
+        return $this->calculated;
 	}
 }

@@ -6,7 +6,7 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use \BaseFacebook;
+use \Facebook;
 use \FacebookApiException;
 
 class FacebookProvider implements UserProviderInterface
@@ -16,14 +16,15 @@ class FacebookProvider implements UserProviderInterface
      */
     protected $facebook;
     protected $userManager;
-    protected $locationManager;
+    protected $imageManager;
+    protected $validator;
 
-    public function __construct(BaseFacebook $facebook, $userManager, $locationManager)
+    public function __construct(Facebook $facebook, $userManager, $imageManager, $validator)
     {
-        $facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYPEER] = false;
         $this->facebook = $facebook;
         $this->userManager = $userManager;
-        $this->locationManager = $locationManager;
+        $this->imageManager= $imageManager;
+        $this->validator = $validator;
     }
 
     public function supportsClass($class)
@@ -33,19 +34,17 @@ class FacebookProvider implements UserProviderInterface
 
     public function findUserByFbId($fbId)
     {
-        return $this->userManager->getUser(array('facebookId' => $fbId), true);
+        return $this->userManager->findUserBy(array('facebookId' => $fbId));
     }
 
     public function loadUserByUsername($username)
     {
-        echo 'test';
-        exit();
         $user = $this->findUserByFbId($username);
 
         // Try just getting by username
         if (!$user)
         {
-            $user = $this->userManager->getUser(array('username' => $username), true);
+            $user = $this->userManager->findUserBy(array('username' => $username));
         }
 
         try {
@@ -57,10 +56,11 @@ class FacebookProvider implements UserProviderInterface
         if (!empty($fbdata)) {
 
             if (empty($user)) {
-                $user = $this->userManager->getUser(array('email' => $fbdata['email']), true);
+                $user = $this->userManager->findUserBy(array('email' => $fbdata['email']));
 
                 if (empty($user)) {
                     $user = $this->userManager->createUser();
+                    $user->setUsername($fbdata['username']);
                     $user->setEnabled(true);
                     $user->setPassword('');
                     $user->setAlgorithm('');
@@ -69,16 +69,26 @@ class FacebookProvider implements UserProviderInterface
 
             // TODO use http://developers.facebook.com/docs/api/realtime
             $user->setFBData($fbdata);
-            if (isset($fbdata['location']))
-            {
-                $user->setLocation($this->locationManager->getFBLocation($fbdata['location']['name']));
-            }
 
             if (count($this->validator->validate($user, 'Facebook'))) {
                 // TODO: the user was found obviously, but doesnt match our expectations, do something smart
                 throw new UsernameNotFoundException('The facebook user could not be stored');
             }
             $this->userManager->updateUser($user);
+
+            // Get and save their fb profile image
+            if ($fbdata && !$user->getCurrentProfileImage())
+            {
+                $url = 'http://graph.facebook.com/'.$fbdata['username'].'/picture?type=large';
+                $tmpLocation = '/tmp/'.uniqid('fi');
+                file_put_contents($tmpLocation, file_get_contents($url));
+                $image = $this->imageManager->saveImage($tmpLocation, $user->getId(), null, 'user-profile', null, true, null, null, null);
+                if ($image)
+                {
+                    $user->setCurrentProfileImage($image->getGroupId());
+                    $this->userManager->updateUser($user);
+                }
+            }
         }
 
         if (empty($user)) {
@@ -90,8 +100,6 @@ class FacebookProvider implements UserProviderInterface
 
     public function refreshUser(UserInterface $user)
     {
-        echo 'test2';
-        exit();
         if (!$this->supportsClass(get_class($user)) || !$user->getUsername()) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
         }

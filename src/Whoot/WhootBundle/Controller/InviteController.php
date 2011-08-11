@@ -13,12 +13,12 @@ use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\Security\Acl\Domain\UserSecurityIdentity,
     Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 
-use Whoot\WhootBundle\Entity\Post;
+use Whoot\WhootBundle\Util\DateConverter;
 
 class InviteController extends ContainerAware
 {
     /**
-     * 
+     *
      */
     public function feedAction($postTypes=null, $feedSort=null, $offset=0, $limit=null, $_format='html')
     {
@@ -39,7 +39,8 @@ class InviteController extends ContainerAware
         {
             $following = $user->getFollowing();
             $following[] = $user->getId();
-            $invites = $this->container->get('whoot.manager.invite')->findInvitesBy(array('status' => 'Active'), array('type' => $postTypes, 'createdBy' => $following), array($feedSort => 'desc'), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))), $offset, $limit);
+            $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation()->getTimezone());
+            $invites = $this->container->get('whoot.manager.invite')->findInvitesBy(array('status' => 'Active'), array('type' => $postTypes, 'createdBy' => $following), array($feedSort => 'desc'), array('target' => 'createdAt', 'start' => $start), $offset, $limit);
         }
 
         $response->setCache(array(
@@ -127,7 +128,8 @@ class InviteController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
         $request = $this->container->get('request');
-        $oldInvites = $this->container->get('whoot.manager.invite')->findInvitesBy(array('createdBy' => $user->getId(), 'status' => 'Active'), array(), array(), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))));
+        $since = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation()->getTimezone());
+        $oldInvites = $this->container->get('whoot.manager.invite')->findInvitesBy(array('createdBy' => $user->getId(), 'status' => 'Active'), array(), array(), array('target' => 'createdAt', 'start' => $since));
 
         $invite = null;
         foreach ($oldInvites as $oldInvite)
@@ -248,7 +250,8 @@ class InviteController extends ContainerAware
         $user = $this->container->get('security.context')->getToken()->getUser();
 
         // Check to see if this user is the creator of a currently active open invite
-        $oldInvite = $this->container->get('whoot.manager.invite')->findInvitesBy(array('createdBy' => $user->getId(), 'status' => 'Active'), array(), array(), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))));
+        $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation()->getTimezone());
+        $oldInvite = $this->container->get('whoot.manager.invite')->findInvitesBy(array('createdBy' => $user->getId(), 'status' => 'Active'), array(), array(), array('target' => 'createdAt', 'start' => $start));
 
         if (count($oldInvite) > 0)
         {

@@ -27,9 +27,10 @@ services:
         class: Whoot\WhootBundle\Security\User\Provider\FacebookProvider
         arguments:
             facebook:    "@fos_facebook.api"
-            userManager: "@fos_user.user_manager"
-            locationManager: "@whoot.manager.location"
-
+            userManager: "@whoot.manager.user"
+            imageManager: "@marbemac.manager.image"
+            validator: "@validator"
+            
 doctrine_mongodb:
     default_database: whoot_%kernel.environment%
     auto_generate_proxy_classes: %kernel.debug%
@@ -85,7 +86,7 @@ marbemac_vote:
 
 # FOS Facebook config
 fos_facebook:
-    file:   %kernel.root_dir%/../vendor/facebook/src/base_facebook.php
+    file:   %kernel.root_dir%/../vendor/facebook/src/facebook.php
     alias:  facebook
     cookie: true
     permissions: [email, user_birthday, user_hometown, user_location]

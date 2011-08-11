@@ -11,7 +11,8 @@ class LocationFormType extends AbstractType
     {
         $builder
             ->add('state', 'state')
-            ->add('cities');
+            ->add('cities')
+            ->add('timezone', 'timezone');
     }
 
     public function getName()

@@ -274,6 +274,7 @@ class User extends BaseUser
         $currentLocation = new CurrentLocation($locationIds);
         $currentLocation->setType($type);
         $currentLocation->setName($location->buildName($locationIds[count($locationIds)-1], $type));
+        $currentLocation->setTimezone($location->getTimezone($locationIds[1]));
         $this->currentLocation = $currentLocation;
     }
 
@@ -284,6 +285,7 @@ class User extends BaseUser
             $currentPost = new CurrentPost();
             $currentPost->setType($post->getType());
             $currentPost->setLocation($post->getCurrentLocation()->getName());
+            $currentPost->setTimezone($post->getCurrentLocation()->getTimezone());
             $currentPost->setPost($post);
             $this->currentPost = $currentPost;
         }
@@ -321,7 +323,6 @@ class User extends BaseUser
     public function setFacebookId($facebookID)
     {
         $this->facebookId = $facebookID;
-        $this->setUsername($facebookID);
         $this->salt = '';
     }
 
@@ -365,7 +366,8 @@ class User extends BaseUser
 
     public function hasPinged($userId)
     {
-        $date = date('Y-m-d', time());
+        $date = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getCurrentLocation()->getTimezone());
+
         if ($this->dailyPings && $this->dailyPings->getDateGroup() == $date && in_array($userId, $this->dailyPings->getPings()))
         {
             return true;
@@ -378,7 +380,7 @@ class User extends BaseUser
 
     public function addPing($userId)
     {
-        $date = date('Y-m-d', time());
+        $date = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getCurrentLocation()->getTimezone());
         if (!$this->dailyPings || $this->dailyPings->getDateGroup() != $date)
         {
             $dailyPing = new DailyPing();
@@ -394,7 +396,7 @@ class User extends BaseUser
 
     public function removePing($userId)
     {
-        $date = date('Y-m-d', time());
+        $date = new DateConverter(null, 'Y-m-d', '-5 hours', $this->getCurrentLocation()->getTimezone());
         if ($this->dailyPings && $this->dailyPings->getDateGroup() == $date)
         {
             $this->dailyPings->removePing($userId);
@@ -466,6 +468,11 @@ class CurrentPost
      */
     protected $post;
 
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $timezone;
+
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
@@ -502,11 +509,21 @@ class CurrentPost
         $this->createdAt = $post->getCreatedAt() ? $post->getCreatedAt() : new \Date();
     }
 
+    public function getTimezone()
+    {
+        return $this->timezone;
+    }
+
+    public function setTimezone($timezone)
+    {
+        $this->timezone = $timezone;
+    }
+
     public function isValid()
     {
-        $date = new DateConverter(clone $this->getCreatedAt(), 'Y-m-d');
+        $date = new DateConverter(clone $this->getCreatedAt(), 'Y-m-d', '-5 hours', $this->getTimezone());
 
-        if ($date == date('Y-m-d', time()-(60*60*5)))
+        if ($date == date('Y-m-d'))
         {
             return true;
         }

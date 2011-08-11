@@ -7,5 +7,8 @@
     {{ form_label(form.cities, "City") }}
     {{ form_widget(form.cities, {'attr': {'autocomplete': 'off', 'value': ''}}) }}
 
+    {{ form_label(form.timezone, "Timezone") }}
+    {{ form_widget(form.timezone) }}
+
     <input type="submit" value="Create Location" />
 </form>

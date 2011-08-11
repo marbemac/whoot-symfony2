@@ -35,6 +35,11 @@ class CurrentLocation
      */
     protected $school;
 
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $timezone;
+
     public function __construct($locationData)
     {
         // Set the location IDs
@@ -106,5 +111,15 @@ class CurrentLocation
     public function getSchool()
     {
         return new \MongoId($this->school);
+    }
+
+    public function setTimezone($timezone)
+    {
+        $this->timezone = $timezone;
+    }
+
+    public function getTimezone()
+    {
+        return $this->timezone;
     }
 }

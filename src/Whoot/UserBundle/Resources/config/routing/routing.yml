@@ -1,16 +1,4 @@
 ### SECURITY
-fos_user_security_login:
-    pattern:  /login.{_format}
-    defaults: { _controller: FOSUserBundle:Security:login, _format: html }
-    requirements:
-        _format:    html|xml
-
-fos_user_security_check:
-    pattern:  /login.{_format}
-    defaults: { _controller: FOSUserBundle:Security:login, _format: xml }
-    requirements:
-        _format:    html|xml
-
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 ###

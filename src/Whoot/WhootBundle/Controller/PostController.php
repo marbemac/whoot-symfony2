@@ -10,11 +10,10 @@ use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\Security\Core\Exception\AccessDeniedException,
     Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
+use Whoot\WhootBundle\Util\DateConverter;
+
 class PostController extends ContainerAware
 {
-    /**
-     * 
-     */
     public function feedAction($list=null, $offset=0, $limit=null, $showTrending=true, $_format='html')
     {
         $response = new Response();
@@ -25,6 +24,7 @@ class PostController extends ContainerAware
 
         $user = $this->container->get('security.context')->getToken()->getUser();
 
+        $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation()->getTimezone());
         // Don't even bother getting objects if we aren't including ANY node types
         if (empty($postTypes))
         {
@@ -32,13 +32,13 @@ class PostController extends ContainerAware
         }
         else if ($list)
         {
-            $posts = $this->container->get('whoot.manager.post')->findPostsBy(array('isCurrentPost' => true), array('createdBy' => $list->getUsers()), array($feedSort => 'desc'), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))), $offset, $limit);
+            $posts = $this->container->get('whoot.manager.post')->findPostsBy(array('isCurrentPost' => true), array('createdBy' => $list->getUsers()), array($feedSort => 'desc'), array('target' => 'createdAt', 'start' => $start), $offset, $limit);
         }
         else
         {
             $following = $user->getFollowing();
             $following[] = $user->getId();
-            $posts = $this->container->get('whoot.manager.post')->findPostsBy(array('isCurrentPost' => true), array('type' => $postTypes, 'createdBy' => $following), array($feedSort => 'desc'), array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5))), $offset, $limit);
+            $posts = $this->container->get('whoot.manager.post')->findPostsBy(array('isCurrentPost' => true), array('type' => $postTypes, 'createdBy' => $following), array($feedSort => 'desc'), array('target' => 'createdAt', 'start' => $start), $offset, $limit);
         }
 
         $response->setCache(array(
@@ -76,7 +76,8 @@ class PostController extends ContainerAware
     {
         $response = new Response();
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, date('Y-m-d 05:00:00', time()-(60*60*5)), null, $offset, $limit);
+        $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation()->getTimezone());
+        $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, $start, null, $offset, $limit);
 
         $response->setCache(array(
         ));

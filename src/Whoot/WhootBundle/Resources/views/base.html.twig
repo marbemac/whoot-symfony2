@@ -170,7 +170,25 @@
                             originalFunc();
                         }
 
+                        {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% autoescape false %}
+                            FB.getLoginStatus(function(response) {
+                                if (response.status == 'connected') {
+                                    // logged in and connected user
+                                    console.log('FB Logged');
+                                    window.location = '{{ path('facebook_security_check') }}';
+                                }
+                            });
+                        {% endautoescape %}
+                        {% endif %}
+
+                        $('#logout').live('click', function() {
+                            FB.logout();
+                            return false;
+                        })
+
                         FB.Event.subscribe('auth.login', function(response) {
+                            console.log('FB Login Detected');
                             window.location = '{{ path('facebook_security_check') }}';
                         });
                         FB.Event.subscribe('auth.logout', function(response) {

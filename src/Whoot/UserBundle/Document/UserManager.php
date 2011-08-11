@@ -10,6 +10,7 @@ use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Document\UserManager as BaseUserManager;
 use FOS\UserBundle\Util\CanonicalizerInterface;
 use Whoot\WhootBundle\Util\SlugNormalizer;
+use Whoot\WhootBundle\Util\DateConverter;
 
 class UserManager extends BaseUserManager
 {

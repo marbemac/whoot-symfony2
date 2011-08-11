@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\Security\Acl\Domain\UserSecurityIdentity,
     Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 
+use Whoot\WhootBundle\Util\DateConverter;
+
 class PingController extends ContainerAware
 {
     /*
@@ -70,7 +72,8 @@ class PingController extends ContainerAware
         if ($securityContext->isGranted('ROLE_USER'))
         {
             $fromUser = $securityContext->getToken()->getUser()->getId();
-            $ping = $this->container->get('whoot.manager.ping')->findPing($fromUser, $toUser, date('Y-m-d 05:00:00', time()-(60*60*5)));
+            $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $fromUser->getCurrentLocation()->getTimezone());
+            $ping = $this->container->get('whoot.manager.ping')->findPing($fromUser, $toUser, $start);
             if ($ping)
             {
                 $countdown = time() - $ping['createdAt']->getTimestamp();

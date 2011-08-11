@@ -4,6 +4,7 @@ namespace Whoot\WhootBundle\Document;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Whoot\WhootBundle\Model\ObjectManager as BaseManager;
+use Whoot\WhootBundle\Util\DateConverter;
 
 class PingManager extends BaseManager
 {
@@ -39,7 +40,7 @@ class PingManager extends BaseManager
 
     public function addPing($fromUser, $toUserId, $andFlush = true)
     {
-        $dateGroup = date('Y-m-d', time());
+        $dateGroup = new DateConverter(null, 'Y-m-d', '-5 hours', $fromUser->getCurrentLocation()->getTimezone());
         $pinged = new \MongoId($toUserId);
         $pingGroup = $this->findPingBy(array('dateGroup' => $dateGroup, 'pinged' => $pinged));
         if ($pingGroup)

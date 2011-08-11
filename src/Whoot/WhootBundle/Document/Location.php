@@ -128,6 +128,7 @@ class Location implements ObjectInterface
     public function getCity($name)
     {
         $slug = new SlugNormalizer($name);
+        $slug .= '-'.strtolower($this->state);
         foreach ($this->cities as $city)
         {
             if ($city->getSlug() == $slug)
@@ -203,6 +204,31 @@ class Location implements ObjectInterface
                     }
                 }
             }
+        }
+    }
+
+    public function setTimezone($timezone)
+    {
+        // noop
+    }
+
+    public function getTimezone($cityId)
+    {
+        foreach ($this->cities as $city)
+        {
+            if ($city->getId() == $cityId)
+            {
+                return $city->getTimezone();
+            }
+        }
+    }
+
+    public function setCityTimezone($cityName, $timezone)
+    {
+        $city = $this->getCity($cityName);
+        if ($city)
+        {
+            $city->setTimezone($timezone);
         }
     }
 
@@ -298,6 +324,11 @@ class City
      * @MongoDB\EmbedMany(targetDocument="School")
      */
     protected $schools;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $timezone;
 
     public function __construct()
     {
@@ -410,6 +441,16 @@ class City
 
         return false;
     }
+
+    public function setTimezone($timezone)
+    {
+        $this->timezone = $timezone;
+    }
+
+    public function getTimezone()
+    {
+        return $this->timezone;
+    }
 }
 
 /**
@@ -486,55 +527,5 @@ class School
     public function getSlug()
     {
         return $this->slug;
-    }
-}
-
-/** @MongoDB\EmbeddedDocument */
-class Coordinates
-{
-    /** @MongoDB\Field(type="float") */
-    protected $latitude;
-
-    /** @MongoDB\Field(type="float") */
-    protected $longitude;
-
-    /**
-     * Set latitude
-     *
-     * @param float $latitude
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return float $latitude
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param float $longitude
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return float $longitude
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
     }
 }

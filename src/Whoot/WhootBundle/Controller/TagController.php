@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\Security\Acl\Domain\UserSecurityIdentity,
     Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 
-use Whoot\WhootBundle\Entity\Post;
+use Whoot\WhootBundle\Util\DateConverter;
 
 class TagController extends ContainerAware
 {
@@ -28,6 +28,7 @@ class TagController extends ContainerAware
 
         if ($user->getCurrentLocation())
         {
+            $start = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation()->getTimezone());
             $posts = $this->container->get('whoot.manager.post')->findPostsBy(
                 array(
                      'isCurrentPost' => true,
@@ -35,7 +36,7 @@ class TagController extends ContainerAware
                 ),
                 array(),
                 array(),
-                array('target' => 'createdAt', 'start' => date('Y-m-d 05:00:00', time()-(60*60*5)))
+                array('target' => 'createdAt', 'start' => $start)
             );
             
             $trendingTags = $this->container->get('whoot.manager.tag')->getTrending($posts, 10);

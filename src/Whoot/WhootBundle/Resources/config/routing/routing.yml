@@ -85,6 +85,9 @@ facebook_security_check:
     pattern:  /fb/login_check
     defaults: { _controller: WhootUserBundle:Security:login }
 
+_security_check:
+      pattern:  /login_check
+
 _security_logout:
     pattern:  /logout
 

@@ -1,7 +1,19 @@
 imports:
     - { resource: config_staging.yml }
 
+framework:
+    router:   { resource: "%kernel.root_dir%/config/routing_dev.yml" }
+    profiler: { only_exceptions: false }
+
+web_profiler:
+    toolbar: true
+
 doctrine_mongodb:
+    default_database: whoot_staging
     connections:
         default:
-            server: mongodb://staging_monsta:nIwo8Dnqie30xW@dbh13.mongolab.com:27137/whoot_staging
+            server: mongodb://staging_monsta:nIwo8Dnqie30xW@dbh24.mongolab.com:27247/whoot_staging
+
+fos_facebook:
+    app_id: 224410564236351
+    secret: 3c09fdeb1e2fddde45dd895c70c790a0

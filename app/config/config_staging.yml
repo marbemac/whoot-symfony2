@@ -9,7 +9,8 @@ fos_facebook:
     secret: 772c338ce553ec0008fbf2b266f343a5
 
 marbemac_analytics:
-    woopra_domain: staging.thewhoot.com
+    woopra:
+        domain: staging.thewhoot.com
 
 doctrine_mongodb:
     default_database: whoot_staging

@@ -83,8 +83,14 @@ marbemac_vote:
     document_stem: Whoot\WhootBundle\Document
 
 marbemac_analytics:
+    use_analytics: true
+    analytics:
+        manager: Marbemac\AnalyticsBundle\Document\AnalyticsManager
+
     use_woopra: true
-    woopra_idle_timeout: 30000
+    woopra:
+        manager: Marbemac\AnalyticsBundle\Document\WoopraManager
+        idle_timeout: 30000
 
 # FOS Facebook config
 fos_facebook:

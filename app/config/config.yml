@@ -90,7 +90,7 @@ marbemac_analytics:
     use_woopra: true
     woopra:
         manager: Marbemac\AnalyticsBundle\Document\WoopraManager
-        idle_timeout: 30000
+        idle_timeout: 420000 # 7 minutes
 
 # FOS Facebook config
 fos_facebook:

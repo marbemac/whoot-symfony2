@@ -31,7 +31,18 @@ class FollowController extends ContainerAware
 
         $request = $this->container->get('request');
 
-        $result = $this->container->get('whoot.manager.user')->toggleFollow($this->container->get('security.context')->getToken()->getUser(), $userId);
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $result = $this->container->get('whoot.manager.user')->toggleFollow($user, $userId);
+
+        // Add/remove the notification
+        if ($result['status'] == 'removed')
+        {
+//            $this->container->get('marbemac.manager.notification')->removeNotification($userId, $user, 'Follow', null);
+        }
+        else
+        {
+//            $this->container->get('marbemac.manager.notification')->addNotification($userId, null, null, 'Follow', $user, null);
+        }
 
         if ($_format == 'json')
         {

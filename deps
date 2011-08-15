@@ -80,10 +80,6 @@
     git=git://github.com/facebook/php-sdk.git
     target=/facebook
 
-[EvarioNotificationBundle]
-    git=git://github.com/evario/NotificationBundle.git
-    target=/bundles/Evario/NotificationBundle
-
 [MarbemacVoteBundle]
     git=git://github.com/marbemac/VoteBundle.git
     target=/bundles/Marbemac/VoteBundle
@@ -95,3 +91,11 @@
 [Imagine]
     git=git://github.com/avalanche123/Imagine.git
     target=/imagine
+    
+[MarbemacNotificationBundle]
+    git=git://github.com/marbemac/NotificationBundle.git
+    target=/bundles/Marbemac/NotificationBundle
+
+[MarbemacAnalyticsBundle]
+    git=git://github.com/marbemac/AnalyticsBundle.git
+    target=/bundles/Marbemac/AnalyticsBundle

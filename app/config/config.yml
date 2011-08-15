@@ -46,6 +46,7 @@ doctrine_mongodb:
                 FOSUserBundle: ~
                 MarbemacImageBundle: ~
                 MarbemacVoteBundle: ~
+                MarbemacNotificationBundle: ~
                 WhootUserBundle: ~
                 WhootBundle: ~
 
@@ -74,15 +75,16 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
 
-#evario_notification:
-#    notification_class:         Whoot\ImageBundle\Entity\Image
-#    notification_manager:       Whoot\ImageBundle\Entity\NotificationManager
-#    from_email:                 marbemac@gmail.com
+marbemac_notification: ~
 
 marbemac_image: ~
 
 marbemac_vote:
     document_stem: Whoot\WhootBundle\Document
+
+marbemac_analytics:
+    use_woopra: true
+    woopra_idle_timeout: 30000
 
 # FOS Facebook config
 fos_facebook:

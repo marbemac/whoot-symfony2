@@ -20,14 +20,14 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle(),
-            new FOS\UserBundle\FOSUserBundle(), // FriendsOfSymfony UserBundle
+            new FOS\UserBundle\FOSUserBundle(),
             new FOS\FacebookBundle\FOSFacebookBundle(),
-//            new Evario\ImageBundle\EvarioNotificationBundle(),
             new Marbemac\ImageBundle\MarbemacImageBundle(),
             new Marbemac\VoteBundle\MarbemacVoteBundle(),
+            new Marbemac\NotificationBundle\MarbemacNotificationBundle(),
+            new Marbemac\AnalyticsBundle\MarbemacAnalyticsBundle(),
             new Whoot\UserBundle\WhootUserBundle(),
             new Whoot\VoteBundle\WhootVoteBundle(),
-//            new Whoot\ImageBundle\WhootNotificationBundle(),
             new Whoot\WhootBundle\WhootBundle(),
         );
 

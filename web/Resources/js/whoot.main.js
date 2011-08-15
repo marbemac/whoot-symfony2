@@ -282,6 +282,7 @@ $(function() {
         // 13 enter keypress
         if ($code == 13)
         {
+            e.preventDefault();
             // Calculate how many tags the user has already added
             $currenttags = '';
             $.each($('input.tag'), function() {

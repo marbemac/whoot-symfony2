@@ -6,7 +6,7 @@ require_once __DIR__.'/../app/AppCache.php';
 
 use Symfony\Component\HttpFoundation\Request;
 
-$kernel = new AppKernel('staging_local', true);
+$kernel = new AppKernel('staging_local', false);
 //$kernel->loadClassCache();
 $kernel = new AppCache($kernel);
 $kernel->handle(Request::createFromGlobals())->send();

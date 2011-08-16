@@ -17,3 +17,6 @@ doctrine_mongodb:
     connections:
         default:
             server: mongodb://staging_pluto:nIwo8Dnqie30xW@10.179.98.224:27137/whoot_staging
+
+swiftmailer:
+    delivery_address: dev@thewhoot.com            

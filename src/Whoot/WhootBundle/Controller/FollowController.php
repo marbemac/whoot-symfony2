@@ -37,11 +37,11 @@ class FollowController extends ContainerAware
         // Add/remove the notification
         if ($result['status'] == 'removed')
         {
-//            $this->container->get('marbemac.manager.notification')->removeNotification($userId, $user, 'Follow', null);
+            $this->container->get('marbemac.manager.notification')->removeNotification($userId, $user, 'Follow', null);
         }
         else
         {
-//            $this->container->get('marbemac.manager.notification')->addNotification($userId, null, null, 'Follow', $user, null);
+            $this->container->get('marbemac.manager.notification')->addNotification($userId, null, null, 'Follow', $user, null);
         }
 
         if ($_format == 'json')

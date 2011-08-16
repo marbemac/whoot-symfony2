@@ -6,7 +6,7 @@
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         {% block stylesheets %}
 
-            {% stylesheets filter='yui_css' output='Resources/css/main.css'
+            {% stylesheets filter='?yui_css' output='Resources/css/main.css'
                 '@WhootBundle/Resources/public/css/colorbox.css'
                 '@WhootBundle/Resources/public/css/jquery.qtip.css'
                 '@WhootBundle/Resources/public/css/jquery.autocomplete.css'
@@ -78,7 +78,7 @@
             <div id="ajax-success"></div>
             <div id="ajax-error"></div>
 
-            {% javascripts filter='yui_js' output='Resources/js/main.js'
+            {% javascripts filter='?yui_js' output='Resources/js/main.js'
                 '@WhootBundle/Resources/public/js/jquery.js'
                 '@WhootBundle/Resources/public/js/json2.js'
                 '@WhootBundle/Resources/public/js/jquery.livequery.js'

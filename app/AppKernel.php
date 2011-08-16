@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Marbemac\AnalyticsBundle\MarbemacAnalyticsBundle(),
             new Whoot\UserBundle\WhootUserBundle(),
             new Whoot\VoteBundle\WhootVoteBundle(),
+            new Whoot\NotificationBundle\WhootNotificationBundle(),
             new Whoot\WhootBundle\WhootBundle(),
         );
 

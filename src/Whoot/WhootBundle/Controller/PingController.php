@@ -35,7 +35,7 @@ class PingController extends ContainerAware
         $user = $this->container->get('security.context')->getToken()->getUser();
         $pingAdded = $this->container->get('whoot.manager.ping')->addPing($user, $userId, false);
         $result = $this->container->get('whoot.manager.user')->addPing($user, $userId, true);
-//        $this->container->get('marbemac.manager.notification')->addNotification($userId, null, null, 'Ping', $user, null);
+        $this->container->get('marbemac.manager.notification')->addNotification($userId, null, null, 'Ping', $user, null);
 
         if ($_format == 'json')
         {

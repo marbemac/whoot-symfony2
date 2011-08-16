@@ -17,7 +17,7 @@ framework:
     session:
         default_locale: %locale%
         auto_start:     true
-        lifetime:       3600
+        lifetime:       18000 # 5 hour session timeout
     annotations:
         cache: file
         debug: %kernel.debug%
@@ -73,8 +73,12 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
 
-marbemac_notification: ~
-
+marbemac_notification:
+    notification_manager: Whoot\NotificationBundle\Document\NotificationManager
+    user_route: user_profile_show
+    user_route_parameter: username
+    max_contributor_show: 5
+    
 marbemac_image: ~
 
 marbemac_vote:

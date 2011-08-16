@@ -108,7 +108,7 @@ $(function(){
      */
     amplify.subscribe('notifications_show', function ( data ) {
         $('#notificationsC').remove();
-        $('#my-notification-count').prepend(data.notifications).find('span').removeClass('on').text('0');
+        $('#unread-notification-count').prepend(data.notifications).find('span').removeClass('on').text('0');
     })
 
     /*

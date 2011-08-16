@@ -426,16 +426,10 @@ $post-hover-color: #E7EDFF;
 }
 
 .teaser.post {
-    .post {
-        float: left;
-        padding:  9px 0;
-    }
-}
-
-.teaser.post {
     font-size: 16px;
     position: relative;
     padding: 1px 0 3px 0;
+    height: 54px;
     .profile-image {
         float: left;
         position: relative;

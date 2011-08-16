@@ -31,7 +31,7 @@
         <div class="clear"></div>
     </div>
     
-    {#{% render "EvarioNotificationBundle:Image:notificationCount" %}#}
+    {% render "MarbemacNotificationBundle:Notification:unreadCount" with {'userId': app.user.id} %}
 
     {% render 'WhootBundle:Post:myPost' %}
 

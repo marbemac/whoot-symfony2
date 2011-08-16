@@ -26,5 +26,5 @@ fos_facebook:
 assetic:
     use_controller: true
 
-#swiftmailer:
-#    disable_delivery: true
+swiftmailer:
+    delivery_address: marbemac@gmail.com

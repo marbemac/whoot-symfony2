@@ -454,7 +454,7 @@ $(function() {
     /*
      * NOTIFICATIONS
      */
-    $('#my-notification-count').live('click', function(e) {
+    $('#unread-notification-count').live('click', function(e) {
         if ($(this).find('#notificationsC').length > 0)
         {
             $(this).find('#notificationsC').toggle();

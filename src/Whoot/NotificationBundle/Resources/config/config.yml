@@ -1,8 +1,0 @@
-parameters:
-    whoot.manager.notification.class:          Whoot\ImageBundle\Entity\NotificationManager
-    whoot.manager.notification.entity:         Whoot\ImageBundle\Entity\Image
-
-services:
-    whoot.manager.notification:
-        class:        %whoot.manager.notification.class%
-        arguments:    ["@doctrine.orm.default_entity_manager", "@service_container", %whoot.manager.notification.entity%]

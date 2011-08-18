@@ -63,11 +63,13 @@ class FacebookProvider implements UserProviderInterface
                 $user = $this->userManager->findUserBy(array('email' => $fbdata['email']));
 
                 if (empty($user)) {
+                    $pass = uniqid('up');
+
                     $user = $this->userManager->createUser();
                     $user->setUsername($fbdata['username']);
                     $user->setEnabled(true);
-                    $user->setPassword('');
-                    $user->setAlgorithm('');
+                    $user->setPlainPassword($pass);
+                    $this->userManager->updatePassword($user);
                 }
             }
 

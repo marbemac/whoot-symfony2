@@ -38,6 +38,7 @@ class WhootTwigExtension extends \Twig_Extension {
             'printPostTypeShort'  => new \Twig_Filter_Method($this, 'printPostTypeShort'),
             'printPostTypeNoun'  => new \Twig_Filter_Method($this, 'printPostTypeNoun'),
             'timeLapse'  => new \Twig_Filter_Method($this, 'timeLapse'),
+            'relativeTime'  => new \Twig_Filter_Method($this, 'relativeTime'),
             'stripSlashes'  => new \Twig_Filter_Method($this, 'stripSlashes'),
             'truncate'  => new \Twig_Filter_Method($this, 'truncate'),
             'conditionalLength'  => new \Twig_Filter_Method($this, 'conditionalLength'),
@@ -235,6 +236,37 @@ class WhootTwigExtension extends \Twig_Extension {
             }
         }
         return $output ? $output.' ago' : "Just now";
+    }
+
+    public function relativeTime($timestamp)
+    {
+        $today = strtotime(date('M j, Y'));
+        $reldays = ($timestamp - $today)/86400;
+
+        if ($reldays >= 0 && $reldays < 1) {
+            return 'Today';
+        } else if ($reldays >= 1 && $reldays < 2) {
+            return 'Tomorrow';
+        } else if ($reldays >= -1 && $reldays < 0) {
+            return 'Yesterday';
+        }
+
+        if (abs($reldays) < 7) {
+            if ($reldays > 0) {
+                $reldays = floor($reldays);
+                return 'In ' . $reldays . ' day' . ($reldays != 1 ? 's' : '');
+            } else {
+                $reldays = abs(floor($reldays));
+                return $reldays . ' day' . ($reldays != 1 ? 's' : '') . ' ago';
+            }
+        }
+
+        if (abs($reldays) < 182) {
+            return date('l, j F', $timestamp ? $timestamp : time());
+        } else {
+            return date('l, j F, Y', $timestamp ? $timestamp : time());
+        }
+
     }
 
     /*

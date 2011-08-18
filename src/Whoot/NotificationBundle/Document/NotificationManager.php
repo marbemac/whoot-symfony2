@@ -16,9 +16,15 @@ class NotificationManager extends BaseNotificationManager
         'Comment'
     );
 
+    protected $notificationThemes = array(
+        'Follow' => 'full',
+        'Ping' => 'count',
+        'Comment' => 'full'
+    );
+
     protected $notificationVerbs = array(
         'Follow' => array('singular' => 'is following you', 'plural' => 'are following you'),
-        'Ping' => array('singular' => 'pinged you today', 'plural' => 'pinged you today'),
+        'Ping' => array('singular' => 'pinged you', 'plural' => 'pinged you'),
         'Comment' => array('singular' => 'commented on your', 'plural' => 'commented on your')
     );
 

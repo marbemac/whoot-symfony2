@@ -323,7 +323,6 @@ class User extends BaseUser
     public function setFacebookId($facebookID)
     {
         $this->facebookId = $facebookID;
-        $this->salt = '';
     }
 
     /**

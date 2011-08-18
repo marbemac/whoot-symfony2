@@ -467,6 +467,10 @@ $(function() {
         return false;
     })
 
+    $('#notificationsC .unread').livequery(function() {
+        $(this).removeClass( "unread", 15000);
+    })
+
     /*
      * SEARCH
      */

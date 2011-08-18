@@ -731,65 +731,6 @@ html.coming-soon body {
 }
 
 /* line 92, ../../compass/src/partials/_user.scss */
-#notificationsC {
-  -moz-box-shadow: 0px 0px 5px #333333;
-  -webkit-box-shadow: 0px 0px 5px #333333;
-  -o-box-shadow: 0px 0px 5px #333333;
-  box-shadow: 0px 0px 5px #333333;
-  padding: 3px;
-}
-/* line 96, ../../compass/src/partials/_user.scss */
-#notificationsC h4 {
-  margin: 2px 0 2px 5px;
-}
-/* line 99, ../../compass/src/partials/_user.scss */
-#notificationsC li {
-  padding: 5px 10px;
-  border-bottom: 1px dotted #CCC;
-}
-/* line 102, ../../compass/src/partials/_user.scss */
-#notificationsC li.unread {
-  font-weight: bold;
-  background: #FFF3F1;
-}
-/* line 107, ../../compass/src/partials/_user.scss */
-#notificationsC .none {
-  font-style: italic;
-}
-
-/* line 112, ../../compass/src/partials/_user.scss */
-#my-notification-count {
-  display: block;
-  border-bottom: 1px solid #F1F1F1;
-  margin: 0 5px;
-  padding: 5px;
-  color: #000;
-  position: relative;
-}
-/* line 120, ../../compass/src/partials/_user.scss */
-#my-notification-count .on {
-  color: red;
-  font-weight: bold;
-}
-/* line 124, ../../compass/src/partials/_user.scss */
-#my-notification-count:hover {
-  cursor: pointer;
-  text-decoration: none;
-  background: #dcdcdc;
-}
-/* line 129, ../../compass/src/partials/_user.scss */
-#my-notification-count #notificationsC {
-  position: absolute;
-  top: -1px;
-  left: -509px;
-  width: 500px;
-  border: 1px solid #CCC;
-  background-color: #FFF;
-  z-index: 150;
-  cursor: default;
-}
-
-/* line 141, ../../compass/src/partials/_user.scss */
 #user-profile-image {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -800,22 +741,22 @@ html.coming-soon body {
   margin: 10px 0 0 0;
 }
 
-/* line 146, ../../compass/src/partials/_user.scss */
+/* line 97, ../../compass/src/partials/_user.scss */
 #user-sidebar {
   float: left;
   width: 130px;
   padding: 10px;
   margin: 5px 0;
 }
-/* line 152, ../../compass/src/partials/_user.scss */
+/* line 103, ../../compass/src/partials/_user.scss */
 #user-sidebar h1 {
   margin: 0;
 }
-/* line 155, ../../compass/src/partials/_user.scss */
+/* line 106, ../../compass/src/partials/_user.scss */
 #user-sidebar .location {
   font-style: italic;
 }
-/* line 158, ../../compass/src/partials/_user.scss */
+/* line 109, ../../compass/src/partials/_user.scss */
 #user-sidebar .follow-B {
   overflow: hidden;
   *zoom: 1;
@@ -850,7 +791,7 @@ html.coming-soon body {
 #user-sidebar .follow-B:hover {
   text-decoration: none;
 }
-/* line 166, ../../compass/src/partials/_user.scss */
+/* line 117, ../../compass/src/partials/_user.scss */
 #user-sidebar .profileImage {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -860,7 +801,7 @@ html.coming-soon body {
   border-radius: 5px;
   margin: 10px 0 0 0;
 }
-/* line 172, ../../compass/src/partials/_user.scss */
+/* line 123, ../../compass/src/partials/_user.scss */
 #user-sidebar .nav a {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -872,56 +813,56 @@ html.coming-soon body {
   padding: 1px 8px;
   margin: 3px 0;
 }
-/* line 178, ../../compass/src/partials/_user.scss */
+/* line 129, ../../compass/src/partials/_user.scss */
 #user-sidebar .nav a:hover {
   background: #ffece5;
   text-decoration: none;
 }
-/* line 182, ../../compass/src/partials/_user.scss */
+/* line 133, ../../compass/src/partials/_user.scss */
 #user-sidebar .nav .on {
   cursor: default;
   color: #FFF;
   background: #CC3300;
 }
-/* line 187, ../../compass/src/partials/_user.scss */
+/* line 138, ../../compass/src/partials/_user.scss */
 #user-sidebar .nav .on:hover {
   background: #CC3300;
 }
-/* line 191, ../../compass/src/partials/_user.scss */
+/* line 142, ../../compass/src/partials/_user.scss */
 #user-sidebar .stats {
   font-size: 10px;
   color: #666;
   border-top: 1px solid #DDD;
   padding: 5px 0 0 3px;
 }
-/* line 197, ../../compass/src/partials/_user.scss */
+/* line 148, ../../compass/src/partials/_user.scss */
 #user-sidebar .stats li {
   margin: 2px 0;
 }
-/* line 201, ../../compass/src/partials/_user.scss */
+/* line 152, ../../compass/src/partials/_user.scss */
 #user-sidebar .username {
   font-size: 10px;
   margin: 0 0 2px 3px;
   color: red;
 }
-/* line 206, ../../compass/src/partials/_user.scss */
+/* line 157, ../../compass/src/partials/_user.scss */
 #user-sidebar .user-switch {
   font-size: 10px;
   margin: 0 0 2px 3px;
   display: block;
 }
 
-/* line 214, ../../compass/src/partials/_user.scss */
+/* line 165, ../../compass/src/partials/_user.scss */
 .following.feed,
 .followers.feed {
   padding: 10px 0 0 0;
 }
 
-/* line 218, ../../compass/src/partials/_user.scss */
+/* line 169, ../../compass/src/partials/_user.scss */
 .teaser.user {
   padding: 8px 5px;
 }
-/* line 221, ../../compass/src/partials/_user.scss */
+/* line 172, ../../compass/src/partials/_user.scss */
 .teaser.user img {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -934,22 +875,22 @@ html.coming-soon body {
   height: 30px;
   margin: -5px 10px 0 0;
 }
-/* line 227, ../../compass/src/partials/_user.scss */
+/* line 178, ../../compass/src/partials/_user.scss */
 .teaser.user .actions {
   float: right;
 }
-/* line 232, ../../compass/src/partials/_user.scss */
+/* line 183, ../../compass/src/partials/_user.scss */
 .teaser.user .follow-B,
 .teaser.user .ping-B,
 .teaser.user .pinged {
   padding: 0 12px;
 }
 
-/* line 238, ../../compass/src/partials/_user.scss */
+/* line 189, ../../compass/src/partials/_user.scss */
 .tag.user .profile-image {
   margin: 0;
 }
-/* line 241, ../../compass/src/partials/_user.scss */
+/* line 192, ../../compass/src/partials/_user.scss */
 .tag.user .profile-image img {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -958,7 +899,7 @@ html.coming-soon body {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 245, ../../compass/src/partials/_user.scss */
+/* line 196, ../../compass/src/partials/_user.scss */
 .tag.user .user-link {
   margin: 0;
   padding: 0 0 0 10px;
@@ -966,12 +907,12 @@ html.coming-soon body {
   bottom: 7px;
 }
 
-/* line 252, ../../compass/src/partials/_user.scss */
+/* line 203, ../../compass/src/partials/_user.scss */
 .search-result.user {
   padding: 5px 5px 5px 45px;
   position: relative;
 }
-/* line 256, ../../compass/src/partials/_user.scss */
+/* line 207, ../../compass/src/partials/_user.scss */
 .search-result.user .profileImage {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -985,27 +926,27 @@ html.coming-soon body {
   left: 0px;
   margin-top: -17px;
 }
-/* line 267, ../../compass/src/partials/_user.scss */
+/* line 218, ../../compass/src/partials/_user.scss */
 .search-result.user .location {
   font-style: italic;
 }
 
-/* line 272, ../../compass/src/partials/_user.scss */
+/* line 223, ../../compass/src/partials/_user.scss */
 .user-link {
   position: relative;
   z-index: 30;
 }
-/* line 276, ../../compass/src/partials/_user.scss */
+/* line 227, ../../compass/src/partials/_user.scss */
 .user-link:hover {
   text-decoration: none;
 }
 
-/* line 281, ../../compass/src/partials/_user.scss */
+/* line 232, ../../compass/src/partials/_user.scss */
 .user-hover-tab {
   position: relative;
   padding: 0 0 0 65px;
 }
-/* line 285, ../../compass/src/partials/_user.scss */
+/* line 236, ../../compass/src/partials/_user.scss */
 .user-hover-tab .profileImage {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1017,7 +958,7 @@ html.coming-soon body {
   top: -5px;
   left: 0px;
 }
-/* line 291, ../../compass/src/partials/_user.scss */
+/* line 242, ../../compass/src/partials/_user.scss */
 .user-hover-tab .follow-B {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1050,33 +991,33 @@ html.coming-soon body {
 .user-hover-tab .follow-B:hover {
   text-decoration: none;
 }
-/* line 298, ../../compass/src/partials/_user.scss */
+/* line 249, ../../compass/src/partials/_user.scss */
 .user-hover-tab .name {
   font-size: 20px;
   margin-top: 6px;
 }
-/* line 302, ../../compass/src/partials/_user.scss */
+/* line 253, ../../compass/src/partials/_user.scss */
 .user-hover-tab .what {
   font-size: 12px;
   margin: 6px 0 0 0;
 }
-/* line 306, ../../compass/src/partials/_user.scss */
+/* line 257, ../../compass/src/partials/_user.scss */
 .user-hover-tab .working {
   color: #009966;
 }
-/* line 309, ../../compass/src/partials/_user.scss */
+/* line 260, ../../compass/src/partials/_user.scss */
 .user-hover-tab .low_in {
   color: #996699;
 }
-/* line 312, ../../compass/src/partials/_user.scss */
+/* line 263, ../../compass/src/partials/_user.scss */
 .user-hover-tab .low_out {
   color: #ff9900;
 }
-/* line 315, ../../compass/src/partials/_user.scss */
+/* line 266, ../../compass/src/partials/_user.scss */
 .user-hover-tab .big_out {
   color: #cc3300;
 }
-/* line 318, ../../compass/src/partials/_user.scss */
+/* line 269, ../../compass/src/partials/_user.scss */
 .user-hover-tab .stats {
   overflow: hidden;
   *zoom: 1;
@@ -1085,13 +1026,13 @@ html.coming-soon body {
   padding: 6px 0 2px 0;
   font-size: 12px;
 }
-/* line 325, ../../compass/src/partials/_user.scss */
+/* line 276, ../../compass/src/partials/_user.scss */
 .user-hover-tab .stats div {
   float: left;
   margin: 0 7px 0 0;
 }
 
-/* line 332, ../../compass/src/partials/_user.scss */
+/* line 283, ../../compass/src/partials/_user.scss */
 #collect-info-box {
   -moz-border-radius-topleft: 10px;
   -webkit-border-top-left-radius: 10px;
@@ -1107,7 +1048,7 @@ html.coming-soon body {
   width: 760px;
   z-index: 100;
 }
-/* line 343, ../../compass/src/partials/_user.scss */
+/* line 294, ../../compass/src/partials/_user.scss */
 #collect-info-box .options {
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
@@ -1127,12 +1068,12 @@ html.coming-soon body {
   margin: 0 0 0 -320px;
   padding: 20px;
 }
-/* line 354, ../../compass/src/partials/_user.scss */
+/* line 305, ../../compass/src/partials/_user.scss */
 #collect-info-box .options h3 {
   text-align: center;
   margin: 0 0 15px 0;
 }
-/* line 359, ../../compass/src/partials/_user.scss */
+/* line 310, ../../compass/src/partials/_user.scss */
 #collect-info-box .options .label {
   font-size: 20px;
   color: #666;
@@ -1140,7 +1081,7 @@ html.coming-soon body {
   width: 85px;
   float: left;
 }
-/* line 366, ../../compass/src/partials/_user.scss */
+/* line 317, ../../compass/src/partials/_user.scss */
 #collect-info-box .options select {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1153,7 +1094,7 @@ html.coming-soon body {
   padding: 7px;
   color: #666;
 }
-/* line 373, ../../compass/src/partials/_user.scss */
+/* line 324, ../../compass/src/partials/_user.scss */
 #collect-info-box .options .submit {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1187,11 +1128,11 @@ html.coming-soon body {
   text-decoration: none;
 }
 
-/* line 384, ../../compass/src/partials/_user.scss */
+/* line 335, ../../compass/src/partials/_user.scss */
 select.location .c {
   font-weight: bold;
 }
-/* line 387, ../../compass/src/partials/_user.scss */
+/* line 338, ../../compass/src/partials/_user.scss */
 select.location .s {
   padding-left: 30px;
 }
@@ -2942,119 +2883,51 @@ Purpose of the stylesheet follows.
 }
 
 /*
-    Document   : _user
+    Document   : _notification
     Created on : Mar 30, 2011, 4:04:51 PM
     Author     : Marc MacLeod
     Description:
         Purpose of the stylesheet follows.
 */
-/* line 11, ../../compass/src/partials/_notification.scss */
-.plupload {
-  cursor: pointer;
+/* line 9, ../../compass/src/partials/_notification.scss */
+#notificationsC {
+  -moz-box-shadow: 0px 0px 5px #333333;
+  -webkit-box-shadow: 0px 0px 5px #333333;
+  -o-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333;
+  padding: 3px;
+  max-height: 400px;
+  overflow-y: auto;
 }
-/* line 14, ../../compass/src/partials/_notification.scss */
-.plupload input {
-  cursor: pointer;
+/* line 15, ../../compass/src/partials/_notification.scss */
+#notificationsC h4 {
+  padding: 4px 0 4px 8px;
+  border-bottom: 1px solid #999;
 }
-
-/* line 17, ../../compass/src/partials/_notification.scss */
-.profileImage {
-  border: none;
+/* line 19, ../../compass/src/partials/_notification.scss */
+#notificationsC li {
+  padding: 5px 8px;
+  border-bottom: 1px dotted #CCC;
 }
-
-/* line 21, ../../compass/src/partials/_notification.scss */
-#user_panel {
-  padding: 7px 5px 7px 5px;
-  margin: 0 5px;
-  border-bottom: 1px solid #F1F1F1;
+/* line 23, ../../compass/src/partials/_notification.scss */
+#notificationsC li .text {
+  font-size: 16px;
 }
 /* line 26, ../../compass/src/partials/_notification.scss */
-#user_panel .name {
-  float: left;
-  text-decoration: none;
-  display: block;
-  margin: 3px 0 3px 2px;
-}
-/* line 32, ../../compass/src/partials/_notification.scss */
-#user_panel .name:hover {
-  text-decoration: underline;
-}
-/* line 36, ../../compass/src/partials/_notification.scss */
-#user_panel .profile_image {
-  position: relative;
-  height: 65px;
-  float: left;
-}
-/* line 41, ../../compass/src/partials/_notification.scss */
-#user_panel .profile_image img {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-  float: left;
-}
-/* line 47, ../../compass/src/partials/_notification.scss */
-#user_panel #profile-image-upload {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  border-radius: 3px;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  background: #FFF;
-  font-weight: bold;
+#notificationsC li .date {
   font-size: 11px;
-  padding: 1px 5px;
-  color: #156cd8;
-  cursor: default;
+  font-style: italic;
 }
-/* line 59, ../../compass/src/partials/_notification.scss */
-#user_panel .stats {
-  float: left;
-  width: 110px;
+/* line 30, ../../compass/src/partials/_notification.scss */
+#notificationsC li.unread {
+  background-color: #fae8e5;
 }
-/* line 63, ../../compass/src/partials/_notification.scss */
-#user_panel .stats .item {
-  clear: both;
-  margin: 3px 0 0 10px;
-}
-/* line 67, ../../compass/src/partials/_notification.scss */
-#user_panel .stats .item .label {
-  float: left;
-  font-size: 14px;
-  color: #666;
-  margin: 0 15px 0 0;
-}
-/* line 73, ../../compass/src/partials/_notification.scss */
-#user_panel .stats .item .value {
-  float: left;
-  font-size: 14px;
-  color: #666;
-  font-weight: bold;
-}
-/* line 81, ../../compass/src/partials/_notification.scss */
-#user_panel .small-link {
-  font-size: 12px;
-  text-decoration: none;
-  margin: 0 0 0 10px;
-  position: relative;
-}
-/* line 87, ../../compass/src/partials/_notification.scss */
-#user_panel .small-link:hover {
-  text-decoration: underline;
+/* line 34, ../../compass/src/partials/_notification.scss */
+#notificationsC .none {
+  font-style: italic;
 }
 
-/* line 92, ../../compass/src/partials/_notification.scss */
-#notificationsC {
-  padding: 10px;
-}
-
-/* line 95, ../../compass/src/partials/_notification.scss */
+/* line 38, ../../compass/src/partials/_notification.scss */
 #unread-notification-count {
   display: block;
   border-bottom: 1px solid #F1F1F1;
@@ -3063,18 +2936,18 @@ Purpose of the stylesheet follows.
   color: #000;
   position: relative;
 }
-/* line 103, ../../compass/src/partials/_notification.scss */
+/* line 46, ../../compass/src/partials/_notification.scss */
 #unread-notification-count .on {
   color: red;
   font-weight: bold;
 }
-/* line 107, ../../compass/src/partials/_notification.scss */
+/* line 50, ../../compass/src/partials/_notification.scss */
 #unread-notification-count:hover {
   cursor: pointer;
   text-decoration: none;
   background: #dcdcdc;
 }
-/* line 112, ../../compass/src/partials/_notification.scss */
+/* line 55, ../../compass/src/partials/_notification.scss */
 #unread-notification-count #notificationsC {
   position: absolute;
   top: 0px;
@@ -3084,388 +2957,6 @@ Purpose of the stylesheet follows.
   background-color: #FFF;
   z-index: 150;
   cursor: default;
-}
-
-/* line 124, ../../compass/src/partials/_notification.scss */
-#user-profile-image {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-  margin: 10px 0 0 0;
-}
-
-/* line 129, ../../compass/src/partials/_notification.scss */
-#user-sidebar {
-  float: left;
-  width: 130px;
-  padding: 10px;
-  margin: 5px 0;
-}
-/* line 135, ../../compass/src/partials/_notification.scss */
-#user-sidebar h1 {
-  margin: 0;
-}
-/* line 138, ../../compass/src/partials/_notification.scss */
-#user-sidebar .location {
-  font-style: italic;
-}
-/* line 141, ../../compass/src/partials/_notification.scss */
-#user-sidebar .follow-B {
-  overflow: hidden;
-  *zoom: 1;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  border-radius: 4px;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9a10), color-stop(25%, #fd8f13), color-stop(75%, #fc770d), color-stop(100%, #ff6600));
-  background-image: -webkit-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: -moz-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: -o-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: -ms-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background: #FC770D;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 20px;
-  position: relative;
-  text-decoration: none;
-  cursor: pointer;
-  float: left;
-  width: auto;
-  border: none;
-  margin: 6px 0 0 0px;
-  padding: 2px 10px;
-  display: block;
-  float: left;
-}
-/* line 64, ../../compass/src/themes/_default.scss */
-#user-sidebar .follow-B:hover {
-  text-decoration: none;
-}
-/* line 149, ../../compass/src/partials/_notification.scss */
-#user-sidebar .profileImage {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-  margin: 10px 0 0 0;
-}
-/* line 155, ../../compass/src/partials/_notification.scss */
-#user-sidebar .nav a {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  border-radius: 3px;
-  display: block;
-  padding: 1px 8px;
-  margin: 3px 0;
-}
-/* line 161, ../../compass/src/partials/_notification.scss */
-#user-sidebar .nav a:hover {
-  background: #ffece5;
-  text-decoration: none;
-}
-/* line 165, ../../compass/src/partials/_notification.scss */
-#user-sidebar .nav .on {
-  cursor: default;
-  color: #FFF;
-  background: #CC3300;
-}
-/* line 170, ../../compass/src/partials/_notification.scss */
-#user-sidebar .nav .on:hover {
-  background: #CC3300;
-}
-
-/* line 177, ../../compass/src/partials/_notification.scss */
-.following.feed,
-.followers.feed {
-  padding: 10px 0 0 0;
-}
-
-/* line 181, ../../compass/src/partials/_notification.scss */
-.teaser.user {
-  padding: 8px 5px;
-}
-/* line 184, ../../compass/src/partials/_notification.scss */
-.teaser.user img {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-  float: left;
-  width: 30px;
-  height: 30px;
-  margin: -5px 10px 0 0;
-}
-/* line 190, ../../compass/src/partials/_notification.scss */
-.teaser.user .actions {
-  float: right;
-}
-/* line 195, ../../compass/src/partials/_notification.scss */
-.teaser.user .follow-B,
-.teaser.user .ping-B,
-.teaser.user .pinged {
-  padding: 0 12px;
-}
-
-/* line 201, ../../compass/src/partials/_notification.scss */
-.tag.user .profile-image {
-  margin: 0;
-}
-/* line 204, ../../compass/src/partials/_notification.scss */
-.tag.user .profile-image img {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-}
-/* line 208, ../../compass/src/partials/_notification.scss */
-.tag.user .user-link {
-  margin: 0;
-  padding: 0 0 0 10px;
-  position: relative;
-  bottom: 7px;
-}
-
-/* line 215, ../../compass/src/partials/_notification.scss */
-.search-result.user {
-  padding: 5px 5px 5px 45px;
-  position: relative;
-}
-/* line 219, ../../compass/src/partials/_notification.scss */
-.search-result.user .profileImage {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  border-radius: 3px;
-  border: 2px solid #FFF;
-  position: absolute;
-  top: 50%;
-  left: 0px;
-  margin-top: -17px;
-}
-/* line 230, ../../compass/src/partials/_notification.scss */
-.search-result.user .location {
-  font-style: italic;
-}
-
-/* line 235, ../../compass/src/partials/_notification.scss */
-.user-link {
-  position: relative;
-  padding: 0 0 0 7px;
-  z-index: 30;
-}
-/* line 240, ../../compass/src/partials/_notification.scss */
-.user-link .drag-handleC {
-  position: absolute;
-  top: 50%;
-  margin-top: -10px;
-  left: -16px;
-  cursor: move;
-  background: #FFF;
-  padding: 3px;
-  display: none;
-}
-/* line 250, ../../compass/src/partials/_notification.scss */
-.user-link .drag-handleC div {
-  border: 2px dotted #999;
-  height: 10px;
-  width: 10px;
-}
-/* line 256, ../../compass/src/partials/_notification.scss */
-.user-link:hover {
-  text-decoration: none;
-}
-/* line 258, ../../compass/src/partials/_notification.scss */
-.user-link:hover .drag-handleC {
-  display: block;
-}
-
-/* line 264, ../../compass/src/partials/_notification.scss */
-.user-hover-tab {
-  position: relative;
-  padding: 0 0 0 70px;
-}
-/* line 268, ../../compass/src/partials/_notification.scss */
-.user-hover-tab .profileImage {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  border-radius: 3px;
-  position: absolute;
-  top: -5px;
-  left: -5px;
-}
-/* line 274, ../../compass/src/partials/_notification.scss */
-.user-hover-tab .follow-B {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  border-radius: 3px;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9a10), color-stop(25%, #fd8f13), color-stop(75%, #fc770d), color-stop(100%, #ff6600));
-  background-image: -webkit-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: -moz-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: -o-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: -ms-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background: #FC770D;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 12px;
-  position: relative;
-  text-decoration: none;
-  cursor: pointer;
-  float: left;
-  width: auto;
-  border: none;
-  position: absolute;
-  bottom: 0;
-  left: -5px;
-  padding: 3px 8px;
-}
-/* line 64, ../../compass/src/themes/_default.scss */
-.user-hover-tab .follow-B:hover {
-  text-decoration: none;
-}
-/* line 281, ../../compass/src/partials/_notification.scss */
-.user-hover-tab .name {
-  font-size: 20px;
-  margin-top: 6px;
-}
-/* line 285, ../../compass/src/partials/_notification.scss */
-.user-hover-tab .location {
-  font-size: 16px;
-  font-style: italic;
-  margin: 8px 0 0 0;
-}
-/* line 290, ../../compass/src/partials/_notification.scss */
-.user-hover-tab .stats {
-  overflow: hidden;
-  *zoom: 1;
-  border-top: 1px solid #AAA;
-  margin: 6px 0 0 0;
-  padding: 6px 0 15px 0;
-  font-size: 14px;
-}
-/* line 297, ../../compass/src/partials/_notification.scss */
-.user-hover-tab .stats div {
-  float: left;
-  margin: 0 7px 0 0;
-}
-
-/* line 304, ../../compass/src/partials/_notification.scss */
-#collect-info-box {
-  -moz-border-radius-topleft: 10px;
-  -webkit-border-top-left-radius: 10px;
-  -o-border-top-left-radius: 10px;
-  -ms-border-top-left-radius: 10px;
-  -khtml-border-top-left-radius: 10px;
-  border-top-left-radius: 10px;
-  background: #000;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 760px;
-  z-index: 100;
-}
-/* line 315, ../../compass/src/partials/_notification.scss */
-#collect-info-box .options {
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
-  -o-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -khtml-border-radius: 7px;
-  border-radius: 7px;
-  -moz-box-shadow: 1px 1px 5px #cccccc;
-  -webkit-box-shadow: 1px 1px 5px #cccccc;
-  -o-box-shadow: 1px 1px 5px #cccccc;
-  box-shadow: 1px 1px 5px #cccccc;
-  background: #FFF;
-  position: absolute;
-  top: 100px;
-  left: 50%;
-  width: 600px;
-  margin: 0 0 0 -320px;
-  padding: 20px;
-}
-/* line 326, ../../compass/src/partials/_notification.scss */
-#collect-info-box .options h3 {
-  text-align: center;
-  margin: 0 0 15px 0;
-}
-/* line 331, ../../compass/src/partials/_notification.scss */
-#collect-info-box .options .label {
-  font-size: 20px;
-  color: #666;
-  margin: 8px 0 0 10px;
-  width: 85px;
-  float: left;
-}
-/* line 338, ../../compass/src/partials/_notification.scss */
-#collect-info-box .options select {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  border-radius: 3px;
-  font-size: 18px;
-  border: 2px solid #CCC;
-  padding: 7px;
-  color: #666;
-}
-/* line 345, ../../compass/src/partials/_notification.scss */
-#collect-info-box .options .submit {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  border-radius: 3px;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff9a10), color-stop(25%, #fd8f13), color-stop(75%, #fc770d), color-stop(100%, #ff6600));
-  background-image: -webkit-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: -moz-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: -o-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: -ms-linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background-image: linear-gradient(#ff9a10, #fd8f13 25%, #fc770d 75%, #ff6600);
-  background: #FC770D;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 20px;
-  position: relative;
-  text-decoration: none;
-  cursor: pointer;
-  float: left;
-  width: auto;
-  border: none;
-  clear: both;
-  display: block;
-  padding: 4px 10px;
-  margin: 20px 10px 0 10px;
-}
-/* line 64, ../../compass/src/themes/_default.scss */
-#collect-info-box .options .submit:hover {
-  text-decoration: none;
 }
 
 /*

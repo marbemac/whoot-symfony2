@@ -41,7 +41,7 @@ class FollowController extends ContainerAware
         }
         else
         {
-            $this->container->get('marbemac.manager.notification')->addNotification($userId, null, null, 'Follow', $user, null);
+            $this->container->get('marbemac.manager.notification')->addNotification($userId, null, null, null, null, 'Follow', $user, null, 'contributor');
         }
 
         if ($_format == 'json')

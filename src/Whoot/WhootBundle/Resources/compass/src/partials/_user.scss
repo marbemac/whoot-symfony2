@@ -89,55 +89,6 @@
     }
 }
 
-#notificationsC {
-    @include box-shadow();
-    padding: 3px;
-
-    h4 {
-        margin: 2px 0 2px 5px;
-    }
-    li {
-        padding: 5px 10px;
-        border-bottom: 1px dotted #CCC;
-        &.unread {
-            font-weight: bold;
-            background: #FFF3F1;
-        }
-    }
-    .none {
-        font-style: italic;
-        
-    }
-}
-#my-notification-count {
-    display: block;
-    border-bottom: 1px solid #F1F1F1;
-    margin: 0 5px;
-    padding: 5px;
-    color: #000;
-    position: relative;
-
-    .on {
-        color: red;
-        font-weight: bold;
-    }
-    &:hover {
-        cursor: pointer;
-        text-decoration: none;
-        background: adjust-lightness($sidebar_background-color, -3);
-    }
-    #notificationsC {
-        position: absolute;
-        top: -1px;
-        left: -509px;
-        width: 500px;
-        border: 1px solid #CCC;
-        background-color: #FFF;
-        z-index: 150;
-        cursor: default;
-    }
-}
-
 #user-profile-image {
     @include border-radius(5px);
     margin: 10px 0 0 0;

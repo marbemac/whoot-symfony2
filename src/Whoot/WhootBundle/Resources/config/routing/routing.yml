@@ -91,6 +91,18 @@ _security_check:
 _security_logout:
     pattern:  /logout
 
+about:
+    pattern:  /about
+    defaults: { _controller: WhootBundle:Core:about }
+
+terms:
+    pattern:  /terms
+    defaults: { _controller: WhootBundle:Core:terms }
+
+privacy:
+    pattern:  /privacy
+    defaults: { _controller: WhootBundle:Core:privacy }
+
 homepage:
     pattern:  /
     defaults: { _controller: WhootBundle:Core:home }

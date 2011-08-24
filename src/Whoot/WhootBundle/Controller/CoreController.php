@@ -231,4 +231,19 @@ class CoreController extends ContainerAware
                     'undecidedUsers' => $undecidedUsers
                 ), $response);
     }
+
+    public function aboutAction()
+    {
+        return $this->container->get('templating')->renderResponse('WhootBundle:Core:about.html.twig', array());
+    }
+
+    public function termsAction()
+    {
+        return $this->container->get('templating')->renderResponse('WhootBundle:Core:terms.html.twig', array());
+    }
+
+    public function privacyAction()
+    {
+        return $this->container->get('templating')->renderResponse('WhootBundle:Core:privacy.html.twig', array());
+    }
 }

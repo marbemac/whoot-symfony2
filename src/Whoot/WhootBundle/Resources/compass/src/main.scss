@@ -190,6 +190,18 @@ ul,ol { list-style: none; margin: 0; padding: 0; }
         color: #fff;
     }
 }
+#static_page {
+    padding: 10px;
+    h1 {
+
+    }
+    h3 {
+        margin-top: 10px;
+    }
+    p {
+        padding: 10px 0;
+    }
+}
 #stars-bg {
     background: {
         image: image-url("stars-bg.png");

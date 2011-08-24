@@ -64,7 +64,7 @@
                         {% endblock content %}
                     </div>
                     <footer id="footer">
-                        Home &#149;	Blog &#149;	About &#149; Contact Us &#149; Privacy &#149; Terms
+                        Home &#149;	<a href="{{ path('about') }}">About</a> &#149; Contact Us &#149; <a href="{{ path('privacy') }}">Privacy</a> &#149; <a href="{{ path('terms') }}">Terms</a>
                         {% if is_granted('ROLE_ADMIN') %}
                             &#149; <a href="{{ path('admin_home') }}">Admin Area</a>
                         {% endif %}

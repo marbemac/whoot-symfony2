@@ -594,14 +594,24 @@ html.coming-soon body {
 #splash .info.three {
   top: 322px;
 }
-/* line 59, ../../compass/src/partials/_splash.scss */
-#splash .fb {
+
+/* line 60, ../../compass/src/partials/_splash.scss */
+#fb_login {
   position: absolute;
-  top: 330px;
-  left: 210px;
+  top: 280px;
+  left: 100px;
+  width: 332px;
+  height: 56px;
+  background-image: url('/images/fb_login.png');
+  background-position: top left;
+}
+/* line 71, ../../compass/src/partials/_splash.scss */
+#fb_login:hover {
+  cursor: pointer;
+  background-position: 0px 56px;
 }
 
-/* line 66, ../../compass/src/partials/_splash.scss */
+/* line 77, ../../compass/src/partials/_splash.scss */
 #auth-login {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
   opacity: 0.85;
@@ -618,7 +628,7 @@ html.coming-soon body {
   padding: 20px;
 }
 
-/* line 76, ../../compass/src/partials/_splash.scss */
+/* line 87, ../../compass/src/partials/_splash.scss */
 #auth-register {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
   opacity: 0.85;
@@ -2009,61 +2019,23 @@ Purpose of the stylesheet follows.
 }
 
 /* line 586, ../../compass/src/partials/_post.scss */
-.activity-post,
-.comment {
-  overflow: hidden;
-  *zoom: 1;
-  margin: 5px 0 0 0;
-}
-/* line 590, ../../compass/src/partials/_post.scss */
-.activity-post .submitted,
-.comment .submitted {
-  float: left;
-  width: 120px;
-  text-align: right;
-  padding: 0 6px 0 0;
-}
-/* line 596, ../../compass/src/partials/_post.scss */
-.activity-post .submitted .time,
-.comment .submitted .time {
-  color: #888;
-  font-size: 10px;
-  text-align: right;
-}
-/* line 602, ../../compass/src/partials/_post.scss */
-.activity-post .content,
-.comment .content {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-  float: left;
-  padding: 5px 10px;
-  font-size: 12px;
-  border: 2px solid #E7E5FF;
-  max-width: 360px;
-}
-
-/* line 613, ../../compass/src/partials/_post.scss */
 .activity-post .time {
   margin-top: 8px;
 }
-/* line 617, ../../compass/src/partials/_post.scss */
+/* line 590, ../../compass/src/partials/_post.scss */
 .activity-post.create .message {
   background: #F8F7FF;
 }
-/* line 620, ../../compass/src/partials/_post.scss */
+/* line 593, ../../compass/src/partials/_post.scss */
 .activity-post.jive .message {
   background: #F9FFF8;
 }
-/* line 623, ../../compass/src/partials/_post.scss */
+/* line 596, ../../compass/src/partials/_post.scss */
 .activity-post.leave .message {
   background: #FFF7F9;
 }
 
-/* line 628, ../../compass/src/partials/_post.scss */
+/* line 601, ../../compass/src/partials/_post.scss */
 .undecidedC {
   position: fixed;
   right: 0;
@@ -2075,11 +2047,11 @@ Purpose of the stylesheet follows.
   padding: 0 0 0 5px;
   z-index: 10;
 }
-/* line 639, ../../compass/src/partials/_post.scss */
+/* line 612, ../../compass/src/partials/_post.scss */
 .undecidedC h4 {
   margin: 10px 0 8px 17px;
 }
-/* line 642, ../../compass/src/partials/_post.scss */
+/* line 615, ../../compass/src/partials/_post.scss */
 .undecidedC .bg {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
@@ -2091,7 +2063,7 @@ Purpose of the stylesheet follows.
   background: #FFF;
   z-index: -1;
 }
-/* line 652, ../../compass/src/partials/_post.scss */
+/* line 625, ../../compass/src/partials/_post.scss */
 .undecidedC .side-toggle {
   position: absolute;
   top: 0;
@@ -2101,22 +2073,22 @@ Purpose of the stylesheet follows.
   cursor: pointer;
   background-color: #0f3f81;
 }
-/* line 660, ../../compass/src/partials/_post.scss */
+/* line 633, ../../compass/src/partials/_post.scss */
 .undecidedC .side-toggle:hover {
   background-color: #FF9900;
 }
-/* line 664, ../../compass/src/partials/_post.scss */
+/* line 637, ../../compass/src/partials/_post.scss */
 .undecidedC .item {
   padding: 5px 5px 0 40px;
   position: relative;
 }
-/* line 668, ../../compass/src/partials/_post.scss */
+/* line 641, ../../compass/src/partials/_post.scss */
 .undecidedC .profile-image {
   position: absolute;
   top: 9px;
   left: 10px;
 }
-/* line 672, ../../compass/src/partials/_post.scss */
+/* line 645, ../../compass/src/partials/_post.scss */
 .undecidedC .profile-image img {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -2125,7 +2097,7 @@ Purpose of the stylesheet follows.
   -khtml-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 676, ../../compass/src/partials/_post.scss */
+/* line 649, ../../compass/src/partials/_post.scss */
 .undecidedC .user-link {
   margin: 0 0 0 6px;
   height: 10px;
@@ -2134,23 +2106,23 @@ Purpose of the stylesheet follows.
   font-size: 13px;
   color: #555;
 }
-/* line 685, ../../compass/src/partials/_post.scss */
+/* line 658, ../../compass/src/partials/_post.scss */
 .undecidedC .ping-B,
 .undecidedC .pinged {
   display: block;
   margin: -3px 0 0 7px;
   font-size: 13px;
 }
-/* line 691, ../../compass/src/partials/_post.scss */
+/* line 664, ../../compass/src/partials/_post.scss */
 .undecidedC:hover .bg {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 695, ../../compass/src/partials/_post.scss */
+/* line 668, ../../compass/src/partials/_post.scss */
 .undecidedC.collapsed {
   width: 7px;
 }
-/* line 698, ../../compass/src/partials/_post.scss */
+/* line 671, ../../compass/src/partials/_post.scss */
 .undecidedC .none {
   margin: 0 0 0 17px;
   font-style: italic;
@@ -2552,11 +2524,57 @@ Purpose of the stylesheet follows.
   margin: 0;
 }
 
-/* line 45, ../../compass/src/partials/_comment.scss */
-.teaser.comment .user-link {
+/* line 44, ../../compass/src/partials/_comment.scss */
+.teaser.comment {
+  overflow: hidden;
+  *zoom: 1;
+  margin: 5px 0 0 0;
+}
+/* line 48, ../../compass/src/partials/_comment.scss */
+.teaser.comment .submitted {
+  float: left;
+  width: 120px;
+  text-align: right;
+  padding: 0 35px 0 0;
+  position: relative;
+}
+/* line 55, ../../compass/src/partials/_comment.scss */
+.teaser.comment .submitted .user-link {
   font-size: 12px;
   display: block;
   margin: 0 0 -3px 0;
+}
+/* line 60, ../../compass/src/partials/_comment.scss */
+.teaser.comment .submitted .time {
+  color: #888;
+  font-size: 10px;
+  text-align: right;
+}
+/* line 65, ../../compass/src/partials/_comment.scss */
+.teaser.comment .submitted img {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  position: absolute;
+  top: 1px;
+  right: 5px;
+}
+/* line 73, ../../compass/src/partials/_comment.scss */
+.teaser.comment .content {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  float: left;
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 2px solid #E7E5FF;
+  max-width: 360px;
 }
 
 /*

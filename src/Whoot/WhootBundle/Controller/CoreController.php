@@ -215,6 +215,7 @@ class CoreController extends ContainerAware
         $user = $this->container->get('security.context')->getToken()->getUser();
         $since = new DateConverter(null, 'Y-m-d 05:00:00', '-5 hours', $user->getCurrentLocation() ? $user->getCurrentLocation()->getTimezone() : 'UTC');
         $undecidedUsers = $this->container->get('whoot.manager.user')->findUndecided($user, $since, 0, 0);
+        $logoutUrl = $this->container->get('fos_facebook.helper')->getLogoutUrl();
 
         $response = new Response();
         $response->setCache(array(
@@ -228,7 +229,8 @@ class CoreController extends ContainerAware
         }
 
         return $this->container->get('templating')->renderResponse('WhootBundle:Core:sidebar.html.twig', array(
-                    'undecidedUsers' => $undecidedUsers
+                    'undecidedUsers' => $undecidedUsers,
+                    'logoutUrl' => $logoutUrl
                 ), $response);
     }
 

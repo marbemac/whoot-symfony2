@@ -55,11 +55,22 @@ html.coming-soon {
             top: 322px;
         }
     }
+}
 
-    .fb {
-        position: absolute;
-        top: 330px;
-        left: 210px;
+#fb_login {
+    position: absolute;
+    top: 280px;
+    left: 100px;
+    width: 332px;
+    height: 56px;
+    background: {
+        image: image-url("fb_login.png");
+        position: top left;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-position: 0px 56px;
     }
 }
 

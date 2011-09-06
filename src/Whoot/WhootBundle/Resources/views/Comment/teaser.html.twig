@@ -1,5 +1,6 @@
 <div class="teaser comment">
     <div class="submitted">
+        {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': comment.createdBy.currentProfileImage, 'w': 28, 'h': 28} %}
         {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': comment.createdBy} %}
         <div class="time">{{ comment.createdAt|timeLapse(1) }}</div>
     </div>

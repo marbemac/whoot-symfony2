@@ -23,9 +23,9 @@ security:
 
         main:
             pattern:   .*
-            logout: true
             anonymous: true
             switch_user: true
+            logout: true
             form_login:
                 provider:       whoot_user
                 login_path:     /login

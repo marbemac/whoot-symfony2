@@ -5,7 +5,7 @@ $(function() {
      */
 
     $('#login,#register').colorbox({title:"Woops, you need to login to do that!", transition: "none", opacity: .5, inline: true, href: "#auth_box"});
-
+    
     /*
      * CONTRIBUTE
      */

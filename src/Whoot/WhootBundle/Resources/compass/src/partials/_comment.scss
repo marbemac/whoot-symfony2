@@ -42,9 +42,40 @@ Purpose of the stylesheet follows.
 }
 
 .teaser.comment {
-    .user-link {
+     @include clearfix;
+    margin: 5px 0 0 0;
+
+    .submitted {
+        float: left;
+        width: 120px;
+        text-align: right;
+        padding: 0 35px 0 0;
+        position: relative;
+
+        .user-link {
+            font-size: 12px;
+            display: block;
+            margin: 0 0 -3px 0;
+        }
+        .time {
+            color: #888;
+            font-size: 10px;
+            text-align: right;
+        }
+        img {
+            @include border-radius(3px);
+            position: absolute;
+            top: 1px;
+            right: 5px;
+        }
+    }
+
+    .content {
+        @include border-radius(5px);
+        float: left;
+        padding: 5px 10px;
         font-size: 12px;
-        display: block;
-        margin: 0 0 -3px 0;
+        border: 2px solid #E7E5FF;
+        max-width: 360px;
     }
 }

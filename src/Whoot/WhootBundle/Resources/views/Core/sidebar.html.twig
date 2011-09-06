@@ -25,7 +25,7 @@
             </div>
         </div>
         <a class="small-link" href="{{ path('user_settings', {'username': app.user.username}) }}">Settings</a>
-        <a id="logout" class="small-link" href="{{ path('fos_user_security_logout') }}" onclick="">
+        <a id="logout" class="small-link" href="{{ logoutUrl }}">
             {{ 'layout.logout'|trans([], 'FOSUserBundle') }}
         </a>
         <div class="clear"></div>

@@ -1,0 +1,41 @@
+<div id="fb-root"></div>
+<script type="text/javascript">
+    {% autoescape false %}
+        window.fbAsyncInit = function() {
+            FB.init({{ {'appId':appId, 'xfbml':xfbml, 'oauth':oauth, 'status':status, 'cookie':cookie, 'logging':logging }|json_encode }});
+            {{ fbAsyncInit }}
+
+            {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {% autoescape false %}
+                FB.getLoginStatus(function(response) {
+                    if (response.status == 'connected' && response.authResponse.accessToken) {
+                        // logged in and connected user
+                        console.log('FB Logged');
+                        window.location = '{{ path('facebook_security_check') }}';
+                    }
+                });
+            {% endautoescape %}
+            {% endif %}
+            
+        };
+
+        (function() {
+          var e = document.createElement('script');
+          e.src = document.location.protocol + {{ "//connect.facebook.net/%s/all.js"|format(culture)|json_encode }};
+          e.async = true;
+          document.getElementById('fb-root').appendChild(e);
+        }());
+
+        var fb_login = function() {
+            FB.login(function(response) {
+               if (response.authResponse) {
+                 console.log('FB Login Detected');
+                 window.location = '{{ path('facebook_security_check') }}';
+               } else {
+                 console.log('User cancelled login or did not fully authorize.');
+               }
+            }, {scope: {{ scope }}});
+        }
+    {% endautoescape %}
+
+</script>

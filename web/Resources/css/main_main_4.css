@@ -329,6 +329,19 @@ ul, ol {
 }
 
 /* line 193, ../../compass/src/main.scss */
+#static_page {
+  padding: 10px;
+}
+/* line 198, ../../compass/src/main.scss */
+#static_page h3 {
+  margin-top: 10px;
+}
+/* line 201, ../../compass/src/main.scss */
+#static_page p {
+  padding: 10px 0;
+}
+
+/* line 205, ../../compass/src/main.scss */
 #stars-bg {
   background-image: url('/images/stars-bg.png?1312209403');
   background-repeat: repeat;
@@ -340,13 +353,13 @@ ul, ol {
   left: 0;
   z-index: -10;
 }
-/* line 205, ../../compass/src/main.scss */
+/* line 217, ../../compass/src/main.scss */
 #stars-bg.fade {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   opacity: 0.4;
 }
 
-/* line 209, ../../compass/src/main.scss */
+/* line 221, ../../compass/src/main.scss */
 #city-bg {
   background-image: url('/images/city-bg.png?1312209403');
   background-repeat: repeat-x;
@@ -360,22 +373,22 @@ ul, ol {
   z-index: -5;
 }
 
-/* line 224, ../../compass/src/main.scss */
+/* line 236, ../../compass/src/main.scss */
 .feed li {
   margin: 0 10px;
   border-top: 1px dotted #999;
   padding: 0;
 }
-/* line 229, ../../compass/src/main.scss */
+/* line 241, ../../compass/src/main.scss */
 .feed li.first {
   border-top: none;
 }
-/* line 232, ../../compass/src/main.scss */
+/* line 244, ../../compass/src/main.scss */
 .feed li.last, .feed li.none {
   border-bottom: 1px dotted #999;
 }
 
-/* line 237, ../../compass/src/main.scss */
+/* line 249, ../../compass/src/main.scss */
 .fb_edge_widget_with_comment {
   float: right;
   text-align: right;

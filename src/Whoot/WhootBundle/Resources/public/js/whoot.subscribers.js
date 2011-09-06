@@ -45,6 +45,10 @@ $(function(){
             $(this).remove();
         })
     });
+    
+    amplify.subscribe("user_invited", function ( data ) {
+        $('.new_user_invite .email').val($('.new_user_invite .email').data('default')).effect('highlight', {}, 2000).click();
+    });
 
     /*
      * POSTS

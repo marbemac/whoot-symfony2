@@ -96,3 +96,10 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /change-password
+
+### INVITING
+user_invite_create:
+    pattern:  /user_invite
+    defaults: { _controller: WhootUserBundle:UserInvite:create }
+    requirements:
+        _method: POST

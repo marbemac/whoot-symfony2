@@ -35,6 +35,8 @@
 
     {% render 'WhootBundle:Post:myPost' %}
 
+    {% include 'WhootUserBundle:Invite:new.html.twig' %}
+
     {% render "WhootBundle:LList:list" with {'userId': app.user.id} %}
 
     {% include 'WhootBundle:Post:undecided.html.twig' with {'users': undecidedUsers} %}

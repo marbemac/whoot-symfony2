@@ -16,13 +16,15 @@ class FacebookProvider implements UserProviderInterface
      */
     protected $facebook;
     protected $userManager;
+    protected $userInviteManager;
     protected $imageManager;
     protected $validator;
 
-    public function __construct(BaseFacebook $facebook, $userManager, $imageManager, $validator)
+    public function __construct(BaseFacebook $facebook, $userManager, $userInviteManager, $imageManager, $validator)
     {
         $this->facebook = $facebook;
         $this->userManager = $userManager;
+        $this->userInviteManager = $userInviteManager;
         $this->imageManager= $imageManager;
         $this->validator = $validator;
     }
@@ -58,11 +60,13 @@ class FacebookProvider implements UserProviderInterface
         }
 
         if (!$user && $fbdata) {
+            $newUser = false;
 
             if (empty($user)) {
                 $user = $this->userManager->findUserBy(array('email' => $fbdata['email']));
 
                 if (empty($user)) {
+                    $newUser = true;
                     $pass = uniqid('up');
 
                     $user = $this->userManager->createUser();
@@ -81,6 +85,12 @@ class FacebookProvider implements UserProviderInterface
                 throw new UsernameNotFoundException('The facebook user could not be stored');
             }
             $this->userManager->updateUser($user);
+
+            if ($newUser)
+            {
+                // Make sure this user is following people that invited him/her
+                $this->userInviteManager->generateFollows($user);
+            }
 
             // Get and save their fb profile image
             if ($fbdata && !$user->getCurrentProfileImage())

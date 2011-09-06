@@ -58,7 +58,10 @@ class RegistrationController extends ContainerAware
                     $result = $this->container->get('whoot.manager.user')->toggleFollow($user, $rockstar->getId());
                 }
             }
-            
+
+            // Make sure this user is following people that invited him/her
+            $this->container->get('whoot.manager.user_invite')->generateFollows($user);
+                
             $this->container->get('session')->setFlash('notice', 'Account created successfully!');
             $url = $this->container->get('router')->generate($route);
 

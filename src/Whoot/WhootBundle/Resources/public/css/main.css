@@ -1160,6 +1160,35 @@ select.location .s {
   padding-left: 30px;
 }
 
+/* line 343, ../../compass/src/partials/_user.scss */
+.new_user_invite {
+  overflow: hidden;
+  *zoom: 1;
+  border-top: 1px solid #D7D7D7;
+  border-bottom: 1px solid #F1F1F1;
+  padding: 9px 5px 5px;
+  margin: 0 5px;
+}
+/* line 350, ../../compass/src/partials/_user.scss */
+.new_user_invite h3 {
+  color: #777777;
+  cursor: default;
+  float: left;
+}
+/* line 355, ../../compass/src/partials/_user.scss */
+.new_user_invite .email {
+  margin: 3px 7px 0 -2px;
+  width: 100px;
+  display: block;
+  float: left;
+  clear: left;
+}
+/* line 362, ../../compass/src/partials/_user.scss */
+.new_user_invite .submit {
+  font-size: 12px;
+  margin: 4px 0 0 0;
+}
+
 /*
     Document   : _vote
     Created on : July 16, 2011

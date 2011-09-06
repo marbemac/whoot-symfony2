@@ -28,6 +28,7 @@ services:
         arguments:
             facebook:    "@fos_facebook.api"
             userManager: "@whoot.manager.user"
+            userInviteManager: "@whoot.manager.user_invite"
             imageManager: "@marbemac.manager.image"
             validator: "@validator"
             

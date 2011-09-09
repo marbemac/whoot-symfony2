@@ -103,7 +103,7 @@ fos_facebook:
     file:   %kernel.root_dir%/../vendor/facebook/src/facebook.php
     alias:  facebook
     cookie: true
-    permissions: [email, user_birthday, user_hometown, user_location]
+    permissions: [email, user_birthday, user_hometown, user_location, offline_access]
 
 # FriendsOfSymfony UserBundle Configuration
 fos_user:

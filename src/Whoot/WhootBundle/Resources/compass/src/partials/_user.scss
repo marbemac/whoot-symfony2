@@ -363,4 +363,75 @@ select.location {
         font-size: 12px;
         margin: 4px 0 0 0;
     }
+    .fb_find {
+        display: block;
+        clear: both;
+        font-size: 12px;
+        padding: 4px 0 0 0;
+    }
+}
+
+#social_friends {
+    #invite_friends {
+        @include clearfix();
+        @include border-radius(5px);
+        background: #deebfa;
+        border: 3px solid #a2c0e3;
+        float: left;
+        padding: 10px 15px 6px 15px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 20px 0 15px 243px;
+    }
+    .registered {
+        padding: 5px 1px;
+        clear: both;
+        
+        h3 {
+            text-align: center;
+            margin: 5px 0 15px 0;
+        }
+    }
+    .registered {
+        .friend {
+            width: 250px;
+            padding-right: 50px;
+
+            .follow-B {
+                position: absolute;
+                right: 10px;
+                top: 15px;
+            }
+            &:hover {
+                border-color: transparent;
+            }
+        }
+    }
+    .friend {
+        padding: 15px 5px 14px 60px;
+        position: relative;
+        float: left;
+        width: 105px;
+        white-space: nowrap;
+        overflow: hidden;
+        margin: 0 5px;
+        border: 1px solid transparent;
+
+        img {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        &.on,
+        &:hover {
+            border-color: #999;
+            background: #FFF;
+            cursor: pointer;
+        }
+        &.on {
+            border-color: red;
+        }
+    }
 }

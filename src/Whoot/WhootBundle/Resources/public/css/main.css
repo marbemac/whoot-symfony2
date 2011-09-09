@@ -1188,6 +1188,85 @@ select.location .s {
   font-size: 12px;
   margin: 4px 0 0 0;
 }
+/* line 366, ../../compass/src/partials/_user.scss */
+.new_user_invite .fb_find {
+  display: block;
+  clear: both;
+  font-size: 12px;
+  padding: 4px 0 0 0;
+}
+
+/* line 375, ../../compass/src/partials/_user.scss */
+#social_friends #invite_friends {
+  overflow: hidden;
+  *zoom: 1;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  background: #deebfa;
+  border: 3px solid #a2c0e3;
+  float: left;
+  padding: 10px 15px 6px 15px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0 15px 243px;
+}
+/* line 387, ../../compass/src/partials/_user.scss */
+#social_friends .registered {
+  padding: 5px 1px;
+  clear: both;
+}
+/* line 391, ../../compass/src/partials/_user.scss */
+#social_friends .registered h3 {
+  text-align: center;
+  margin: 5px 0 15px 0;
+}
+/* line 397, ../../compass/src/partials/_user.scss */
+#social_friends .registered .friend {
+  width: 250px;
+  padding-right: 50px;
+}
+/* line 401, ../../compass/src/partials/_user.scss */
+#social_friends .registered .friend .follow-B {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+/* line 406, ../../compass/src/partials/_user.scss */
+#social_friends .registered .friend:hover {
+  border-color: transparent;
+}
+/* line 411, ../../compass/src/partials/_user.scss */
+#social_friends .friend {
+  padding: 15px 5px 14px 60px;
+  position: relative;
+  float: left;
+  width: 105px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0 5px;
+  border: 1px solid transparent;
+}
+/* line 421, ../../compass/src/partials/_user.scss */
+#social_friends .friend img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+/* line 428, ../../compass/src/partials/_user.scss */
+#social_friends .friend.on, #social_friends .friend:hover {
+  border-color: #999;
+  background: #FFF;
+  cursor: pointer;
+}
+/* line 433, ../../compass/src/partials/_user.scss */
+#social_friends .friend.on {
+  border-color: red;
+}
 
 /*
     Document   : _vote

@@ -1,0 +1,13 @@
+<div id="social_friends">
+    <h3 id="invite_friends" data-uid="{{ app.user.id }}">Invite Your Facebook Friends</h3>
+    <div class="registered">
+        <h3>Follow Friends Already Using The Whoot</h3>
+        {% for friend in registeredFriends %}
+            <div class="friend">
+                {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': friend.currentProfileImage, 'w': 50, 'h': 50} %}
+                {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': friend} %}
+                {% include "WhootBundle:Follow:tag.html.twig" with {'toUser': friend} %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

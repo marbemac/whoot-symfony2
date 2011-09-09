@@ -1,0 +1,9 @@
+{% extends 'WhootUserBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ user.fullName }}'s Social Media Friends
+{% endblock %}
+
+{% block page_content %}
+    {% include "WhootUserBundle:Social:friends_content.html.twig" %}
+{% endblock %}

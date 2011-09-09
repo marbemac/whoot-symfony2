@@ -317,17 +317,11 @@ class User extends BaseUser
         return $following;
     }
 
-    /**
-     * @param string $facebookID
-     */
     public function setFacebookId($facebookID)
     {
         $this->facebookId = $facebookID;
     }
 
-    /**
-     * @return string
-     */
     public function getFacebookId()
     {
         return $this->facebookId;

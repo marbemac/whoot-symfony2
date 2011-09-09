@@ -493,4 +493,32 @@ $(function() {
     $(".search input").result(function(event, data, formatted) {
         window.location = '/' + data.username + '/following';
     });
+
+    /*
+     * Social friends invite page
+     */
+    $('#social_friends .not-registered .friend:not(.invited)').click(function() {
+        var $self = $(this);
+        var $counter = $("#social_friends .invite_counter");
+        if ($self.hasClass('on'))
+        {
+            $counter.find('span').text(parseInt($('#social_friends .invite_counter span').text())-1);
+        }
+        else
+        {
+            $counter.find('span').text(parseInt($('#social_friends .invite_counter span').text())+1);
+        }
+
+        $self.toggleClass('on');
+
+        if (!$counter.is(':visible'))
+        {
+            $counter.show('scale', {}, 150);
+        }
+        else if (parseInt($counter.find('span').text()) == 0)
+        {
+            $counter.hide('scale', {}, 150);
+        }
+
+    })
 })

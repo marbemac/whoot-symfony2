@@ -5,18 +5,12 @@
             FB.init({{ {'appId':appId, 'xfbml':xfbml, 'oauth':oauth, 'status':status, 'cookie':cookie, 'logging':logging }|json_encode }});
             {{ fbAsyncInit }}
 
-            {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            {% autoescape false %}
-                FB.getLoginStatus(function(response) {
-                    if (response.status == 'connected' && response.authResponse.accessToken) {
-                        // logged in and connected user
-                        console.log('FB Logged');
-                        window.location = '{{ path('facebook_security_check') }}';
-                    }
-                });
-            {% endautoescape %}
-            {% endif %}
-            
+            FB.Event.subscribe('auth.login', function(response) {
+                window.location = "{{ path('_security_check') }}";
+              });
+            FB.Event.subscribe('auth.logout', function(response) {
+                window.location = "{{ path('_security_logout') }}";
+            });
         };
 
         (function() {

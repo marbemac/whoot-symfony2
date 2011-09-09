@@ -103,3 +103,10 @@ user_invite_create:
     defaults: { _controller: WhootUserBundle:UserInvite:create }
     requirements:
         _method: POST
+
+### SOCIAL
+social_friends:
+    pattern:  /social/friends
+    defaults: { _controller: WhootUserBundle:Social:friends }
+    requirements:
+        _method: get

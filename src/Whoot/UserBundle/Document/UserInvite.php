@@ -25,6 +25,11 @@ class UserInvite implements ObjectInterface
     protected $email;
 
     /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $facebookId;
+
+    /**
      * @MongoDB\Field(type="date")
      */
     protected $updatedAt;
@@ -60,6 +65,16 @@ class UserInvite implements ObjectInterface
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function setFacebookId($facebookID)
+    {
+        $this->facebookId = $facebookID;
+    }
+
+    public function getFacebookId()
+    {
+        return $this->facebookId;
     }
 
     public function addInviter($inviterId)

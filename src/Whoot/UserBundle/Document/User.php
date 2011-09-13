@@ -312,9 +312,17 @@ class User extends BaseUser
         return isset($this->following[$userId]);
     }
 
-    public function generateFollowingCount()
+    public function followCountBlockAdjust($blocked_ids)
     {
-        return count($this->following);
+        $count = 0;
+        foreach ($this->following as $following)
+        {
+            if (!in_array($following, $blocked_ids))
+            {
+                $count++;
+            }
+        }
+        return $count;
     }
 
     public function getFollowing()

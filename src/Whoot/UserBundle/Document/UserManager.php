@@ -80,6 +80,7 @@ class UserManager extends BaseUserManager
             ->select('id', 'firstName', 'lastName', 'username', 'currentProfileImage', 'currentLocation')
             ->field('id')->in($followingIds)
             ->field('nameSlug')->equals(new \MongoRegex("/^{$slug->__toString()}/"))
+            ->field('blocked_by')->notEqual($user->getId())
             ->limit($limit);
 
         $query = $qb->getQuery();
@@ -98,6 +99,7 @@ class UserManager extends BaseUserManager
             $qb->field('status')->equals('Active')
                 ->select('id', 'firstName', 'lastName', 'username', 'currentProfileImage', 'currentLocation')
                 ->field('nameSlug')->equals(new \MongoRegex("/^{$slug->__toString()}/"))
+                ->field('blocked_by')->notEqual($user->getId())
                 ->limit($limit - count($followingFound));
 
             if (count($foundUsers) > 0)
@@ -281,13 +283,24 @@ class UserManager extends BaseUserManager
 
     function updateFollowingCounts($user, $andFlush = true)
     {
-        $followers = $this->findUsersBy(array('following' => $user->getId()));
-
         $followerCount = $this->m->User->count(
-                array('following.'.$user->getId()->__toString() => array('$exists' => true))
+                array(
+                    'following.'.$user->getId()->__toString() => array('$exists' => true),
+                    'blocked_by' => array('$ne' => $user->getId())
+                )
             );
+        $qb = $this->dm->createQueryBuilder($this->class);
+        $qb->select('id')
+           ->field('blocked_by')->equals($user->getId());
+        $query = $qb->getQuery();
+        $blocked_users = $query->execute();
+        $blocked_ids = array();
+        foreach ($blocked_users as $blocked_user)
+        {
+            $blocked_ids[] = $blocked_user->getId()->__toString();
+        }
 
-        $user->setFollowingCount($user->generateFollowingCount());
+        $user->setFollowingCount($user->followCountBlockAdjust($blocked_ids));
         $user->setFollowerCount($followerCount);
         
         $this->updateUser($user, true);

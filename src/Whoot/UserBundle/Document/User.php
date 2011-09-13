@@ -312,6 +312,11 @@ class User extends BaseUser
         return isset($this->following[$userId]);
     }
 
+    public function generateFollowingCount()
+    {
+        return count($this->following);
+    }
+
     public function getFollowing()
     {
         $following = array();

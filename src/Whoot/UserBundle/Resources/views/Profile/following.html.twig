@@ -5,9 +5,15 @@
 {% endblock %}
 
 {% block user_sidebar %}
-    {% include "WhootUserBundle:Profile:sidebar.html.twig" %}
+    {% if not userBlocked(app.user, user) %}
+        {% include "WhootUserBundle:Profile:sidebar.html.twig" %}
+    {% endif %}
 {% endblock %}
 
 {% block page_content %}
-    {% include "WhootUserBundle:Profile:following_content.html.twig" %}
+    {% if not userBlocked(app.user, user) %}
+        {% include "WhootUserBundle:Profile:following_content.html.twig" %}
+    {% else %}
+        <h3 class="error">Sorry, this user could not be found.</h3>
+    {% endif %}
 {% endblock %}

@@ -278,4 +278,18 @@ class UserManager extends BaseUserManager
 
         return;
     }
+
+    function updateFollowingCounts($user, $andFlush = true)
+    {
+        $followers = $this->findUsersBy(array('following' => $user->getId()));
+
+        $followerCount = $this->m->User->count(
+                array('following.'.$user->getId()->__toString() => array('$exists' => true))
+            );
+
+        $user->setFollowingCount($user->generateFollowingCount());
+        $user->setFollowerCount($followerCount);
+        
+        $this->updateUser($user, true);
+    }
 }

@@ -1,3 +1,4 @@
 imports:
     - { resource: "@WhootUserBundle/Resources/config/manager.xml" }
     - { resource: "@WhootUserBundle/Resources/config/form.xml" }
+    - { resource: "@WhootUserBundle/Resources/config/security.xml" }

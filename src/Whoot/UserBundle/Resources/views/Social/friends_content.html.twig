@@ -8,6 +8,10 @@
                 {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': friend} %}
                 {% include "WhootBundle:Follow:tag.html.twig" with {'toUser': friend} %}
             </div>
+        {% else %}
+            <div class="none">
+                You don't have any Facebook friends on The Whoot yet. Click the button above to invite them!
+            </div>
         {% endfor %}
     </div>
 </div>

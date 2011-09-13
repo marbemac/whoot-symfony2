@@ -53,7 +53,8 @@ class WhootTwigExtension extends \Twig_Extension {
 
     public function getFunctions() {
         return array(
-            'calculateTimeOfDay'  => new \Twig_Function_Method($this, 'calculateTimeOfDay')
+            'calculateTimeOfDay'  => new \Twig_Function_Method($this, 'calculateTimeOfDay'),
+            'userBlocked'  => new \Twig_Function_Method($this, 'userBlocked')
         );
     }
 
@@ -283,6 +284,18 @@ class WhootTwigExtension extends \Twig_Extension {
                 return 'sunset';
             case ($hour >= 20 || $hour < 5):
                 return 'night';
+        }
+    }
+
+    public function userBlocked($user1, $user2)
+    {
+        if ($user1->isBlockedBy($user2->getId()) || $user2->isBlockedBy($user1->getId()))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

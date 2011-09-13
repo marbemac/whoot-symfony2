@@ -143,12 +143,13 @@ class ProfileController extends ContainerAware
     public function settingsAction($username)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $location = $this->container->get('whoot.manager.user')->getLocation($user->getZipcode());
 
         if ($username != $user->getUsername())
         {
             return new RedirectResponse($this->container->get('router')->generate('homepage'));
         }
+
+        $blocked_users = $this->container->get('whoot.manager.user')->findUsersBy(array('blocked_by' => $user->getId()));
 
         $response = new Response();
         $response->setCache(array(
@@ -161,9 +162,60 @@ class ProfileController extends ContainerAware
 
         return $this->container->get('templating')->renderResponse('WhootUserBundle:Profile:settings.html.twig', array(
             'user' => $user,
-            'location' => $location,
-            'navSelected' => 'settings'
+            'navSelected' => 'settings',
+            'blocked_users' => $blocked_users
         ), $response);
+    }
+
+    public function blockUserCreateAction()
+    {
+        $coreManager = $this->container->get('whoot.manager.core');
+        $login = $coreManager->mustLogin();
+        if ($login)
+        {
+            return $login;
+        }
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $blockUserId = $this->container->get('request')->request->get('userId', null);
+        if ($blockUserId)
+        {
+            $this->container->get('whoot.manager.user')->blockUser($user, $blockUserId);
+        }
+
+        $result = array();
+        $result['result'] = 'success';
+        $response = new Response(json_encode($result));
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $response;
+    }
+
+    public function blockUserDestroyAction()
+    {
+        $coreManager = $this->container->get('whoot.manager.core');
+        $login = $coreManager->mustLogin();
+        if ($login)
+        {
+            return $login;
+        }
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $blockUserId = $this->container->get('request')->query->get('userId', null);
+
+        if ($blockUserId)
+        {
+            $this->container->get('whoot.manager.user')->unblockUser($user, $blockUserId);
+        }
+        
+        $result = array();
+        $result['result'] = 'success';
+        $result['event'] = 'user_unblocked';
+        $result['flash'] = array('type' => 'success', 'message' => 'User successfully unblocked');
+        $response = new Response(json_encode($result));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     public function profileImageAction($w, $h)

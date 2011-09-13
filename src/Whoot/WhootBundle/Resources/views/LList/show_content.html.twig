@@ -6,10 +6,12 @@
             <input id="list-add-user" data-url-add="{{ path('list_user_add', {'listId': list.id}) }}" type="text" class="iclear b" data-url="{{ path('user_ajax_search', {'onlyFollowing': true}) }}" autocomplete="off" value="Add a friend..." />
             <ul>
                 {% for listUser in listUsers %}
+                    {% if not userBlocked(app.user, listUser) %}
                     <li>
                         {% include "WhootUserBundle:Profile:tag.html.twig" with {'user': listUser} %}
                         <div class="delete ac" id="uld-{{ listUser.id }}" data-title="Remove this user from this list." data-url="{{ path('list_user_delete', {'listId': list.id|toString, 'userId': listUser.id|toString})}}">X</div>
                     </li>
+                    {% endif %}
                 {% else %}
                     <li class="none">You have not added any friends to this list.</li>
                 {% endfor %}

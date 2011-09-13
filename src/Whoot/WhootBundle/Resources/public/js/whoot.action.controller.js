@@ -5,6 +5,8 @@ $(function(){
     $('.ac, .acg').live('click',function(event){
         event.preventDefault();
 
+        $currentTarget = $(this);
+
         startAction(
             $(this),
             ($(this).hasClass('ac') ? 'POST' : 'GET'),

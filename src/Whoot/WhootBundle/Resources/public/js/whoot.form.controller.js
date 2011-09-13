@@ -16,15 +16,21 @@ $(function(){
      */
     var formSubmit = function(form, success, error) {
 
-        console.log('Form submit');
-
         $.ajax({
             type: 'POST',
             url: form.attr('action'),
             data: form.serializeArray(),
             dataType: 'json',
+            beforeSend: function()
+            {
+                console.log('Form submit');
+                form.find('input, textarea').attr('disabled', true);
+                $('#form-submitting').fadeIn(300);
+            },
             success: function(data)
             {
+                $('#form-submitting').fadeOut(300);
+                form.find('input, textarea').removeAttr('disabled');
                 if(appUpdate(data))
                 {
                     if (data.result == 'error')
@@ -41,6 +47,8 @@ $(function(){
             },
             error: function()
             {
+                $('#form-submitting').fadeOut(300);
+                form.find('input, textarea').removeAttr('disabled');
                 if (error)
                 {
                     error();

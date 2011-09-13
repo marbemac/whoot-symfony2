@@ -238,4 +238,44 @@ class UserManager extends BaseUserManager
 
         return $this->findUserBy(array('usernameCanonical' => $this->canonicalizeUsername($usernameOrEmail)));
     }
+
+    /**
+     * Blocks $blockUserId from viewing $user
+     *
+     * @param $user
+     * @param $blockUserId
+     *
+     * @return void
+     */
+    public function blockUser($user, $blockUserId)
+    {
+        $blockUser = $this->findUserBy(array('id' => new \MongoId($blockUserId)));
+        if ($blockUser)
+        {
+            $blockUser->addBlockedBy($user->getId());
+            $this->updateUser($blockUser, true);
+        }
+
+        return;
+    }
+
+    /**
+     * Unblocks $blockUserId from viewing $user
+     *
+     * @param $user
+     * @param $blockUserId
+     *
+     * @return void
+     */
+    public function unblockUser($user, $blockUserId)
+    {
+        $blockUser = $this->findUserBy(array('id' => new \MongoId($blockUserId)));
+        if ($blockUser)
+        {
+            $blockUser->removeBlockedBy($user->getId());
+            $this->updateUser($blockUser, true);
+        }
+
+        return;
+    }
 }

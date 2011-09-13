@@ -101,6 +101,11 @@ class User extends BaseUser
     protected $following;
 
     /**
+     * @MongoDB\Field(type="hash")
+     */
+    protected $blocked_by;
+
+    /**
      * @MongoDB\EmbedOne(targetDocument="DailyPing")
      */
     protected $dailyPings;
@@ -122,6 +127,7 @@ class User extends BaseUser
         $this->followingCount = 0;
         $this->followerCount = 0;
         $this->pingCount = 0;
+        $this->blocked_by = array();
     }
 
     /**
@@ -345,6 +351,39 @@ class User extends BaseUser
     public function getFollowerCount()
     {
         return $this->followerCount;
+    }
+
+    public function setBlockedBy($blocked_by)
+    {
+        $this->blocked_by = $blocked_by;
+    }
+
+    public function addBlockedBy($blocked_by)
+    {
+        $this->blocked_by = is_array($this->blocked_by) ? $this->blocked_by : array();
+        if (!in_array($blocked_by, $this->blocked_by))
+        {
+            $this->blocked_by[] = $blocked_by;
+        }
+    }
+
+    public function removeBlockedBy($blocked_by)
+    {
+        $this->blocked_by = is_array($this->blocked_by) ? $this->blocked_by : array();
+        foreach($this->blocked_by as $key => $value) {
+            if ($value == $blocked_by) unset($this->blocked_by[$key]);
+        }
+    }
+
+    public function isBlockedBy($blocked_by)
+    {
+        $this->blocked_by = is_array($this->blocked_by) ? $this->blocked_by : array();
+        return in_array($blocked_by, $this->blocked_by);
+    }
+
+    public function getBlockedBy()
+    {
+        return $this->blocked_by;
     }
 
     public function setPingCount($count)

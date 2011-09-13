@@ -3,6 +3,7 @@
     <div class="side-toggle" title="Hide/Show the undecided list"></div>
     <h4>Undecided Users</h4>
     {% for user in undecidedUsers %}
+        {% if not userBlocked(app.user, user) %}
         <div class="item">
             <a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.fullName }}">
                 {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': user.currentProfileImage, 'w': 30, 'h': 30} %}
@@ -10,6 +11,7 @@
             {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user, 'nameLimit': 12} %}
             {% include "WhootBundle:Ping:tag.html.twig" with {'toUser': user} %}
         </div>
+        {% endif %}
     {% else %}
         <div class="none">None!</div>
     {% endfor %}

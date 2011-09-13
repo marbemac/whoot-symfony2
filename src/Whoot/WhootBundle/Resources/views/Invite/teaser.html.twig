@@ -1,3 +1,5 @@
+{% if not userBlocked(app.user, invite.createdBy) %}
+
 <a name="invite-{{ invite.id }}"></a>
 <div class="teaser invite {{ invite.type }}" id="invite-{{ invite.id }}">
     {% if invite.image %}
@@ -38,3 +40,5 @@
         <h5>{{ invite.attendingCount }} attending</h5>
     </div>
 </div>
+
+{% endif %}

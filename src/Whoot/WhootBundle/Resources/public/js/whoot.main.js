@@ -474,7 +474,7 @@ $(function() {
     /*
      * SEARCH
      */
-    $(".search input").autocomplete($('.search input').data('url'), {
+    $(".search input, #block-user").autocomplete($('.search input').data('url'), {
         minChars: 3,
         width: 245,
         matchContains: true,
@@ -493,6 +493,20 @@ $(function() {
     $(".search input").result(function(event, data, formatted) {
         window.location = '/' + data.username + '/following';
     });
+
+    /*
+     * Block users
+     */
+    $("#block-user").result(function(event, data, formatted) {
+        $.post(
+            $('#static-data').data('d').blockUserCreate,
+            {'userId':data.id},
+            function(data)
+            {
+                window.location.reload();
+            }
+        )
+    })
 
     /*
      * Social friends invite page

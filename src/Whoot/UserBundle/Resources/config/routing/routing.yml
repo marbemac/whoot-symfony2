@@ -66,6 +66,18 @@ user_hover_tab:
     requirements:
       _method: GET
 
+user_block_create:
+    pattern:  /block-user/create
+    defaults: { _controller: WhootUserBundle:Profile:blockUserCreate }
+    requirements:
+      _method: POST
+
+user_block_destroy:
+    pattern:  /block-user/destroy
+    defaults: { _controller: WhootUserBundle:Profile:blockUserDestroy }
+    requirements:
+      _method: POST
+
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
     prefix: /profile

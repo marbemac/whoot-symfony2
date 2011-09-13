@@ -5,53 +5,61 @@
 {% endblock %}
 
 {% block page_content %}
-    <div class="invite_show {{ invite.type }}">
-        <h1><span>{{ invite.type|printPostTypeNoun|capitalize }}</span> at {{ invite.venue }}</h1>
-        <div class="left">
-            {% if invite.image %}
-                {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': invite.image, 'w': 180, 'h': 180, 'class': 'inviteImage'} %}
-            {% else %}
-                <img class="inviteImage" src="/slir/w180-h180-c1:1/bundles/whoot/images/inviteDefault.png" />
-            {% endif %}
+    {% if not userBlocked(app.user, invite.createdBy) %}
 
-            <h3>{{ invite.attendingCount }} attending</h3>
-            <ul class="attending">
-                {% for user in invite.attendees %}
-                    <li>
-                        <a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.fullName }}">
-                            {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': user.currentProfileImage, 'w': 30, 'h': 30} %}
-                        </a>
-                        {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user} %}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="right">
-            <div class="info">
-                {% if invite.status == 'Active' %}
-                    {% include "WhootBundle:Invite:attendingButton.html.twig" with {'invite': invite} %}
+        <div class="invite_show {{ invite.type }}">
+            <h1><span>{{ invite.type|printPostTypeNoun|capitalize }}</span> at {{ invite.venue }}</h1>
+            <div class="left">
+                {% if invite.image %}
+                    {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': invite.image, 'w': 180, 'h': 180, 'class': 'inviteImage'} %}
                 {% else %}
-                    <div class="cancelled">This invite was cancelled.</div>
+                    <img class="inviteImage" src="/slir/w180-h180-c1:1/bundles/whoot/images/inviteDefault.png" />
                 {% endif %}
 
-                <div class="item">
-                    created by
-                    {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': invite.createdBy, 'nameLimit': 15} %}
-                </div>
-                <div class="item">
-                    {{ invite.time }} @ {{ invite.venue }}
-                </div>
-                <div class="item">
-                    {{ invite.address }}
-                </div>
-                <div class="description">
-                    {{ invite.description }}
-                </div>
-                {% if invite.coordinates %}
-                    <div id="map-{{ invite.id }}" class="invite-map" data-name="{{ invite.venue }}" data-lat="{{ invite.coordinates.latitude }}" data-lon="{{ invite.coordinates.longitude }}"></div>
-                {% endif %}
+                <h3>{{ invite.attendingCount }} attending</h3>
+                <ul class="attending">
+                    {% for user in invite.attendees %}
+                        {% if not userBlocked(app.user, user) %}
+
+                            <li>
+                                <a class="profile-image" href="{{ path('user_profile_show', {'username': user.username}) }}" title="{{ user.fullName }}">
+                                    {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': user.currentProfileImage, 'w': 30, 'h': 30} %}
+                                </a>
+                                {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user} %}
+                            </li>
+
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
-            {% include "WhootBundle:Comment:feed.html.twig" with {'rootId': invite.id, 'type': 'invite', 'comments': comments} %}
+            <div class="right">
+                <div class="info">
+                    {% if invite.status == 'Active' %}
+                        {% include "WhootBundle:Invite:attendingButton.html.twig" with {'invite': invite} %}
+                    {% else %}
+                        <div class="cancelled">This invite was cancelled.</div>
+                    {% endif %}
+
+                    <div class="item">
+                        created by
+                        {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': invite.createdBy, 'nameLimit': 15} %}
+                    </div>
+                    <div class="item">
+                        {{ invite.time }} @ {{ invite.venue }}
+                    </div>
+                    <div class="item">
+                        {{ invite.address }}
+                    </div>
+                    <div class="description">
+                        {{ invite.description }}
+                    </div>
+                    {% if invite.coordinates %}
+                        <div id="map-{{ invite.id }}" class="invite-map" data-name="{{ invite.venue }}" data-lat="{{ invite.coordinates.latitude }}" data-lon="{{ invite.coordinates.longitude }}"></div>
+                    {% endif %}
+                </div>
+                {% include "WhootBundle:Comment:feed.html.twig" with {'rootId': invite.id, 'type': 'invite', 'comments': comments} %}
+            </div>
         </div>
-    </div>
+
+    {% endif %}
 {% endblock %}

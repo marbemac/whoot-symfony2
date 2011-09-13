@@ -1,1 +1,28 @@
-User Settings...
+<div id="whoot-settings">
+    <div class="section">
+        <h3>Blocked Users</h3>
+        <div class="note">
+            You can block any user that is following you.
+            When you block a user that user will not be able to view your profile or any of your actions on The Whoot.
+            From the perspective of the blocked user, it will be as if you are not a member of The Whoot.
+        </div>
+
+        <div class="block-userC">
+            <label for="block-user">Block a User</label>
+            <input type="text" id="block-user" name="block-user" class="iclear b" data-url="{{ path('user_ajax_search') }}" autocomplete="off" value="Find someone..." />
+        </div>
+
+        <div class="blocked-users">
+            {% for user in blocked_users %}
+                <div class="blocked-user">
+                    {% include "MarbemacImageBundle:Image:show.html.twig" with {'groupId': user.currentProfileImage, 'w': 30, 'h': 30} %}
+                    {% include "WhootUserBundle:Profile:userLink.html.twig" with {'user': user} %}
+                    <div class="ac unblock" data-url="{{ path('user_block_destroy', {'userId': user.id.__toString}) }}">(Unblock)</div>
+                </div>
+           {% else %}
+                <div class="none">You have not blocked any users.</div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
